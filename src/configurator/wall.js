@@ -6,6 +6,9 @@ export default class Wall {
   constructor(width, height) {
     this.width = width
     this.height = height
+
+    Material.metalTexture.repeat.set(height / 2, width / 2) //keeping texture size fixed
+
     this.object = new Mesh(
       new BoxGeometry(width, height, 0.1),
       new MeshStandardMaterial({

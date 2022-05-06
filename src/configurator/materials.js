@@ -8,7 +8,6 @@ export const metalTexture = loadTexture(
 metalTexture.rotation = 1.57079633
 metalTexture.wrapS = RepeatWrapping
 metalTexture.wrapT = RepeatWrapping
-metalTexture.repeat.set(3, 3)
 metalTexture.matrixAutoUpdate = true
 
 export const metalTextureMap = loadTexture(
