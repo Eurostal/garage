@@ -5,7 +5,7 @@ const loader = new TextureLoader()
 export const metalTexture = loadTexture(
   'http://localhost:3000/src/assets/texture1.png',
 )
-metalTexture.rotation = 1.57079633
+metalTexture.rotation = Math.PI / 2
 metalTexture.wrapS = RepeatWrapping
 metalTexture.wrapT = RepeatWrapping
 metalTexture.matrixAutoUpdate = true
@@ -13,11 +13,28 @@ metalTexture.matrixAutoUpdate = true
 export const metalTextureMap = loadTexture(
   'http://localhost:3000/src/assets/texture1map.png',
 )
-metalTextureMap.rotation = 1.57079633
+metalTextureMap.rotation = Math.PI / 2
 metalTextureMap.wrapS = RepeatWrapping
 metalTextureMap.wrapT = RepeatWrapping
-metalTextureMap.repeat.set(3, 3)
 metalTextureMap.matrixAutoUpdate = true
+
+export const grassTexture = loadTexture(
+  'http://localhost:3000/src/assets/grass.jpg',
+)
+grassTexture.rotation = Math.PI / 2
+grassTexture.wrapS = RepeatWrapping
+grassTexture.wrapT = RepeatWrapping
+grassTexture.repeat.set(15, 15)
+grassTexture.matrixAutoUpdate = true
+
+export const concreteTexture = loadTexture(
+  'http://localhost:3000/src/assets/concrete.jpg',
+)
+concreteTexture.rotation = Math.PI / 2
+concreteTexture.wrapS = RepeatWrapping
+concreteTexture.wrapT = RepeatWrapping
+concreteTexture.repeat.set(3, 3)
+concreteTexture.matrixAutoUpdate = true
 
 function loadTexture(url) {
   let texture = loader.load(

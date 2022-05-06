@@ -1,28 +1,26 @@
 import { Mesh, BoxGeometry, MeshStandardMaterial } from 'three'
-
 import * as Material from './materials'
 
 export default class Wall {
-  constructor(width, height) {
+  constructor(width, height, offset = 0, rotation = 0) {
     this.width = width
     this.height = height
 
-    Material.metalTexture.repeat.set(height / 2, width / 2) //keeping texture size fixed
+    Material.metalTexture.repeat.set(height, width) //keeping texture size fixed
+    Material.metalTextureMap.repeat.set(height, width)
 
     this.object = new Mesh(
-      new BoxGeometry(width, height, 0.1),
+      new BoxGeometry(width, height, 0.01),
       new MeshStandardMaterial({
         map: Material.metalTexture,
         normalMap: Material.metalTextureMap,
-        metalness: 0.1,
+        metalness: 0.2,
         roughness: 0.5,
       }),
     )
     this.object.position.y = this.height / 2
+    this.object.rotateY(rotation)
+    this.object.translateZ(offset)
     this.object.castShadow = true
-  }
-
-  get getObject() {
-    return this.object
   }
 }
