@@ -17,6 +17,9 @@ import {
   DirectionalLight,
   PCFSoftShadowMap,
   AmbientLight,
+  BufferGeometry,
+  DoubleSide,
+  BufferAttribute,
 } from "three";
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -90,6 +93,8 @@ onMounted(() => {
 
 <style scoped>
 #scene-container {
+  position: absolute;
+  bottom: 50px;
   width: 100%;
   max-width: 1000px;
   aspect-ratio: 4/3;

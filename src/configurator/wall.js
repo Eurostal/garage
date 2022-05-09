@@ -13,9 +13,10 @@ export default class Wall {
       new BoxGeometry(width, height, 0.01),
       new MeshStandardMaterial({
         map: Material.metalTexture,
-        normalMap: Material.metalTextureMap,
+        // normalMap: Material.metalTextureMap,
         metalness: 0.2,
         roughness: 0.5,
+        flatShading: true,
       }),
     )
     this.object.position.y = this.height / 2

@@ -1,5 +1,6 @@
 import { Group, Mesh, BoxGeometry, MeshStandardMaterial } from 'three'
 import Wall from './wall.js'
+import roofGable from './roofGable'
 import * as Material from './materials'
 
 export default class Garage {
@@ -39,6 +40,9 @@ export default class Garage {
         )
       }
     }
+    wallsAndFundation.add(
+      new roofGable(this.width, this.length, this.height).object,
+    )
     return wallsAndFundation
   }
 }
