@@ -6,13 +6,16 @@ export default class Wall {
     this.width = width
     this.height = height
 
-    Material.metalTexture.repeat.set(height, width) //keeping texture size fixed
-    Material.metalTextureMap.repeat.set(height, width)
+    let tempTexture = Material.metalTexture.clone()
+    // let tempTextureMap = Material.metalTextureMap.clone()
+
+    tempTexture.repeat.set(height, width) //keeping texture size fixed
+    // tempTextureMap.repeat.set(height, width)
 
     this.object = new Mesh(
       new BoxGeometry(width, height, 0.01),
       new MeshStandardMaterial({
-        map: Material.metalTexture,
+        map: tempTexture,
         // normalMap: Material.metalTextureMap,
         metalness: 0.2,
         roughness: 0.5,

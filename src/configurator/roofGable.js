@@ -35,10 +35,14 @@ export default class roofGable {
     geometry.setAttribute('position', new BufferAttribute(vertices, 3))
     geometry.setAttribute('uv', new BufferAttribute(uvs, 2))
     geometry.computeVertexNormals()
+
+    let tempTexture = Material.metalTexture.clone()
+    tempTexture.repeat.set(this.wallsHeight, this.width)
+
     let gableFront = new Mesh(
       geometry,
       new MeshStandardMaterial({
-        map: Material.metalTexture,
+        map: tempTexture,
         // normalMap: Material.metalTextureMap,
         metalness: 0.2,
         roughness: 0.5,
