@@ -26,5 +26,6 @@ export default class Wall {
     this.object.rotateY(rotation)
     this.object.translateZ(offset)
     this.object.castShadow = true
+    this.object.receiveShadow = true
   }
 }
