@@ -17,10 +17,10 @@ export default class roofGable {
     this.width = width
     this.length = length
     this.wallsHeight = wallsHeight
-    this.object = this.createGables()
+    this.object = this.assembleRoof()
   }
 
-  createGables() {
+  assembleRoof() {
     let wallWidth = 0.01
     let gableGroup = new Group()
     let geometry = new BufferGeometry()

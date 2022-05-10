@@ -2,34 +2,26 @@ import { TextureLoader, RepeatWrapping } from 'three'
 
 const loader = new TextureLoader()
 
-export const metalTexture = loadTexture(
-  'http://localhost:3000/src/assets/texture1.png',
-)
+export const metalTexture = loadTexture('./src/assets/texture1.png')
 metalTexture.rotation = Math.PI / 2
 metalTexture.wrapS = RepeatWrapping
 metalTexture.wrapT = RepeatWrapping
 metalTexture.matrixAutoUpdate = true
 
-export const metalTextureMap = loadTexture(
-  'http://localhost:3000/src/assets/texture1map.png',
-)
+export const metalTextureMap = loadTexture('./src/assets/texture1map.png')
 metalTextureMap.rotation = Math.PI / 2
 metalTextureMap.wrapS = RepeatWrapping
 metalTextureMap.wrapT = RepeatWrapping
 metalTextureMap.matrixAutoUpdate = true
 
-export const grassTexture = loadTexture(
-  'http://localhost:3000/src/assets/grass.jpg',
-)
+export const grassTexture = loadTexture('./src/assets/grass.jpg')
 grassTexture.rotation = Math.PI / 2
 grassTexture.wrapS = RepeatWrapping
 grassTexture.wrapT = RepeatWrapping
 grassTexture.repeat.set(15, 15)
 grassTexture.matrixAutoUpdate = true
 
-export const concreteTexture = loadTexture(
-  'http://localhost:3000/src/assets/concrete.jpg',
-)
+export const concreteTexture = loadTexture('./src/assets/concrete.jpg')
 concreteTexture.rotation = Math.PI / 2
 concreteTexture.wrapS = RepeatWrapping
 concreteTexture.wrapT = RepeatWrapping

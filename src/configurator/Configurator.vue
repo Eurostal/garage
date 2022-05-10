@@ -8,7 +8,6 @@ import {
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-  GridHelper,
   Mesh,
   CircleGeometry,
   MeshStandardMaterial,
@@ -17,9 +16,6 @@ import {
   DirectionalLight,
   PCFSoftShadowMap,
   AmbientLight,
-  BufferGeometry,
-  DoubleSide,
-  BufferAttribute,
 } from "three";
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -54,17 +50,12 @@ onMounted(() => {
   const ambientLight = new AmbientLight(0xffffff);
   scene.add(ambientLight);
 
-  const directionalLight = new DirectionalLight(0xffffff, 0.6);
+  const directionalLight = new DirectionalLight(0xffffff, 0.7);
   directionalLight.position.x = 10;
   directionalLight.position.y = 5;
   directionalLight.position.z = 10;
   directionalLight.castShadow = true;
   scene.add(directionalLight);
-
-  const grid = new GridHelper(40, 40, 0x000000, 0x000000);
-  grid.material.opacity = 0.2;
-  grid.material.transparent = true;
-  scene.add(grid);
 
   scene.fog = new Fog(0xffffff, 8, 20);
   scene.background = new Color(0xffffff);
@@ -81,7 +72,7 @@ onMounted(() => {
   scene.add(ground);
 
   // const test = new Wall(5, 2);
-  const test = new Garage(7, 5, 2);
+  const test = new Garage(2.95, 5, 2);
   scene.add(test.object);
 
   (function animate() {
