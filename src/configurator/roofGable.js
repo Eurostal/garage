@@ -21,7 +21,6 @@ export default class roofGable {
   }
 
   assembleRoof() {
-    let wallWidth = 0.01
     let gableGroup = new Group()
     let geometry = new BufferGeometry()
     let vertices = new Float32Array([
@@ -57,12 +56,12 @@ export default class roofGable {
 
     let gableBack = gableFront.clone()
 
-    gableFront.position.z = this.length / 2 + wallWidth / 2
+    gableFront.position.z = this.length / 2
     gableFront.receiveShadow = true
     gableFront.castShadow = true
     gableGroup.add(gableFront)
 
-    gableBack.position.z = -this.length / 2 - wallWidth / 2
+    gableBack.position.z = -this.length / 2
     gableBack.receiveShadow = true
     gableBack.rotateY(Math.PI)
     gableGroup.add(gableBack)
@@ -102,7 +101,7 @@ export default class roofGable {
     roof.castShadow = true
     roof.position.z = (-this.length * 1.05) / 2
     roof.scale.set(1.05, 1.05, 1.05)
-    roof.position.y = -0.12
+    roof.position.y = (-this.wallsHeight * 0.1) / 2 - 0.02
 
     gableGroup.add(roof)
 

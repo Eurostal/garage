@@ -50,7 +50,7 @@ onMounted(() => {
   const ambientLight = new AmbientLight(0xffffff);
   scene.add(ambientLight);
 
-  const directionalLight = new DirectionalLight(0xffffff, 0.7);
+  const directionalLight = new DirectionalLight(0xffffff, 0.8);
   directionalLight.position.x = 10;
   directionalLight.position.y = 5;
   directionalLight.position.z = 10;
@@ -72,7 +72,7 @@ onMounted(() => {
   scene.add(ground);
 
   // const test = new Wall(5, 2);
-  const test = new Garage(2.95, 5, 2);
+  const test = new Garage(7, 5, 2);
   scene.add(test.object);
 
   (function animate() {
@@ -87,7 +87,7 @@ onMounted(() => {
   position: absolute;
   bottom: 50px;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1500px;
   aspect-ratio: 4/3;
 }
 </style>

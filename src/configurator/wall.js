@@ -1,4 +1,10 @@
-import { Mesh, BoxGeometry, MeshStandardMaterial } from 'three'
+import {
+  Mesh,
+  BoxGeometry,
+  MeshStandardMaterial,
+  PlaneGeometry,
+  DoubleSide,
+} from 'three'
 import * as Material from './materials'
 
 export default class Wall {
@@ -13,13 +19,14 @@ export default class Wall {
     // tempTextureMap.repeat.set(height, width)
 
     this.object = new Mesh(
-      new BoxGeometry(width, height, 0.01),
+      new PlaneGeometry(width, height),
       new MeshStandardMaterial({
         map: tempTexture,
         // normalMap: Material.metalTextureMap,
         metalness: 0.2,
         roughness: 0.5,
         flatShading: true,
+        side: DoubleSide,
       }),
     )
     this.object.position.y = this.height / 2
