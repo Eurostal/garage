@@ -1,25 +1,21 @@
-import {
-  Mesh,
-  BoxGeometry,
-  MeshStandardMaterial,
-  PlaneGeometry,
-  DoubleSide,
-} from 'three'
+import { Mesh, MeshStandardMaterial, BoxGeometry, DoubleSide } from 'three'
 import * as Material from './materials'
 
 export default class Wall {
   constructor(width, height, offset = 0, rotation = 0) {
     this.width = width
     this.height = height
+    this.offset = offset
 
     let tempTexture = Material.metalTexture.clone()
     // let tempTextureMap = Material.metalTextureMap.clone()
 
     tempTexture.repeat.set(height, width) //keeping texture size fixed
     // tempTextureMap.repeat.set(height, width)
+    this.texture = tempTexture
 
-    this.object = new Mesh(
-      new PlaneGeometry(width, height),
+    let wall = new Mesh(
+      new BoxGeometry(width, height, 0.01),
       new MeshStandardMaterial({
         map: tempTexture,
         // normalMap: Material.metalTextureMap,
@@ -29,10 +25,12 @@ export default class Wall {
         side: DoubleSide,
       }),
     )
-    this.object.position.y = this.height / 2
-    this.object.rotateY(rotation)
-    this.object.translateZ(offset)
-    this.object.castShadow = true
-    this.object.receiveShadow = true
+    wall.position.y = this.height / 2
+    wall.rotateY(rotation)
+    wall.translateZ(offset - 0.01 / 2)
+    wall.castShadow = true
+    wall.receiveShadow = true
+
+    this.object = wall
   }
 }

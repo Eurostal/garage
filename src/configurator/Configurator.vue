@@ -20,7 +20,7 @@ import {
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as Material from "./materials";
-import Wall from "./wall.js";
+import wallGate from "./wallGate";
 import Garage from "./garage.js";
 
 onMounted(() => {
@@ -50,7 +50,7 @@ onMounted(() => {
   const ambientLight = new AmbientLight(0xffffff);
   scene.add(ambientLight);
 
-  const directionalLight = new DirectionalLight(0xffffff, 0.8);
+  const directionalLight = new DirectionalLight(0xffffff, 1);
   directionalLight.position.x = 10;
   directionalLight.position.y = 5;
   directionalLight.position.z = 10;
@@ -72,9 +72,9 @@ onMounted(() => {
   scene.add(ground);
 
   // const test = new Wall(5, 2);
-  const test = new Garage(7, 5, 2);
+  let test = new Garage(7, 5, 2);
   scene.add(test.object);
-
+  test.UpdateGate(new wallGate(7, 2, 2.5, 0, 2));
   (function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);

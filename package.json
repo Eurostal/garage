@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@enable3d/three-graphics": "^0.25.1",
     "three": "^0.140.0",
     "vue": "^3.2.25"
   },

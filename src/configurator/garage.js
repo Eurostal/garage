@@ -20,6 +20,7 @@ export default class Garage {
     ).translateY(-0.05)
 
     fundation.castShadow = true
+    fundation.receiveShadow = true
 
     let wallsAndFundation = new Group()
     wallsAndFundation.add(fundation)
@@ -44,5 +45,15 @@ export default class Garage {
       new roofGable(this.width, this.length, this.height).object,
     )
     return wallsAndFundation
+  }
+
+  UpdateGate(wallGate) {
+    let frontWall = this.object.children[1]
+    this.object.remove(frontWall)
+    this.object.add(wallGate.object)
+  }
+
+  get garageParts() {
+    return this.object.children
   }
 }
