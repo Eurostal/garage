@@ -51,17 +51,17 @@ export default class Garage {
   UpdateGate(gateWidth, gateHeight, gateType) {
     let frontWall = this.object.children[1]
     this.object.remove(frontWall)
-    this.object.add(
-      new WallGate(
-        this.width,
-        this.height,
-        this.length / 2,
-        0,
-        gateWidth,
-        gateHeight,
-        gateType,
-      ).object,
+    let frontWallUpdated = new WallGate(
+      this.width,
+      this.height,
+      this.length / 2,
+      0,
+      gateWidth,
+      gateHeight,
+      gateType,
     )
+    frontWallUpdated.addGate('double')
+    this.object.add(frontWallUpdated.object)
   }
 
   get garageParts() {

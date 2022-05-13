@@ -1,8 +1,9 @@
 import Wall from './wall.js'
-import { BoxGeometry, Mesh, MeshStandardMaterial, DoubleSide } from 'three'
+import { BoxGeometry, Mesh, MeshStandardMaterial, Group } from 'three'
 import { CSG } from '@enable3d/three-graphics/jsm/csg'
+import * as Gate from './gateFactory'
 
-export default class wallGate extends Wall {
+export default class WallGate extends Wall {
   constructor(
     width,
     height,
@@ -17,7 +18,7 @@ export default class wallGate extends Wall {
     this.gateHeight = gateHeight
     this.gateType = gateType
 
-    this.object = this.cutWall(this.createWall())
+    this.object = new Group().add(this.cutWall(this.createWall()))
   }
 
   cutWall(fullWall) {
@@ -35,5 +36,20 @@ export default class wallGate extends Wall {
     wallPrepared.receiveShadow = true
 
     return wallPrepared
+  }
+
+  addGate(type) {
+    let gate = this.selectGate(type)
+    gate.position.z = this.offset - 0.01
+    this.object.add(gate)
+  }
+
+  selectGate(type) {
+    switch (type) {
+      case 'double':
+        return Gate.doubleDoor(this.gateWidth, this.gateHeight, this.material)
+      default:
+        break
+    }
   }
 }

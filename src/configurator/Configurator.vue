@@ -72,7 +72,7 @@ onMounted(() => {
   scene.add(ground);
 
   // const test = new Wall(5, 2);
-  let test = new Garage(2.95, 5, 2);
+  let test = new Garage(7, 5, 2);
   scene.add(test.object);
   test.UpdateGate(2.95, 2, "any");
 
