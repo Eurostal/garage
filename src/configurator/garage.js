@@ -1,5 +1,6 @@
 import { Group, Mesh, BoxGeometry, MeshStandardMaterial } from 'three'
 import Wall from './wall.js'
+import WallGate from './wallGate'
 import roofGable from './roofGable'
 import * as Material from './materials'
 
@@ -47,10 +48,20 @@ export default class Garage {
     return wallsAndFundation
   }
 
-  UpdateGate(wallGate) {
+  UpdateGate(gateWidth, gateHeight, gateType) {
     let frontWall = this.object.children[1]
     this.object.remove(frontWall)
-    this.object.add(wallGate.object)
+    this.object.add(
+      new WallGate(
+        this.width,
+        this.height,
+        this.length / 2,
+        0,
+        gateWidth,
+        gateHeight,
+        gateType,
+      ).object,
+    )
   }
 
   get garageParts() {

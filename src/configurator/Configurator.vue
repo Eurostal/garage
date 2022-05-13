@@ -72,9 +72,10 @@ onMounted(() => {
   scene.add(ground);
 
   // const test = new Wall(5, 2);
-  let test = new Garage(7, 5, 2);
+  let test = new Garage(2.95, 5, 2);
   scene.add(test.object);
-  test.UpdateGate(new wallGate(7, 2, 2.5, 0, 2));
+  test.UpdateGate(2.95, 2, "any");
+
   (function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
