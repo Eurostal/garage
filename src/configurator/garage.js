@@ -1,6 +1,7 @@
 import { Group, Mesh, BoxGeometry, MeshStandardMaterial } from 'three'
 import Wall from './wall.js'
 import WallGate from './wallGate'
+import WallCustom from './wallCustom'
 import roofGable from './roofGable'
 import * as Material from './materials'
 
@@ -11,6 +12,28 @@ export default class Garage {
     this.height = height
     this.walls = []
     this.object = this.CreateGarage()
+  }
+
+  CreateWalls() {
+    for (let i = 0; i < 4; i++) {
+      if (i < 2) {
+        let wall = new Wall(
+          this.width,
+          this.height,
+          this.length / 2,
+          i * Math.PI,
+        )
+        this.walls.push(wall)
+      } else {
+        let wall = new Wall(
+          this.length,
+          this.height,
+          this.width / 2,
+          i * Math.PI + Math.PI / 2,
+        )
+        this.walls.push(wall)
+      }
+    }
   }
 
   CreateGarage() {
@@ -24,37 +47,36 @@ export default class Garage {
     fundation.castShadow = true
     fundation.receiveShadow = true
 
-    let garage = new Group()
-    garage.add(fundation)
+    let roof = new roofGable(this.width, this.length, this.height).object
 
-    for (let i = 0; i < 4; i++) {
-      if (i < 2) {
-        let wall = new Wall(
-          this.width,
-          this.height,
-          this.length / 2,
-          i * Math.PI,
-        )
-        this.walls.push(wall)
-        garage.add(wall.object)
-      } else {
-        let wall = new Wall(
-          this.length,
-          this.height,
-          this.width / 2,
-          i * Math.PI + Math.PI / 2,
-        )
-        this.walls.push(wall)
-        garage.add(wall.object)
-      }
+    this.CreateWalls()
+
+    let garage = new Group()
+
+    for (let i = 0; i < this.walls.length; i++) {
+      garage.add(this.walls[i].object)
     }
-    garage.add(new roofGable(this.width, this.length, this.height).object)
+    garage.add(fundation)
+    garage.add(roof)
 
     return garage
   }
 
+  UpdateWall(index) {
+    let previous = this.walls[index]
+    this.walls[index] = new WallCustom(
+      previous.width,
+      previous.height,
+      previous.offset,
+      previous.rotation,
+    )
+    this.object.remove(this.object.children[index])
+    // this.object.add(this.walls[index].object)
+    this.object.children.splice(index, 0, this.walls[index].object)
+  }
+
   UpdateGate(gateWidth, gateHeight, gateType) {
-    this.object.remove(this.object.children[1])
+    this.object.remove(this.object.children[0])
     let frontWall = this.walls[1]
     if (gateType !== 'none') {
       frontWall = new WallGate(
@@ -73,10 +95,6 @@ export default class Garage {
       this.walls[1] = frontWall
     }
     this.object.add(frontWall.object)
-  }
-
-  UpdateWall(index) {
-    this.walls[i]
   }
 
   get garageParts() {

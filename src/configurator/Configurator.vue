@@ -74,6 +74,7 @@ onMounted(() => {
   let test = new Garage(6, 5, 2);
   scene.add(test.object);
   test.UpdateGate(3, 2, "open");
+  test.UpdateWall(2);
 
   (function animate() {
     requestAnimationFrame(animate);

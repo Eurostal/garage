@@ -4,7 +4,7 @@ import { CSG } from '@enable3d/three-graphics/jsm/csg'
 export default class WallCustom extends Wall {
   constructor(width, height, offset = 0, rotation = 0) {
     super(width, height, offset, rotation)
-    this.object = this.object
+    this.object = this.createWall()
   }
 
   punchHole(x, y, width, height) {
