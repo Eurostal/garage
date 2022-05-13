@@ -39,9 +39,14 @@ export default class WallGate extends Wall {
   }
 
   addGate(type) {
-    let gate = this.selectGate(type)
-    gate.position.z = this.offset - 0.01
-    this.object.add(gate)
+    if (this.object.children.length > 1)
+      this.object.remove(this.object.children[1])
+
+    if (type !== 'none') {
+      let gate = this.selectGate(type)
+      gate.position.z = this.offset - 0.01
+      this.object.add(gate)
+    }
   }
 
   selectGate(type) {
@@ -49,7 +54,7 @@ export default class WallGate extends Wall {
       case 'double':
         return Gate.doubleDoor(this.gateWidth, this.gateHeight, this.material)
       default:
-        break
+        return Gate.doubleDoor(this.gateWidth, this.gateHeight, this.material)
     }
   }
 }

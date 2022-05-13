@@ -60,7 +60,7 @@ export default class Garage {
       gateHeight,
       gateType,
     )
-    frontWallUpdated.addGate('double')
+    frontWallUpdated.addGate(gateType)
     this.object.add(frontWallUpdated.object)
   }
 

@@ -34,10 +34,11 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
     new MeshStandardMaterial({
       color: 0x000000,
       transparent: true,
-      opacity: 0.5,
+      opacity: 0.6,
     }),
   )
   separator.position.z = 0.001
+  handle.position.y = -height / 2 + 0.9
 
   doorGroup.add(separator, door, handle)
   doorGroup.position.y = height / 2
