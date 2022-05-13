@@ -20,7 +20,6 @@ import {
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as Material from "./materials";
-import wallGate from "./wallGate";
 import Garage from "./garage.js";
 
 onMounted(() => {
@@ -74,7 +73,7 @@ onMounted(() => {
   // const test = new Wall(5, 2);
   let test = new Garage(6, 5, 2);
   scene.add(test.object);
-  test.UpdateGate(3, 2, "double");
+  test.UpdateGate(3, 2, "open");
 
   (function animate() {
     requestAnimationFrame(animate);

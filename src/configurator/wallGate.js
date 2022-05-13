@@ -42,7 +42,7 @@ export default class WallGate extends Wall {
     if (this.object.children.length > 1)
       this.object.remove(this.object.children[1])
 
-    if (type !== 'none') {
+    if (type !== 'open') {
       let gate = this.selectGate(type)
       gate.position.z = this.offset - 0.01
       this.object.add(gate)
