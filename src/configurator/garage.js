@@ -71,13 +71,13 @@ export default class Garage {
       previous.rotation,
     )
     this.object.remove(this.object.children[index])
-    // this.object.add(this.walls[index].object)
     this.object.children.splice(index, 0, this.walls[index].object)
+    
+    return this.walls[index]
   }
 
   UpdateGate(gateWidth, gateHeight, gateType) {
-    this.object.remove(this.object.children[0])
-    let frontWall = this.walls[1]
+    let frontWall = this.walls[0]
     if (gateType !== 'none') {
       frontWall = new WallGate(
         this.width,
@@ -87,14 +87,15 @@ export default class Garage {
         gateWidth,
         gateHeight,
         gateType,
-      )
-      frontWall.addGate(gateType)
-      this.walls[1] = frontWall
-    } else {
-      let frontWall = new Wall(this.width, this.height, this.length / 2, 0)
-      this.walls[1] = frontWall
-    }
-    this.object.add(frontWall.object)
+        )
+        frontWall.addGate(gateType)
+        this.walls[0] = frontWall
+      } else {
+        let frontWall = new Wall(this.width, this.height, this.length / 2, 0)
+        this.walls[0] = frontWall
+      }
+    this.object.remove(this.object.children[0])
+    this.object.children.splice(0, 0, frontWall.object)
   }
 
   get garageParts() {

@@ -1,4 +1,5 @@
 import Wall from './wall'
+import {Mesh,BoxGeometry,MeshStandardMaterial} from 'three'
 import { CSG } from '@enable3d/three-graphics/jsm/csg'
 
 export default class WallCustom extends Wall {
@@ -7,7 +8,7 @@ export default class WallCustom extends Wall {
     this.object = this.createWall()
   }
 
-  punchHole(x, y, width, height) {
+  punchHole( width, height) {
     let subtractMesh = new Mesh(
       new BoxGeometry(width, height, 0.05),
       new MeshStandardMaterial(),
@@ -15,12 +16,13 @@ export default class WallCustom extends Wall {
     subtractMesh.position.y = this.height / 2
     subtractMesh.position.z = this.offset
 
-    let wallPrepared = CSG.subtract(this.object, subtractMesh)
 
-    wallPrepared.material = this.material
-    wallPrepared.castShadow = true
-    wallPrepared.receiveShadow = true
+    // let wallPrepared = CSG.union(this.createWall(), subtractMesh)
 
-    return wallPrepared
+    // wallPrepared.material = this.material
+    // wallPrepared.castShadow = true
+    // wallPrepared.receiveShadow = true
+
+    // this.object = wallPrepared
   }
 }
