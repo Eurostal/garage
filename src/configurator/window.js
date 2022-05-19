@@ -12,7 +12,7 @@ export default class Window extends WallElement {
 
         const extrudeSettings = { depth: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
         
-        const geometry = new THREE.ExtrudeGeometry( heartShape, extrudeSettings );
+        const geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
         const mesh = new THREE.Mesh( geometry, this.material );
 
         this.object = mesh
