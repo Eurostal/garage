@@ -30,6 +30,7 @@ export default class Wall {
       new BoxGeometry(this.width, this.height, 0.01),
       this.material,
     )
+    wall.name = 'WallBase'
     wall.position.y = this.height / 2
     wall.rotateY(this.rotation)
     wall.translateZ(this.offset - 0.01 / 2)

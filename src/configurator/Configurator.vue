@@ -71,10 +71,15 @@ onMounted(() => {
   scene.add(ground);
 
   // const test = new Wall(5, 2);
-  let test = new Garage(6, 5, 2);
+  let test = new Garage(6, 5, 3);
   scene.add(test.object);
-  test.UpdateGate(3, 2, "open");
-  // test.UpdateWall(3).punchHole(2,2);
+  // test.UpdateGate(3, 2, "open");
+  test.UpdateWall(0);
+  test.walls[0].addHole("test",1,1,2,2);
+  test.walls[0].addHole("test2",4,1,1,1);
+  setTimeout(function (){
+  test.walls[0].removeHole("test2");
+  },10000);
 
   (function animate() {
     requestAnimationFrame(animate);
