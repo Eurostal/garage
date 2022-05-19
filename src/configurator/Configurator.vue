@@ -76,13 +76,13 @@ onMounted(() => {
 
   test.UpdateWall(0);
   test.walls[0].addGate(2,2,'empty','gate1',1);
-  // test.walls[0].addGate(1,3,'double','gate2',1);
+  test.walls[0].addGate(2,2,'double','gate2',3.1);
   // console.log(test.walls[0]);
   // test.walls[0].addHole("test2",4,1,1,1);
-  // setTimeout(function (){
-  //   test.walls[0].removeHole("test2");
-  //   console.log('hole removed!');
-  // },10000);
+  setTimeout(function (){
+    test.walls[0].removeElement("gate2");
+    console.log('gate removed!');
+  },10000);
 
   (function animate() {
     requestAnimationFrame(animate);

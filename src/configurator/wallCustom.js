@@ -22,7 +22,7 @@ export default class WallCustom extends Wall {
       gate.name = elementId
       this.object.add(gate)
     }
-    this.addHole(width, height, elementId, xOffset,height/2)
+    this.addHole(width, height, elementId, xOffset,height/2) 
   }
 
   addHole(width, height, elementId, xOffset,yOffset) {
@@ -40,9 +40,14 @@ export default class WallCustom extends Wall {
     this.punchHoles()
   }
 
+  removeElement(elementId){
+    this.object.remove(this.object.getObjectByName(elementId))
+    this.removeHole(elementId)
+  }
+
   removeHole(elementId){
     // for hole removal wall needs to be reinitialized
-    this.object.remove(this.object.children[0])
+    this.object.remove(this.object.getObjectByName("WallCustom"))
     this.object.add(this.initCustomWall)
     this.holes.remove(this.holes.getObjectByName(elementId))
     this.punchHoles()
