@@ -45,3 +45,11 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
 
   return doorGroup
 }
+
+export const empty = function createEmpty(width, height, material) {
+
+  let noGate = new Mesh(new PlaneGeometry(0, 0), material)
+  noGate.visible = false
+
+  return noGate
+}

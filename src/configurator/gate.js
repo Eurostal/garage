@@ -6,11 +6,13 @@ export default class Gate extends WallElement  {
     width,
     height,
     material,
+    name,
     gateType = 'empty',
   ) {
-    super(width,height,material)
+    super(width,height,material,name)
     this.gateType = gateType
     this.object = this.createGate(this.gateType)
+    this.object.name = this.name
   }
 
   createGate(type) {
@@ -18,7 +20,7 @@ export default class Gate extends WallElement  {
       case 'double':
         return gateModel.doubleDoor(this.width, this.height, this.material)
       default:
-        return null
+        return  gateModel.empty(this.width, this.height, this.material)
     }
   }
 }

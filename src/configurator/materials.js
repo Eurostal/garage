@@ -1,5 +1,7 @@
 import { TextureLoader, RepeatWrapping } from 'three'
 
+//TODO : add textures to Materials and export them instead of only textures
+
 const loader = new TextureLoader()
 
 export const metalTexture = loadTexture('./src/assets/texture1.png')
