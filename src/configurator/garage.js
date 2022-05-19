@@ -1,6 +1,5 @@
 import { Group, Mesh, BoxGeometry, MeshStandardMaterial } from 'three'
 import Wall from './wall.js'
-import WallGate from './wallGate'
 import WallCustom from './wallCustom'
 import roofGable from './roofGable'
 import * as Material from './materials'
@@ -74,28 +73,6 @@ export default class Garage {
     this.object.children.splice(index, 0, this.walls[index].object)
     
     return this.walls[index]
-  }
-
-  UpdateGate(gateWidth, gateHeight, gateType) {
-    let frontWall = this.walls[0]
-    if (gateType !== 'none') {
-      frontWall = new WallGate(
-        this.width,
-        this.height,
-        this.length / 2,
-        0,
-        gateWidth,
-        gateHeight,
-        gateType,
-        )
-        frontWall.addGate(gateType)
-        this.walls[0] = frontWall
-      } else {
-        let frontWall = new Wall(this.width, this.height, this.length / 2, 0)
-        this.walls[0] = frontWall
-      }
-    this.object.remove(this.object.children[0])
-    this.object.children.splice(0, 0, frontWall.object)
   }
 
   get garageParts() {

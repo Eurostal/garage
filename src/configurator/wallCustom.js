@@ -1,6 +1,7 @@
 import Wall from './wall'
 import {Mesh,BoxGeometry,MeshStandardMaterial,Group} from 'three'
 import { CSG } from '@enable3d/three-graphics/jsm/csg'
+import Gate from './gate'
 
 export default class WallCustom extends Wall {
   constructor(width, height, offset = 0, rotation = 0) {
@@ -11,7 +12,20 @@ export default class WallCustom extends Wall {
     this.holes = new Group()
   }
 
-  addHole(elementId, xOffset,yOffset, width, height) {
+  addGate(width, height, type, elementId, xOffset){
+    let gate = new Gate(width,height,this.material,type)
+    if (gate.isObject3D) {
+      gate.rotateY(this.rotation)
+      gate.translateZ(this.offset)
+      gate.translateX(-this.width/2 + width/2 + xOffset)
+      gate.position.y = height/2
+      gate.name = elementId
+      this.object.add(gate)
+    }
+    this.addHole(width, height, elementId, xOffset,height/2)
+  }
+
+  addHole(width, height, elementId, xOffset,yOffset) {
     let subtractMesh = new Mesh(
       new BoxGeometry(width, height, 0.05),
       new MeshStandardMaterial(),
@@ -46,7 +60,7 @@ export default class WallCustom extends Wall {
     wallPunched.receiveShadow = true
     wallPunched.name = "WallCustom"
     
-    this.object.remove(this.object.children[0])
+    this.object.remove(this.object.getObjectByName("WallCustom"))
     this.object.add(wallPunched)
   }
 }
