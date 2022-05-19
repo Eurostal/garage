@@ -13,8 +13,8 @@ export default class WallCustom extends Wall {
   }
 
   addGate(width, height, type, elementId, xOffset){
-    let gate = new Gate(width,height,this.material,type)
-    if (gate.isObject3D) {
+    let gate = new Gate(width,height,this.material,type).object
+    if (gate !== null) {
       gate.rotateY(this.rotation)
       gate.translateZ(this.offset)
       gate.translateX(-this.width/2 + width/2 + xOffset)

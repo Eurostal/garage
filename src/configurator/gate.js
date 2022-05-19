@@ -1,22 +1,19 @@
-import { BoxGeometry, Mesh, MeshStandardMaterial, Group } from 'three'
-import { CSG } from '@enable3d/three-graphics/jsm/csg'
+import WallElement from './wallElement'
 import * as gateModel from './gateFactory'
 
-export default class Gate  {
+export default class Gate extends WallElement  {
   constructor(
     width,
     height,
     material,
     gateType = 'empty',
   ) {
-    this.width = width
-    this.height = height
-    this.material = material
+    super(width,height,material)
     this.gateType = gateType
-    return this.selectGate(this.gateType)
+    this.object = this.createGate(this.gateType)
   }
 
-  selectGate(type) {
+  createGate(type) {
     switch (type) {
       case 'double':
         return gateModel.doubleDoor(this.width, this.height, this.material)

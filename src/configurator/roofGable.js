@@ -12,6 +12,7 @@ import {
 } from 'three'
 import * as Material from './materials'
 
+//TODO : refactor
 export default class roofGable {
   constructor(width = 5, length = 5, wallsHeight = 2) {
     this.width = width
