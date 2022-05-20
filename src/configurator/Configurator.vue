@@ -15,6 +15,7 @@ import * as Material from "./materials";
 import Garage from "./garage.js";
 import Gate from "./gate";
 import Window from "./window";
+import Door from "./door";
 import { DoubleSide } from "three";
 
 onMounted(() => {
@@ -44,7 +45,7 @@ onMounted(() => {
         side: DoubleSide,
       }),
       "gate1",
-      "empty"
+      "double"
     ),
     1,
     0
@@ -52,6 +53,23 @@ onMounted(() => {
 
   test.UpdateWall(2).addElement(new Window(1, 0.7, "window1"), 0.5, 1);
   test.walls[0].addElement(new Window(1, 1, "window2"), 4.5, 1);
+
+  test.walls[2].addElement(
+    new Door(
+      1,
+      1.88,
+      new MeshStandardMaterial({
+        map: Material.metalTexture,
+        metalness: 0.2,
+        roughness: 0.5,
+        flatShading: true,
+        side: DoubleSide,
+      }),
+      "door1"
+    ),
+    2.5,
+    0
+  );
 
   // test.walls[0].addGate(2,2,'double','gate2',3.1);
   // console.log(test.walls[0]);

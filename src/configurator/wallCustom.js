@@ -12,7 +12,7 @@ export default class WallCustom extends Wall {
     this.holes = new Group();
   }
 
-  addElement(element, xOffset, yOffset) {
+  addElement(element, xOffset = this.width / 2, yOffset = 0) {
     [xOffset, yOffset] = this.checkBoundaries(element, xOffset, yOffset);
 
     let elementObject = element.object;
@@ -27,7 +27,7 @@ export default class WallCustom extends Wall {
   }
 
   addHole(width, height, elementId, xOffset, yOffset) {
-    let subtractMesh = new Mesh(new BoxGeometry(width, height, 0.05), new MeshStandardMaterial());
+    let subtractMesh = new Mesh(new BoxGeometry(width, height, 0.1), new MeshStandardMaterial());
     subtractMesh.rotateY(this.rotation);
     subtractMesh.translateZ(this.offset);
     subtractMesh.translateX(-this.width / 2 + width / 2 + xOffset);

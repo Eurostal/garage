@@ -6,7 +6,8 @@ export default class Gate extends WallElement {
     super(width, height, material, name);
     this.gateType = gateType;
     this.object = this.createGate(this.gateType);
-    this.object.name = this.name;
+    this.object.name = name;
+    this.height = height - 0.01;
   }
 
   createGate(type) {

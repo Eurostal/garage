@@ -17,11 +17,11 @@ handle.add(handlePart, handlePart2);
 handle.position.x = 0.1;
 
 export const doubleDoor = function createDoubleDoor(width, height, material) {
-  let doorGroup = new Group();
+  let gateGroup = new Group();
 
-  let door = new Mesh(new PlaneGeometry(width, height), material);
-  door.castShadow = true;
-  door.receiveShadow = true;
+  let gateDoor = new Mesh(new PlaneGeometry(width, height), material);
+  gateDoor.castShadow = true;
+  gateDoor.receiveShadow = true;
 
   let separator = new Mesh(
     new PlaneGeometry(0.02, height),
@@ -34,10 +34,11 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
   separator.position.z = 0.001;
   handle.position.y = -height / 2 + 0.9;
 
-  doorGroup.add(separator, door, handle);
-  doorGroup.position.y = height / 2;
+  gateGroup.add(separator, gateDoor, handle);
+  gateGroup.position.y = height / 2;
+  gateGroup.position.z = -0.005;
 
-  return doorGroup;
+  return gateGroup;
 };
 
 export const empty = function createEmpty(width, height, material) {
