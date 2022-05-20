@@ -73,7 +73,6 @@ onMounted(() => {
   ground.receiveShadow = true;
   scene.add(ground);
 
-  // const test = new Wall(5, 2);
   let test = new Garage(6, 5, 2);
   scene.add(test.object);
 
@@ -84,9 +83,11 @@ onMounted(() => {
       roughness: 0.5,
       flatShading: true,
       side: DoubleSide,
-    }),'gate1','empty'),2,0);
+    }),'gate1','empty'),1,0);
 
-  // test.walls[0].addElement(new Window,2,2);
+  test.UpdateWall(2).addElement(new Window(1,0.7,'window1'),0.5,1);
+
+  test.walls[0].addElement(new Window(1,1,'window1'),4.5,1);
 
   // test.walls[0].addGate(2,2,'double','gate2',3.1);
   // console.log(test.walls[0]);

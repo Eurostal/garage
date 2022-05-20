@@ -18,7 +18,7 @@ export default class WallCustom extends Wall {
       elementObject.rotateY(this.rotation)
       elementObject.translateZ(this.offset-0.005)
       elementObject.translateX(-this.width/2 + element.width/2 + xOffset)
-      elementObject.position.y = element.height/2
+      elementObject.translateY( yOffset)
       this.object.add(elementObject)
     }
     this.addHole(element.width, element.height, element.object.name, xOffset,element.height/2 + yOffset) 
