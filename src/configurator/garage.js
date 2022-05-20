@@ -26,22 +26,21 @@ export default class Garage {
   }
 
   CreateGarage() {
-    let fundation = new Mesh(
+    const fundation = new Mesh(
       new BoxGeometry(this.width + 0.2, 0.1, this.length + 0.2),
       new MeshStandardMaterial({
         map: Material.concreteTexture,
       })
     ).translateY(-0.05);
-
     fundation.castShadow = true;
     fundation.receiveShadow = true;
 
-    let roof = new roofGable(this.width, this.length, this.height).object;
+    const roof = new roofGable(this.width, this.length).object;
+    roof.position.y = this.height;
 
     this.CreateWalls();
 
-    let garage = new Group();
-
+    const garage = new Group();
     for (let i = 0; i < this.walls.length; i++) {
       garage.add(this.walls[i].object);
     }

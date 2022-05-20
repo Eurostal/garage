@@ -3,17 +3,16 @@ import * as Material from "./materials";
 
 //TODO : refactor
 export default class roofGable {
-  constructor(width = 5, length = 5, wallsHeight = 2) {
+  constructor(width = 5, length = 5) {
     this.width = width;
     this.length = length;
-    this.wallsHeight = wallsHeight;
     this.object = this.assembleRoof();
   }
 
   assembleRoof() {
     let gableGroup = new Group();
     let geometry = new BufferGeometry();
-    let vertices = new Float32Array([-this.width / 2, this.wallsHeight, 0, 0, this.wallsHeight + 0.5, 0, this.width / 2, this.wallsHeight, 0]);
+    let vertices = new Float32Array([-this.width / 2, 0, 0, 0, 0.5, 0, this.width / 2, 0, 0]);
 
     let uvs = new Float32Array([0, 0, 0.5, 0.25, 1, 0]);
     geometry.setAttribute("position", new BufferAttribute(vertices, 3));
@@ -21,7 +20,7 @@ export default class roofGable {
     geometry.computeVertexNormals();
 
     let tempTexture = Material.metalTexture.clone();
-    tempTexture.repeat.set(this.wallsHeight, this.width);
+    tempTexture.repeat.set(2, this.width);
 
     let gableFront = new Mesh(
       geometry,
@@ -81,7 +80,6 @@ export default class roofGable {
     roof.castShadow = true;
     roof.position.z = (-this.length * 1.05) / 2;
     roof.scale.set(1.05, 1.05, 1.05);
-    roof.position.y = (-this.wallsHeight * 0.1) / 2 - 0.02;
 
     gableGroup.add(roof);
 
