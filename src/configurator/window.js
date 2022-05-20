@@ -31,7 +31,7 @@ export default class Window extends WallElement {
             roughness: 0.1,
             clearcoat: 1,
             transparent: true,
-            opacity: 0.15,
+            opacity: 0.3,
             reflectivity: 1,
             side:DoubleSide}) );
         glassMesh.translateY(height/2)
