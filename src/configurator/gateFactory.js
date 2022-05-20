@@ -1,4 +1,4 @@
-import { Mesh, PlaneGeometry, BoxGeometry, Group, MeshStandardMaterial } from "three";
+import { Mesh, PlaneGeometry, BoxGeometry, Group, MeshStandardMaterial, MeshBasicMaterial, MultiplyOperation, DoubleSide } from "three";
 
 const handle = new Group();
 const handlePart = new Mesh(
@@ -17,13 +17,24 @@ handle.add(handlePart, handlePart2);
 handle.position.x = 0.1;
 
 export const doubleDoor = function createDoubleDoor(width, height, material) {
-  let gateGroup = new Group();
+  const gateGroup = new Group();
 
-  let gateDoor = new Mesh(new PlaneGeometry(width, height), material);
+  const gateDoor = new Mesh(new BoxGeometry(width - 0.04, height - 0.04, 0.005), material);
   gateDoor.castShadow = true;
   gateDoor.receiveShadow = true;
 
-  let separator = new Mesh(
+  const frameMaterial = new MeshBasicMaterial({
+    color: 0xaaaaaa,
+    combine: MultiplyOperation,
+    reflectivity: 0.5,
+    map: material.map,
+    side: DoubleSide,
+  });
+  const gateDoorFrame = new Mesh(new PlaneGeometry(width, height), frameMaterial);
+  gateDoorFrame.castShadow = true;
+  gateDoorFrame.receiveShadow = true;
+
+  const separator = new Mesh(
     new PlaneGeometry(0.02, height),
     new MeshStandardMaterial({
       color: 0x000000,
@@ -34,7 +45,7 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
   separator.position.z = 0.001;
   handle.position.y = -height / 2 + 0.9;
 
-  gateGroup.add(separator, gateDoor, handle);
+  gateGroup.add(separator, gateDoor, gateDoorFrame, handle);
   gateGroup.position.y = height / 2;
   gateGroup.position.z = -0.005;
 
@@ -42,7 +53,7 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
 };
 
 export const empty = function createEmpty(width, height, material) {
-  let noGate = new Mesh(new PlaneGeometry(0, 0), material);
+  const noGate = new Mesh(new PlaneGeometry(0, 0), material);
   noGate.visible = false;
 
   return noGate;

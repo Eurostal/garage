@@ -1,5 +1,5 @@
 import WallElement from "./wallElement";
-import { MeshStandardMaterial, MeshBasicMaterial, PlaneGeometry, Mesh, Group, BoxGeometry, MultiplyOperation } from "three";
+import { MeshStandardMaterial, MeshBasicMaterial, PlaneGeometry, Mesh, Group, BoxGeometry, MultiplyOperation, DoubleSide } from "three";
 
 export default class Door extends WallElement {
   constructor(width, height, material, name) {
@@ -21,12 +21,17 @@ export default class Door extends WallElement {
     handle.add(handlePart, handlePart2);
     handle.position.x = -0.3;
 
-    const frameMaterial = new MeshBasicMaterial({ color: 0xaaaaaa, combine: MultiplyOperation, reflectivity: 0.5, map: this.material.map });
-
     const door = new Mesh(new BoxGeometry(this.width - 0.04, this.height - 0.04, 0.005), this.material);
     door.castShadow = true;
     door.receiveShadow = true;
 
+    const frameMaterial = new MeshBasicMaterial({
+      color: 0xaaaaaa,
+      combine: MultiplyOperation,
+      reflectivity: 0.5,
+      map: this.material.map,
+      side: DoubleSide,
+    });
     const doorFrame = new Mesh(new PlaneGeometry(this.width, this.height), frameMaterial);
     doorFrame.castShadow = true;
     doorFrame.receiveShadow = true;
