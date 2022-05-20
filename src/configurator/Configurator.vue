@@ -21,9 +21,9 @@ import {
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as Material from "./materials";
 import Garage from "./garage.js";
-import Gate from './gate'
-import Window from './window'
-import {DoubleSide} from 'three'
+import Gate from "./gate";
+import Window from "./window";
+import { DoubleSide } from "three";
 
 onMounted(() => {
   const container = document.getElementById("scene-container");
@@ -77,17 +77,27 @@ onMounted(() => {
   scene.add(test.object);
 
   test.UpdateWall(0);
-  test.walls[0].addElement(new Gate(2,2, new MeshStandardMaterial({
-      map: Material.metalTexture,
-      metalness: 0.2,
-      roughness: 0.5,
-      flatShading: true,
-      side: DoubleSide,
-    }),'gate1','empty'),1,0);
+  test.walls[0].addElement(
+    new Gate(
+      2,
+      2,
+      new MeshStandardMaterial({
+        map: Material.metalTexture,
+        metalness: 0.2,
+        roughness: 0.5,
+        flatShading: true,
+        side: DoubleSide,
+      }),
+      "gate1",
+      "empty"
+    ),
+    1,
+    0
+  );
 
-  test.UpdateWall(2).addElement(new Window(1,0.7,'window1'),0.5,1);
+  test.UpdateWall(2).addElement(new Window(1, 0.7, "window1"), 0.5, 1);
 
-  test.walls[0].addElement(new Window(1,1,'window1'),4.5,1);
+  test.walls[0].addElement(new Window(1, 1, "window1"), 4.5, 1);
 
   // test.walls[0].addGate(2,2,'double','gate2',3.1);
   // console.log(test.walls[0]);
