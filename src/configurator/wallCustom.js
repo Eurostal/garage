@@ -13,6 +13,8 @@ export default class WallCustom extends Wall {
   }
 
   addElement(element, xOffset, yOffset) {
+    [xOffset, yOffset] = this.checkBoundaries(element, xOffset, yOffset);
+
     let elementObject = element.object;
     if (element.object !== null) {
       elementObject.rotateY(this.rotation);
@@ -68,5 +70,32 @@ export default class WallCustom extends Wall {
 
     this.object.remove(this.object.getObjectByName("WallCustom"));
     this.object.add(wallPunched);
+  }
+
+  checkBoundaries(element, xOffset, yOffset) {
+    if (element instanceof Gate) {
+      yOffset = 0;
+    }
+
+    if (xOffset < 0.1) {
+      xOffset = 0.1;
+      console.log(element.name + " item xOffset is out of wall's bounds ");
+    }
+
+    if (xOffset > this.width - element.width - 0.1) {
+      xOffset = this.width - element.width - 0.1;
+      console.log(element.name + " item xOffset is out of wall's bounds ");
+    }
+
+    if (yOffset > this.height - element.height) {
+      yOffset = this.height - element.height;
+      console.log(element.name + " item yOffset is out of wall's bounds ");
+    }
+    if (yOffset < 0) {
+      yOffset = 0;
+      console.log(element.name + " item yOffset is out of wall's bounds ");
+    }
+
+    return [xOffset, yOffset];
   }
 }
