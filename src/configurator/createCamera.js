@@ -10,7 +10,6 @@ export default function createCamera(container, renderer) {
   controls.enablePan = false;
   controls.enableDamping = true;
   controls.dampingFactor = 0.4;
-  // controls.rotateSpeed = 0.07;
   controls.minDistance = 3;
   controls.maxDistance = 8;
   controls.minPolarAngle = Math.PI / 6;
