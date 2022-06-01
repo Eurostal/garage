@@ -12,7 +12,7 @@ export default class roofSloping {
   assembleRoof() {
     let gableGroup = new Group();
     let geometry = new BufferGeometry();
-    let vertices = new Float32Array([-this.width / 2, 0, 0, -this.width / 2, 0.5, 0, this.width / 2, 0, 0]);
+    let vertices = new Float32Array([-this.width / 2, 0, 0, -this.width / 2, 0.5, 0, this.width / 2, 0, 0]); //slope on right
 
     let uvs = new Float32Array([0, 0, 0, 0.25, 1, 0]);
     geometry.setAttribute("position", new BufferAttribute(vertices, 3));
@@ -64,8 +64,9 @@ export default class roofSloping {
       map: tempRoofTexture,
       // normalMap: Material.metalTextureMap,
       metalness: 0.2,
-      roughness: 0.6,
+      roughness: 0.5,
       side: DoubleSide,
+      flatShading: true,
     });
 
     // cloning first verticies as points on XY plane
@@ -107,6 +108,7 @@ export default class roofSloping {
     roofSide.position.z = -this.length / 2;
 
     gableGroup.add(roof, roofSide);
+    gableGroup.name = "roof";
 
     return gableGroup;
   }

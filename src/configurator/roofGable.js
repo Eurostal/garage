@@ -84,6 +84,7 @@ export default class roofGable {
     roof.position.z = (-this.length * 1.05) / 2;
 
     gableGroup.add(roof);
+    gableGroup.name = "roof";
 
     return gableGroup;
   }

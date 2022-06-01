@@ -42,7 +42,7 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
       opacity: 0.6,
     })
   );
-  separator.position.z = 0.001;
+  separator.position.z = 0.005;
   handle.position.y = -height / 2 + 0.9;
 
   gateGroup.add(separator, gateDoor, gateDoorFrame, handle);
