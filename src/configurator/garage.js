@@ -2,6 +2,7 @@ import { Group, Mesh, BoxGeometry, MeshStandardMaterial } from "three";
 import Wall from "./wall.js";
 import WallCustom from "./wallCustom";
 import roofGable from "./roofGable";
+import roofSloping from "./roofSloping";
 import * as Material from "./materials";
 
 export default class Garage {
@@ -35,7 +36,9 @@ export default class Garage {
     fundation.castShadow = true;
     fundation.receiveShadow = true;
 
-    const roof = new roofGable(this.width, this.length).object;
+    // const roof = new roofGable(this.width, this.length).object;
+    const roof = new roofSloping(this.width, this.length).object;
+
     roof.position.y = this.height;
 
     this.CreateWalls();

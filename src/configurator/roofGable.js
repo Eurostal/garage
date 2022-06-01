@@ -42,6 +42,7 @@ export default class roofGable {
 
     gableBack.position.z = -this.length / 2;
     gableBack.receiveShadow = true;
+    gableBack.castShadow = true;
     gableBack.rotateY(Math.PI);
     gableGroup.add(gableBack);
 
