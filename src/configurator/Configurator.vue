@@ -53,7 +53,7 @@ onMounted(() => {
   test.UpdateWall(1).addElement(new Window(1, 1, "window2"), 0.5, 1);
   test.UpdateWall(2).addElement(new Window(1, 0.7, "window1"), 0.5, 1);
   test.walls[0].addElement(new Window(1, 1, "window3"), 4.5, 1);
-  test.UpdateRoof("front");
+  test.UpdateRoof("right");
 
   test.walls[2].addElement(
     new Door(
@@ -71,26 +71,6 @@ onMounted(() => {
     2.5,
     0
   );
-
-  // setTimeout(function () {
-  //   test.UpdateRoof("left");
-  // }, 10000);
-
-  // setTimeout(function () {
-  //   test.UpdateRoof("right");
-  // }, 12000);
-
-  // setTimeout(function () {
-  //   test.UpdateRoof("front");
-  // }, 14000);
-
-  // setTimeout(function () {
-  //   test.UpdateRoof("back");
-  // }, 16000);
-
-  // setTimeout(function () {
-  //   test.UpdateRoof();
-  // }, 18000);
 
   (function animate() {
     requestAnimationFrame(animate);
