@@ -1,7 +1,7 @@
 import { Group, Mesh, BoxGeometry, MeshStandardMaterial } from "three";
 import Wall from "./wall.js";
 import WallCustom from "./wallCustom";
-import { roofGable } from "./roofGable";
+import { roofGable } from "./roofTypes";
 import * as Material from "./materials";
 import Roof from "./roof.js";
 

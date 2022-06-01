@@ -1,5 +1,4 @@
-import { roofSloping } from "./roofSloping";
-import { roofGable } from "./roofGable";
+import { roofSloping, roofGable } from "./roofTypes";
 
 export function createRoof(type, width, length) {
   let roof = null;

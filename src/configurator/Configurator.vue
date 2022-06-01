@@ -36,7 +36,7 @@ onMounted(() => {
   test.walls[0].addElement(
     new Gate(
       2,
-      1.9,
+      2,
       new MeshStandardMaterial({
         map: Material.metalTexture,
         metalness: 0.2,
