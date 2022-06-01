@@ -52,6 +52,35 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
   return gateGroup;
 };
 
+export const tiltedDoor = function createtiltedDoor(width, height, material) {
+  const gateGroup = new Group();
+
+  const gateDoor = new Mesh(new BoxGeometry(width - 0.04, height - 0.04, 0.005), material);
+  gateDoor.castShadow = true;
+  gateDoor.receiveShadow = true;
+
+  const frameMaterial = new MeshBasicMaterial({
+    color: 0xaaaaaa,
+    combine: MultiplyOperation,
+    reflectivity: 0.5,
+    map: material.map,
+    side: DoubleSide,
+  });
+  const gateDoorFrame = new Mesh(new PlaneGeometry(width, height), frameMaterial);
+  gateDoorFrame.castShadow = true;
+  gateDoorFrame.receiveShadow = true;
+
+  handle.position.y = -height / 2 + 0.6;
+  handle.position.x = 0;
+  handle.rotation.z = -Math.PI / 2;
+
+  gateGroup.add(gateDoor, gateDoorFrame, handle);
+  gateGroup.position.y = height / 2;
+  gateGroup.position.z = -0.005;
+
+  return gateGroup;
+};
+
 export const empty = function createEmpty(width, height, material) {
   const noGate = new Mesh(new PlaneGeometry(0, 0), material);
   noGate.visible = false;

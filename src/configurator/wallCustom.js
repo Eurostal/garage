@@ -75,6 +75,11 @@ export default class WallCustom extends Wall {
   checkBoundaries(element, xOffset, yOffset) {
     if (element instanceof Gate) {
       yOffset = 0;
+      if (element.gateType == "tilted" && element.height >= this.height - 0.2) {
+        console.log(element.name + " is tilted gate, which needs 20cm gap from roof start, reduced to: " + (this.height - 0.2));
+        element.height = this.height - 0.2;
+        element.object = element.createGate("tilted");
+      }
     }
 
     if (xOffset < 0.1) {

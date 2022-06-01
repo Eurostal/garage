@@ -1,5 +1,5 @@
 import WallElement from "./wallElement";
-import * as gateModel from "./gateFactory";
+import { doubleDoor, tiltedDoor, empty } from "./gateFactory";
 
 export default class Gate extends WallElement {
   constructor(width, height, material, name, gateType = "empty") {
@@ -13,9 +13,11 @@ export default class Gate extends WallElement {
   createGate(type) {
     switch (type) {
       case "double":
-        return gateModel.doubleDoor(this.width, this.height, this.material);
+        return doubleDoor(this.width, this.height, this.material);
+      case "tilted":
+        return tiltedDoor(this.width, this.height, this.material);
       default:
-        return gateModel.empty(this.width, this.height, this.material);
+        return empty(this.width, this.height, this.material);
     }
   }
 }

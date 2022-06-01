@@ -36,7 +36,7 @@ onMounted(() => {
   test.walls[0].addElement(
     new Gate(
       2,
-      2,
+      1.9,
       new MeshStandardMaterial({
         map: Material.metalTexture,
         metalness: 0.2,
@@ -45,15 +45,14 @@ onMounted(() => {
         side: DoubleSide,
       }),
       "gate1",
-      "double"
+      "tilted"
     ),
     1,
     0
   );
-
-  test.UpdateRoof("back");
+  test.UpdateWall(1).addElement(new Window(1, 1, "window2"), 0.5, 1);
   test.UpdateWall(2).addElement(new Window(1, 0.7, "window1"), 0.5, 1);
-  test.walls[0].addElement(new Window(1, 1, "window2"), 4.5, 1);
+  test.walls[0].addElement(new Window(1, 1, "window3"), 4.5, 1);
 
   test.walls[2].addElement(
     new Door(
@@ -72,12 +71,25 @@ onMounted(() => {
     0
   );
 
-  // test.walls[0].addGate(2,2,'double','gate2',3.1);
-  // console.log(test.walls[0]);
-  // test.walls[0].addHole("test2",4,1,1,1);
-  // setTimeout(function (){
-  //   test.walls[0].removeElement("gate1");
-  // },10000);
+  // setTimeout(function () {
+  //   test.UpdateRoof("left");
+  // }, 10000);
+
+  // setTimeout(function () {
+  //   test.UpdateRoof("right");
+  // }, 12000);
+
+  // setTimeout(function () {
+  //   test.UpdateRoof("front");
+  // }, 14000);
+
+  // setTimeout(function () {
+  //   test.UpdateRoof("back");
+  // }, 16000);
+
+  // setTimeout(function () {
+  //   test.UpdateRoof();
+  // }, 18000);
 
   (function animate() {
     requestAnimationFrame(animate);

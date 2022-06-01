@@ -62,8 +62,8 @@ export default class Garage {
   UpdateWall(index) {
     let previous = this.walls[index];
     this.walls[index] = new WallCustom(previous.width, previous.height, previous.offset, previous.rotation);
-    this.object.remove(this.object.children[index]);
-    this.object.children.splice(index, 0, this.walls[index].object);
+    this.object.remove(previous.object);
+    this.object.add(this.walls[index].object);
 
     return this.walls[index];
   }
