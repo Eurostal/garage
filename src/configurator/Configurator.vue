@@ -53,6 +53,7 @@ onMounted(() => {
   test.UpdateWall(1).addElement(new Window(1, 1, "window2"), 0.5, 1);
   test.UpdateWall(2).addElement(new Window(1, 0.7, "window1"), 0.5, 1);
   test.walls[0].addElement(new Window(1, 1, "window3"), 4.5, 1);
+  test.UpdateRoof("front");
 
   test.walls[2].addElement(
     new Door(

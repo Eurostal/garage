@@ -1,28 +1,28 @@
-import roofSloping from "./roofSloping";
-import roofGable from "./roofGable";
+import { roofSloping } from "./roofSloping";
+import { roofGable } from "./roofGable";
 
-export function CreateRoof(type, width, length) {
+export function createRoof(type, width, length) {
   let roof = null;
   switch (type) {
     case "right":
-      return new roofSloping(width, length).object;
+      return roofSloping(width, length);
 
     case "left":
-      roof = new roofSloping(width, length).object;
+      roof = roofSloping(width, length);
       roof.rotateY(Math.PI);
       return roof;
 
     case "front":
-      roof = new roofSloping(length, width).object;
+      roof = roofSloping(length, width);
       roof.rotateY(-Math.PI / 2);
       return roof;
 
     case "back":
-      roof = new roofSloping(length, width).object;
+      roof = roofSloping(length, width);
       roof.rotateY(Math.PI / 2);
       return roof;
 
     default:
-      return new roofGable(width, length).object;
+      return roofGable(width, length);
   }
 }
