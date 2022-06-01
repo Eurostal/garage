@@ -78,8 +78,9 @@ export default class roofGable {
       })
     );
     roof.castShadow = true;
-    roof.position.z = (-this.length * 1.05) / 2;
     roof.scale.set(1.05, 1.05, 1.05);
+    roof.position.y = 0.5 * -0.05;
+    roof.position.z = (-this.length * 1.05) / 2;
 
     gableGroup.add(roof);
 
