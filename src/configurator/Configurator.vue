@@ -16,7 +16,7 @@ import Garage from "./garage.js";
 import Gate from "./gate";
 import Window from "./window";
 import Door from "./door";
-import { DoubleSide, ArrowHelper, Vector3 } from "three";
+import { DoubleSide } from "three";
 
 onMounted(() => {
   const container = document.getElementById("scene-container");
@@ -29,10 +29,8 @@ onMounted(() => {
   scene.add(camera);
   scene.add(lights);
 
-  const test = new Garage(6, 5, 2);
+  const test = new Garage(2, 5, 2);
   scene.add(test.object);
-
-  // scene.add(new ArrowHelper(new Vector3(1, 2, 0), new Vector3(2.5, -2, 0), 10, "0xff0000"));
 
   test.UpdateWall(0);
   test.walls[0].addElement(
@@ -56,7 +54,7 @@ onMounted(() => {
   test.UpdateWall(2).addElement(new Window(1, 0.7, "window1"), 0.5, 1);
   test.walls[0].addElement(new Window(1, 1, "window3"), 4.5, 1);
   test.UpdateRoof("left");
-  test.addFittings();
+  test.fittings.create();
 
   test.walls[2].addElement(
     new Door(

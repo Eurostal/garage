@@ -196,7 +196,6 @@ export const roofSloping = function (width, length, yOffset) {
 
   roofObject.add(roof, roofSide);
   roofObject.position.y = yOffset;
-  console.log(roof.position);
 
   const normal = new Vector3(-length / 2, -width * length, 0);
   normal.normalize();

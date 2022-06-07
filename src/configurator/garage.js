@@ -2,6 +2,7 @@ import { Group, Mesh, BoxGeometry, MeshStandardMaterial, DoubleSide, Plane, Vect
 import Wall from "./wall.js";
 import WallCustom from "./wallCustom";
 import Roof from "./roof.js";
+import Fittings from "./fittings";
 import * as Material from "./materials";
 
 export default class Garage {
@@ -11,8 +12,8 @@ export default class Garage {
     this.height = height;
     this.walls = [];
     this.roof = new Roof("", this.width, this.length, this.height);
+    this.fittings = new Fittings(this.width, this.length, this.height, this.roof.clippingPlane);
     this.object = this.CreateGarage();
-    this.hasFittings = false;
   }
 
   CreateWalls() {
@@ -45,15 +46,23 @@ export default class Garage {
     }
     garage.add(fundation);
     garage.add(this.roof.object);
+    garage.add(this.fittings.object);
 
     return garage;
   }
 
   UpdateRoof(type) {
     this.roof = new Roof(type, this.width, this.length, this.height);
-
     this.object.remove(this.object.getObjectByName("roof"));
     this.object.add(this.roof.object);
+
+    const newFittings = new Fittings(this.width, this.length, this.height, this.roof.clippingPlane);
+    if (this.fittings.isVisible) {
+      this.object.remove(this.object.getObjectByName("fittings"));
+      newFittings.create();
+    }
+    this.fittings = newFittings;
+    this.object.add(this.fittings.object);
   }
 
   UpdateWall(index) {
@@ -63,36 +72,6 @@ export default class Garage {
     this.object.add(this.walls[index].object);
 
     return this.walls[index];
-  }
-
-  addFittings() {
-    let fittingTexture = Material.metalTexture.clone();
-    fittingTexture.repeat.set(this.height, 0.1);
-
-    console.log(this.roof.clippingPlane);
-
-    const fittingMaterial = new MeshStandardMaterial({
-      map: fittingTexture,
-      metalness: 0.2,
-      roughness: 0.3,
-      emissive: 0x090909,
-      flatShading: true,
-      side: DoubleSide,
-      clippingPlanes: [this.roof.clippingPlane],
-      clipShadows: true,
-    });
-    for (let i = 0; i < 5; i++) {
-      let fitting = new Mesh(new BoxGeometry(0.1, this.height + 0.5, 0.1), fittingMaterial);
-      if (i < 2) {
-        fitting.geometry.translate(this.width / 2 - 0.03, (this.height + 0.5) / 2, this.length / 2 - 0.03);
-        fitting.rotateY(i * Math.PI);
-      } else {
-        fitting.geometry.translate(this.length / 2 - 0.03, (this.height + 0.5) / 2, this.width / 2 - 0.03);
-        fitting.rotateY(i * Math.PI + Math.PI / 2);
-      }
-      this.object.add(fitting);
-    }
-    this.hasFittings = true;
   }
 
   get garageParts() {
