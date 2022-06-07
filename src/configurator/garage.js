@@ -1,9 +1,8 @@
-import { Group, Mesh, BoxGeometry, MeshStandardMaterial } from "three";
+import { Group, Mesh, BoxGeometry, MeshStandardMaterial, DoubleSide, Plane, Vector2, Vector3 } from "three";
 import Wall from "./wall.js";
 import WallCustom from "./wallCustom";
-import { roofGable } from "./roofTypes";
-import * as Material from "./materials";
 import Roof from "./roof.js";
+import * as Material from "./materials";
 
 export default class Garage {
   constructor(width = 5, length = 5, height = 2) {
@@ -11,7 +10,9 @@ export default class Garage {
     this.length = length;
     this.height = height;
     this.walls = [];
+    this.roof = new Roof("", this.width, this.length, this.height);
     this.object = this.CreateGarage();
+    this.hasFittings = false;
   }
 
   CreateWalls() {
@@ -36,9 +37,6 @@ export default class Garage {
     fundation.castShadow = true;
     fundation.receiveShadow = true;
 
-    const roof = roofGable(this.width, this.length);
-    roof.position.y = this.height;
-
     this.CreateWalls();
 
     const garage = new Group();
@@ -46,16 +44,16 @@ export default class Garage {
       garage.add(this.walls[i].object);
     }
     garage.add(fundation);
-    garage.add(roof);
+    garage.add(this.roof.object);
 
     return garage;
   }
 
   UpdateRoof(type) {
-    const roof = new Roof(type, this.width, this.length);
-    roof.position.y = this.height;
+    this.roof = new Roof(type, this.width, this.length, this.height);
+
     this.object.remove(this.object.getObjectByName("roof"));
-    this.object.add(roof);
+    this.object.add(this.roof.object);
   }
 
   UpdateWall(index) {
@@ -65,6 +63,36 @@ export default class Garage {
     this.object.add(this.walls[index].object);
 
     return this.walls[index];
+  }
+
+  addFittings() {
+    let fittingTexture = Material.metalTexture.clone();
+    fittingTexture.repeat.set(this.height, 0.1);
+
+    console.log(this.roof.clippingPlane);
+
+    const fittingMaterial = new MeshStandardMaterial({
+      map: fittingTexture,
+      metalness: 0.2,
+      roughness: 0.3,
+      emissive: 0x090909,
+      flatShading: true,
+      side: DoubleSide,
+      clippingPlanes: [this.roof.clippingPlane],
+      clipShadows: true,
+    });
+    for (let i = 0; i < 5; i++) {
+      let fitting = new Mesh(new BoxGeometry(0.1, this.height + 0.5, 0.1), fittingMaterial);
+      if (i < 2) {
+        fitting.geometry.translate(this.width / 2 - 0.03, (this.height + 0.5) / 2, this.length / 2 - 0.03);
+        fitting.rotateY(i * Math.PI);
+      } else {
+        fitting.geometry.translate(this.length / 2 - 0.03, (this.height + 0.5) / 2, this.width / 2 - 0.03);
+        fitting.rotateY(i * Math.PI + Math.PI / 2);
+      }
+      this.object.add(fitting);
+    }
+    this.hasFittings = true;
   }
 
   get garageParts() {

@@ -1,8 +1,21 @@
-import { Group, Mesh, BufferGeometry, BufferAttribute, DoubleSide, MeshStandardMaterial, Shape, ExtrudeGeometry, Vector2, Vector3 } from "three";
+import {
+  Group,
+  Mesh,
+  BufferGeometry,
+  BufferAttribute,
+  DoubleSide,
+  MeshStandardMaterial,
+  Shape,
+  ExtrudeGeometry,
+  Vector2,
+  Vector3,
+  Plane,
+  Quaternion,
+} from "three";
 import * as Material from "./materials";
 
-export const roofGable = function (width, length) {
-  let gableGroup = new Group();
+export const roofGable = function (width, length, yOffset) {
+  let roofObject = new Group();
   let geometry = new BufferGeometry();
   let vertices = new Float32Array([-width / 2, 0, 0, 0, 0.5, 0, width / 2, 0, 0]);
 
@@ -30,13 +43,13 @@ export const roofGable = function (width, length) {
   gableFront.position.z = length / 2;
   gableFront.receiveShadow = true;
   gableFront.castShadow = true;
-  gableGroup.add(gableFront);
+  roofObject.add(gableFront);
 
   gableBack.position.z = -length / 2;
   gableBack.receiveShadow = true;
   gableBack.castShadow = true;
   gableBack.rotateY(Math.PI);
-  gableGroup.add(gableBack);
+  roofObject.add(gableBack);
 
   // cloning first verticies as points on XY plane
   let roofPoints = [];
@@ -75,14 +88,16 @@ export const roofGable = function (width, length) {
   roof.position.y = 0.5 * -0.05;
   roof.position.z = (-length * 1.05) / 2;
 
-  gableGroup.add(roof);
-  gableGroup.name = "roof";
+  roofObject.add(roof);
+  roofObject.position.y = yOffset;
 
-  return gableGroup;
+  const clippingPlane = new Plane(new Vector3(0, -yOffset, 0), 1);
+
+  return { roofObject, clippingPlane };
 };
 
-export const roofSloping = function (width, length) {
-  let gableGroup = new Group();
+export const roofSloping = function (width, length, yOffset) {
+  let roofObject = new Group();
   let geometry = new BufferGeometry();
   let vertices = new Float32Array([-width / 2, 0, 0, -width / 2, 0.5, 0, width / 2, 0, 0]); //slope on right
 
@@ -111,7 +126,7 @@ export const roofSloping = function (width, length) {
   gableFront.position.z = length / 2;
   gableFront.receiveShadow = true;
   gableFront.castShadow = true;
-  gableGroup.add(gableFront);
+  roofObject.add(gableFront);
 
   let gableBack = new Mesh(
     geometry,
@@ -127,7 +142,7 @@ export const roofSloping = function (width, length) {
   gableBack.material.map = tempTextureBack;
   gableBack.receiveShadow = true;
   gableBack.castShadow = true;
-  gableGroup.add(gableBack);
+  roofObject.add(gableBack);
 
   let tempRoofTexture = Material.metalTexture.clone();
   tempRoofTexture.rotation = 0;
@@ -179,8 +194,15 @@ export const roofSloping = function (width, length) {
   roofSide.receiveShadow = true;
   roofSide.position.z = -length / 2;
 
-  gableGroup.add(roof, roofSide);
-  gableGroup.name = "roof";
+  roofObject.add(roof, roofSide);
+  roofObject.position.y = yOffset;
+  console.log(roof.position);
 
-  return gableGroup;
+  const normal = new Vector3(-length / 2, -width * length, 0);
+  normal.normalize();
+  const roofAngle = (Math.atan(0.5 / width) * 180) / Math.PI;
+  const d = Math.cos((roofAngle * Math.PI) / 180) * (yOffset + 0.25) - 0.001;
+  const clippingPlane = new Plane(normal, d);
+
+  return { roofObject, clippingPlane };
 };
