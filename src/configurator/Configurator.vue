@@ -11,6 +11,7 @@ import createCamera from "./createCamera";
 import createScene from "./createScene";
 import createLight from "./createLight";
 
+import * as Texture from "./textures";
 import * as Material from "./materials";
 import Garage from "./garage.js";
 import Gate from "./gate";
@@ -29,7 +30,7 @@ onMounted(() => {
   scene.add(camera);
   scene.add(lights);
 
-  const test = new Garage(2, 5, 2);
+  const test = new Garage(6, 5, 2);
   scene.add(test.object);
 
   test.UpdateWall(0);
@@ -38,7 +39,7 @@ onMounted(() => {
       2,
       2,
       new MeshStandardMaterial({
-        map: Material.metalTexture,
+        map: Texture.metalTexture,
         metalness: 0.2,
         roughness: 0.5,
         flatShading: true,
@@ -55,13 +56,15 @@ onMounted(() => {
   test.walls[0].addElement(new Window(1, 1, "window3"), 4.5, 1);
   test.UpdateRoof("left");
   test.fittings.create();
+  test.fittings.updateMaterial(Material.RAL3009);
+  test.fittings.updateMaterial(Material.RAL9010);
 
   test.walls[2].addElement(
     new Door(
       1,
       1.88,
       new MeshStandardMaterial({
-        map: Material.metalTexture,
+        map: Texture.metalTexture,
         metalness: 0.2,
         roughness: 0.5,
         flatShading: true,

@@ -1,4 +1,5 @@
 import { Mesh, MeshStandardMaterial, BoxGeometry, DoubleSide } from "three";
+import * as Texture from "./textures";
 import * as Material from "./materials";
 
 export default class Wall {
@@ -8,20 +9,11 @@ export default class Wall {
     this.offset = offset;
     this.rotation = rotation;
 
-    let tempTexture = Material.metalTexture.clone();
-    // let tempTextureMap = Material.metalTextureMap.clone()
+    const wallMaterial = Material.RAL9010.clone();
+    wallMaterial.map = wallMaterial.map.clone();
+    wallMaterial.map.repeat.set(height, width); //keeping texture size fixed
 
-    tempTexture.repeat.set(height, width); //keeping texture size fixed
-    // tempTextureMap.repeat.set(height, width)
-
-    this.material = new MeshStandardMaterial({
-      map: tempTexture,
-      // normalMap: Material.metalTextureMap,
-      metalness: 0.2,
-      roughness: 0.5,
-      flatShading: true,
-      side: DoubleSide,
-    });
+    this.material = wallMaterial;
 
     this.object = this.createWall();
   }

@@ -12,7 +12,7 @@ import {
   Plane,
   Quaternion,
 } from "three";
-import * as Material from "./materials";
+import * as Texture from "./textures";
 
 export const roofGable = function (width, length, yOffset) {
   let roofObject = new Group();
@@ -24,14 +24,14 @@ export const roofGable = function (width, length, yOffset) {
   geometry.setAttribute("uv", new BufferAttribute(uvs, 2));
   geometry.computeVertexNormals();
 
-  let tempTexture = Material.metalTexture.clone();
+  let tempTexture = Texture.metalTexture.clone();
   tempTexture.repeat.set(2, width);
 
   let gableFront = new Mesh(
     geometry,
     new MeshStandardMaterial({
       map: tempTexture,
-      // normalMap: Material.metalTextureMap,
+      // normalMap: Texture.metalTextureMap,
       metalness: 0.2,
       roughness: 0.5,
       side: DoubleSide,
@@ -64,7 +64,7 @@ export const roofGable = function (width, length, yOffset) {
     roofPoints.push(newPoint);
   }
 
-  let tempRoofTexture = Material.metalTexture.clone();
+  let tempRoofTexture = Texture.metalTexture.clone();
   tempRoofTexture.rotation = 0;
 
   const roofShape = new Shape(roofPoints);
@@ -77,7 +77,7 @@ export const roofGable = function (width, length, yOffset) {
     geometryRoof,
     new MeshStandardMaterial({
       map: tempRoofTexture,
-      // normalMap: Material.metalTextureMap,
+      // normalMap: Texture.metalTextureMap,
       metalness: 0.2,
       roughness: 0.6,
       side: DoubleSide,
@@ -106,10 +106,10 @@ export const roofSloping = function (width, length, yOffset) {
   geometry.setAttribute("uv", new BufferAttribute(uvs, 2));
   geometry.computeVertexNormals();
 
-  let tempTextureFront = Material.metalTexture.clone();
+  let tempTextureFront = Texture.metalTexture.clone();
   tempTextureFront.repeat.set(2, width);
 
-  let tempTextureBack = Material.metalTexture.clone();
+  let tempTextureBack = Texture.metalTexture.clone();
   tempTextureBack.repeat.set(2, width);
   tempTextureBack.flipY = false;
 
@@ -117,7 +117,7 @@ export const roofSloping = function (width, length, yOffset) {
     geometry,
     new MeshStandardMaterial({
       map: tempTextureFront,
-      // normalMap: Material.metalTextureMap,
+      // normalMap: Texture.metalTextureMap,
       metalness: 0.2,
       roughness: 0.5,
       side: DoubleSide,
@@ -132,7 +132,7 @@ export const roofSloping = function (width, length, yOffset) {
     geometry,
     new MeshStandardMaterial({
       map: tempTextureBack,
-      // normalMap: Material.metalTextureMap,
+      // normalMap: Texture.metalTextureMap,
       metalness: 0.2,
       roughness: 0.5,
       side: DoubleSide,
@@ -144,12 +144,12 @@ export const roofSloping = function (width, length, yOffset) {
   gableBack.castShadow = true;
   roofObject.add(gableBack);
 
-  let tempRoofTexture = Material.metalTexture.clone();
+  let tempRoofTexture = Texture.metalTexture.clone();
   tempRoofTexture.rotation = 0;
 
   const roofMaterial = new MeshStandardMaterial({
     map: tempRoofTexture,
-    // normalMap: Material.metalTextureMap,
+    // normalMap: Texture.metalTextureMap,
     metalness: 0.2,
     roughness: 0.5,
     side: DoubleSide,

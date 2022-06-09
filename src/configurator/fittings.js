@@ -1,5 +1,5 @@
-import { BoxGeometry, Mesh, MeshStandardMaterial, Group, Plane, Vector3, DoubleSide } from "three";
-import * as Material from "./materials";
+import { BoxGeometry, Mesh, Group, Plane, Vector3 } from "three";
+import * as Materials from "./materials";
 
 export default class Fittings {
   constructor(width, length, height, clippingPlane = new Plane(new Vector3(0, -1, 0), height)) {
@@ -9,24 +9,17 @@ export default class Fittings {
     this.clippingPlane = clippingPlane;
     this.object = new Group();
     this.object.name = "fittings";
-    this.isVisible = false
+    this.isVisible = false;
   }
 
   create() {
     if (this.object.children.length == 0) {
-      let fittingTexture = Material.metalTexture.clone();
-      fittingTexture.repeat.set(this.height, 0.1);
+      const fittingMaterial = Materials.RAL9010.clone();
+      fittingMaterial.map.repeat.set(this.height, 0.1);
 
-      const fittingMaterial = new MeshStandardMaterial({
-        map: fittingTexture,
-        metalness: 0.2,
-        roughness: 0.3,
-        emissive: 0x090909,
-        flatShading: true,
-        side: DoubleSide,
-        clippingPlanes: [this.clippingPlane],
-        clipShadows: true,
-      });
+      fittingMaterial.clippingPlanes = [this.clippingPlane];
+      fittingMaterial.clipShadows = true;
+
       for (let i = 0; i < 5; i++) {
         let fitting = new Mesh(new BoxGeometry(0.1, this.height + 0.5, 0.1), fittingMaterial);
         if (i < 2) {
@@ -50,5 +43,14 @@ export default class Fittings {
       this.object.remove(fitting);
     }
     this.isVisible = false;
+  }
+  updateMaterial(material) {
+    const fittingMaterial = material.clone();
+    fittingMaterial.map.repeat.set(this.height, 0.1);
+    fittingMaterial.clippingPlanes = [this.clippingPlane];
+    fittingMaterial.clipShadows = true;
+    this.object.children.forEach((child) => {
+      child.material = fittingMaterial;
+    });
   }
 }

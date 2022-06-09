@@ -3,7 +3,7 @@ import Wall from "./wall.js";
 import WallCustom from "./wallCustom";
 import Roof from "./roof.js";
 import Fittings from "./fittings";
-import * as Material from "./materials";
+import * as Texture from "./textures";
 
 export default class Garage {
   constructor(width = 5, length = 5, height = 2) {
@@ -32,7 +32,7 @@ export default class Garage {
     const fundation = new Mesh(
       new BoxGeometry(this.width + 0.2, 0.1, this.length + 0.2),
       new MeshStandardMaterial({
-        map: Material.concreteTexture,
+        map: Texture.concreteTexture,
       })
     ).translateY(-0.05);
     fundation.castShadow = true;
