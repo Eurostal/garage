@@ -56,13 +56,11 @@ export default class Garage {
     this.object.remove(this.object.getObjectByName("roof"));
     this.object.add(this.roof.object);
 
-    const newFittings = new Fittings(this.width, this.length, this.height, this.roof.clippingPlane);
+    this.fittings.clippingPlane = this.roof.clippingPlane;
     if (this.fittings.isVisible) {
-      this.object.remove(this.object.getObjectByName("fittings"));
-      newFittings.create();
+      this.fittings.remove();
+      this.fittings.create();
     }
-    this.fittings = newFittings;
-    this.object.add(this.fittings.object);
   }
 
   UpdateWall(index) {

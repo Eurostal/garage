@@ -9,19 +9,18 @@ export default class Fittings {
     this.clippingPlane = clippingPlane;
     this.object = new Group();
     this.object.name = "fittings";
+    const fittingMaterial = Materials.RAL9010.clone();
+    fittingMaterial.map.repeat.set(this.height, 0.1);
+    fittingMaterial.clipShadows = true;
+    this.material = fittingMaterial;
     this.isVisible = false;
   }
 
   create() {
     if (this.object.children.length == 0) {
-      const fittingMaterial = Materials.RAL9010.clone();
-      fittingMaterial.map.repeat.set(this.height, 0.1);
-
-      fittingMaterial.clippingPlanes = [this.clippingPlane];
-      fittingMaterial.clipShadows = true;
-
+      this.material.clippingPlanes = [this.clippingPlane];
       for (let i = 0; i < 5; i++) {
-        let fitting = new Mesh(new BoxGeometry(0.1, this.height + 0.5, 0.1), fittingMaterial);
+        let fitting = new Mesh(new BoxGeometry(0.1, this.height + 0.5, 0.1), this.material);
         if (i < 2) {
           fitting.geometry.translate(this.width / 2 - 0.03, (this.height + 0.5) / 2, this.length / 2 - 0.03);
           fitting.rotateY(i * Math.PI);
@@ -49,6 +48,8 @@ export default class Fittings {
     fittingMaterial.map.repeat.set(this.height, 0.1);
     fittingMaterial.clippingPlanes = [this.clippingPlane];
     fittingMaterial.clipShadows = true;
+    this.material = fittingMaterial;
+
     this.object.children.forEach((child) => {
       child.material = fittingMaterial;
     });
