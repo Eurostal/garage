@@ -7,7 +7,7 @@ export default class WallCustom extends Wall {
   constructor(width, height, offset = 0, rotation = 0) {
     super(width, height, offset, rotation);
     const initCustomWall = this.createWall();
-    initCustomWall.name = "WallCustom";
+    initCustomWall.name = "wall";
     this.object = new Group().add(initCustomWall);
     this.holes = new Group();
   }
@@ -47,9 +47,9 @@ export default class WallCustom extends Wall {
 
   removeHole(elementId) {
     // for hole removal wall needs to be reinitialized
-    this.object.remove(this.object.getObjectByName("WallCustom"));
+    this.object.remove(this.object.getObjectByName("wall"));
     const initCustomWall = this.createWall();
-    initCustomWall.name = "WallCustom";
+    initCustomWall.name = "wall";
     this.object.add(initCustomWall);
     this.holes.remove(this.holes.getObjectByName(elementId));
     if (this.holes.children.length > 0) {
@@ -60,15 +60,15 @@ export default class WallCustom extends Wall {
   punchHoles() {
     let wallPunched = null;
     for (let i = 0; i < this.holes.children.length; i++) {
-      wallPunched = CSG.subtract(this.object.getObjectByName("WallCustom"), this.holes.children[i]);
+      wallPunched = CSG.subtract(this.object.getObjectByName("wall"), this.holes.children[i]);
     }
 
     wallPunched.material = this.material;
     wallPunched.castShadow = true;
     wallPunched.receiveShadow = true;
-    wallPunched.name = "WallCustom";
+    wallPunched.name = "wall";
 
-    this.object.remove(this.object.getObjectByName("WallCustom"));
+    this.object.remove(this.object.getObjectByName("wall"));
     this.object.add(wallPunched);
   }
 

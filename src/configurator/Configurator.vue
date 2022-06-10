@@ -42,6 +42,10 @@ onMounted(() => {
   test.UpdateRoof("left");
   test.fittings.updateMaterial(Material.RAL3009);
   test.walls[2].addElement(new Door(1, 1.88, Material.RAL3009, "door1"), 2.5, 0);
+  test.walls[0].updateMaterial(Material.RAL3009);
+  test.walls[1].updateMaterial(Material.RAL3009);
+  test.walls[2].updateMaterial(Material.RAL3009);
+  test.walls[3].updateMaterial(Material.RAL3009);
 
   (function animate() {
     requestAnimationFrame(animate);
