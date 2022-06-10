@@ -34,46 +34,14 @@ onMounted(() => {
   scene.add(test.object);
 
   test.UpdateWall(0);
-  test.walls[0].addElement(
-    new Gate(
-      2,
-      2,
-      new MeshStandardMaterial({
-        map: Texture.metalTexture,
-        metalness: 0.2,
-        roughness: 0.5,
-        flatShading: true,
-        side: DoubleSide,
-      }),
-      "gate1",
-      "tilted"
-    ),
-    1,
-    0
-  );
+  test.walls[0].addElement(new Gate(2, 2, Material.RAL9010, "gate1", "tilted"), 1, 0);
   test.UpdateWall(1).addElement(new Window(1, 1, "window2"), 0.5, 1);
   test.UpdateWall(2).addElement(new Window(1, 0.7, "window1"), 0.5, 1);
   test.walls[0].addElement(new Window(1, 1, "window3"), 4.5, 1);
   test.fittings.create();
   test.UpdateRoof("left");
   test.fittings.updateMaterial(Material.RAL3009);
-
-  test.walls[2].addElement(
-    new Door(
-      1,
-      1.88,
-      new MeshStandardMaterial({
-        map: Texture.metalTexture,
-        metalness: 0.2,
-        roughness: 0.5,
-        flatShading: true,
-        side: DoubleSide,
-      }),
-      "door1"
-    ),
-    2.5,
-    0
-  );
+  test.walls[2].addElement(new Door(1, 1.88, Material.RAL3009, "door1"), 2.5, 0);
 
   (function animate() {
     requestAnimationFrame(animate);

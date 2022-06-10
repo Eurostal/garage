@@ -5,6 +5,8 @@ export const RAL9010 = new MeshStandardMaterial({
   map: Texture.metalTexture.clone(),
   metalness: 0.2,
   roughness: 0.5,
+  emissive: 0x000000,
+  color: 0xffffff,
   side: DoubleSide,
 });
 

@@ -25,8 +25,11 @@ export default class Door extends WallElement {
     door.castShadow = true;
     door.receiveShadow = true;
 
+    const frameColor = material.color.clone();
+    frameColor.addScalar(-0.5);
+
     const frameMaterial = new MeshBasicMaterial({
-      color: 0xaaaaaa,
+      color: frameColor,
       combine: MultiplyOperation,
       reflectivity: 0.5,
       map: this.material.map,

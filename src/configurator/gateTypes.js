@@ -1,4 +1,4 @@
-import { Mesh, PlaneGeometry, BoxGeometry, Group, MeshStandardMaterial, MeshBasicMaterial, MultiplyOperation, DoubleSide } from "three";
+import { Mesh, PlaneGeometry, BoxGeometry, Group, MeshStandardMaterial, MeshBasicMaterial, MultiplyOperation, DoubleSide, Color } from "three";
 
 const handle = new Group();
 const handlePart = new Mesh(
@@ -23,8 +23,11 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
   gateDoor.castShadow = true;
   gateDoor.receiveShadow = true;
 
+  const frameColor = material.color.clone();
+  frameColor.addScalar(-0.5);
+
   const frameMaterial = new MeshBasicMaterial({
-    color: 0xaaaaaa,
+    color: frameColor,
     combine: MultiplyOperation,
     reflectivity: 0.5,
     map: material.map,
@@ -52,15 +55,18 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
   return gateGroup;
 };
 
-export const tiltedDoor = function createtiltedDoor(width, height, material) {
+export const tiltedDoor = function createTiltedDoor(width, height, material) {
   const gateGroup = new Group();
 
   const gateDoor = new Mesh(new BoxGeometry(width - 0.04, height - 0.04, 0.005), material);
   gateDoor.castShadow = true;
   gateDoor.receiveShadow = true;
 
+  const frameColor = material.color.clone();
+  frameColor.addScalar(-0.5);
+
   const frameMaterial = new MeshBasicMaterial({
-    color: 0xaaaaaa,
+    color: frameColor,
     combine: MultiplyOperation,
     reflectivity: 0.5,
     map: material.map,
