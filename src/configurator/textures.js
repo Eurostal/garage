@@ -2,17 +2,41 @@ import { TextureLoader, RepeatWrapping } from "three";
 
 const loader = new TextureLoader();
 
-export const metalTexture = loadTexture("./src/assets/texture1.png");
+export const metalTexture = loadTexture("./src/assets/metal/metal.jpg");
 metalTexture.rotation = Math.PI / 2;
 metalTexture.wrapS = RepeatWrapping;
 metalTexture.wrapT = RepeatWrapping;
 metalTexture.matrixAutoUpdate = true;
 
-export const metalTextureMap = loadTexture("./src/assets/texture1map.png");
+export const metalTextureMap = loadTexture("./src/assets/metal/metal-normal.png");
 metalTextureMap.rotation = Math.PI / 2;
 metalTextureMap.wrapS = RepeatWrapping;
 metalTextureMap.wrapT = RepeatWrapping;
 metalTextureMap.matrixAutoUpdate = true;
+
+export const metalTextureRoughness = loadTexture("./src/assets/metal/metal-roughness.png");
+metalTextureMap.rotation = Math.PI / 2;
+metalTextureMap.wrapS = RepeatWrapping;
+metalTextureMap.wrapT = RepeatWrapping;
+metalTextureMap.matrixAutoUpdate = true;
+
+export const metalTextureHeight = loadTexture("./src/assets/metal/metal-height.png");
+metalTextureMap.rotation = Math.PI / 2;
+metalTextureMap.wrapS = RepeatWrapping;
+metalTextureMap.wrapT = RepeatWrapping;
+metalTextureMap.matrixAutoUpdate = true;
+
+export const woodTexture = loadTexture("./src/assets/wood/wood.png");
+woodTexture.rotation = Math.PI / 2;
+woodTexture.wrapS = RepeatWrapping;
+woodTexture.wrapT = RepeatWrapping;
+woodTexture.matrixAutoUpdate = true;
+
+export const woodTextureMap = loadTexture("./src/assets/wood/wood-normal.png");
+woodTextureMap.rotation = Math.PI / 2;
+woodTextureMap.wrapS = RepeatWrapping;
+woodTextureMap.wrapT = RepeatWrapping;
+woodTextureMap.matrixAutoUpdate = true;
 
 export const grassTexture = loadTexture("./src/assets/grass.jpg");
 grassTexture.rotation = Math.PI / 2;

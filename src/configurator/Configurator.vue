@@ -33,7 +33,7 @@ onMounted(() => {
   const test = new Garage(6, 5, 2);
   scene.add(test.object);
 
-  test.walls[0].addElement(new Gate(2, 2, Material.RAL3009, "gate1", "wide"), 1, 0);
+  test.walls[0].addElement(new Gate(2, 2, Material.RAL3009, "gate1", "double"), 1, 0);
   test.walls[1].addElement(new Window(1, 1, Material.WHITE, "window2"), 0.5, 1);
   test.walls[2].addElement(new Window(1, 0.7, Material.GRAY, "window1"), 0.5, 1);
   test.walls[0].addElement(new Window(1, 1, Material.BROWN, "window3"), 4.5, 1);
