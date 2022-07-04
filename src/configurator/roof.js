@@ -7,6 +7,21 @@ export default class Roof {
     this.roofCombined.roofObject.name = "roof";
   }
 
+  updateMaterial(material) {
+    this.roofCombined.roofObject.children.forEach((roofPart) => {
+      const partMaterial = roofPart.material;
+      partMaterial.color = material.color;
+      partMaterial.metalness = material.metalness;
+      partMaterial.roughness = material.roughness;
+      if (material.roughnessMap) {
+        partMaterial.roughnessMap = material.roughnessMap.clone();
+        if (partMaterial.map.flipY === false) {
+          partMaterial.roughnessMap.flipY = false;
+        }
+      }
+    });
+  }
+
   get object() {
     return this.roofCombined.roofObject;
   }

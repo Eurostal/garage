@@ -43,6 +43,7 @@ export default class Fittings {
     }
     this.isVisible = false;
   }
+
   updateMaterial(material) {
     const fittingMaterial = material.clone();
     fittingMaterial.map.repeat.set(this.height, 0.1);

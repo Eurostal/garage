@@ -19,10 +19,10 @@ export default class Garage {
   CreateWalls() {
     for (let i = 0; i < 4; i++) {
       if (i < 2) {
-        let wall = new Wall(this.width, this.height, this.length / 2, i * Math.PI);
+        let wall = new WallCustom(this.width, this.height, this.length / 2, i * Math.PI);
         this.walls.push(wall);
       } else {
-        let wall = new Wall(this.length, this.height, this.width / 2, i * Math.PI + Math.PI / 2);
+        let wall = new WallCustom(this.length, this.height, this.width / 2, i * Math.PI + Math.PI / 2);
         this.walls.push(wall);
       }
     }
@@ -61,15 +61,6 @@ export default class Garage {
       this.fittings.remove();
       this.fittings.create();
     }
-  }
-
-  UpdateWall(index) {
-    let previous = this.walls[index];
-    this.walls[index] = new WallCustom(previous.width, previous.height, previous.offset, previous.rotation);
-    this.object.remove(previous.object);
-    this.object.add(this.walls[index].object);
-
-    return this.walls[index];
   }
 
   get garageParts() {
