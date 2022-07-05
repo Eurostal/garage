@@ -13,6 +13,7 @@ import {
   Quaternion,
 } from "three";
 import * as Texture from "./textures";
+import * as Material from "./materials";
 
 export const roofGable = function (width, length, yOffset) {
   let roofObject = new Group();
