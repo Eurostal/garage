@@ -9,7 +9,7 @@ export default class Wall {
     this.rotation = rotation;
     this.object = new Group();
     this.object.add(this.createWall());
-    this.updateMaterial(Material.RAL9010);
+    this.material = this.updateMaterial(Material.RAL9010);
   }
   createWall() {
     let wall = new Mesh(new BoxGeometry(this.width, this.height, 0.01), this.material);
@@ -29,7 +29,6 @@ export default class Wall {
     wallMaterial.map = material.map.clone();
     wallMaterial.normalMap = material.normalMap.clone();
     wallMaterial.roughnessMap = material.roughnessMap.clone();
-    wallMaterial.map = wallMaterial.map.clone();
     if (wallMaterial.map.rotation == 0) {
       wallMaterial.map.repeat.set(this.width, this.height); //keeping texture size fixed
       wallMaterial.normalMap.repeat.set(this.width, this.height);
@@ -39,7 +38,7 @@ export default class Wall {
       wallMaterial.normalMap.repeat.set(this.height, this.width);
       wallMaterial.roughnessMap.repeat.set(this.height, this.width);
     }
-    this.material = wallMaterial;
     wall.material = wallMaterial;
+    return wallMaterial;
   }
 }
