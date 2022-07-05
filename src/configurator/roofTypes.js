@@ -25,21 +25,19 @@ export const roofGable = function (width, length, yOffset) {
   geometry.setAttribute("uv", new BufferAttribute(uvs, 2));
   geometry.computeVertexNormals();
 
-  let tempTexture = Texture.metalTexture.clone();
-  tempTexture.repeat.set(2, width);
+  const gableMaterial = Material.RAL9010.clone();
+  gableMaterial.map = gableMaterial.map.clone();
+  gableMaterial.map.repeat.set(2, width);
+  gableMaterial.map.flipY = false;
+  gableMaterial.normalMap = gableMaterial.normalMap.clone();
+  gableMaterial.normalMap.repeat.set(2, width);
+  gableMaterial.normalMap.flipY = false;
+  gableMaterial.roughnessMap = gableMaterial.roughnessMap.clone();
+  gableMaterial.roughnessMap.repeat.set(2, width);
+  gableMaterial.roughnessMap.flipY = false;
 
-  let gableFront = new Mesh(
-    geometry,
-    new MeshStandardMaterial({
-      map: tempTexture,
-      // normalMap: Texture.metalTextureMap,
-      metalness: 0.2,
-      roughness: 0.5,
-      side: DoubleSide,
-    })
-  );
-
-  let gableBack = gableFront.clone();
+  const gableFront = new Mesh(geometry, gableMaterial);
+  const gableBack = gableFront.clone();
 
   gableFront.position.z = length / 2;
   gableFront.receiveShadow = true;
@@ -65,8 +63,16 @@ export const roofGable = function (width, length, yOffset) {
     roofPoints.push(newPoint);
   }
 
-  let tempRoofTexture = Texture.metalTexture.clone();
-  tempRoofTexture.rotation = 0;
+  const roofMaterial = Material.RAL9010.clone();
+  roofMaterial.map = roofMaterial.map.clone();
+  roofMaterial.map.repeat.set(1, 1);
+  roofMaterial.map.rotation = 0;
+  roofMaterial.normalMap = roofMaterial.normalMap.clone();
+  roofMaterial.normalMap.repeat.set(1, 1);
+  roofMaterial.normalMap.rotation = 0;
+  roofMaterial.roughnessMap = roofMaterial.roughnessMap.clone();
+  roofMaterial.roughnessMap.repeat.set(1, 1);
+  roofMaterial.roughnessMap.rotation = 0;
 
   const roofShape = new Shape(roofPoints);
   const extrudeSettings = {
@@ -74,16 +80,7 @@ export const roofGable = function (width, length, yOffset) {
     bevelEnabled: false,
   };
   const geometryRoof = new ExtrudeGeometry(roofShape, extrudeSettings);
-  const roof = new Mesh(
-    geometryRoof,
-    new MeshStandardMaterial({
-      map: tempRoofTexture,
-      // normalMap: Texture.metalTextureMap,
-      metalness: 0.2,
-      roughness: 0.6,
-      side: DoubleSide,
-    })
-  );
+  const roof = new Mesh(geometryRoof, roofMaterial);
   roof.castShadow = true;
   roof.scale.set(1.05, 1.05, 1.05);
   roof.position.y = 0.5 * -0.05;
@@ -107,55 +104,50 @@ export const roofSloping = function (width, length, yOffset) {
   geometry.setAttribute("uv", new BufferAttribute(uvs, 2));
   geometry.computeVertexNormals();
 
-  let tempTextureFront = Texture.metalTexture.clone();
-  tempTextureFront.repeat.set(2, width);
+  const gableMaterialFront = Material.RAL9010.clone();
+  gableMaterialFront.map = gableMaterialFront.map.clone();
+  gableMaterialFront.map.repeat.set(2, width);
+  gableMaterialFront.map.flipY = false;
+  gableMaterialFront.normalMap = gableMaterialFront.normalMap.clone();
+  gableMaterialFront.normalMap.repeat.set(2, width);
+  gableMaterialFront.normalMap.flipY = false;
+  gableMaterialFront.roughnessMap = gableMaterialFront.roughnessMap.clone();
+  gableMaterialFront.roughnessMap.repeat.set(2, width);
+  gableMaterialFront.roughnessMap.flipY = false;
 
-  let tempTextureBack = Texture.metalTexture.clone();
-  tempTextureBack.repeat.set(2, width);
-  tempTextureBack.flipY = false;
+  const gableMaterialBack = Material.RAL9010.clone();
+  gableMaterialBack.map = gableMaterialBack.map.clone();
+  gableMaterialBack.map.repeat.set(2, width);
+  gableMaterialBack.map.flipY = false;
+  gableMaterialBack.normalMap = gableMaterialBack.normalMap.clone();
+  gableMaterialBack.normalMap.repeat.set(2, width);
+  gableMaterialBack.normalMap.flipY = false;
+  gableMaterialBack.roughnessMap = gableMaterialBack.roughnessMap.clone();
+  gableMaterialBack.roughnessMap.repeat.set(2, width);
+  gableMaterialBack.roughnessMap.flipY = false;
 
-  let gableFront = new Mesh(
-    geometry,
-    new MeshStandardMaterial({
-      map: tempTextureFront,
-      // normalMap: Texture.metalTextureMap,
-      metalness: 0.2,
-      roughness: 0.5,
-      side: DoubleSide,
-    })
-  );
+  const gableFront = new Mesh(geometry, gableMaterialFront);
   gableFront.position.z = length / 2;
   gableFront.receiveShadow = true;
   gableFront.castShadow = true;
   roofObject.add(gableFront);
 
-  let gableBack = new Mesh(
-    geometry,
-    new MeshStandardMaterial({
-      map: tempTextureBack,
-      // normalMap: Texture.metalTextureMap,
-      metalness: 0.2,
-      roughness: 0.5,
-      side: DoubleSide,
-    })
-  );
+  const gableBack = new Mesh(geometry, gableMaterialBack);
   gableBack.position.z = -length / 2;
-  gableBack.material.map = tempTextureBack;
   gableBack.receiveShadow = true;
   gableBack.castShadow = true;
   roofObject.add(gableBack);
 
-  let tempRoofTexture = Texture.metalTexture.clone();
-  tempRoofTexture.rotation = 0;
-
-  const roofMaterial = new MeshStandardMaterial({
-    map: tempRoofTexture,
-    // normalMap: Texture.metalTextureMap,
-    metalness: 0.2,
-    roughness: 0.5,
-    side: DoubleSide,
-    flatShading: true,
-  });
+  const roofMaterial = Material.RAL9010.clone();
+  roofMaterial.map = roofMaterial.map.clone();
+  roofMaterial.map.repeat.set(1, 1);
+  roofMaterial.map.rotation = 0;
+  roofMaterial.normalMap = roofMaterial.normalMap.clone();
+  roofMaterial.normalMap.repeat.set(1, 1);
+  roofMaterial.normalMap.rotation = 0;
+  roofMaterial.roughnessMap = roofMaterial.roughnessMap.clone();
+  roofMaterial.roughnessMap.repeat.set(1, 1);
+  roofMaterial.roughnessMap.rotation = 0;
 
   // cloning first verticies as points on XY plane
   const roofTopPoints = [];

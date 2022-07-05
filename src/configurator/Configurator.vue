@@ -37,7 +37,7 @@ onMounted(() => {
   test.walls[1].addElement(new Window(1, 1, Material.WHITE, "window2"), 0.5, 1);
   test.walls[2].addElement(new Window(1, 0.7, Material.GRAY, "window1"), 0.5, 1);
   test.walls[0].addElement(new Window(1, 1, Material.BROWN, "window3"), 4.5, 1);
-  // test.fittings.create();
+  test.fittings.create();
   test.UpdateRoof("left");
   test.fittings.updateMaterial(Material.RAL6005);
   test.walls[2].addElement(new Door(1, 1.88, Material.RAL6005, "door1"), 2.5, 0);
