@@ -1,4 +1,4 @@
-import WallElement from "./wallElement";
+import WallElement from "./WallElement";
 import { createGate } from "./gateFactory";
 
 export default class Gate extends WallElement {

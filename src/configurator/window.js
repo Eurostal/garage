@@ -1,4 +1,4 @@
-import WallElement from "./wallElement";
+import WallElement from "./WallElement";
 import { MeshStandardMaterial, MeshPhysicalMaterial, ExtrudeGeometry, Mesh, Group, BoxGeometry, Shape, DoubleSide, Vector2, Path } from "three";
 
 export default class Window extends WallElement {

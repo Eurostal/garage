@@ -1,8 +1,8 @@
 import { Group, Mesh, BoxGeometry, MeshStandardMaterial, DoubleSide, Plane, Vector2, Vector3 } from "three";
-import Wall from "./wall.js";
-import WallCustom from "./wallCustom";
-import Roof from "./roof.js";
-import Fittings from "./fittings";
+import Wall from "./Wall.js";
+import WallCustom from "./WallCustom";
+import Roof from "./Roof.js";
+import Fittings from "./Fittings";
 import * as Texture from "./textures";
 
 export default class Garage {

@@ -1,7 +1,7 @@
-import Wall from "./wall";
+import Wall from "./Wall";
 import { Mesh, BoxGeometry, MeshStandardMaterial, Group } from "three";
 import { CSG } from "@enable3d/three-graphics/jsm/csg";
-import Gate from "./gate";
+import Gate from "./Gate";
 
 export default class WallCustom extends Wall {
   constructor(width, height, offset = 0, rotation = 0) {
