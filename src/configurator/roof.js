@@ -10,7 +10,6 @@ export default class Roof {
   updateMaterial(material) {
     this.roofCombined.roofObject.children.forEach((roofPart) => {
       const partMaterial = roofPart.material;
-      const oldRotation = partMaterial.map.rotation;
       const oldRepeat = partMaterial.map.repeat;
       let flipper = false;
 
@@ -19,20 +18,23 @@ export default class Roof {
       }
       partMaterial.map = material.map.clone();
       flipper ? (partMaterial.map.flipY = false) : null;
-      partMaterial.map.rotation = oldRotation;
       partMaterial.map.repeat = oldRepeat;
 
       if (material.bumpMap) {
         partMaterial.bumpMap = material.bumpMap.clone();
+        partMaterial.bumpMap.repeat = oldRepeat;
         flipper ? (partMaterial.bumpMap.flipY = false) : null;
         partMaterial.bumpScale = material.bumpScale;
       }
       if (material.roughnessMap) {
         partMaterial.roughnessMap = material.roughnessMap.clone();
+        partMaterial.roughnessMap.repeat = oldRepeat;
+
         flipper ? (partMaterial.roughnessMap.flipY = false) : null;
       }
       if (material.normalMap) {
         partMaterial.normalMap = material.normalMap.clone();
+        partMaterial.normalMap.repeat = oldRepeat;
         flipper ? (partMaterial.normalMap.flipY = false) : null;
         partMaterial.normalScale = material.normalScale;
       }
