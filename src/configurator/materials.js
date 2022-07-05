@@ -15,6 +15,14 @@ const RAL_BASE = new MeshStandardMaterial({
 
 export const RAL1002 = RAL_BASE.clone();
 RAL1002.setValues({ color: 0xd1a96c });
+export const RAL1002_H = RAL1002.clone();
+RAL1002_H.map = RAL1002_H.map.clone()
+RAL1002_H.map.rotation = 0
+RAL1002_H.normalMap = RAL1002_H.normalMap.clone();
+RAL1002_H.normalMap.rotation = 0;
+RAL1002_H.roughnessMap = RAL1002_H.roughnessMap.clone();
+RAL1002_H.roughnessMap.rotation = 0;
+
 
 export const RAL3005 = RAL_BASE.clone();
 RAL3005.setValues({ color: 0x571820 });

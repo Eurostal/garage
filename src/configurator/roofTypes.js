@@ -4,6 +4,7 @@ import {
   BufferGeometry,
   BufferAttribute,
   DoubleSide,
+  FrontSide,
   MeshStandardMaterial,
   Shape,
   ExtrudeGeometry,
@@ -27,14 +28,21 @@ export const roofGable = function (width, length, yOffset) {
 
   const gableMaterial = Material.RAL9010.clone();
   gableMaterial.map = gableMaterial.map.clone();
-  gableMaterial.map.repeat.set(2, width);
   gableMaterial.map.flipY = false;
   gableMaterial.normalMap = gableMaterial.normalMap.clone();
-  gableMaterial.normalMap.repeat.set(2, width);
   gableMaterial.normalMap.flipY = false;
   gableMaterial.roughnessMap = gableMaterial.roughnessMap.clone();
-  gableMaterial.roughnessMap.repeat.set(2, width);
   gableMaterial.roughnessMap.flipY = false;
+
+  if (gableMaterial.map.rotation == 0) {
+    gableMaterial.map.repeat.set(width, 2);
+    gableMaterial.normalMap.repeat.set(width, 2);
+    gableMaterial.roughnessMap.repeat.set(width, 2);
+  } else {
+    gableMaterial.map.repeat.set(2, width);
+    gableMaterial.normalMap.repeat.set(2, width);
+    gableMaterial.roughnessMap.repeat.set(2, width);
+  }
 
   const gableFront = new Mesh(geometry, gableMaterial);
   const gableBack = gableFront.clone();
@@ -104,38 +112,32 @@ export const roofSloping = function (width, length, yOffset) {
   geometry.setAttribute("uv", new BufferAttribute(uvs, 2));
   geometry.computeVertexNormals();
 
-  const gableMaterialFront = Material.RAL9010.clone();
-  gableMaterialFront.map = gableMaterialFront.map.clone();
-  gableMaterialFront.map.repeat.set(2, width);
-  gableMaterialFront.map.flipY = false;
-  gableMaterialFront.normalMap = gableMaterialFront.normalMap.clone();
-  gableMaterialFront.normalMap.repeat.set(2, width);
-  gableMaterialFront.normalMap.flipY = false;
-  gableMaterialFront.roughnessMap = gableMaterialFront.roughnessMap.clone();
-  gableMaterialFront.roughnessMap.repeat.set(2, width);
-  gableMaterialFront.roughnessMap.flipY = false;
+  const gableMaterialSide = Material.RAL9010.clone();
+  gableMaterialSide.map = gableMaterialSide.map.clone();
+  gableMaterialSide.map.flipY = false;
+  gableMaterialSide.normalMap = gableMaterialSide.normalMap.clone();
+  gableMaterialSide.normalMap.flipY = false;
+  gableMaterialSide.roughnessMap = gableMaterialSide.roughnessMap.clone();
+  gableMaterialSide.roughnessMap.flipY = false;
 
-  const gableMaterialBack = Material.RAL9010.clone();
-  gableMaterialBack.map = gableMaterialBack.map.clone();
-  gableMaterialBack.map.repeat.set(2, width);
-  gableMaterialBack.map.flipY = false;
-  gableMaterialBack.normalMap = gableMaterialBack.normalMap.clone();
-  gableMaterialBack.normalMap.repeat.set(2, width);
-  gableMaterialBack.normalMap.flipY = false;
-  gableMaterialBack.roughnessMap = gableMaterialBack.roughnessMap.clone();
-  gableMaterialBack.roughnessMap.repeat.set(2, width);
-  gableMaterialBack.roughnessMap.flipY = false;
+  if (gableMaterialSide.map.rotation == 0) {
+    gableMaterialSide.map.repeat.set(width, 2);
+    gableMaterialSide.normalMap.repeat.set(width, 2);
+    gableMaterialSide.roughnessMap.repeat.set(width, 2);
+  } else {
+    gableMaterialSide.map.repeat.set(2, width);
+    gableMaterialSide.normalMap.repeat.set(2, width);
+    gableMaterialSide.roughnessMap.repeat.set(2, width);
+  }
 
-  const gableFront = new Mesh(geometry, gableMaterialFront);
+  const gableFront = new Mesh(geometry, gableMaterialSide);
   gableFront.position.z = length / 2;
   gableFront.receiveShadow = true;
   gableFront.castShadow = true;
   roofObject.add(gableFront);
 
-  const gableBack = new Mesh(geometry, gableMaterialBack);
+  const gableBack = gableFront.clone();
   gableBack.position.z = -length / 2;
-  gableBack.receiveShadow = true;
-  gableBack.castShadow = true;
   roofObject.add(gableBack);
 
   const roofMaterial = Material.RAL9010.clone();
@@ -180,9 +182,31 @@ export const roofSloping = function (width, length, yOffset) {
   roof.position.y = 0.5 * -0.05;
   roof.position.z = (-length * 1.05) / 2;
 
+  const roofSideMaterial = gableMaterialSide.clone();
+  roofSideMaterial.side = FrontSide;
+  roofSideMaterial.map = gableMaterialSide.map.clone();
+  roofSideMaterial.normalMap = gableMaterialSide.normalMap.clone();
+  roofSideMaterial.roughnessMap = gableMaterialSide.roughnessMap.clone();
+  roofSideMaterial.map.flipY = true;
+  roofSideMaterial.normalMap.flipY = true;
+  roofSideMaterial.roughnessMap.flipY = true;
+  roofSideMaterial.map.repeat.set(2, 1);
+  roofSideMaterial.normalMap.repeat.set(2, 1);
+  roofSideMaterial.roughnessMap.repeat.set(2, 1);
+
+  if (gableMaterialSide.map.rotation === Math.PI / 2) {
+    roofSideMaterial.map.rotation = 0;
+    roofSideMaterial.normalMap.rotation = 0;
+    roofSideMaterial.roughnessMap.rotation = 0;
+  } else {
+    roofSideMaterial.map.rotation = Math.PI / 2;
+    roofSideMaterial.normalMap.rotation = Math.PI / 2;
+    roofSideMaterial.roughnessMap.rotation = Math.PI / 2;
+  }
+
   const roofSideShape = new Shape(roofSidePoints);
   const geometryRoofSide = new ExtrudeGeometry(roofSideShape, extrudeSettings);
-  const roofSide = new Mesh(geometryRoofSide, roofMaterial);
+  const roofSide = new Mesh(geometryRoofSide, roofSideMaterial);
   roofSide.castShadow = true;
   roofSide.receiveShadow = true;
   roofSide.position.z = -length / 2;
