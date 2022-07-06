@@ -47,7 +47,7 @@ export default class Fittings {
   updateMaterial(material) {
     const fittingMaterial = material.clone();
     fittingMaterial.map.repeat.set(this.height, 0.1);
-    fittingMaterial.clippingPlanes = [this.clippingPlane];
+    fittingMaterial.clippingPlanes = this.clippingPlane;
     fittingMaterial.clipShadows = true;
     this.material = fittingMaterial;
 
