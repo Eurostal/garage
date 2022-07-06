@@ -22,6 +22,15 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
   const gateDoor = new Mesh(new BoxGeometry(width - 0.04, height - 0.04, 0.005), material);
   gateDoor.castShadow = true;
   gateDoor.receiveShadow = true;
+  if (material.horizontal) {
+    gateDoor.material.map = material.map.clone();
+    gateDoor.material.map.repeat.set(width - 0.04, height - 0.04);
+    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y + 0.02);
+  } else {
+    gateDoor.material.map = material.map.clone();
+    gateDoor.material.map.repeat.set(height - 0.04, width - 0.04);
+    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y - 0.02);
+  }
 
   const frameColor = material.color.clone();
   frameColor.addScalar(-0.5);
@@ -46,9 +55,10 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
     })
   );
   separator.position.z = 0.005;
-  handle.position.y = -height / 2 + 0.9;
+  const handleClone = handle.clone();
+  handleClone.position.y = -height / 2 + 0.9;
 
-  gateGroup.add(separator, gateDoor, gateDoorFrame, handle);
+  gateGroup.add(separator, gateDoor, gateDoorFrame, handleClone);
   gateGroup.position.y = height / 2;
   gateGroup.position.z = -0.005;
 
@@ -63,6 +73,15 @@ export const tiltedWidepanelDoor = function createTiltedWidepanelDoor(width, hei
   const gateDoor = new Mesh(new BoxGeometry(width - 0.04, height - 0.04, 0.005), material);
   gateDoor.castShadow = true;
   gateDoor.receiveShadow = true;
+  if (material.horizontal) {
+    gateDoor.material.map = material.map.clone();
+    gateDoor.material.map.repeat.set(width - 0.04, height - 0.04);
+    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y + 0.02);
+  } else {
+    gateDoor.material.map = material.map.clone();
+    gateDoor.material.map.repeat.set(height - 0.04, width - 0.04);
+    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y - 0.02);
+  }
 
   const frameColor = material.color.clone();
   frameColor.addScalar(-0.5);
@@ -78,11 +97,12 @@ export const tiltedWidepanelDoor = function createTiltedWidepanelDoor(width, hei
   gateDoorFrame.castShadow = true;
   gateDoorFrame.receiveShadow = true;
 
-  handle.position.y = -height / 2 + 0.6;
-  handle.position.x = 0;
-  handle.rotation.z = -Math.PI / 2;
+  const handleClone = handle.clone();
+  handleClone.position.y = -height / 2 + 0.6;
+  handleClone.position.x = 0;
+  handleClone.rotation.z = -Math.PI / 2;
 
-  gateGroup.add(gateDoor, gateDoorFrame, handle);
+  gateGroup.add(gateDoor, gateDoorFrame, handleClone);
   gateGroup.position.y = height / 2;
   gateGroup.position.z = -0.005;
 
@@ -95,6 +115,15 @@ export const tiltedDoor = function createTiltedDoor(width, height, material) {
   const gateDoor = new Mesh(new BoxGeometry(width - 0.04, height - 0.04, 0.005), material);
   gateDoor.castShadow = true;
   gateDoor.receiveShadow = true;
+  if (material.horizontal) {
+    gateDoor.material.map = material.map.clone();
+    gateDoor.material.map.repeat.set(width - 0.04, height - 0.04);
+    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y + 0.02);
+  } else {
+    gateDoor.material.map = material.map.clone();
+    gateDoor.material.map.repeat.set(height - 0.04, width - 0.04);
+    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y - 0.02);
+  }
 
   const frameColor = material.color.clone();
   frameColor.addScalar(-0.5);
@@ -110,11 +139,12 @@ export const tiltedDoor = function createTiltedDoor(width, height, material) {
   gateDoorFrame.castShadow = true;
   gateDoorFrame.receiveShadow = true;
 
-  handle.position.y = -height / 2 + 0.6;
-  handle.position.x = 0;
-  handle.rotation.z = -Math.PI / 2;
+  const handleClone = handle.clone();
+  handleClone.position.y = -height / 2 + 0.6;
+  handleClone.position.x = 0;
+  handleClone.rotation.z = -Math.PI / 2;
 
-  gateGroup.add(gateDoor, gateDoorFrame, handle);
+  gateGroup.add(gateDoor, gateDoorFrame, handleClone);
   gateGroup.position.y = height / 2;
   gateGroup.position.z = -0.005;
 

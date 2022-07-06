@@ -20,10 +20,10 @@ export default class Garage {
   createWalls() {
     for (let i = 0; i < 4; i++) {
       if (i < 2) {
-        let wall = new WallCustom(this.width, this.height, this.length / 2, i * Math.PI, this.roof.clippingPlane);
+        let wall = new WallCustom(this.width, this.height, this.length / 2, i * Math.PI, this.roof.clippingPlane, this.material);
         this.walls.push(wall);
       } else {
-        let wall = new WallCustom(this.length, this.height, this.width / 2, i * Math.PI + Math.PI / 2, this.roof.clippingPlane);
+        let wall = new WallCustom(this.length, this.height, this.width / 2, i * Math.PI + Math.PI / 2, this.roof.clippingPlane, this.material);
         this.walls.push(wall);
       }
     }

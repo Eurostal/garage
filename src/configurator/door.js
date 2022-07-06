@@ -24,6 +24,15 @@ export default class Door extends WallElement {
     const door = new Mesh(new BoxGeometry(this.width - 0.04, this.height - 0.04, 0.005), this.material);
     door.castShadow = true;
     door.receiveShadow = true;
+    if (material.horizontal) {
+      door.material.map = material.map.clone();
+      door.material.map.repeat.set(width - 0.04, height - 0.04);
+      door.material.map.offset.set(door.material.map.offset.x, door.material.map.offset.y + 0.02);
+    } else {
+      door.material.map = material.map.clone();
+      door.material.map.repeat.set(height - 0.04, width - 0.04);
+      door.material.map.offset.set(door.material.map.offset.x, door.material.map.offset.y - 0.02);
+    }
 
     const frameColor = material.color.clone();
     frameColor.addScalar(-0.5);

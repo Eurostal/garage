@@ -4,8 +4,8 @@ import { CSG } from "@enable3d/three-graphics/jsm/csg";
 import Gate from "./Gate";
 
 export default class WallCustom extends Wall {
-  constructor(width, height, offset = 0, rotation = 0, clippingPlane) {
-    super(width, height, offset, rotation, clippingPlane);
+  constructor(width, height, offset = 0, rotation = 0, clippingPlane, material) {
+    super(width, height, offset, rotation, clippingPlane, material);
     const initCustomWall = this.createWall();
     initCustomWall.name = "wall";
     this.object = new Group().add(initCustomWall);

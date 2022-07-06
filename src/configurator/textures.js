@@ -2,7 +2,7 @@ import { TextureLoader, RepeatWrapping } from "three";
 
 const loader = new TextureLoader();
 
-export const metalTexture = loadTexture("./src/assets/metal/metal.jpg");
+export const metalTexture = loadTexture("./src/assets/metal/metal.png");
 metalTexture.rotation = Math.PI / 2;
 metalTexture.wrapS = RepeatWrapping;
 metalTexture.wrapT = RepeatWrapping;

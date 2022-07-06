@@ -2,14 +2,14 @@ import { Mesh, Group, BoxGeometry } from "three";
 import * as Material from "./materials";
 
 export default class Wall {
-  constructor(width, height, offset = 0, rotation = 0, clippingPlane) {
+  constructor(width, height, offset = 0, rotation = 0, clippingPlane, material) {
     this.width = width;
     this.height = height;
     this.offset = offset;
     this.rotation = rotation;
     this.object = new Group();
     this.object.add(this.createWall());
-    this.material = this.updateMaterial(Material.RAL9010, clippingPlane);
+    this.material = this.updateMaterial(material, clippingPlane);
   }
   createWall() {
     let wall = new Mesh(new BoxGeometry(this.width, this.height + 0.5, 0.01), this.material);
@@ -33,10 +33,10 @@ export default class Wall {
     wallMaterial.roughnessMap ? (wallMaterial.roughnessMap = material.roughnessMap.clone()) : null;
     wallMaterial.bumpMap ? (wallMaterial.bumpMap = material.bumpMap.clone()) : null;
     if (wallMaterial.map && material.horizontal) {
-      wallMaterial.map.repeat.set(this.width, this.height);
-      wallMaterial.normalMap ? wallMaterial.normalMap.repeat.set(this.width, this.height) : null;
-      wallMaterial.roughnessMap ? wallMaterial.roughnessMap.repeat.set(this.width, this.height) : null;
-      wallMaterial.bumpMap ? wallMaterial.bumpMap.repeat.set(this.width, this.height) : null;
+      wallMaterial.map.repeat.set(this.width, this.height + 0.5);
+      wallMaterial.normalMap ? wallMaterial.normalMap.repeat.set(this.width, this.height + 0.5) : null;
+      wallMaterial.roughnessMap ? wallMaterial.roughnessMap.repeat.set(this.width, this.height + 0.5) : null;
+      wallMaterial.bumpMap ? wallMaterial.bumpMap.repeat.set(this.width, this.heigh + 0.5) : null;
     } else {
       wallMaterial.map ? wallMaterial.map.repeat.set(this.height, this.width) : null;
       wallMaterial.normalMap ? wallMaterial.normalMap.repeat.set(this.height, this.width) : null;

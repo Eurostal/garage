@@ -27,18 +27,19 @@ onMounted(() => {
   scene.add(camera);
   scene.add(lights);
 
-  const test = new Garage(6, 5, 2.15, Material.RAL9010);
+  const test = new Garage(6, 5, 2, Material.WOOD_DARK_SHINE);
   scene.add(test.object);
 
-  test.walls[0].addElement(new Gate(3, 2, Material.WOOD_DARK_SHINE, "gate1", "tilted"), 1, 0);
-  test.walls[1].addElement(new Window(1, 1, Material.WHITE, "window2"), 0.5, 1);
-  test.walls[2].addElement(new Window(1, 0.7, Material.GRAY, "window1"), 0.5, 1);
-  test.walls[0].addElement(new Window(1, 1, Material.BROWN, "window3"), 4.5, 1);
-  test.fittings.create();
-  test.updateRoof("left");
-  test.fittings.updateMaterial(Material.WOOD_DARK_SHINE);
+  test.walls[0].addElement(new Gate(2, 2, Material.WOOD_DARK_SHINE, "gate1", "tilted"), 1, 0);
+  test.walls[0].addElement(new Gate(2, 2, Material.WOOD_DARK_SHINE_H, "gate2", "double"), 3.2, 0);
+  // test.walls[1].addElement(new Window(1, 1, Material.WHITE, "window2"), 0.5, 1);
+  // test.walls[2].addElement(new Window(1, 0.7, Material.GRAY, "window1"), 0.5, 1);
+  // test.walls[0].addElement(new Window(1, 1, Material.BROWN, "window3"), 4.5, 1);
+  // test.fittings.create();
+  // test.updateRoof("left");
+  // test.fittings.updateMaterial(Material.RAL9010);
   test.walls[2].addElement(new Door(1, 1.88, Material.WOOD_DARK_SHINE, "door1"), 2.5, 0);
-  test.updateMaterial(Material.WOOD_DARK_SHINE);
+  test.updateMaterial(Material.RAL9010);
   // test.updateRoof("back");
   // test.updateRoof("");
 
