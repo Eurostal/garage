@@ -11,19 +11,20 @@ export default class WallElement {
   updateMaterial(material) {
     const newMaterial = material.clone();
 
-    if (material.map) {
-      newMaterial.map = material.map.clone();
-      newMaterial.normalMap = material.normalMap.clone();
-      newMaterial.roughnessMap = material.roughnessMap.clone();
-      if (newMaterial.map.rotation == 0) {
-        newMaterial.map.repeat.set(this.width, this.height); //keeping texture size fixed
-        newMaterial.normalMap.repeat.set(this.width, this.height);
-        newMaterial.roughnessMap.repeat.set(this.width, this.height);
-      } else {
-        newMaterial.map.repeat.set(this.height, this.width);
-        newMaterial.normalMap.repeat.set(this.height, this.width);
-        newMaterial.roughnessMap.repeat.set(this.height, this.width);
-      }
+    newMaterial.map ? (newMaterial.map = material.map.clone()) : null;
+    newMaterial.normalMap ? (newMaterial.normalMap = material.normalMap.clone()) : null;
+    newMaterial.roughnessMap ? (newMaterial.roughnessMap = material.roughnessMap.clone()) : null;
+    newMaterial.bumpMap ? (newMaterial.bumpMap = material.bumpMap.clone()) : null;
+    if (newMaterial.map && material.horizontal) {
+      newMaterial.map.repeat.set(this.width, this.height);
+      newMaterial.normalMap ? newMaterial.normalMap.repeat.set(this.width, this.height) : null;
+      newMaterial.roughnessMap ? newMaterial.roughnessMap.repeat.set(this.width, this.height) : null;
+      newMaterial.bumpMap ? newMaterial.bumpMap.repeat.set(this.width, this.height) : null;
+    } else {
+      newMaterial.map ? newMaterial.map.repeat.set(this.height, this.width) : null;
+      newMaterial.normalMap ? newMaterial.normalMap.repeat.set(this.height, this.width) : null;
+      newMaterial.roughnessMap ? newMaterial.roughnessMap.repeat.set(this.height, this.width) : null;
+      newMaterial.bumpMap ? newMaterial.bumpMap.repeat.set(this.height, this.width) : null;
     }
     return newMaterial;
   }

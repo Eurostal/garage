@@ -1,47 +1,46 @@
 import { createRoof } from "./roofFactory";
 
 export default class Roof {
-  constructor(roofType = "empty", width, length, yOffset) {
+  constructor(roofType = "empty", width, length, yOffset, material) {
     this.roofType = roofType;
-    this.roofCombined = createRoof(this.roofType, width, length, yOffset);
+    this.material = material;
+    this.roofCombined = createRoof(roofType, width, length, yOffset, material);
     this.roofCombined.roofObject.name = "roof";
   }
 
   updateMaterial(material) {
     this.roofCombined.roofObject.children.forEach((roofPart) => {
-      const partMaterial = roofPart.material;
-      const oldRepeat = partMaterial.map.repeat;
-      let flipper = false;
-
-      if (partMaterial.map.flipY === false) {
-        flipper = true;
-      }
-      partMaterial.map = material.map.clone();
-      flipper ? (partMaterial.map.flipY = false) : null;
-      partMaterial.map.repeat = oldRepeat;
+      const partOldRepeat = roofPart.material.map.repeat;
+      const partOldRotation = roofPart.material.map.rotation;
+      roofPart.material = material.clone();
+      roofPart.material.map = material.map.clone();
+      roofPart.material.map.rotation = partOldRotation;
+      material.horizontal ? roofPart.material.map.repeat.set(length, 2) : roofPart.material.map.repeat.set(partOldRepeat.x, partOldRepeat.y);
 
       if (material.bumpMap) {
-        partMaterial.bumpMap = material.bumpMap.clone();
-        partMaterial.bumpMap.repeat = oldRepeat;
-        flipper ? (partMaterial.bumpMap.flipY = false) : null;
-        partMaterial.bumpScale = material.bumpScale;
+        roofPart.material.bumpMap = material.bumpMap.clone();
+        material.horizontal
+          ? roofPart.material.bumpMap.repeat.set(length, 2)
+          : roofPart.material.bumpMap.repeat.set(partOldRepeat.x, partOldRepeat.y);
+        roofPart.material.bumpScale = material.bumpScale;
       }
       if (material.roughnessMap) {
-        partMaterial.roughnessMap = material.roughnessMap.clone();
-        partMaterial.roughnessMap.repeat = oldRepeat;
-
-        flipper ? (partMaterial.roughnessMap.flipY = false) : null;
+        roofPart.material.roughnessMap = material.roughnessMap.clone();
+        material.horizontal
+          ? roofPart.material.roughnessMap.repeat.set(length, 2)
+          : roofPart.material.roughnessMap.repeat.set(partOldRepeat.x, partOldRepeat.y);
       }
       if (material.normalMap) {
-        partMaterial.normalMap = material.normalMap.clone();
-        partMaterial.normalMap.repeat = oldRepeat;
-        flipper ? (partMaterial.normalMap.flipY = false) : null;
-        partMaterial.normalScale = material.normalScale;
+        roofPart.material.normalMap = material.normalMap.clone();
+        material.horizontal
+          ? roofPart.material.normalMap.repeat.set(length, 2)
+          : roofPart.material.normalMap.repeat.set(partOldRepeat.x, partOldRepeat.y);
+        roofPart.material.normalScale = material.normalScale;
       }
 
-      partMaterial.roughness = material.roughness;
-      partMaterial.metalness = material.metalness;
-      partMaterial.color = material.color;
+      roofPart.material.roughness = material.roughness;
+      roofPart.material.metalness = material.metalness;
+      roofPart.material.color = material.color;
     });
   }
 

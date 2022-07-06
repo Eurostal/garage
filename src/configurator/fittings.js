@@ -18,7 +18,7 @@ export default class Fittings {
 
   create() {
     if (this.object.children.length == 0) {
-      this.material.clippingPlanes = [this.clippingPlane];
+      this.material.clippingPlanes = this.clippingPlane;
       for (let i = 0; i < 5; i++) {
         let fitting = new Mesh(new BoxGeometry(0.1, this.height + 0.5, 0.1), this.material);
         if (i < 2) {

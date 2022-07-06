@@ -12,10 +12,10 @@ import createScene from "./createScene";
 import createLight from "./createLight";
 
 import * as Material from "./materials";
-import Garage from "./garage.js";
-import Gate from "./gate";
-import Window from "./window";
-import Door from "./door";
+import Garage from "./Garage.js";
+import Gate from "./Gate.js";
+import Window from "./Window.js";
+import Door from "./Door.js";
 
 onMounted(() => {
   const container = document.getElementById("scene-container");
@@ -28,19 +28,21 @@ onMounted(() => {
   scene.add(camera);
   scene.add(lights);
 
-  const test = new Garage(6, 5, 2.15);
+  const test = new Garage(4, 5, 2, Material.RAL9010);
   scene.add(test.object);
 
-  test.walls[0].addElement(new Gate(2, 2, Material.RAL3005, "gate1", "double"), 1, 0);
-  test.walls[1].addElement(new Window(1, 1, Material.WHITE, "window2"), 0.5, 1);
-  test.walls[2].addElement(new Window(1, 0.7, Material.GRAY, "window1"), 0.5, 1);
-  test.walls[0].addElement(new Window(1, 1, Material.BROWN, "window3"), 4.5, 1);
+  test.walls[0].addElement(new Gate(2, 2, Material.WOOD_LIGHT, "gate1", "open"), 1, 0);
+  // test.walls[1].addElement(new Window(1, 1, Material.WHITE, "window2"), 0.5, 1);
+  // test.walls[2].addElement(new Window(1, 0.7, Material.GRAY, "window1"), 0.5, 1);
+  // test.walls[0].addElement(new Window(1, 1, Material.BROWN, "window3"), 4.5, 1);
   test.fittings.create();
-  // test.UpdateRoof("left");
-  test.fittings.updateMaterial(Material.RAL6005);
-  test.walls[2].addElement(new Door(1, 1.88, Material.RAL3005, "door1"), 2.5, 0);
-  test.walls.forEach((wall) => wall.updateMaterial(Material.RAL3005_H));
-  test.roof.updateMaterial(Material.RAL9010_H);
+  test.updateRoof("left");
+  // test.fittings.updateMaterial(Material.WOOD_LIGHT);
+  test.walls[2].addElement(new Door(1, 1.88, Material.RAL9010_H, "door1"), 2.5, 0);
+  // test.roof.updateMaterial(Material.WOOD_LIGHT);
+  test.updateMaterial(Material.WOOD_LIGHT);
+  // test.updateRoof("back");
+  test.updateRoof("");
 
   (function animate() {
     requestAnimationFrame(animate);
@@ -49,7 +51,7 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
+<style>
 #scene-container {
   position: absolute;
   bottom: 50px;
