@@ -10,20 +10,22 @@ export default class WallCustom extends Wall {
     initCustomWall.name = "wall";
     this.object = new Group().add(initCustomWall);
     this.holes = new Group();
+    this.elements = {};
   }
 
   addElement(element, xOffset = this.width / 2, yOffset = 0) {
-    [xOffset, yOffset] = this.checkBoundaries(element, xOffset, yOffset);
-
-    let elementObject = element.object;
-    if (element.object !== null) {
-      elementObject.rotateY(this.rotation);
-      elementObject.translateZ(this.offset - 0.005);
-      elementObject.translateX(-this.width / 2 + element.width / 2 + xOffset);
-      elementObject.translateY(yOffset);
-      this.object.add(elementObject);
+    this.elements[element.name] = { x: xOffset, y: yOffset, width: element.width, height: element.height };
+    if (this.checkBoundaries(element, xOffset, yOffset)) {
+      let elementObject = element.object;
+      if (element.object !== null) {
+        elementObject.rotateY(this.rotation);
+        elementObject.translateZ(this.offset - 0.005);
+        elementObject.translateX(-this.width / 2 + element.width / 2 + xOffset);
+        elementObject.translateY(yOffset);
+        this.object.add(elementObject);
+      }
+      this.addHole(element.width, element.height, element.object.name, xOffset, element.height / 2 + yOffset);
     }
-    this.addHole(element.width, element.height, element.object.name, xOffset, element.height / 2 + yOffset);
   }
 
   addHole(width, height, elementId, xOffset, yOffset) {
@@ -83,24 +85,24 @@ export default class WallCustom extends Wall {
     }
 
     if (xOffset < 0.1) {
-      xOffset = 0.1;
       console.log(element.name + " item xOffset is out of wall's bounds ");
+      return false;
     }
 
     if (xOffset > this.width - element.width - 0.1) {
-      xOffset = this.width - element.width - 0.1;
       console.log(element.name + " item xOffset is out of wall's bounds ");
+      return false;
     }
 
     if (yOffset > this.height - element.height) {
-      yOffset = this.height - element.height;
       console.log(element.name + " item yOffset is out of wall's bounds ");
+      return false;
     }
     if (yOffset < 0) {
-      yOffset = 0;
       console.log(element.name + " item yOffset is out of wall's bounds ");
+      return false;
     }
 
-    return [xOffset, yOffset];
+    return true;
   }
 }
