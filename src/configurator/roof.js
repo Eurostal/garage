@@ -9,6 +9,7 @@ export default class Roof {
   }
 
   updateMaterial(material) {
+    this.material = material;
     this.roofCombined.roofObject.children.forEach((roofPart) => {
       const partOldRepeat = roofPart.material.map.repeat;
       const partOldRotation = roofPart.material.map.rotation;

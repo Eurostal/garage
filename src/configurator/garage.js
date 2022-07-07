@@ -53,7 +53,8 @@ export default class Garage {
   }
 
   updateRoof(type) {
-    this.roof = new Roof(type, this.width, this.length, this.height, this.material);
+    console.log(this.material, this.roof.material);
+    this.roof = new Roof(type, this.width, this.length, this.height, this.roof.material);
     this.object.remove(this.object.getObjectByName("roof"));
     this.object.add(this.roof.object);
     this.walls.forEach((wall) => wall.updateMaterial(this.material, this.roof.clippingPlane));

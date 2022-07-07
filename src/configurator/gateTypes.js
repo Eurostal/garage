@@ -1,4 +1,5 @@
-import { Mesh, PlaneGeometry, BoxGeometry, Group, MeshStandardMaterial, MeshBasicMaterial, MultiplyOperation, DoubleSide, Color } from "three";
+import { Mesh, PlaneGeometry, BoxGeometry, Group, MeshStandardMaterial, MeshBasicMaterial, MultiplyOperation, DoubleSide, Vector2 } from "three";
+import * as Texture from "./textures";
 
 const handle = new Group();
 const handlePart = new Mesh(
@@ -67,21 +68,21 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
 
 export const tiltedWidepanelDoor = function createTiltedWidepanelDoor(width, height, material) {
   const gateGroup = new Group();
-  material.map.rotation = Math.PI;
-  material.map.repeat.set(width, 0.9);
+  const gateDoorMaterial = material.clone();
+  if (material.customType.includes("WOOD")) {
+    gateDoorMaterial.map = Texture.woodTextureWide.clone();
+    gateDoorMaterial.roughnessMap = Texture.woodTextureWideMap.clone();
+    gateDoorMaterial.bumpMap = Texture.woodTextureWideMap.clone();
+  } else {
+    gateDoorMaterial.map = Texture.metalTextureWide.clone();
+    gateDoorMaterial.roughnessMap = Texture.metalTextureWideMap.clone();
+    gateDoorMaterial.normalMap = Texture.metalTextureWideMap.clone();
+    gateDoorMaterial.normalScale = new Vector2(-0.05, 0.05);
+  }
 
-  const gateDoor = new Mesh(new BoxGeometry(width - 0.04, height - 0.04, 0.005), material);
+  const gateDoor = new Mesh(new BoxGeometry(width - 0.04, height - 0.04, 0.005), gateDoorMaterial);
   gateDoor.castShadow = true;
   gateDoor.receiveShadow = true;
-  if (material.horizontal) {
-    gateDoor.material.map = material.map.clone();
-    gateDoor.material.map.repeat.set(width - 0.04, height - 0.04);
-    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y + 0.02);
-  } else {
-    gateDoor.material.map = material.map.clone();
-    gateDoor.material.map.repeat.set(height - 0.04, width - 0.04);
-    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y - 0.02);
-  }
 
   const frameColor = material.color.clone();
   frameColor.addScalar(-0.5);

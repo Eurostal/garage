@@ -26,6 +26,18 @@ metalTextureMap.wrapS = RepeatWrapping;
 metalTextureMap.wrapT = RepeatWrapping;
 metalTextureMap.matrixAutoUpdate = true;
 
+export const metalTextureWide = loadTexture("./src/assets/metal/metal-wide.png");
+metalTextureWide.rotation = -Math.PI;
+metalTextureWide.wrapS = RepeatWrapping;
+metalTextureWide.wrapT = RepeatWrapping;
+metalTextureWide.matrixAutoUpdate = true;
+
+export const metalTextureWideMap = loadTexture("./src/assets/metal/metal-wide-normal.png");
+metalTextureWideMap.rotation = -Math.PI;
+metalTextureWideMap.wrapS = RepeatWrapping;
+metalTextureWideMap.wrapT = RepeatWrapping;
+metalTextureWideMap.matrixAutoUpdate = true;
+
 export const woodTexture = loadTexture("./src/assets/wood/wood.png");
 woodTexture.rotation = Math.PI / 2;
 woodTexture.wrapS = RepeatWrapping;
@@ -38,15 +50,25 @@ woodTextureMap.wrapS = RepeatWrapping;
 woodTextureMap.wrapT = RepeatWrapping;
 woodTextureMap.matrixAutoUpdate = true;
 
+export const woodTextureWide = loadTexture("./src/assets/wood/wood-wide.png");
+woodTexture.rotation = Math.PI / 2;
+woodTexture.wrapS = RepeatWrapping;
+woodTexture.wrapT = RepeatWrapping;
+woodTexture.matrixAutoUpdate = true;
+
+export const woodTextureWideMap = loadTexture("./src/assets/wood/wood-wide-normal.png");
+woodTextureMap.rotation = Math.PI / 2;
+woodTextureMap.wrapS = RepeatWrapping;
+woodTextureMap.wrapT = RepeatWrapping;
+woodTextureMap.matrixAutoUpdate = true;
+
 export const grassTexture = loadTexture("./src/assets/grass.jpg");
-grassTexture.rotation = Math.PI / 2;
 grassTexture.wrapS = RepeatWrapping;
 grassTexture.wrapT = RepeatWrapping;
 grassTexture.repeat.set(15, 15);
 grassTexture.matrixAutoUpdate = true;
 
 export const concreteTexture = loadTexture("./src/assets/concrete.jpg");
-concreteTexture.rotation = Math.PI / 2;
 concreteTexture.wrapS = RepeatWrapping;
 concreteTexture.wrapT = RepeatWrapping;
 concreteTexture.repeat.set(3, 3);

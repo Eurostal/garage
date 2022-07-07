@@ -1,5 +1,5 @@
-import { DoubleSide,Vector2 } from "three";
-import * as Texture from './textures'
+import { DoubleSide, Vector2 } from "three";
+import * as Texture from "./textures";
 
 export const SOLID = {
   metalness: 0.2,
