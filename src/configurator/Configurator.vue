@@ -34,6 +34,7 @@ onMounted(() => {
   // test.walls[0].addElement(new Gate(2, 2, Material.WOOD_DARK_SHINE_H, "gate2", "double"), 3.2, 0);
   // test.walls[1].addElement(new Window(1, 1, Material.WHITE, "window2"), 0.5, 1);
   // test.walls[2].addElement(new Window(1, 0.7, Material.GRAY, "window1"), 0.5, 1);
+  // test.walls[3].addElement(new Window(1, 0.7, Material.BROWN), 0.5, 1);
   // test.walls[0].addElement(new Window(1, 1, Material.BROWN, "window3"), 4.5, 1);
   // test.fittings.create();
   // test.updateRoof("left");
