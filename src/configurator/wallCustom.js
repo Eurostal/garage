@@ -15,17 +15,17 @@ export default class WallCustom extends Wall {
 
   addElement(element, xOffset = this.width / 2, yOffset = 0) {
     this.elements[element.name] = { x: xOffset, y: yOffset, width: element.width, height: element.height };
-    if (this.checkBoundaries(element, xOffset, yOffset)) {
-      let elementObject = element.object;
-      if (element.object !== null) {
-        elementObject.rotateY(this.rotation);
-        elementObject.translateZ(this.offset - 0.005);
-        elementObject.translateX(-this.width / 2 + element.width / 2 + xOffset);
-        elementObject.translateY(yOffset);
-        this.object.add(elementObject);
-      }
-      this.addHole(element.width, element.height, element.object.name, xOffset, element.height / 2 + yOffset);
+    // if (this.checkBoundaries(element, xOffset, yOffset)) {
+    let elementObject = element.object;
+    if (element.object !== null) {
+      elementObject.rotateY(this.rotation);
+      elementObject.translateZ(this.offset - 0.005);
+      elementObject.translateX(-this.width / 2 + element.width / 2 + xOffset);
+      elementObject.translateY(yOffset);
+      this.object.add(elementObject);
     }
+    this.addHole(element.width, element.height, element.object.name, xOffset, element.height / 2 + yOffset);
+    // }
   }
 
   addHole(width, height, elementId, xOffset, yOffset) {
@@ -74,35 +74,35 @@ export default class WallCustom extends Wall {
     this.object.add(wallPunched);
   }
 
-  checkBoundaries(element, xOffset, yOffset) {
-    if (element instanceof Gate) {
-      yOffset = 0;
-      if (element.gateType == "tilted" && element.height >= this.height - 0.2) {
-        console.log(element.name + " is tilted gate, which needs 20cm gap from roof start, reduced to: " + (this.height - 0.2));
-        element.height = this.height - 0.2;
-        element.updateModel();
-      }
-    }
+  // checkBoundaries(element, xOffset, yOffset) {
+  //   if (element instanceof Gate) {
+  //     yOffset = 0;
+  //     if (element.gateType == "tilted" && element.height >= this.height - 0.2) {
+  //       console.log(element.name + " is tilted gate, which needs 20cm gap from roof start, reduced to: " + (this.height - 0.2));
+  //       element.height = this.height - 0.2;
+  //       element.updateModel();
+  //     }
+  //   }
 
-    if (xOffset < 0.1) {
-      console.log(element.name + " item xOffset is out of wall's bounds ");
-      return false;
-    }
+  //   if (xOffset < 0.1) {
+  //     console.log(element.name + " item xOffset is out of wall's bounds ");
+  //     return false;
+  //   }
 
-    if (xOffset > this.width - element.width - 0.1) {
-      console.log(element.name + " item xOffset is out of wall's bounds ");
-      return false;
-    }
+  //   if (xOffset > this.width - element.width - 0.1) {
+  //     console.log(element.name + " item xOffset is out of wall's bounds ");
+  //     return false;
+  //   }
 
-    if (yOffset > this.height - element.height) {
-      console.log(element.name + " item yOffset is out of wall's bounds ");
-      return false;
-    }
-    if (yOffset < 0) {
-      console.log(element.name + " item yOffset is out of wall's bounds ");
-      return false;
-    }
+  //   if (yOffset > this.height - element.height) {
+  //     console.log(element.name + " item yOffset is out of wall's bounds ");
+  //     return false;
+  //   }
+  //   if (yOffset < 0) {
+  //     console.log(element.name + " item yOffset is out of wall's bounds ");
+  //     return false;
+  //   }
 
-    return true;
-  }
+  //   return true;
+  // }
 }

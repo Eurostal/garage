@@ -14,10 +14,10 @@ export default class Garage {
     this.walls = [];
     this.roof = new Roof("", this.width, this.length, this.height, this.material);
     this.fittings = new Fittings(this.width, this.length, this.height, this.roof.clippingPlane);
-    this.object = this.createGarage();
+    this.object = this._createGarage();
   }
 
-  createWalls() {
+  _createWalls() {
     for (let i = 0; i < 4; i++) {
       if (i < 2) {
         let wall = new WallCustom(this.width, this.height, this.length / 2, i * Math.PI, this.roof.clippingPlane, this.material);
@@ -29,7 +29,7 @@ export default class Garage {
     }
   }
 
-  createGarage() {
+  _createGarage() {
     const fundation = new Mesh(
       new BoxGeometry(this.width + 0.2, 0.1, this.length + 0.2),
       new MeshStandardMaterial({
@@ -39,7 +39,7 @@ export default class Garage {
     fundation.castShadow = true;
     fundation.receiveShadow = true;
 
-    this.createWalls();
+    this._createWalls();
 
     const garage = new Group();
     for (let i = 0; i < this.walls.length; i++) {
