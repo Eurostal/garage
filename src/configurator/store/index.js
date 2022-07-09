@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import { generator } from "../Generator";
 
 export const store = createStore({
   state() {
@@ -8,10 +9,10 @@ export const store = createStore({
         length: null,
         height: null,
         walls: {
-          front: { elements: {}, material: null },
-          back: { elements: {}, material: null },
-          right: { elements: {}, material: null },
-          left: { elements: {}, material: null },
+          front: { elements: [], material: null },
+          back: { elements: [], material: null },
+          right: { elements: [], material: null },
+          left: { elements: [], material: null },
         },
         roof: {},
       },
@@ -20,6 +21,7 @@ export const store = createStore({
   mutations: {
     setInit(state, data) {
       state.garage = data;
+      generator.initialize(data);
     },
   },
   actions: {},

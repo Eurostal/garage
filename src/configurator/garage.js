@@ -4,9 +4,10 @@ import WallCustom from "./WallCustom";
 import Roof from "./Roof.js";
 import Fittings from "./Fittings";
 import * as Texture from "./textures";
+import * as Material from "./materials";
 
 export default class Garage {
-  constructor(width = 5, length = 5, height = 2, material) {
+  constructor(width = 5, length = 5, height = 2, material = Material.RAL9010) {
     this.width = width;
     this.length = length;
     this.height = height;
@@ -73,5 +74,9 @@ export default class Garage {
 
   get garageParts() {
     return this.object.children;
+  }
+
+  get garageObject() {
+    return this.object;
   }
 }

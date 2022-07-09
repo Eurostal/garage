@@ -13,7 +13,7 @@ export default class WallCustom extends Wall {
     this.elements = {};
   }
 
-  addElement(element, xOffset = this.width / 2, yOffset = 0) {
+  addElement(element, xOffset = this.width / 2 - element.width / 2, yOffset = 0) {
     this.elements[element.name] = { x: xOffset, y: yOffset, width: element.width, height: element.height };
     // if (this.checkBoundaries(element, xOffset, yOffset)) {
     let elementObject = element.object;
