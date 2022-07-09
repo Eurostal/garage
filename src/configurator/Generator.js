@@ -20,7 +20,7 @@ class Generator {
     this.garage = new Garage(garage.width, garage.length, garage.height);
     this.scene.add(this.garage.garageObject);
     Object.values(garage.walls).forEach((walls, wallIndex) => {
-      walls.elements.forEach((element) => {
+      Object.values(walls.elements).forEach((element) => {
         this.updateGarage("add", wallIndex, element);
       });
     });
