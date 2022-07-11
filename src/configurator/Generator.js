@@ -73,21 +73,34 @@ class Generator {
         default:
           break;
       }
+    } else if (action === "remove") {
+      switch (data.type) {
+        case "fittings":
+          this.garage.fittings.remove();
+          break;
+
+        default:
+          this.removeExisting(data.name);
+          break;
+      }
     }
   }
 
   checkExistance(name) {
     for (let i = 0; i < this.garage.walls.length; i++) {
       let wall = this.garage.walls[i];
-      let element = Object.values(wall.elements).find((element) => (element.name = name));
+      let exists = Object.keys(wall.elements).includes(name);
       let elementWallId = i;
-      return { elementWallId, element };
+      if (exists) {
+        return { elementWallId, exists };
+      }
     }
+    return { elementWallId: undefined, exists: false };
   }
 
   removeExisting(name) {
-    const { elementWallId, element } = this.checkExistance(name);
-    if (element !== undefined) {
+    const { elementWallId, exists } = this.checkExistance(name);
+    if (exists) {
       this.garage.walls[elementWallId].removeElement(name);
     }
   }

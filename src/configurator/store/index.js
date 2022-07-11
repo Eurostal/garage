@@ -23,6 +23,11 @@ export const store = createStore({
       state.garage = data;
       generator.initialize(data);
     },
+    update(state, data) {
+      state.garage = state.garage;
+      generator.updateGarage(data.eventType, data, data.wallId);
+    },
+    move(state, data) {},
   },
   actions: {},
 });

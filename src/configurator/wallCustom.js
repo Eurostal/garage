@@ -43,6 +43,7 @@ export default class WallCustom extends Wall {
   removeElement(elementId) {
     const element = this.object.getObjectByName(elementId);
     if (element !== undefined) {
+      delete this.elements[elementId];
       this.object.remove(element);
       this.removeHole(elementId);
       console.log("element removed! -", elementId);

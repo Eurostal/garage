@@ -1,10 +1,11 @@
 <template>
   <div id="scene-container"></div>
+  <Emitter />
 </template>
 
 <script setup>
+import Emitter from "./Emitter.vue";
 import { onMounted } from "@vue/runtime-core";
-
 import { generator } from "./Generator";
 
 import createRenderer from "./createRenderer";
@@ -51,10 +52,10 @@ onMounted(() => {
 
 <style>
 #scene-container {
-  position: absolute;
+  /* position: absolute; */
   bottom: 50px;
   width: 100%;
-  max-width: 1500px;
+  max-width: 1000px;
   aspect-ratio: 4/3;
 }
 </style>
