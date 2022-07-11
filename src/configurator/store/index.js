@@ -50,7 +50,6 @@ export const store = createStore({
       const wallNames = ["front", "back", "left", "right"];
       if (data.wallId) {
         for (let i = 0; i < Object.keys(state.garage.walls).length; i++) {
-          console.log(Object.keys(state.garage.walls[wallNames[i]].elements));
           if (Object.keys(state.garage.walls[wallNames[i]].elements).includes(data.name)) {
             delete state.garage.walls[wallNames[i]].elements[data.name];
           }
