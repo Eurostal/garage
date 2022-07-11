@@ -24,7 +24,10 @@ export const store = createStore({
       generator.initialize(data);
     },
     update(state, data) {
-      state.garage = state.garage;
+      const wallNames = ["front", "back", "left", "right"];
+      if (data.wallId) {
+        state.garage.walls[wallNames[data.wallId]].elements.push(data);
+      }
       generator.updateGarage(data.eventType, data, data.wallId);
     },
     move(state, data) {},

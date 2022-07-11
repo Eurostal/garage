@@ -1,3 +1,4 @@
+<!-- Component used for event testing purposes only -->
 <template>
   <div>
     <form @submit.prevent="sendChange($event)" @change="sendChange($event)">
@@ -19,8 +20,6 @@
 </template>
 
 <script>
-// import { store } from "./store/index";
-
 export default {
   name: "Emitter",
   methods: {
