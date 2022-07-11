@@ -9,6 +9,8 @@ export default class Wall {
     this.rotation = rotation;
     this.object = new Group();
     this.object.add(this.createWall());
+    this.materialTemp = material;
+    this.clippingPlane = clippingPlane;
     this.material = this.updateMaterial(material, clippingPlane);
   }
   createWall() {
@@ -27,6 +29,7 @@ export default class Wall {
     const wallMaterial = material.clone();
     if (clippingPlane !== undefined) {
       wallMaterial.clippingPlanes = clippingPlane;
+      this.clippingPlane = clippingPlane;
     }
     wallMaterial.map ? (wallMaterial.map = material.map.clone()) : null;
     wallMaterial.normalMap ? (wallMaterial.normalMap = material.normalMap.clone()) : null;
@@ -44,6 +47,6 @@ export default class Wall {
       wallMaterial.bumpMap ? wallMaterial.bumpMap.repeat.set(this.height, this.width) : null;
     }
     wall.material = wallMaterial;
-    return wallMaterial;
+    this.material = wallMaterial;
   }
 }

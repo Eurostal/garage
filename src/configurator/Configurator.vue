@@ -1,6 +1,8 @@
 <template>
-  <div id="scene-container"></div>
-  <Emitter />
+  <div class="configurator-container">
+    <Emitter />
+    <div id="scene-container"></div>
+  </div>
 </template>
 
 <script setup>
@@ -55,7 +57,11 @@ onMounted(() => {
   /* position: absolute; */
   bottom: 50px;
   width: 100%;
-  max-width: 1000px;
+  max-width: 950px;
   aspect-ratio: 4/3;
+}
+
+.configurator-container {
+  display: flex;
 }
 </style>

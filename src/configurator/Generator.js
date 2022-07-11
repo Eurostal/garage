@@ -17,7 +17,7 @@ class Generator {
   }
 
   initialize(garage) {
-    this.garage = new Garage(garage.width, garage.length, garage.height);
+    this.garage = new Garage(garage.width, garage.length, garage.height, Material.RAL9010);
     this.scene.add(this.garage.garageObject);
     Object.values(garage.walls).forEach((walls, wallIndex) => {
       Object.values(walls.elements).forEach((element) => {
@@ -25,7 +25,7 @@ class Generator {
       });
     });
     if (garage.roof && garage.roof.roofType) {
-      this.updateGarage("update", { type: "roof", ...garage.roof });
+      this.updateGarage("add", { type: "roof", ...garage.roof });
     }
     if (garage.fittings && garage.fittings.visible) {
       this.updateGarage("add", { type: "fittings", ...garage.fittings });
@@ -53,6 +53,11 @@ class Generator {
           break;
         case "fittings":
           this.garage.fittings.create().updateMaterial(Material.RAL9010);
+
+          break;
+        case "roof":
+          this.garage.updateRoof(data.roofType);
+
           break;
         default:
           break;
@@ -60,12 +65,10 @@ class Generator {
     } else if (action === "update") {
       switch (data.type) {
         case "roof":
-          this.garage.updateRoof(data.roofType).updateMaterial(Material.RAL9010);
+          this.garage.roof.updateMaterial(Material.RAL9010);
           break;
-        case "walls":
-          this.garage.walls.forEach((wall) => {
-            wall.updateMaterial(Material.RAL9010);
-          });
+        case "wall":
+          wall.updateMaterial(Material.RAL9010);
           break;
         case "fittings":
           this.garage.fittings.create().updateMaterial(Material.RAL9010);

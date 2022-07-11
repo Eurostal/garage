@@ -1,20 +1,4 @@
-import {
-  Group,
-  Mesh,
-  BufferGeometry,
-  BufferAttribute,
-  DoubleSide,
-  FrontSide,
-  MeshStandardMaterial,
-  Shape,
-  ExtrudeGeometry,
-  Vector2,
-  Vector3,
-  Plane,
-  Quaternion,
-} from "three";
-import * as Texture from "./textures";
-import * as Material from "./materials";
+import { Group, Mesh, BufferGeometry, BufferAttribute, Shape, ExtrudeGeometry, Vector2, Vector3, Plane, Quaternion } from "three";
 
 export const roofGable = function (width, length, yOffset, material) {
   let roofObject = new Group();

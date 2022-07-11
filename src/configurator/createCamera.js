@@ -12,7 +12,7 @@ export default function createCamera(container, renderer) {
   controls.dampingFactor = 0.4;
   controls.minDistance = 3;
   controls.maxDistance = 8;
-  controls.minPolarAngle = Math.PI / 6;
+  controls.minPolarAngle = Math.PI / 8;
   controls.maxPolarAngle = Math.PI / 2;
   controls.zoomSpeed = 0.8;
   controls.update();

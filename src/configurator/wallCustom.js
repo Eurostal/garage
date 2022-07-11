@@ -67,12 +67,11 @@ export default class WallCustom extends Wall {
     for (let i = 0; i < this.holes.children.length; i++) {
       wallPunched = CSG.subtract(this.object.getObjectByName("wall"), this.holes.children[i]);
     }
-
     wallPunched.material = this.material;
     wallPunched.castShadow = true;
     wallPunched.receiveShadow = true;
     wallPunched.name = "wall";
-
+    console.log(this.clippingPlane);
     this.object.remove(this.object.getObjectByName("wall"));
     this.object.add(wallPunched);
   }
