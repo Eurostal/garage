@@ -64,6 +64,7 @@ export default class Garage {
       this.fittings.remove();
       this.fittings.create();
     }
+    return this.roof;
   }
 
   updateMaterial(material) {

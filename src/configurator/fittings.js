@@ -34,6 +34,8 @@ export default class Fittings {
     } else {
       console.log("an instance of fittings already exists!");
     }
+
+    return this;
   }
 
   remove() {

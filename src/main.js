@@ -17,6 +17,7 @@ store.commit("setInit", {
     left: { elements: [], material: "RAL9010" },
     right: { elements: [], material: "RAL9010" },
   },
-  roof: { type: "gable", material: "RAL9010" },
+  roof: { roofType: "gable", material: "RAL9010" },
+  fittings: { visible: false, material: "RAL9010" },
 });
 app.mount("#app");

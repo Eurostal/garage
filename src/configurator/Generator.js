@@ -21,34 +21,74 @@ class Generator {
     this.scene.add(this.garage.garageObject);
     Object.values(garage.walls).forEach((walls, wallIndex) => {
       Object.values(walls.elements).forEach((element) => {
-        this.updateGarage("add", wallIndex, element);
+        this.updateGarage("add", element, wallIndex);
       });
     });
+    if (garage.roof && garage.roof.roofType) {
+      this.updateGarage("update", { type: "roof", ...garage.roof });
+    }
+    if (garage.fittings && garage.fittings.visible) {
+      this.updateGarage("add", { type: "fittings", ...garage.fittings });
+    }
   }
 
-  updateGarage(action, wallId, data) {
+  updateGarage(action, data, wallId) {
     //TODO: Get material from data
     if (action === "add") {
       switch (data.type) {
         case "gate":
+          this.removeExisting(data.name);
           this.garage.walls[wallId].addElement(new Gate(data.width, data.height, Material.RAL9010, data.name, data.gateType), data.x, 0);
 
           break;
         case "window":
+          this.removeExisting(data.name);
           this.garage.walls[wallId].addElement(new Window(data.width, data.height, Material.RAL9010, data.name), data.x, data.y);
 
           break;
         case "door":
+          this.removeExisting(data.name);
           this.garage.walls[wallId].addElement(new Door(data.width, data.height, Material.RAL9010, data.name), data.x, 0);
 
           break;
-        case "roof":
-          break;
-        case "walls":
+        case "fittings":
+          this.garage.fittings.create().updateMaterial(Material.RAL9010);
           break;
         default:
           break;
       }
+    } else if (action === "update") {
+      switch (data.type) {
+        case "roof":
+          this.garage.updateRoof(data.roofType).updateMaterial(Material.RAL9010);
+          break;
+        case "walls":
+          this.garage.walls.forEach((wall) => {
+            wall.updateMaterial(Material.RAL9010);
+          });
+          break;
+        case "fittings":
+          this.garage.fittings.create().updateMaterial(Material.RAL9010);
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  checkExistance(name) {
+    for (let i = 0; i < this.garage.walls.length; i++) {
+      let wall = this.garage.walls[i];
+      let element = Object.values(wall.elements).find((element) => (element.name = name));
+      let elementWallId = i;
+      return { elementWallId, element };
+    }
+  }
+
+  removeExisting(name) {
+    const { elementWallId, element } = this.checkExistance(name);
+    if (element !== undefined) {
+      this.garage.walls[elementWallId].removeElement(name);
     }
   }
 

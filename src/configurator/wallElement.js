@@ -1,5 +1,3 @@
-import { RAL9010 } from "./materials";
-
 export default class WallElement {
   constructor(width, height, material, name = "unnamed wall object") {
     this.width = width;
