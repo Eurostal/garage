@@ -16,7 +16,7 @@
         <option value="empty">Empty</option>
       </select>
     </form>
-    <button @click="sendRemove('gate1')">REMOVE GATE</button>
+    <button @click="sendRemove('gate1', 0)">REMOVE GATE</button>
     <hr />
     <h3>window1</h3>
     <form @submit.prevent="sendChange(1, 'window', 'window1', 1, 1, 2, 1)" @change="sendChange(1, 'window', 'window1', 1, 1, 2, 1)">
@@ -27,7 +27,7 @@
         <option value="3">Right</option>
       </select>
     </form>
-    <button @click="sendRemove('window1')">REMOVE WINDOW</button>
+    <button @click="sendRemove('window1', 1)">REMOVE WINDOW</button>
     <hr />
     <h3>Roof type</h3>
     <form @submit.prevent="sendUpdate(2, 'roof', 'roof')" @change="sendUpdate(2, 'roof', 'roof')">
@@ -38,6 +38,17 @@
         <option value="left">Left</option>
         <option value="right">Right</option>
       </select>
+    </form>
+    <hr />
+    <h3>Garage sizes</h3>
+    <form @change="sendReinit(3)">
+      Width:
+      <input type="range" name="width" id="width" min="1" max="7" value="6" />
+      <br />
+      Length: <input type="range" name="length" id="length" min="1" max="7" value="5" />
+      <br />
+      Height:
+      <input type="range" name="height" id="height" min="1" max="7" value="2" />
     </form>
   </div>
 </template>
@@ -62,8 +73,17 @@ export default {
       });
       this.$store.commit("update", { eventType: "add", ...object });
     },
-    sendRemove(name) {
-      this.$store.commit("update", { eventType: "remove", name: name });
+    sendRemove(name, formNr) {
+      var object = {
+        eventType: "remove",
+        name: name,
+      };
+      const data = new FormData(document.forms[formNr]);
+      data.forEach((value, key) => {
+        object[key] = value;
+      });
+      console.log(object.wallId);
+      this.$store.commit("update", object);
     },
     sendUpdate(formNr, type, name) {
       var object = {
@@ -76,6 +96,21 @@ export default {
         object[key] = value;
       });
       this.$store.commit("update", { eventType: "add", ...object });
+    },
+
+    sendReinit(formNr) {
+      var object = {
+        width: 5,
+        length: 5,
+        height: 2,
+        material: "RAL9010",
+      };
+      const data = new FormData(document.forms[formNr]);
+      data.forEach((value, key) => {
+        object[key] = parseInt(value);
+      });
+
+      this.$store.commit("reInit", object);
     },
   },
 };

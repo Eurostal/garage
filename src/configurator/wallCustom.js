@@ -71,7 +71,6 @@ export default class WallCustom extends Wall {
     wallPunched.castShadow = true;
     wallPunched.receiveShadow = true;
     wallPunched.name = "wall";
-    console.log(this.clippingPlane);
     this.object.remove(this.object.getObjectByName("wall"));
     this.object.add(wallPunched);
   }

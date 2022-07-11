@@ -16,8 +16,11 @@ class Generator {
     this.garage = {};
   }
 
-  initialize(garage) {
-    this.garage = new Garage(garage.width, garage.length, garage.height, Material.RAL9010);
+  initialize(garage, reset) {
+    if (reset) {
+      this.scene.remove(this.garage.garageObject);
+    }
+    this.garage = new Garage(garage.width, garage.length, garage.height);
     this.scene.add(this.garage.garageObject);
     Object.values(garage.walls).forEach((walls, wallIndex) => {
       Object.values(walls.elements).forEach((element) => {
