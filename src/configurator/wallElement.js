@@ -7,9 +7,11 @@ export default class WallElement {
   }
 
   updateMaterial(material) {
-    const newMaterial = material.clone();
-    newMaterial.horizontal = material.horizontal;
-    newMaterial.customType = material.customType;
-    return newMaterial;
+    if (material !== undefined) {
+      const newMaterial = material.clone();
+      newMaterial.horizontal = material.horizontal;
+      newMaterial.customType = material.customType;
+      return newMaterial;
+    }
   }
 }

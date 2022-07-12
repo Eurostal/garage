@@ -61,8 +61,14 @@ export const store = createStore({
         }
         generator.updateGarage(data.eventType, data, data.wallId);
       } else if (data.name === "roof") {
-        state.garage.roof.roofType = data.roofType;
-        state.garage.roof.material = data.material;
+        if (data.roofType) {
+          state.garage.roof.roofType = data.roofType;
+        }
+        if (data.material) {
+          state.garage.roof.material = data.material;
+        } else {
+          data[material] = state.garage.roof.material;
+        }
         generator.updateGarage(data.eventType, data);
       } else {
         generator.updateGarage(data.eventType, data);

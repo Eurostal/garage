@@ -6,7 +6,7 @@ import Gate from "./Gate.js";
 import Window from "./Window.js";
 import Door from "./Door.js";
 
-import * as Material from "./materials";
+import { Materials } from "./materials";
 
 class Generator {
   constructor() {
@@ -41,25 +41,25 @@ class Generator {
       switch (data.type) {
         case "gate":
           this.removeExisting(data.name);
-          this.garage.walls[wallId].addElement(new Gate(data.width, data.height, Material.RAL9010, data.name, data.gateType), data.x, 0);
+          this.garage.walls[wallId].addElement(new Gate(data.width, data.height, Materials[data.material], data.name, data.gateType), data.x, 0);
 
           break;
         case "window":
           this.removeExisting(data.name);
-          this.garage.walls[wallId].addElement(new Window(data.width, data.height, Material.RAL9010, data.name), data.x, data.y);
+          this.garage.walls[wallId].addElement(new Window(data.width, data.height, Materials[data.material], data.name), data.x, data.y);
 
           break;
         case "door":
           this.removeExisting(data.name);
-          this.garage.walls[wallId].addElement(new Door(data.width, data.height, Material.RAL9010, data.name), data.x, 0);
+          this.garage.walls[wallId].addElement(new Door(data.width, data.height, Materials[data.material], data.name), data.x, 0);
 
           break;
         case "fittings":
-          this.garage.fittings.create().updateMaterial(Material.RAL9010);
+          this.garage.fittings.create().updateMaterial(Materials[data.material]);
 
           break;
         case "roof":
-          this.garage.updateRoof(data.roofType);
+          this.garage.updateRoof(data.roofType).updateMaterial(Materials[data.material]);
 
           break;
         default:
@@ -68,13 +68,13 @@ class Generator {
     } else if (action === "update") {
       switch (data.type) {
         case "roof":
-          this.garage.roof.updateMaterial(Material.RAL9010);
+          this.garage.roof.updateMaterial(Materials[data.material]);
           break;
         case "wall":
-          wall.updateMaterial(Material.RAL9010);
+          wall.updateMaterial(Materials[data.material]);
           break;
         case "fittings":
-          this.garage.fittings.create().updateMaterial(Material.RAL9010);
+          this.garage.fittings.updateMaterial(Materials[data.material]);
           break;
         default:
           break;

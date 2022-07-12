@@ -25,28 +25,30 @@ export default class Wall {
   }
 
   updateMaterial(material, clippingPlane) {
-    const wall = this.object.getObjectByName("wall");
-    const wallMaterial = material.clone();
-    if (clippingPlane !== undefined) {
-      wallMaterial.clippingPlanes = clippingPlane;
-      this.clippingPlane = clippingPlane;
+    if (material !== undefined) {
+      const wall = this.object.getObjectByName("wall");
+      const wallMaterial = material.clone();
+      if (clippingPlane !== undefined) {
+        wallMaterial.clippingPlanes = clippingPlane;
+        this.clippingPlane = clippingPlane;
+      }
+      wallMaterial.map ? (wallMaterial.map = material.map.clone()) : null;
+      wallMaterial.normalMap ? (wallMaterial.normalMap = material.normalMap.clone()) : null;
+      wallMaterial.roughnessMap ? (wallMaterial.roughnessMap = material.roughnessMap.clone()) : null;
+      wallMaterial.bumpMap ? (wallMaterial.bumpMap = material.bumpMap.clone()) : null;
+      if (wallMaterial.map && material.horizontal) {
+        wallMaterial.map.repeat.set(this.width, this.height + 0.5);
+        wallMaterial.normalMap ? wallMaterial.normalMap.repeat.set(this.width, this.height + 0.5) : null;
+        wallMaterial.roughnessMap ? wallMaterial.roughnessMap.repeat.set(this.width, this.height + 0.5) : null;
+        wallMaterial.bumpMap ? wallMaterial.bumpMap.repeat.set(this.width, this.heigh + 0.5) : null;
+      } else {
+        wallMaterial.map ? wallMaterial.map.repeat.set(this.height, this.width) : null;
+        wallMaterial.normalMap ? wallMaterial.normalMap.repeat.set(this.height, this.width) : null;
+        wallMaterial.roughnessMap ? wallMaterial.roughnessMap.repeat.set(this.height, this.width) : null;
+        wallMaterial.bumpMap ? wallMaterial.bumpMap.repeat.set(this.height, this.width) : null;
+      }
+      wall.material = wallMaterial;
+      this.material = wallMaterial;
     }
-    wallMaterial.map ? (wallMaterial.map = material.map.clone()) : null;
-    wallMaterial.normalMap ? (wallMaterial.normalMap = material.normalMap.clone()) : null;
-    wallMaterial.roughnessMap ? (wallMaterial.roughnessMap = material.roughnessMap.clone()) : null;
-    wallMaterial.bumpMap ? (wallMaterial.bumpMap = material.bumpMap.clone()) : null;
-    if (wallMaterial.map && material.horizontal) {
-      wallMaterial.map.repeat.set(this.width, this.height + 0.5);
-      wallMaterial.normalMap ? wallMaterial.normalMap.repeat.set(this.width, this.height + 0.5) : null;
-      wallMaterial.roughnessMap ? wallMaterial.roughnessMap.repeat.set(this.width, this.height + 0.5) : null;
-      wallMaterial.bumpMap ? wallMaterial.bumpMap.repeat.set(this.width, this.heigh + 0.5) : null;
-    } else {
-      wallMaterial.map ? wallMaterial.map.repeat.set(this.height, this.width) : null;
-      wallMaterial.normalMap ? wallMaterial.normalMap.repeat.set(this.height, this.width) : null;
-      wallMaterial.roughnessMap ? wallMaterial.roughnessMap.repeat.set(this.height, this.width) : null;
-      wallMaterial.bumpMap ? wallMaterial.bumpMap.repeat.set(this.height, this.width) : null;
-    }
-    wall.material = wallMaterial;
-    this.material = wallMaterial;
   }
 }

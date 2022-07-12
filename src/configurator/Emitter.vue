@@ -30,7 +30,7 @@
     <button @click="sendRemove('window1', 1)">REMOVE WINDOW</button>
     <hr />
     <h3>Roof type</h3>
-    <form @submit.prevent="sendUpdate(2, 'roof', 'roof')" @change="sendUpdate(2, 'roof', 'roof')">
+    <form @submit.prevent="sendRoofAdd(2, 'roof', 'roof')" @change="sendRoofAdd(2, 'roof', 'roof')">
       <select name="roofType" id="roofType">
         <option value="gable">Gable</option>
         <option value="front">Front</option>
@@ -39,9 +39,19 @@
         <option value="right">Right</option>
       </select>
     </form>
+    <h4>Roof color</h4>
+    <form @change="sendUpdate(3, 'roof', 'roof')">
+      <select name="material" id="material">
+        <option value="RAL9010">RAL9010</option>
+        <option value="RAL9010_H">RAL9010 horizontal</option>
+        <option value="WOOD_DARK_SHINE">WOOD_DARK_SHINE</option>
+        <option value="WOOD_LIGHT">WOOD_LIGHT</option>
+        <option value="BTX6020">BTX6020</option>
+      </select>
+    </form>
     <hr />
     <h3>Garage sizes</h3>
-    <form @change="sendReinit(3)">
+    <form @change="sendReinit(4)">
       Width:
       <input type="range" name="width" id="width" min="1" max="7" value="6" />
       <br />
@@ -73,6 +83,7 @@ export default {
       });
       this.$store.commit("update", { eventType: "add", ...object });
     },
+
     sendRemove(name, formNr) {
       var object = {
         eventType: "remove",
@@ -85,6 +96,19 @@ export default {
       console.log(object.wallId);
       this.$store.commit("update", object);
     },
+
+    sendRoofAdd(formNr, type, name) {
+      var object = {
+        type: type,
+        name: name,
+      };
+      const data = new FormData(document.forms[formNr]);
+      data.forEach((value, key) => {
+        object[key] = value;
+      });
+      this.$store.commit("update", { eventType: "add", ...object });
+    },
+
     sendUpdate(formNr, type, name) {
       var object = {
         type: type,
@@ -95,7 +119,8 @@ export default {
       data.forEach((value, key) => {
         object[key] = value;
       });
-      this.$store.commit("update", { eventType: "add", ...object });
+      console.log(object);
+      this.$store.commit("update", { eventType: "update", ...object });
     },
 
     sendReinit(formNr) {
