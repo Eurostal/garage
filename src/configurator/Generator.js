@@ -27,8 +27,12 @@ class Generator {
         this.updateGarage("add", element, wallIndex);
       });
     });
+
     if (garage.roof && garage.roof.roofType) {
       this.updateGarage("add", { type: "roof", ...garage.roof });
+    }
+    if (garage.roof && garage.roof.material) {
+      this.updateGarage("update", { type: "roof", ...garage.roof });
     }
     if (garage.fittings && garage.fittings.visible) {
       this.updateGarage("add", { type: "fittings", ...garage.fittings });
@@ -59,7 +63,7 @@ class Generator {
 
           break;
         case "roof":
-          this.garage.updateRoof(data.roofType).updateMaterial(Materials[data.material]);
+          this.garage.updateRoof(data.roofType);
 
           break;
         default:

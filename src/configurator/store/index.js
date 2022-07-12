@@ -43,12 +43,13 @@ export const store = createStore({
       // TODO: Checker
       if (true) {
         generator.initialize(state.garageTemp, true);
-        // state.garage = state.garageTemp;
+        state.garage = state.garageTemp;
       }
     },
+
     update(state, data) {
-      const wallNames = ["front", "back", "left", "right"];
       if (data.wallId) {
+        const wallNames = ["front", "back", "left", "right"];
         for (let i = 0; i < Object.keys(state.garage.walls).length; i++) {
           if (Object.keys(state.garage.walls[wallNames[i]].elements).includes(data.name)) {
             delete state.garage.walls[wallNames[i]].elements[data.name];
