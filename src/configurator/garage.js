@@ -67,9 +67,8 @@ export default class Garage {
     return this.roof;
   }
 
-  updateMaterial(material) {
+  updateWallsMaterial(material) {
     this.walls.forEach((wall) => wall.updateMaterial(material, this.roof.clippingPlane));
-    this.roof.updateMaterial(material);
     this.material = material;
   }
 

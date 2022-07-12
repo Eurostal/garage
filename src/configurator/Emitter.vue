@@ -15,6 +15,13 @@
         <option value="wide">Wide panel</option>
         <option value="empty">Empty</option>
       </select>
+      <select name="material" id="material">
+        <option value="RAL9010">RAL9010</option>
+        <option value="RAL9010_H">RAL9010 horizontal</option>
+        <option value="WOOD_DARK_SHINE">WOOD_DARK_SHINE</option>
+        <option value="WOOD_LIGHT">WOOD_LIGHT</option>
+        <option value="BTX6020">BTX6020</option>
+      </select>
     </form>
     <button @click="sendRemove('gate1', 0)">REMOVE GATE</button>
     <hr />
@@ -60,6 +67,17 @@
       Height:
       <input type="range" name="height" id="height" min="1" max="7" value="2" />
     </form>
+    <hr />
+    <h3>Walls color</h3>
+    <form @change="sendUpdate(5, 'walls', '')">
+      <select name="material" id="material">
+        <option value="RAL9010">RAL9010</option>
+        <option value="RAL9010_H">RAL9010 horizontal</option>
+        <option value="WOOD_DARK_SHINE">WOOD_DARK_SHINE</option>
+        <option value="WOOD_LIGHT">WOOD_LIGHT</option>
+        <option value="BTX6020">BTX6020</option>
+      </select>
+    </form>
   </div>
 </template>
 
@@ -73,7 +91,6 @@ export default {
         name: name,
         width: width,
         height: height,
-        material: "RAL9010",
         x: x,
         y: y,
       };

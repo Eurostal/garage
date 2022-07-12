@@ -20,7 +20,7 @@ class Generator {
     if (reset) {
       this.scene.remove(this.garage.garageObject);
     }
-    this.garage = new Garage(garage.width, garage.length, garage.height);
+    this.garage = new Garage(garage.width, garage.length, garage.height, Materials[garage.walls.front.material]);
     this.scene.add(this.garage.garageObject);
     Object.values(garage.walls).forEach((walls, wallIndex) => {
       Object.values(walls.elements).forEach((element) => {
@@ -74,8 +74,8 @@ class Generator {
         case "roof":
           this.garage.roof.updateMaterial(Materials[data.material]);
           break;
-        case "wall":
-          wall.updateMaterial(Materials[data.material]);
+        case "walls":
+          this.garage.updateWallsMaterial(Materials[data.material]);
           break;
         case "fittings":
           this.garage.fittings.updateMaterial(Materials[data.material]);
