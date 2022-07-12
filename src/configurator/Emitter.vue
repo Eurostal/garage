@@ -78,6 +78,21 @@
         <option value="BTX6020">BTX6020</option>
       </select>
     </form>
+    <h3>window2</h3>
+    <form @submit.prevent="sendChange(6, 'window', 'window2', 1, 1, 3, 0.7)" @change="sendChange(6, 'window', 'window2', 1, 1, 3, 0.7)">
+      <select name="wallId" id="wallId">
+        <option value="0">Front</option>
+        <option value="1">Back</option>
+        <option value="2">Left</option>
+        <option value="3">Right</option>
+      </select>
+      <select name="material" id="material">
+        <option value="WHITE">WHITE</option>
+        <option value="BROWN">BROWN</option>
+        <option value="GRAY">GRAY</option>
+      </select>
+    </form>
+    <button @click="sendRemove('window2', 6)">REMOVE WINDOW</button>
   </div>
 </template>
 
@@ -110,7 +125,7 @@ export default {
       data.forEach((value, key) => {
         object[key] = value;
       });
-      console.log(object.wallId);
+      console.log(object.wallId, object.name);
       this.$store.commit("update", object);
     },
 
