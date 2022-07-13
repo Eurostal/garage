@@ -1,14 +1,10 @@
 import { Group, Mesh, BufferGeometry, BufferAttribute, Shape, ExtrudeGeometry, Vector2, Vector3, Plane, Quaternion } from "three";
 
 export const roofGable = function (width, length, yOffset, material) {
+  const peakHeight = width <= 5 ? 0.37 : 0.57;
   let roofObject = new Group();
   let geometry = new BufferGeometry();
-  let vertices = new Float32Array([-width / 2, 0, 0, 0, 0.5, 0, width / 2, 0, 0]);
-
-  let uvs = new Float32Array([0, 0, 0.5, 0.25, 1, 0]);
-  geometry.setAttribute("position", new BufferAttribute(vertices, 3));
-  geometry.setAttribute("uv", new BufferAttribute(uvs, 2));
-  geometry.computeVertexNormals();
+  let vertices = new Float32Array([-width / 2, 0, 0, 0, peakHeight, 0, width / 2, 0, 0]);
 
   // cloning first verticies as points on XY plane
   let roofPoints = [];
@@ -52,16 +48,16 @@ export const roofGable = function (width, length, yOffset, material) {
   const roof = new Mesh(geometryRoof, roofMaterial);
   roof.castShadow = true;
   roof.scale.set(1.05, 1.05, 1.05);
-  roof.position.y = 0.5 * -0.05;
+  roof.position.y = peakHeight * -0.05;
   roof.position.z = (-length * 1.05) / 2;
 
   roofObject.add(roof);
   roofObject.position.y = yOffset;
 
-  const normalRight = new Vector3(-length, -width * length, 0);
+  const normalRight = new Vector3(-length * peakHeight * 2, -width * length, 0);
   normalRight.normalize();
-  const roofAngle = (Math.atan(0.5 / (width / 2)) * 180) / Math.PI;
-  const d = Math.cos((roofAngle * Math.PI) / 180) * (yOffset + 0.5) - 0.001;
+  const roofAngle = (Math.atan(peakHeight / (width / 2)) * 180) / Math.PI;
+  const d = Math.cos((roofAngle * Math.PI) / 180) * (yOffset + peakHeight) - 0.001;
   const planeRight = new Plane(normalRight, d);
 
   const rotation = new Quaternion();

@@ -14,9 +14,10 @@ export default class Wall {
     this.material = this.updateMaterial(material, clippingPlane);
   }
   createWall() {
-    let wall = new Mesh(new BoxGeometry(this.width, this.height + 0.5, 0.01), this.material);
+    const overflowHeight = 1;
+    let wall = new Mesh(new BoxGeometry(this.width, this.height + overflowHeight, 0.01), this.material);
     wall.name = "wall";
-    wall.position.y = (this.height + 0.5) / 2;
+    wall.position.y = (this.height + overflowHeight) / 2;
     wall.rotateY(this.rotation);
     wall.translateZ(this.offset - 0.01 / 2);
     wall.castShadow = true;
