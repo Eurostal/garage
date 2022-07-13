@@ -92,7 +92,34 @@
         <option value="GRAY">GRAY</option>
       </select>
     </form>
-    <button @click="sendRemove('window2', 6)">REMOVE WINDOW</button>
+    <h3>fittings</h3>
+    <form @submit.prevent="sendChange(7, 'fittings', 'window2', 0, 0, 0, 0)">
+      <select name="material" id="material">
+        <option value="RAL9010">RAL9010</option>
+        <option value="RAL9010_H">RAL9010 horizontal</option>
+        <option value="WOOD_DARK_SHINE">WOOD_DARK_SHINE</option>
+        <option value="WOOD_LIGHT">WOOD_LIGHT</option>
+        <option value="BTX6020">BTX6020</option>
+      </select>
+      <button>ADD FITTINGS</button>
+    </form>
+    <button @click="sendRemove('', 7, 'fittings')">REMOVE FITTINGS</button>
+    <h3>door1</h3>
+    <form @submit.prevent="sendChange(8, 'door', 'door1', 1, 1.8, 3, 0)" @change="sendChange(8, 'door', 'door1', 1, 1.8, 3, 0)">
+      <select name="wallId" id="wallId">
+        <option value="0">Front</option>
+        <option value="1">Back</option>
+        <option value="2">Left</option>
+        <option value="3">Right</option>
+      </select>
+      <select name="material" id="material">
+        <option value="RAL9010">RAL9010</option>
+        <option value="RAL9010_H">RAL9010 horizontal</option>
+        <option value="WOOD_DARK_SHINE">WOOD_DARK_SHINE</option>
+        <option value="WOOD_LIGHT">WOOD_LIGHT</option>
+        <option value="BTX6020">BTX6020</option>
+      </select>
+    </form>
   </div>
 </template>
 
@@ -113,13 +140,15 @@ export default {
       data.forEach((value, key) => {
         object[key] = value;
       });
+      console.log(object);
       this.$store.commit("update", { eventType: "add", ...object });
     },
 
-    sendRemove(name, formNr) {
+    sendRemove(name, formNr, type = "") {
       var object = {
         eventType: "remove",
         name: name,
+        type: type,
       };
       const data = new FormData(document.forms[formNr]);
       data.forEach((value, key) => {

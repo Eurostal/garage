@@ -58,7 +58,9 @@ class Generator {
 
           break;
         case "fittings":
-          this.garage.fittings.create().updateMaterial(Materials[data.material]);
+          if (!this.garage.fittings.visible) {
+            this.garage.fittings.create().updateMaterial(Materials[data.material]);
+          }
 
           break;
         case "roof":

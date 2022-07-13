@@ -17,11 +17,6 @@ import { useStore } from "vuex";
 import createRenderer from "./createRenderer";
 import createCamera from "./createCamera";
 
-import * as Material from "./materials";
-import Garage from "./Garage.js";
-import Gate from "./Gate.js";
-import Window from "./Window.js";
-import Door from "./Door.js";
 const store = useStore();
 const message = computed(() => store.getters.getMessage);
 

@@ -72,6 +72,7 @@ export const store = createStore({
 
     update(state, data) {
       const wallNames = ["front", "back", "left", "right"];
+      console.log(data);
       if (data.wallId && data.eventType == "add") {
         const elements = Object.values(state.garage.walls[wallNames[data.wallId]].elements);
         const wallSize = data.wallId <= 1 ? { x: state.garage.width, y: state.garage.height } : { x: state.garage.length, y: state.garage.height };
@@ -115,7 +116,7 @@ export const store = createStore({
             this.commit("setMsg", msg);
           }
         }
-      } else if (data.eventType === "remove") {
+      } else if (data.eventType === "remove" && data.wallId) {
         delete state.garage.walls[wallNames[data.wallId]].elements[data.name];
         generator.updateGarage(data.eventType, data, data.wallId);
       } else if (data.type === "roof") {
@@ -155,6 +156,10 @@ export const store = createStore({
 
 function checkPlacement(item, wallElements, wallSize) {
   if (item.type !== "gate") {
+    if (item.height + 0.2 > wallSize.y) {
+      console.warn(item.name + "is too big to fit in the wall");
+      return false;
+    }
     if (item.width + 0.4 > wallSize.x) {
       console.warn(item.name + "is too big to fit in the wall");
       return false;
@@ -172,6 +177,10 @@ function checkPlacement(item, wallElements, wallSize) {
       console.warn(item.name + " exceeds wall boundary, yOffset changed to " + item.y);
     }
   } else {
+    if (item.height > wallSize.y) {
+      console.warn(item.name + "is too big to fit in the wall");
+      return false;
+    }
     if (item.width > wallSize.x) {
       console.warn(item.name + "is too big to fit in the wall");
       return false;
