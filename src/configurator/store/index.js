@@ -116,8 +116,13 @@ export const store = createStore({
             this.commit("setMsg", msg);
           }
         }
-      } else if (data.eventType === "remove" && data.wallId) {
-        delete state.garage.walls[wallNames[data.wallId]].elements[data.name];
+      } else if (data.eventType === "remove") {
+        if (data.type === "fittings") {
+          state.garage.fittings.visible = false;
+        } else if (data.wallId) {
+          delete state.garage.walls[wallNames[data.wallId]].elements[data.name];
+        }
+
         generator.updateGarage(data.eventType, data, data.wallId);
       } else if (data.type === "roof") {
         if (data.roofType) {
@@ -135,6 +140,12 @@ export const store = createStore({
         });
         generator.updateGarage(data.eventType, data);
       } else if (!data.wallId) {
+        if (data.type === "fittings") {
+          state.garage.fittings.visible = true;
+          if (data.material) {
+            state.garage.fittings.material = data.material;
+          }
+        }
         generator.updateGarage(data.eventType, data);
       }
     },
