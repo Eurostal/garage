@@ -142,7 +142,7 @@ export const store = createStore({
       state.msg = data;
       setTimeout(() => {
         state.msg = "";
-      }, 2000);
+      }, 3000);
     },
   },
   actions: {},
