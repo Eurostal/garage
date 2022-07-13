@@ -52,26 +52,26 @@ export default class WallCustom extends Wall {
 
   removeHole(elementId) {
     // for hole removal wall needs to be reinitialized
-    this.object.remove(this.object.getObjectByName("wall"));
+    this.holes.remove(this.holes.getObjectByName(elementId));
     const initCustomWall = this.createWall();
     initCustomWall.name = "wall";
+    this.object.remove(this.object.getObjectByName("wall"));
     this.object.add(initCustomWall);
-    this.holes.remove(this.holes.getObjectByName(elementId));
     if (this.holes.children.length > 0) {
       this.punchHoles();
     }
   }
 
   punchHoles() {
-    let wallPunched = null;
+    let wallPunched = this.createWall();
     for (let i = 0; i < this.holes.children.length; i++) {
-      wallPunched = CSG.subtract(this.object.getObjectByName("wall"), this.holes.children[i]);
+      wallPunched = CSG.subtract(wallPunched, this.holes.children[i]);
     }
     wallPunched.material = this.material;
     wallPunched.castShadow = true;
     wallPunched.receiveShadow = true;
-    wallPunched.name = "wall";
     this.object.remove(this.object.getObjectByName("wall"));
+    wallPunched.name = "wall";
     this.object.add(wallPunched);
   }
 

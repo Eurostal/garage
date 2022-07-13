@@ -40,7 +40,6 @@ class Generator {
   }
 
   updateGarage(action, data, wallId) {
-    //TODO: Get material from data
     if (action === "add") {
       switch (data.type) {
         case "gate":
