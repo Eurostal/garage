@@ -79,7 +79,7 @@
       </select>
     </form>
     <h3>window2</h3>
-    <form @submit.prevent="sendChange(6, 'window', 'window2', 1, 1, 3, 0.7)" @change="sendChange(6, 'window', 'window2', 1, 1, 3, 0.7)">
+    <form @submit.prevent="sendChange(6, 'window', 'window2', 1, 1)" @change="sendChange(6, 'window', 'window2', 1, 1)">
       <select name="wallId" id="wallId">
         <option value="0">Front</option>
         <option value="1">Back</option>
@@ -91,6 +91,8 @@
         <option value="BROWN">BROWN</option>
         <option value="GRAY">GRAY</option>
       </select>
+      <input id="x" name="x" type="range" min="0" max="7" value="0.2" step="0.005" @input="sendChange(6, 'window', 'window2', 1, 1)" />
+      <input id="y" name="y" type="range" min="0" max="3" value="0.2" step="0.005" @input="sendChange(6, 'window', 'window2', 1, 1)" />
     </form>
     <h3>fittings</h3>
     <form @submit.prevent="sendChange(7, 'fittings', 'window2', 0, 0, 0, 0)">
@@ -138,9 +140,11 @@ export default {
       };
       const data = new FormData(document.forms[formNr]);
       data.forEach((value, key) => {
+        if (key == "x" || key == "y") {
+          value = parseFloat(value);
+        }
         object[key] = value;
       });
-      console.log(object);
       this.$store.commit("update", { eventType: "add", ...object });
     },
 

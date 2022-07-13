@@ -149,7 +149,6 @@ export const store = createStore({
         generator.updateGarage(data.eventType, data);
       }
     },
-    move(state, data) {},
     setMsg(state, data) {
       state.msg = data;
       setTimeout(() => {

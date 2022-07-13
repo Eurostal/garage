@@ -116,8 +116,6 @@ class Generator {
     }
   }
 
-  drawPlaceholder(data, correct) {}
-
   getScene() {
     return this.scene;
   }
