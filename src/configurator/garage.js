@@ -13,18 +13,35 @@ export default class Garage {
     this.height = height;
     this.material = material;
     this.walls = [];
-    this.roof = new Roof("", this.width, this.length, this.height, this.material);
+    this.roof = new Roof("gable", this.width, this.length, this.height, this.material);
     this.fittings = new Fittings(this.width, this.length, this.height, this.roof.clippingPlane);
     this.object = this._createGarage();
   }
 
   _createWalls() {
+    console.log(this.roof.roofHeight);
     for (let i = 0; i < 4; i++) {
       if (i < 2) {
-        let wall = new WallCustom(this.width, this.height, this.length / 2, i * Math.PI, this.roof.clippingPlane, this.material);
+        let wall = new WallCustom(
+          this.width,
+          this.height,
+          this.length / 2,
+          i * Math.PI,
+          this.roof.clippingPlane,
+          this.material,
+          this.roof.roofHeight
+        );
         this.walls.push(wall);
       } else {
-        let wall = new WallCustom(this.length, this.height, this.width / 2, i * Math.PI + Math.PI / 2, this.roof.clippingPlane, this.material);
+        let wall = new WallCustom(
+          this.length,
+          this.height,
+          this.width / 2,
+          i * Math.PI + Math.PI / 2,
+          this.roof.clippingPlane,
+          this.material,
+          this.roof.roofHeight
+        );
         this.walls.push(wall);
       }
     }
@@ -50,6 +67,7 @@ export default class Garage {
     garage.add(this.roof.object);
     garage.add(this.fittings.object);
 
+    console.log(this);
     return garage;
   }
 
@@ -57,7 +75,9 @@ export default class Garage {
     this.roof = new Roof(type, this.width, this.length, this.height, this.roof.material);
     this.object.remove(this.object.getObjectByName("roof"));
     this.object.add(this.roof.object);
-    this.walls.forEach((wall) => wall.updateMaterial(this.material, this.roof.clippingPlane));
+    this.walls.forEach((wall) => {
+      wall.updateMaterial(this.material, this.roof.clippingPlane);
+    });
 
     this.fittings.clippingPlane = this.roof.clippingPlane;
     if (this.fittings.isVisible) {
@@ -68,7 +88,12 @@ export default class Garage {
   }
 
   updateWallsMaterial(material) {
-    this.walls.forEach((wall) => wall.updateMaterial(material, this.roof.clippingPlane));
+    console.log(this.walls);
+    this.walls.forEach((wall) => {
+      wall.updateMaterial(material, this.roof.clippingPlane);
+      // console.log(wall);
+    });
+
     this.material = material;
   }
 

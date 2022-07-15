@@ -22,6 +22,12 @@
         <option value="WOOD_LIGHT">WOOD_LIGHT</option>
         <option value="BTX6020">BTX6020</option>
       </select>
+      <select name="height" id="height">
+        <option value="1.8">180cm</option>
+        <option value="1.9">190cm</option>
+        <option value="2.0">200cm</option>
+        <option value="2.5">250cm</option>
+      </select>
     </form>
     <button @click="sendRemove('gate1', 0)">REMOVE GATE</button>
     <hr />
@@ -64,8 +70,6 @@
       <br />
       Length: <input type="range" name="length" id="length" min="1" max="7" value="5" />
       <br />
-      Height:
-      <input type="range" name="height" id="height" min="1" max="7" value="2" />
     </form>
     <hr />
     <h3>Walls color</h3>
@@ -140,7 +144,7 @@ export default {
       };
       const data = new FormData(document.forms[formNr]);
       data.forEach((value, key) => {
-        if (key == "x" || key == "y") {
+        if (key == "x" || key == "y" || key == "width" || key == "height") {
           value = parseFloat(value);
         }
         object[key] = value;
@@ -190,14 +194,11 @@ export default {
 
     sendReinit(formNr) {
       var object = {
-        width: 5,
-        length: 5,
-        height: 2,
         material: "RAL9010",
       };
       const data = new FormData(document.forms[formNr]);
       data.forEach((value, key) => {
-        object[key] = parseInt(value);
+        object[key] = parseFloat(value);
       });
 
       this.$store.commit("reInit", object);

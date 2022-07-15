@@ -17,6 +17,8 @@ import { useStore } from "vuex";
 import createRenderer from "./createRenderer";
 import createCamera from "./createCamera";
 
+import { Vector3, Group } from "three";
+
 const store = useStore();
 const message = computed(() => store.getters.getMessage);
 
@@ -28,10 +30,9 @@ onMounted(() => {
 
   scene.add(camera);
 
-  (function animate() {
-    requestAnimationFrame(animate);
+  renderer.setAnimationLoop(function () {
     renderer.render(scene, camera);
-  })();
+  });
 });
 </script>
 

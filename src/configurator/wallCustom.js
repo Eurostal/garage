@@ -1,11 +1,10 @@
 import Wall from "./Wall";
 import { Mesh, BoxGeometry, MeshStandardMaterial, Group } from "three";
 import { CSG } from "@enable3d/three-graphics/jsm/csg";
-import Gate from "./Gate";
 
 export default class WallCustom extends Wall {
-  constructor(width, height, offset = 0, rotation = 0, clippingPlane, material) {
-    super(width, height, offset, rotation, clippingPlane, material);
+  constructor(width, height, offset = 0, rotation = 0, clippingPlane, material, roofHeight) {
+    super(width, height, offset, rotation, clippingPlane, material, roofHeight);
     const initCustomWall = this.createWall();
     initCustomWall.name = "wall";
     this.object = new Group().add(initCustomWall);
@@ -15,7 +14,6 @@ export default class WallCustom extends Wall {
 
   addElement(element, xOffset = this.width / 2 - element.width / 2, yOffset = 0) {
     this.elements[element.name] = { x: xOffset, y: yOffset, width: element.width, height: element.height };
-    // if (this.checkBoundaries(element, xOffset, yOffset)) {
     let elementObject = element.object;
     if (element.object !== null) {
       elementObject.rotateY(this.rotation);
@@ -25,7 +23,6 @@ export default class WallCustom extends Wall {
       this.object.add(elementObject);
     }
     this.addHole(element.width, element.height, element.object.name, xOffset, element.height / 2 + yOffset);
-    // }
   }
 
   addHole(width, height, elementId, xOffset, yOffset) {

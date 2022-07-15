@@ -38,9 +38,16 @@ export const store = createStore({
     },
     reInit(state, data) {
       Object.assign(state.garageTemp, state.garage);
-      state.garageTemp.width = data.width;
-      state.garageTemp.length = data.length;
-      state.garageTemp.height = data.height;
+
+      if (data.width) {
+        state.garageTemp.width = data.width;
+      }
+      if (data.length) {
+        state.garageTemp.length = data.length;
+      }
+      if (data.height) {
+        state.garageTemp.height = data.height;
+      }
 
       const wallNames = ["front", "back", "left", "right"];
       const walls = Object.values(state.garageTemp.walls);
@@ -75,15 +82,31 @@ export const store = createStore({
       console.log(data);
       if (data.wallId && data.eventType == "add") {
         const elements = Object.values(state.garage.walls[wallNames[data.wallId]].elements);
-        const wallSize = data.wallId <= 1 ? { x: state.garage.width, y: state.garage.height } : { x: state.garage.length, y: state.garage.height };
+        let wallSize = data.wallId <= 1 ? { x: state.garage.width, y: state.garage.height } : { x: state.garage.length, y: state.garage.height };
+        if (data.wallId != 0 && state.garage.roof.roofType === "back") {
+          wallSize.y = wallSize.y - 0.23;
+        }
+        console.log(wallSize.y);
+
         if (checkPlacement(data, elements, wallSize)) {
           for (let i = 0; i < Object.keys(state.garage.walls).length; i++) {
             if (Object.keys(state.garage.walls[wallNames[i]].elements).includes(data.name)) {
               delete state.garage.walls[wallNames[i]].elements[data.name];
             }
           }
-          state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
-          generator.updateGarage(data.eventType, data, data.wallId);
+          if (data.type === "gate" && data.height) {
+            if (data.type === "gate" && data.wallId != 0) {
+              this.commit("setMsg", "Brama może znajdować się tylko na przedniej ścianie");
+              return;
+            } else {
+              let garageHeight = data.height + 0.13;
+              state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
+              this.commit("reInit", { height: garageHeight });
+            }
+          } else {
+            state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
+            generator.updateGarage(data.eventType, data, data.wallId);
+          }
         } else {
           let fits = false;
           data.x = 0;
@@ -109,11 +132,22 @@ export const store = createStore({
             }
 
             console.warn("changed " + data.name + " xOffset to " + data.x);
-            state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
-            generator.updateGarage(data.eventType, data, data.wallId);
+            if (data.type === "gate" && data.height) {
+              if (data.type === "gate" && data.wallId != 0) {
+                this.commit("setMsg", "Brama może znajdować się tylko na przedniej ścianie");
+                return;
+              } else {
+                let garageHeight = data.height + 0.13;
+                state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
+
+                this.commit("reInit", { height: garageHeight });
+              }
+            } else {
+              state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
+              generator.updateGarage(data.eventType, data, data.wallId);
+            }
           } else {
-            let msg = "no space on selected wall ";
-            this.commit("setMsg", msg);
+            this.commit("setMsg", "no space on selected wall ");
           }
         }
       } else if (data.eventType === "remove") {
@@ -187,10 +221,6 @@ function checkPlacement(item, wallElements, wallSize) {
       console.warn(item.name + " exceeds wall boundary, yOffset changed to " + item.y);
     }
   } else {
-    if (item.height > wallSize.y) {
-      console.warn(item.name + "is too big to fit in the wall");
-      return false;
-    }
     if (item.width > wallSize.x) {
       console.warn(item.name + "is too big to fit in the wall");
       return false;

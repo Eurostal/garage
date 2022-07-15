@@ -1,7 +1,6 @@
 import { Group, Mesh, BufferGeometry, BufferAttribute, Shape, ExtrudeGeometry, Vector2, Vector3, Plane, Quaternion } from "three";
 
-export const roofGable = function (width, length, yOffset, material) {
-  const peakHeight = width <= 5 ? 0.37 : 0.57;
+export const roofGable = function (width, length, yOffset, material, peakHeight) {
   let roofObject = new Group();
   let geometry = new BufferGeometry();
   let vertices = new Float32Array([-width / 2, 0, 0, 0, peakHeight, 0, width / 2, 0, 0]);
@@ -69,10 +68,10 @@ export const roofGable = function (width, length, yOffset, material) {
   return { roofObject, clippingPlane };
 };
 
-export const roofSloping = function (width, length, yOffset, material) {
+export const roofSloping = function (width, length, yOffset, material, peakHeight) {
   let roofObject = new Group();
   let geometry = new BufferGeometry();
-  let vertices = new Float32Array([-width / 2, 0, 0, -width / 2, 0.5, 0, width / 2, 0, 0]); //slope on right
+  let vertices = new Float32Array([-width / 2, 0, 0, -width / 2, peakHeight, 0, width / 2, 0, 0]); //slope on right
 
   let uvs = new Float32Array([0, 0, 0, 0.25, 1, 0]);
   geometry.setAttribute("position", new BufferAttribute(vertices, 3));
@@ -124,16 +123,16 @@ export const roofSloping = function (width, length, yOffset, material) {
   const roof = new Mesh(geometryRoofTop, roofMaterial);
   roof.castShadow = true;
   roof.scale.set(1.05, 1.05, 1.05);
-  roof.position.y = 0.5 * -0.05;
+  roof.position.y = peakHeight * -0.05;
   roof.position.z = (-length * 1.05) / 2;
 
   roofObject.add(roof);
   roofObject.position.y = yOffset;
 
-  const normal = new Vector3(-length / 2, -width * length, 0);
+  const normal = new Vector3(-length * peakHeight, -width * length, 0);
   normal.normalize();
-  const roofAngle = (Math.atan(0.5 / width) * 180) / Math.PI;
-  const d = Math.cos((roofAngle * Math.PI) / 180) * (yOffset + 0.25) - 0.001;
+  const roofAngle = (Math.atan(peakHeight / width) * 180) / Math.PI;
+  const d = Math.cos((roofAngle * Math.PI) / 180) * (yOffset + peakHeight / 2) - 0.001;
   const clippingPlane = [new Plane(normal, d)];
 
   return { roofObject, clippingPlane };

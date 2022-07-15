@@ -1,20 +1,24 @@
+import { parse } from "@babel/parser";
 import { Mesh, Group, BoxGeometry } from "three";
 import * as Material from "./materials";
 
 export default class Wall {
-  constructor(width, height, offset = 0, rotation = 0, clippingPlane, material) {
+  constructor(width, height, offset = 0, rotation = 0, clippingPlane, material, roofHeight) {
+    this.roofHeight = roofHeight;
+    console.log(this.roofHeight);
+    // debugger;
     this.width = width;
     this.height = height;
     this.offset = offset;
     this.rotation = rotation;
     this.object = new Group();
-    this.object.add(this.createWall());
     this.materialTemp = material;
     this.clippingPlane = clippingPlane;
+    this.object.add(this.createWall());
     this.material = this.updateMaterial(material, clippingPlane);
   }
   createWall() {
-    const overflowHeight = 1;
+    const overflowHeight = this.roofHeight;
     let wall = new Mesh(new BoxGeometry(this.width, this.height + overflowHeight, 0.01), this.material);
     wall.name = "wall";
     wall.position.y = (this.height + overflowHeight) / 2;
@@ -26,6 +30,8 @@ export default class Wall {
   }
 
   updateMaterial(material, clippingPlane) {
+    console.log(this.roofHeight);
+
     if (material !== undefined) {
       const wall = this.object.getObjectByName("wall");
       const wallMaterial = material.clone();
@@ -38,10 +44,10 @@ export default class Wall {
       wallMaterial.roughnessMap ? (wallMaterial.roughnessMap = material.roughnessMap.clone()) : null;
       wallMaterial.bumpMap ? (wallMaterial.bumpMap = material.bumpMap.clone()) : null;
       if (wallMaterial.map && material.horizontal) {
-        wallMaterial.map.repeat.set(this.width, this.height + 0.5);
-        wallMaterial.normalMap ? wallMaterial.normalMap.repeat.set(this.width, this.height + 0.5) : null;
-        wallMaterial.roughnessMap ? wallMaterial.roughnessMap.repeat.set(this.width, this.height + 0.5) : null;
-        wallMaterial.bumpMap ? wallMaterial.bumpMap.repeat.set(this.width, this.heigh + 0.5) : null;
+        wallMaterial.map.repeat.set(this.width, this.height + this.roofHeight);
+        wallMaterial.normalMap ? wallMaterial.normalMap.repeat.set(this.width, this.height + this.roofHeight) : null;
+        wallMaterial.roughnessMap ? wallMaterial.roughnessMap.repeat.set(this.width, this.height + this.roofHeight) : null;
+        wallMaterial.bumpMap ? wallMaterial.bumpMap.repeat.set(this.width, this.heigh + this.roofHeight) : null;
       } else {
         wallMaterial.map ? wallMaterial.map.repeat.set(this.height, this.width) : null;
         wallMaterial.normalMap ? wallMaterial.normalMap.repeat.set(this.height, this.width) : null;

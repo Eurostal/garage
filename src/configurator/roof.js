@@ -1,10 +1,13 @@
 import { createRoof } from "./roofFactory";
 
 export default class Roof {
-  constructor(roofType = "empty", width, length, yOffset, material) {
+  constructor(roofType, width, length, yOffset, material) {
+    this.width = width;
+    this.length = length;
     this.roofType = roofType;
     this.material = material;
-    this.roofCombined = createRoof(roofType, width, length, yOffset, material);
+    this.roofHeight = this.setRoofHeight();
+    this.roofCombined = createRoof(roofType, width, length, yOffset, material, this.roofHeight);
     this.roofCombined.roofObject.name = "roof";
   }
 
@@ -43,6 +46,42 @@ export default class Roof {
         roofPart.material.color = material.color;
       });
     }
+  }
+
+  setRoofHeight() {
+    let roofHeight = 0;
+    switch (this.roofType) {
+      case "gable":
+        if (this.width < 5) {
+          roofHeight = 0.37;
+        } else if (this.width < 7) {
+          roofHeight = 0.57;
+        } else if (this.width < 8) {
+          roofHeight = 0.67;
+        } else {
+          roofHeight = 0.77;
+        }
+        break;
+      case "front":
+        if (this.length < 7) {
+          roofHeight = 0.23;
+        } else {
+          roofHeight = 0.4;
+        }
+        break;
+      case "back":
+        if (this.length < 7) {
+          roofHeight = 0.23;
+        } else {
+          roofHeight = 0.4;
+        }
+        break;
+      default:
+        roofHeight = this.width < 5.5 ? 0.27 : 0.57;
+
+        break;
+    }
+    return roofHeight;
   }
 
   get object() {
