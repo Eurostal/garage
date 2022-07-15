@@ -1,9 +1,8 @@
-import { Scene, Fog, Color, Mesh, CircleGeometry, MeshStandardMaterial } from "three";
+import { Scene, Color, Mesh, CircleGeometry, MeshStandardMaterial } from "three";
 import { grassTexture } from "./textures";
 
 export default function createScene() {
   const scene = new Scene();
-  scene.fog = new Fog(0xffffff, 8, 20);
   scene.background = new Color(0xffffff);
   const ground = new Mesh(
     new CircleGeometry(5, 50),

@@ -17,7 +17,7 @@ import { useStore } from "vuex";
 import createRenderer from "./createRenderer";
 import createCamera from "./createCamera";
 
-import { Vector3, Group } from "three";
+import { MathUtils } from "three";
 
 const store = useStore();
 const message = computed(() => store.getters.getMessage);
@@ -26,23 +26,29 @@ onMounted(() => {
   const container = document.getElementById("scene-container");
   const scene = generator.getScene();
   const renderer = createRenderer(container);
-  const camera = createCamera(container, renderer);
+  const { camera, controls } = createCamera(container, renderer);
 
   scene.add(camera);
 
+  window.addEventListener("resize", function () {
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.fov = MathUtils.radToDeg(2 * Math.atan(Math.tan(MathUtils.degToRad(75) * 0.5) / camera.aspect));
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+  });
+
   renderer.setAnimationLoop(function () {
     renderer.render(scene, camera);
+    controls.update();
   });
 });
 </script>
 
 <style>
 #scene-container {
-  /* position: absolute; */
-  bottom: 50px;
+  max-height: 600px;
   width: 100%;
-  max-width: 950px;
-  aspect-ratio: 4/3;
+  aspect-ratio: 1/1;
 }
 
 .configurator-container {

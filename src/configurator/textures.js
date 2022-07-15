@@ -65,7 +65,7 @@ woodTextureMap.matrixAutoUpdate = true;
 export const grassTexture = loadTexture("./src/assets/grass.jpg");
 grassTexture.wrapS = RepeatWrapping;
 grassTexture.wrapT = RepeatWrapping;
-grassTexture.repeat.set(15, 15);
+grassTexture.repeat.set(5, 5);
 grassTexture.matrixAutoUpdate = true;
 
 export const concreteTexture = loadTexture("./src/assets/concrete.jpg");
