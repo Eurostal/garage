@@ -86,8 +86,6 @@ export const store = createStore({
         if (data.wallId != 0 && state.garage.roof.roofType === "back") {
           wallSize.y = wallSize.y - 0.23;
         }
-        console.log(wallSize.y);
-
         if (checkPlacement(data, elements, wallSize)) {
           for (let i = 0; i < Object.keys(state.garage.walls).length; i++) {
             if (Object.keys(state.garage.walls[wallNames[i]].elements).includes(data.name)) {
@@ -159,8 +157,31 @@ export const store = createStore({
 
         generator.updateGarage(data.eventType, data, data.wallId);
       } else if (data.type === "roof") {
+        let roofCheck = true;
         if (data.roofType) {
-          state.garage.roof.roofType = data.roofType;
+          if (data.roofType == "back") {
+            for (let i = 0; i < Object.values(state.garage.walls).length; i++) {
+              const elements = Object.values(state.garage.walls)[i].elements;
+              let wallSize = i <= 1 ? { x: state.garage.width, y: state.garage.height } : { x: state.garage.length, y: state.garage.height };
+              if (i != 0) {
+                wallSize.y = wallSize.y - 0.23;
+              }
+              const elementsArray = Object.values(elements);
+              for (let j = 0; j < elementsArray.length; j++) {
+                const element = elementsArray[j];
+                console.log(wallSize.y, element);
+                if (element.type !== "gate" && element.y + element.height + 0.2 > wallSize.y) {
+                  console.log("WYSTAJE");
+                  roofCheck = false;
+                  this.commit("setMsg", "Posiadasz element na ścianie, nie można zmienić dachu na niższy");
+                  return;
+                }
+              }
+            }
+          }
+          if (roofCheck) {
+            state.garage.roof.roofType = data.roofType;
+          }
         }
         if (data.material) {
           state.garage.roof.material = data.material;
