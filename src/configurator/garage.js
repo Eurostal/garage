@@ -1,25 +1,45 @@
-import { Group, Mesh, BoxGeometry, MeshStandardMaterial, DoubleSide, Plane, Vector2, Vector3 } from "three";
-import Wall from "./Wall.js";
-import WallCustom from "./WallCustom";
-import Roof from "./Roof.js";
-import Fittings from "./Fittings";
-import * as Texture from "./textures";
-import * as Material from "./materials";
+import {
+  Group,
+  Mesh,
+  BoxGeometry,
+  MeshStandardMaterial,
+  DoubleSide,
+  Plane,
+  Vector2,
+  Vector3,
+} from 'three'
+import Wall from './wall.js'
+import WallCustom from './wallCustom'
+import Roof from './roof.js'
+import Fittings from './fittings'
+import * as Texture from './textures'
+import * as Material from './materials'
 
 export default class Garage {
   constructor(width = 5, length = 5, height = 2, material = Material.RAL9010) {
-    this.width = width;
-    this.length = length;
-    this.height = height;
-    this.material = material;
-    this.walls = [];
-    this.roof = new Roof("gable", this.width, this.length, this.height, this.material);
-    this.fittings = new Fittings(this.width, this.length, this.height, this.roof.clippingPlane);
-    this.object = this._createGarage();
+    this.width = width
+    this.length = length
+    this.height = height
+    this.material = material
+    this.walls = []
+    this.roof = new Roof(
+      'gable',
+      this.width,
+      this.length,
+      this.height,
+      this.material,
+    )
+    this.fittings = new Fittings(
+      this.width,
+      this.length,
+      this.height,
+      this.roof.clippingPlane,
+    )
+    this.object = this._createGarage()
   }
 
   _createWalls() {
-    console.log(this.roof.roofHeight);
+    console.log(this.roof.roofHeight)
     for (let i = 0; i < 4; i++) {
       if (i < 2) {
         let wall = new WallCustom(
@@ -29,9 +49,9 @@ export default class Garage {
           i * Math.PI,
           this.roof.clippingPlane,
           this.material,
-          this.roof.roofHeight
-        );
-        this.walls.push(wall);
+          this.roof.roofHeight,
+        )
+        this.walls.push(wall)
       } else {
         let wall = new WallCustom(
           this.length,
@@ -40,9 +60,9 @@ export default class Garage {
           i * Math.PI + Math.PI / 2,
           this.roof.clippingPlane,
           this.material,
-          this.roof.roofHeight
-        );
-        this.walls.push(wall);
+          this.roof.roofHeight,
+        )
+        this.walls.push(wall)
       }
     }
   }
@@ -52,56 +72,62 @@ export default class Garage {
       new BoxGeometry(this.width + 0.2, 0.1, this.length + 0.2),
       new MeshStandardMaterial({
         map: Texture.concreteTexture,
-      })
-    ).translateY(-0.05);
-    fundation.castShadow = true;
-    fundation.receiveShadow = true;
+      }),
+    ).translateY(-0.05)
+    fundation.castShadow = true
+    fundation.receiveShadow = true
 
-    this._createWalls();
+    this._createWalls()
 
-    const garage = new Group();
+    const garage = new Group()
     for (let i = 0; i < this.walls.length; i++) {
-      garage.add(this.walls[i].object);
+      garage.add(this.walls[i].object)
     }
-    garage.add(fundation);
-    garage.add(this.roof.object);
-    garage.add(this.fittings.object);
+    garage.add(fundation)
+    garage.add(this.roof.object)
+    garage.add(this.fittings.object)
 
-    console.log(this);
-    return garage;
+    console.log(this)
+    return garage
   }
 
   updateRoof(type) {
-    this.roof = new Roof(type, this.width, this.length, this.height, this.roof.material);
-    this.object.remove(this.object.getObjectByName("roof"));
-    this.object.add(this.roof.object);
+    this.roof = new Roof(
+      type,
+      this.width,
+      this.length,
+      this.height,
+      this.roof.material,
+    )
+    this.object.remove(this.object.getObjectByName('roof'))
+    this.object.add(this.roof.object)
     this.walls.forEach((wall) => {
-      wall.updateMaterial(this.material, this.roof.clippingPlane);
-    });
+      wall.updateMaterial(this.material, this.roof.clippingPlane)
+    })
 
-    this.fittings.clippingPlane = this.roof.clippingPlane;
+    this.fittings.clippingPlane = this.roof.clippingPlane
     if (this.fittings.isVisible) {
-      this.fittings.remove();
-      this.fittings.create();
+      this.fittings.remove()
+      this.fittings.create()
     }
-    return this.roof;
+    return this.roof
   }
 
   updateWallsMaterial(material) {
-    console.log(this.walls);
+    console.log(this.walls)
     this.walls.forEach((wall) => {
-      wall.updateMaterial(material, this.roof.clippingPlane);
+      wall.updateMaterial(material, this.roof.clippingPlane)
       // console.log(wall);
-    });
+    })
 
-    this.material = material;
+    this.material = material
   }
 
   get garageParts() {
-    return this.object.children;
+    return this.object.children
   }
 
   get garageObject() {
-    return this.object;
+    return this.object
   }
 }
