@@ -8,4 +8,16 @@ export default defineConfig({
   appType: 'custom',
   plugins: [vue()],
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg'],
+  esbuild: {
+    minify: false,
+    minifySyntax: false,
+    minifyIdentifiers: false,
+    minifyWhitespace: false,
+  },
+  build: {
+    minify: false,
+    minifySyntax: false,
+    minifyIdentifiers: false,
+    minifyWhitespace: false,
+  },
 })

@@ -2,7 +2,11 @@
 <template>
   <div class="test_container">
     <h3>Gate 1</h3>
-    <form @submit.prevent="sendChange(0, 'gate', 'gate1', 2, 2, 0, 0)" @change="sendChange(0, 'gate', 'gate1', 2, 2, 0, 0)">
+    <form
+      id="example1"
+      @submit.prevent="sendChange('example1', 'gate', 'gate1', 2, 2, 0, 0)"
+      @change="sendChange('example1', 'gate', 'gate1', 2, 2, 0, 0)"
+    >
       <select name="wallId" id="wallId">
         <option value="0">Front</option>
         <option value="1">Back</option>
@@ -32,7 +36,11 @@
     <button @click="sendRemove('gate1', 0)">REMOVE GATE</button>
     <hr />
     <h3>window1</h3>
-    <form @submit.prevent="sendChange(1, 'window', 'window1', 1, 1, 2, 1)" @change="sendChange(1, 'window', 'window1', 1, 1, 2, 1)">
+    <form
+      id="example2"
+      @submit.prevent="sendChange('example2', 'window', 'window1', 1, 1, 2, 1)"
+      @change="sendChange('example2', 'window', 'window1', 1, 1, 2, 1)"
+    >
       <select name="wallId" id="wallId">
         <option value="0">Front</option>
         <option value="1">Back</option>
@@ -43,7 +51,11 @@
     <button @click="sendRemove('window1', 1)">REMOVE WINDOW</button>
     <hr />
     <h3>Roof type</h3>
-    <form @submit.prevent="sendRoofAdd(2, 'roof', 'roof')" @change="sendRoofAdd(2, 'roof', 'roof')">
+    <form
+      id="example3"
+      @submit.prevent="sendRoofAdd('example3', 'roof', 'roof')"
+      @change="sendRoofAdd('example3', 'roof', 'roof')"
+    >
       <select name="roofType" id="roofType">
         <option value="gable">Gable</option>
         <option value="front">Front</option>
@@ -64,16 +76,17 @@
     </form>
     <hr />
     <h3>Garage sizes</h3>
-    <form @change="sendReinit(4)">
+    <form id="example4" @change="sendReinit('example4')">
       Width:
       <input type="range" name="width" id="width" min="1" max="7" value="6" />
       <br />
-      Length: <input type="range" name="length" id="length" min="1" max="7" value="5" />
+      Length:
+      <input type="range" name="length" id="length" min="1" max="7" value="5" />
       <br />
     </form>
     <hr />
     <h3>Walls color</h3>
-    <form @change="sendUpdate(5, 'walls', '')">
+    <form id="example5" @change="sendUpdate('example5', 'walls', '')">
       <select name="material" id="material">
         <option value="RAL9010">RAL9010</option>
         <option value="RAL9010_H">RAL9010 horizontal</option>
@@ -83,7 +96,11 @@
       </select>
     </form>
     <h3>window2</h3>
-    <form @submit.prevent="sendChange(6, 'window', 'window2', 1, 1)" @change="sendChange(6, 'window', 'window2', 1, 1)">
+    <form
+      id="example6"
+      @submit.prevent="sendChange('example6', 'window', 'window2', 1, 1)"
+      @change="sendChange('example6', 'window', 'window2', 1, 1)"
+    >
       <select name="wallId" id="wallId">
         <option value="0">Front</option>
         <option value="1">Back</option>
@@ -95,11 +112,34 @@
         <option value="BROWN">BROWN</option>
         <option value="GRAY">GRAY</option>
       </select>
-      <input id="x" name="x" type="range" min="0" max="7" value="0.2" step="0.005" @input="sendChange(6, 'window', 'window2', 1, 1)" />
-      <input id="y" name="y" type="range" min="0" max="3" value="0.2" step="0.005" @input="sendChange(6, 'window', 'window2', 1, 1)" />
+      <input
+        id="x"
+        name="x"
+        type="range"
+        min="0"
+        max="7"
+        value="0.2"
+        step="0.005"
+        @input="sendChange('example6', 'window', 'window2', 1, 1)"
+      />
+      <input
+        id="y"
+        name="y"
+        type="range"
+        min="0"
+        max="3"
+        value="0.2"
+        step="0.005"
+        @input="sendChange('example6', 'window', 'window2', 1, 1)"
+      />
     </form>
     <h3>fittings</h3>
-    <form @submit.prevent="sendChange(7, 'fittings', 'window2', 0, 0, 0, 0)">
+    <form
+      id="example7"
+      @submit.prevent="
+        sendChange('example7', 'fittings', 'window2', 0, 0, 0, 0)
+      "
+    >
       <select name="material" id="material">
         <option value="RAL9010">RAL9010</option>
         <option value="RAL9010_H">RAL9010 horizontal</option>
@@ -111,7 +151,11 @@
     </form>
     <button @click="sendRemove('', 7, 'fittings')">REMOVE FITTINGS</button>
     <h3>door1</h3>
-    <form @submit.prevent="sendChange(8, 'door', 'door1', 1, 1.8, 3, 0)" @change="sendChange(8, 'door', 'door1', 1, 1.8, 3, 0)">
+    <form
+      id="example8"
+      @submit.prevent="sendChange('example8', 'door', 'door1', 1, 1.8, 3, 0)"
+      @change="sendChange('example8', 'door', 'door1', 1, 1.8, 3, 0)"
+    >
       <select name="wallId" id="wallId">
         <option value="0">Front</option>
         <option value="1">Back</option>
@@ -131,7 +175,7 @@
 
 <script>
 export default {
-  name: "Emitter",
+  name: 'Emitter',
   methods: {
     sendChange(formNr, type, name, width, height, x, y) {
       var object = {
@@ -141,70 +185,70 @@ export default {
         height: height,
         x: x,
         y: y,
-      };
-      const data = new FormData(document.forms[formNr]);
+      }
+      const data = new FormData(document.forms[formNr])
       data.forEach((value, key) => {
-        if (key == "x" || key == "y" || key == "width" || key == "height") {
-          value = parseFloat(value);
+        if (key == 'x' || key == 'y' || key == 'width' || key == 'height') {
+          value = parseFloat(value)
         }
-        object[key] = value;
-      });
-      this.$store.commit("update", { eventType: "add", ...object });
+        object[key] = value
+      })
+      this.$store.commit('update', { eventType: 'add', ...object })
     },
 
-    sendRemove(name, formNr, type = "") {
+    sendRemove(name, formNr, type = '') {
       var object = {
-        eventType: "remove",
+        eventType: 'remove',
         name: name,
         type: type,
-      };
-      const data = new FormData(document.forms[formNr]);
+      }
+      const data = new FormData(document.forms[formNr])
       data.forEach((value, key) => {
-        object[key] = value;
-      });
-      console.log(object.wallId, object.name);
-      this.$store.commit("update", object);
+        object[key] = value
+      })
+      console.log(object.wallId, object.name)
+      this.$store.commit('update', object)
     },
 
     sendRoofAdd(formNr, type, name) {
       var object = {
         type: type,
         name: name,
-      };
-      const data = new FormData(document.forms[formNr]);
+      }
+      const data = new FormData(document.forms[formNr])
       data.forEach((value, key) => {
-        object[key] = value;
-      });
-      this.$store.commit("update", { eventType: "add", ...object });
+        object[key] = value
+      })
+      this.$store.commit('update', { eventType: 'add', ...object })
     },
 
     sendUpdate(formNr, type, name) {
       var object = {
         type: type,
         name: name,
-        material: "RAL9010",
-      };
-      const data = new FormData(document.forms[formNr]);
+        material: 'RAL9010',
+      }
+      const data = new FormData(document.forms[formNr])
       data.forEach((value, key) => {
-        object[key] = value;
-      });
-      console.log(object);
-      this.$store.commit("update", { eventType: "update", ...object });
+        object[key] = value
+      })
+      console.log(object)
+      this.$store.commit('update', { eventType: 'update', ...object })
     },
 
     sendReinit(formNr) {
       var object = {
-        material: "RAL9010",
-      };
-      const data = new FormData(document.forms[formNr]);
+        material: 'RAL9010',
+      }
+      const data = new FormData(document.forms[formNr])
       data.forEach((value, key) => {
-        object[key] = parseFloat(value);
-      });
+        object[key] = parseFloat(value)
+      })
 
-      this.$store.commit("reInit", object);
+      this.$store.commit('reInit', object)
     },
   },
-};
+}
 </script>
 
 <style>
