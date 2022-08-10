@@ -31,7 +31,6 @@ export const store = createStore({
         roof: { roofType: "gable", material: "RAL9010" },
         fittings: { visible: false, material: "RAL9010" },
       },
-      msg: "",
       garageTemp: {
         width: null,
         length: null,
@@ -44,6 +43,33 @@ export const store = createStore({
         },
         roof: {},
       },
+      defaults: {
+        gate: {
+          width: 3,
+          height: 2,
+          material: "RAL9010",
+          gateType: "double",
+          x: 0,
+          y: 0,
+        },
+        window: {
+          width: 1,
+          height: 1,
+          material: "RAL9010",
+          gateType: "double",
+          x: 0,
+          y: 1,
+        },
+        door: {
+          width: 1,
+          height: 2,
+          material: "RAL9010",
+          gateType: "double",
+          x: 0,
+          y: 0,
+        },
+      },
+      msg: "",
     };
   },
   mutations: {
@@ -94,146 +120,19 @@ export const store = createStore({
 
     add(state, data) {
       data.eventType = "add";
-      updateG(state, data, eventType);
+      updateG(state, data);
     },
 
     update(state, data) {
       data.eventType = "update";
-      updateG(state, data, eventType);
+      updateG(state, data);
     },
 
     remove(state, data) {
       data.eventType = "remove";
       updateG(state, data);
     },
-    //Private
-    updateG(state, data) {
-      const wallNames = ["front", "back", "left", "right"];
-      console.log(data);
-      if (data.wallId && data.eventType == "add") {
-        const elements = Object.values(state.garage.walls[wallNames[data.wallId]].elements);
-        let wallSize = data.wallId <= 1 ? { x: state.garage.width, y: state.garage.height } : { x: state.garage.length, y: state.garage.height };
-        if (data.wallId != 0 && state.garage.roof.roofType === "back") {
-          wallSize.y = wallSize.y - 0.23;
-        }
-        if (checkPlacement(data, elements, wallSize)) {
-          for (let i = 0; i < Object.keys(state.garage.walls).length; i++) {
-            if (Object.keys(state.garage.walls[wallNames[i]].elements).includes(data.name)) {
-              delete state.garage.walls[wallNames[i]].elements[data.name];
-            }
-          }
-          if (data.type === "gate" && data.height) {
-            if (data.type === "gate" && data.wallId != 0) {
-              this.commit("setMsg", "Brama może znajdować się tylko na przedniej ścianie");
-              return;
-            } else {
-              let garageHeight = data.height + 0.13;
-              state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
-              this.commit("reInit", { height: garageHeight });
-            }
-          } else {
-            state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
-            generator.updateGarage(data.eventType, data, data.wallId);
-          }
-        } else {
-          let fits = false;
-          data.x = 0;
-          if (checkPlacement(data, elements, wallSize)) {
-            fits = true;
-          } else {
-            elements.forEach((element, index) => {
-              if (!fits) {
-                console.log(data.x, element.width + 0.2);
-                data.x = element.x + element.width + 0.2;
-                if (checkPlacement(data, elements, wallSize)) {
-                  fits = true;
-                }
-              }
-            });
-          }
 
-          if (fits) {
-            for (let i = 0; i < Object.keys(state.garage.walls).length; i++) {
-              if (Object.keys(state.garage.walls[wallNames[i]].elements).includes(data.name)) {
-                delete state.garage.walls[wallNames[i]].elements[data.name];
-              }
-            }
-
-            console.warn("changed " + data.name + " xOffset to " + data.x);
-            if (data.type === "gate" && data.height) {
-              if (data.type === "gate" && data.wallId != 0) {
-                this.commit("setMsg", "Brama może znajdować się tylko na przedniej ścianie");
-                return;
-              } else {
-                let garageHeight = data.height + 0.13;
-                state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
-
-                this.commit("reInit", { height: garageHeight });
-              }
-            } else {
-              state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
-              generator.updateGarage(data.eventType, data, data.wallId);
-            }
-          } else {
-            this.commit("setMsg", "no space on selected wall ");
-          }
-        }
-      } else if (data.eventType === "remove") {
-        if (data.type === "fittings") {
-          state.garage.fittings.visible = false;
-        } else if (data.wallId) {
-          delete state.garage.walls[wallNames[data.wallId]].elements[data.name];
-        }
-
-        generator.updateGarage(data.eventType, data, data.wallId);
-      } else if (data.type === "roof") {
-        let roofCheck = true;
-        if (data.roofType) {
-          if (data.roofType == "back") {
-            for (let i = 0; i < Object.values(state.garage.walls).length; i++) {
-              const elements = Object.values(state.garage.walls)[i].elements;
-              let wallSize = i <= 1 ? { x: state.garage.width, y: state.garage.height } : { x: state.garage.length, y: state.garage.height };
-              if (i != 0) {
-                wallSize.y = wallSize.y - 0.23;
-              }
-              const elementsArray = Object.values(elements);
-              for (let j = 0; j < elementsArray.length; j++) {
-                const element = elementsArray[j];
-                console.log(wallSize.y, element);
-                if (element.type !== "gate" && element.y + element.height + 0.2 > wallSize.y) {
-                  console.log("WYSTAJE");
-                  roofCheck = false;
-                  this.commit("setMsg", "Posiadasz element na ścianie, nie można zmienić dachu na niższy");
-                  return;
-                }
-              }
-            }
-          }
-          if (roofCheck) {
-            state.garage.roof.roofType = data.roofType;
-          }
-        }
-        if (data.material) {
-          state.garage.roof.material = data.material;
-        } else {
-          data[material] = state.garage.roof.material;
-        }
-        generator.updateGarage(data.eventType, data, data.wallId);
-      } else if (data.type === "walls") {
-        Object.values(state.garage.walls).forEach((wall) => {
-          wall.material = data.material;
-        });
-        generator.updateGarage(data.eventType, data, data.wallId);
-      } else if (!data.wallId) {
-        if (data.type === "fittings") {
-          state.garage.fittings.visible = true;
-          if (data.material) {
-            state.garage.fittings.material = data.material;
-          }
-        }
-        generator.updateGarage(data.eventType, data, data.wallId);
-      }
-    },
     setMsg(state, data) {
       state.msg = data;
       setTimeout(() => {
@@ -257,8 +156,142 @@ export const store = createStore({
     getMessage(state) {
       return state.msg;
     },
+    getDefaults(state) {
+      return state.defaults;
+    },
   },
 });
+
+//Private
+function updateG(state, data) {
+  const wallNames = ["front", "back", "left", "right"];
+  console.log(data);
+  if (data.wallId && data.eventType == "add") {
+    const elements = Object.values(state.garage.walls[wallNames[data.wallId]].elements);
+    let wallSize = data.wallId <= 1 ? { x: state.garage.width, y: state.garage.height } : { x: state.garage.length, y: state.garage.height };
+    if (data.wallId != 0 && state.garage.roof.roofType === "back") {
+      wallSize.y = wallSize.y - 0.23;
+    }
+    if (checkPlacement(data, elements, wallSize)) {
+      for (let i = 0; i < Object.keys(state.garage.walls).length; i++) {
+        if (Object.keys(state.garage.walls[wallNames[i]].elements).includes(data.name)) {
+          delete state.garage.walls[wallNames[i]].elements[data.name];
+        }
+      }
+      if (data.type === "gate" && data.height) {
+        if (data.type === "gate" && data.wallId != 0) {
+          store.commit("setMsg", "Brama może znajdować się tylko na przedniej ścianie");
+          return;
+        } else {
+          console.log(data);
+          data = fillData(data);
+          let garageHeight = data.height + 0.13;
+          state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
+          store.commit("reInit", { height: garageHeight });
+        }
+      } else {
+        state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
+        generator.updateGarage(data.eventType, data, data.wallId);
+      }
+    } else {
+      let fits = false;
+      data.x = 0;
+      if (checkPlacement(data, elements, wallSize)) {
+        fits = true;
+      } else {
+        elements.forEach((element, index) => {
+          if (!fits) {
+            console.log(data.x, element.width + 0.2);
+            data.x = element.x + element.width + 0.2;
+            if (checkPlacement(data, elements, wallSize)) {
+              fits = true;
+            }
+          }
+        });
+      }
+
+      if (fits) {
+        for (let i = 0; i < Object.keys(state.garage.walls).length; i++) {
+          if (Object.keys(state.garage.walls[wallNames[i]].elements).includes(data.name)) {
+            delete state.garage.walls[wallNames[i]].elements[data.name];
+          }
+        }
+
+        console.warn("changed " + data.name + " xOffset to " + data.x);
+        if (data.type === "gate" && data.height) {
+          if (data.type === "gate" && data.wallId != 0) {
+            store.commit("setMsg", "Brama może znajdować się tylko na przedniej ścianie");
+            return;
+          } else {
+            let garageHeight = data.height + 0.13;
+            state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
+
+            store.commit("reInit", { height: garageHeight });
+          }
+        } else {
+          state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
+          generator.updateGarage(data.eventType, data, data.wallId);
+        }
+      } else {
+        store.commit("setMsg", "no space on selected wall ");
+      }
+    }
+  } else if (data.eventType === "remove") {
+    if (data.type === "fittings") {
+      state.garage.fittings.visible = false;
+    } else if (data.wallId) {
+      delete state.garage.walls[wallNames[data.wallId]].elements[data.name];
+    }
+
+    generator.updateGarage(data.eventType, data, data.wallId);
+  } else if (data.type === "roof") {
+    let roofCheck = true;
+    if (data.roofType) {
+      if (data.roofType == "back") {
+        for (let i = 0; i < Object.values(state.garage.walls).length; i++) {
+          const elements = Object.values(state.garage.walls)[i].elements;
+          let wallSize = i <= 1 ? { x: state.garage.width, y: state.garage.height } : { x: state.garage.length, y: state.garage.height };
+          if (i != 0) {
+            wallSize.y = wallSize.y - 0.23;
+          }
+          const elementsArray = Object.values(elements);
+          for (let j = 0; j < elementsArray.length; j++) {
+            const element = elementsArray[j];
+            console.log(wallSize.y, element);
+            if (element.type !== "gate" && element.y + element.height + 0.2 > wallSize.y) {
+              console.log("WYSTAJE");
+              roofCheck = false;
+              store.commit("setMsg", "Posiadasz element na ścianie, nie można zmienić dachu na niższy");
+              return;
+            }
+          }
+        }
+      }
+      if (roofCheck) {
+        state.garage.roof.roofType = data.roofType;
+      }
+    }
+    if (data.material) {
+      state.garage.roof.material = data.material;
+    } else {
+      data[material] = state.garage.roof.material;
+    }
+    generator.updateGarage(data.eventType, data, data.wallId);
+  } else if (data.type === "walls") {
+    Object.values(state.garage.walls).forEach((wall) => {
+      wall.material = data.material;
+    });
+    generator.updateGarage(data.eventType, data, data.wallId);
+  } else if (!data.wallId) {
+    if (data.type === "fittings") {
+      state.garage.fittings.visible = true;
+      if (data.material) {
+        state.garage.fittings.material = data.material;
+      }
+    }
+    generator.updateGarage(data.eventType, data, data.wallId);
+  }
+}
 
 function checkPlacement(item, wallElements, wallSize) {
   if (item.type !== "gate") {
@@ -346,4 +379,21 @@ function contains(element, { x, y }) {
     height: element.height,
   };
   return rect.x - 0.2 < x && x < rect.x + rect.width + 0.2 && rect.y - 0.2 < y && y < rect.y + rect.height + 0.2;
+}
+
+function fillData(data) {
+  const wallNames = ["front", "back", "left", "right"];
+  let filledData = {};
+  if (data.type) {
+    let oldData = store.getters.getGarage.walls[wallNames[data.wallId]].elements[data.name];
+    if (oldData) {
+      filledData = oldData;
+    } else {
+      filledData = store.getters.getDefaults[data.type];
+    }
+  }
+  Object.keys(data).forEach((key) => {
+    filledData[key] = data[key];
+  });
+  return filledData;
 }
