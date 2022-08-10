@@ -32,7 +32,7 @@ export const store = createStore({
     }
   },
   mutations: {
-    setInit(state, data) {
+    init(state, data) {
       state.garage = data
       generator.initialize(data)
     },
@@ -90,7 +90,22 @@ export const store = createStore({
       }
     },
 
+    add(state, data) {
+      data.eventType = 'add'
+      updateG(state, data, eventType)
+    },
+
     update(state, data) {
+      data.eventType = 'update'
+      updateG(state, data, eventType)
+    },
+
+    remove(state, data) {
+      data.eventType = 'remove'
+      updateG(state, data)
+    },
+    //Private
+    updateG(state, data) {
       const wallNames = ['front', 'back', 'left', 'right']
       console.log(data)
       if (data.wallId && data.eventType == 'add') {

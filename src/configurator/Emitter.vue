@@ -33,7 +33,7 @@
         <option value="2.5">250cm</option>
       </select>
     </form>
-    <button @click="sendRemove('gate1', 0)">REMOVE GATE</button>
+    <button @click="sendRemove('gate1', 'example1')">REMOVE GATE</button>
     <hr />
     <h3>window1</h3>
     <form
@@ -48,7 +48,7 @@
         <option value="3">Right</option>
       </select>
     </form>
-    <button @click="sendRemove('window1', 1)">REMOVE WINDOW</button>
+    <button @click="sendRemove('window1', 'example2')">REMOVE WINDOW</button>
     <hr />
     <h3>Roof type</h3>
     <form
@@ -149,7 +149,9 @@
       </select>
       <button>ADD FITTINGS</button>
     </form>
-    <button @click="sendRemove('', 7, 'fittings')">REMOVE FITTINGS</button>
+    <button @click="sendRemove('', 'example7', 'fittings')">
+      REMOVE FITTINGS
+    </button>
     <h3>door1</h3>
     <form
       id="example8"
@@ -170,6 +172,7 @@
         <option value="BTX6020">BTX6020</option>
       </select>
     </form>
+    <button @click="sendRemove('door1', 'example8')">REMOVE GATE</button>
   </div>
 </template>
 
@@ -198,7 +201,6 @@ export default {
 
     sendRemove(name, formNr, type = '') {
       var object = {
-        eventType: 'remove',
         name: name,
         type: type,
       }
@@ -207,7 +209,7 @@ export default {
         object[key] = value
       })
       console.log(object.wallId, object.name)
-      this.$store.commit('update', object)
+      this.$store.commit('remove', object)
     },
 
     sendRoofAdd(formNr, type, name) {
@@ -219,7 +221,7 @@ export default {
       data.forEach((value, key) => {
         object[key] = value
       })
-      this.$store.commit('update', { eventType: 'add', ...object })
+      this.$store.commit('add', { ...object })
     },
 
     sendUpdate(formNr, type, name) {
@@ -233,7 +235,7 @@ export default {
         object[key] = value
       })
       console.log(object)
-      this.$store.commit('update', { eventType: 'update', ...object })
+      this.$store.commit('update', { ...object })
     },
 
     sendReinit(formNr) {
@@ -247,6 +249,193 @@ export default {
 
       this.$store.commit('reInit', object)
     },
+    changeEventForm: function (e) {
+      const formData = Object.fromEntries(
+        new FormData(e.currentTarget).entries(),
+      )
+
+      Object.keys(formData).forEach((key) => {
+        var object
+
+        console.log(key, formData[key])
+
+        switch (key) {
+          case 'tm-epo-counter':
+            break
+          case 'tmcp_radio_0': //Rodzaje dachu
+            object = {}
+            object.type = 'roof'
+            object.roofType = 'gable'
+
+            if (formData[key] == 'Spad w tył_1') {
+              object.roofType = 'back'
+            }
+
+            if (formData[key] == 'Spad w przód_2') {
+              object.roofType = 'front'
+            }
+
+            if (formData[key] == 'Spad w prawo_3') {
+              object.roofType = 'right'
+            }
+
+            if (formData[key] == 'Spad w lewo_4') {
+              object.roofType = 'left'
+            }
+
+            this.$store.commit('add', { ...object })
+            break
+          case 'tmcp_select_1': //Szerokość
+            object = {}
+            object.width = parseInt(formData[key].split(' ')[0])
+
+            this.$store.commit('reInit', { ...object })
+            break
+          case 'tmcp_select_2': //Długość
+            object = {}
+            object.length = parseInt(formData[key].split(' ')[0])
+
+            this.$store.commit('reInit', { ...object })
+
+            break
+          case 'tmcp_select_3':
+            object = {}
+            object.length = parseInt(formData[key].split(' ')[0])
+
+            this.$store.commit('reInit', { ...object })
+
+            break
+          case 'tmcp_radio_4': //Brama 1 - Typ bramy
+            object = {}
+            object.type = 'gate'
+            object.name = 'gate1'
+            object.gateType = 'double'
+
+            if (formData[key] == 'Dwuskrzydłowa_0') {
+              object.gateType = 'double'
+            }
+
+            if (formData[key] == 'Uchylna_1') {
+              object.gateType = 'tilted'
+            }
+
+            if (formData[key] == 'Uchylna - szeroki panel_2') {
+              object.gateType = 'wide'
+            }
+
+            if (formData[key] == 'Bez bramy - otwarty przód_3') {
+              object.gateType = 'empty'
+            }
+
+            if (formData[key] == 'Zamiast bramy ściana_4') {
+              object.type = 'gate1'
+              object.wallId = 0
+              this.$store.commit('remove', { ...object })
+              breakl
+            }
+
+            this.$store.commit('update', { ...object })
+            break
+
+          case 'tmcp_radio_5': //Brama 1 - szerokość
+            object = {}
+            object.type = 'gate'
+            object.name = 'gate1'
+            object.width = parseInt(formData[key].split(' ')[0])
+            object.width = object.width / 100
+
+            this.$store.commit('update', { ...object })
+
+            break
+          case 'tmcp_select_6': //Brama 1 - wysokość
+            object = {}
+            object.type = 'gate'
+            object.name = 'gate1'
+            object.wallId = 0
+            object.height = parseInt(formData[key].split(' ')[0])
+            object.height = object.height / 100
+
+            this.$store.commit('update', { ...object })
+            break
+          case 'tmcp_select_7': //Ułoenie blachy
+            break
+          case 'tmcp_select_8':
+            break
+          case 'tmcp_radio_9': //Brama 2 - Typ bramy
+            object = {}
+            object.type = 'gate'
+            object.name = 'gate2'
+            object.gateType = 'double'
+            object.wallId = 0
+
+            if (formData[key] == 'Dwuskrzydłowa_0') {
+              object.gateType = 'double'
+            }
+
+            if (formData[key] == 'Uchylna_1') {
+              object.gateType = 'tilted'
+            }
+
+            if (formData[key] == 'Uchylna - szeroki panel_2') {
+              object.gateType = 'wide'
+            }
+
+            if (formData[key] == 'Bez bramy - otwarty przód_3') {
+              object.gateType = 'empty'
+            }
+
+            if (formData[key] == 'Zamiast bramy ściana_4') {
+              delete object.gateType
+              this.$store.commit('remove', { ...object })
+              break
+            }
+
+            this.$store.commit('update', { ...object })
+            break
+          case 'tmcp_select_10':
+            object = {}
+            object.type = 'gate'
+            object.name = 'gate2'
+            object.width = parseInt(formData[key].split(' ')[0])
+            object.width = object.width / 100
+
+            this.$store.commit('update', { ...object })
+
+            break
+          case 'tmcp_select_11':
+            object = {}
+            object.type = 'gate'
+            object.name = 'gate2'
+            object.height = parseInt(formData[key].split(' ')[0])
+            object.height = object.height / 100
+
+            this.$store.commit('update', { ...object })
+
+            break
+          case 'tmcp_radio_87':
+            object = {}
+            //RAL 5010_4
+            object.type = 'fittings'
+            object.material = formData[key].split('_')[0].replace(' ', '')
+            this.$store.commit('update', { ...object })
+            break
+          case 'tmcp_checkbox_86_0':
+            object = {}
+            object.type = 'fittings'
+
+            this.$store.commit('update', { ...object })
+            break
+          default:
+            console.log(key, formData[key])
+        }
+      })
+    },
+  },
+  mounted: function () {
+    var form = document.querySelector('form.cart')
+    if (document.querySelector('form.cart')) {
+      form.addEventListener('change', this.changeEventForm, { passive: true })
+    }
   },
 }
 </script>
