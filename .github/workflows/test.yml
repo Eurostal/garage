@@ -1,0 +1,40 @@
+name: Development workflow
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Install dependency
+        run: npm install
+
+      - name: Generate website
+        run: npm run deploy --if-present
+        env:
+          API_URL: ${{ secrets.API_URL }}
+
+      - name: Remove node
+        run: sudo rm -rf node_modules
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          password: ${{ secrets.REMOTE_PASSWORD }}
+          local-dir: './dist'
+          protocol: ftps
+          server-dir: ${{ secrets.REMOTE_PATH }}
