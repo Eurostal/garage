@@ -162,7 +162,7 @@ export default {
         object[key] = value;
       });
       delete object.width;
-      this.$store.commit("add", { eventType: "add", ...object });
+      this.$store.commit("update", { eventType: "update", ...object });
     },
 
     sendRemove(name, formNr, type = "") {
@@ -187,7 +187,7 @@ export default {
       data.forEach((value, key) => {
         object[key] = value;
       });
-      this.$store.commit("add", { ...object });
+      this.$store.commit("update", { ...object });
     },
 
     sendUpdate(formNr, type, name) {
@@ -247,7 +247,7 @@ export default {
               object.roofType = "left";
             }
 
-            this.$store.commit("add", { ...object });
+            this.$store.commit("update", { ...object });
             break;
           case "tmcp_select_1": //Szerokość
             object = {};
@@ -295,7 +295,7 @@ export default {
               object.type = "gate1";
               object.wallId = 0;
               this.$store.commit("remove", { ...object });
-              breakl;
+              break;
             }
 
             this.$store.commit("update", { ...object });
@@ -381,7 +381,7 @@ export default {
             //RAL 5010_4
             object.type = "fittings";
             object.material = formData[key].split("_")[0].replace(" ", "");
-            this.$store.commit("update", { ...object });
+            this.$store.commit("updateMaterial", { ...object });
             break;
           case "tmcp_checkbox_86_0":
             object = {};

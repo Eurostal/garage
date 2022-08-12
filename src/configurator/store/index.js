@@ -118,13 +118,13 @@ export const store = createStore({
       }
     },
 
-    add(state, data) {
-      data.eventType = "add";
+    update(state, data) {
+      data.eventType = "update";
       updateG(state, data);
     },
 
-    update(state, data) {
-      data.eventType = "update";
+    updateMaterial(state, data) {
+      data.eventType = "updateMaterial";
       updateG(state, data);
     },
 
