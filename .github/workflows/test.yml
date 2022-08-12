@@ -36,4 +36,3 @@ jobs:
           password: ${{ secrets.REMOTE_PASSWORD }}
           local-dir: './dist/'
           server-dir: /public_html/wp-content/plugins/garage-configurator/template/
-          dry-run: true
