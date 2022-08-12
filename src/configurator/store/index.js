@@ -384,8 +384,11 @@ function contains(element, { x, y }) {
 function fillData(data) {
   const wallNames = ["front", "back", "left", "right"];
   let filledData = {};
+  let oldData = {};
   if (data.type) {
-    let oldData = store.getters.getGarage.walls[wallNames[data.wallId]].elements[data.name];
+    if (data.wallId && data.name) {
+      oldData = store.getters.getGarage.walls[wallNames[data.wallId]].elements[data.name];
+    }
     if (oldData) {
       filledData = oldData;
     } else {
