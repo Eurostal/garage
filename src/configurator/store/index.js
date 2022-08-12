@@ -377,9 +377,9 @@ function fillData(data) {
   let actualData = {};
   if (data.name && data.wallId !== undefined) {
     actualData = { ...store.getters.getGarage.walls[wallNames[data.wallId]].elements[data.name] };
+  } else {
+    actualData = { ...store.getters.getGarage[data.type], ...data };
   }
   filledData = { ...store.getters.getDefaults[data.type], ...actualData, ...data };
-
-  console.log(filledData);
   return filledData;
 }
