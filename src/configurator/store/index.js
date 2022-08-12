@@ -166,13 +166,13 @@ export const store = createStore({
 function updateG(state, data) {
   const wallNames = ["front", "back", "left", "right"];
   console.log(data);
+  data = fillData(data);
   if (data.wallId !== undefined && data.eventType == "update") {
     const elements = Object.values(state.garage.walls[wallNames[data.wallId]].elements);
     let wallSize = data.wallId <= 1 ? { x: state.garage.width, y: state.garage.height } : { x: state.garage.length, y: state.garage.height };
     if (data.wallId != 0 && state.garage.roof.roofType === "back") {
       wallSize.y = wallSize.y - 0.23;
     }
-    data = fillData(data);
     if (checkPlacement(data, elements, wallSize)) {
       console.log("checked");
       for (let i = 0; i < Object.keys(state.garage.walls).length; i++) {
