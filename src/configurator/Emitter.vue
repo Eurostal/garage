@@ -4,8 +4,8 @@
     <h3>Gate 1</h3>
     <form
       id="example1"
-      @submit.prevent="sendChange('example1', 'gate', 'gate1', 2, 2, 0, 0)"
-      @change="sendChange('example1', 'gate', 'gate1', 2, 2, 0, 0)"
+      @submit.prevent="sendChange('example1', 'gate', 'gate1', 2, 2, 0, 0, 0)"
+      @change="sendChange('example1', 'gate', 'gate1', 2, 2, 0, 0, 0)"
     >
       <select name="wallId" id="wallId">
         <option value="0">Front</option>
@@ -18,13 +18,6 @@
         <option value="double">Double</option>
         <option value="wide">Wide panel</option>
         <option value="empty">Empty</option>
-      </select>
-      <select name="material" id="material">
-        <option value="RAL9010">RAL9010</option>
-        <option value="RAL9010_H">RAL9010 horizontal</option>
-        <option value="WOOD_DARK_SHINE">WOOD_DARK_SHINE</option>
-        <option value="WOOD_LIGHT">WOOD_LIGHT</option>
-        <option value="BTX6020">BTX6020</option>
       </select>
       <select name="height" id="height">
         <option value="1.8">180cm</option>
@@ -151,7 +144,7 @@
 export default {
   name: "Emitter",
   methods: {
-    sendChange(formNr, type, name, width, height, x, y) {
+    sendChange(formNr, type, name, width, height, x, y, wall) {
       var object = {
         type: type,
         name: name,

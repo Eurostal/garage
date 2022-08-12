@@ -166,13 +166,15 @@ export const store = createStore({
 function updateG(state, data) {
   const wallNames = ["front", "back", "left", "right"];
   console.log(data);
-  if (data.wallId && data.eventType == "add") {
+  if (data.wallId !== undefined && data.eventType == "add") {
     const elements = Object.values(state.garage.walls[wallNames[data.wallId]].elements);
     let wallSize = data.wallId <= 1 ? { x: state.garage.width, y: state.garage.height } : { x: state.garage.length, y: state.garage.height };
     if (data.wallId != 0 && state.garage.roof.roofType === "back") {
       wallSize.y = wallSize.y - 0.23;
     }
+    data = fillData(data);
     if (checkPlacement(data, elements, wallSize)) {
+      console.log("checked");
       for (let i = 0; i < Object.keys(state.garage.walls).length; i++) {
         if (Object.keys(state.garage.walls[wallNames[i]].elements).includes(data.name)) {
           delete state.garage.walls[wallNames[i]].elements[data.name];
@@ -183,8 +185,6 @@ function updateG(state, data) {
           store.commit("setMsg", "Brama może znajdować się tylko na przedniej ścianie");
           return;
         } else {
-          console.log(data);
-          data = fillData(data);
           let garageHeight = data.height + 0.13;
           state.garage.walls[wallNames[data.wallId]].elements[data.name] = data;
           store.commit("reInit", { height: garageHeight });
@@ -239,7 +239,7 @@ function updateG(state, data) {
   } else if (data.eventType === "remove") {
     if (data.type === "fittings") {
       state.garage.fittings.visible = false;
-    } else if (data.wallId) {
+    } else if (data.wallId !== undefined) {
       delete state.garage.walls[wallNames[data.wallId]].elements[data.name];
     }
 
@@ -282,7 +282,7 @@ function updateG(state, data) {
       wall.material = data.material;
     });
     generator.updateGarage(data.eventType, data, data.wallId);
-  } else if (!data.wallId) {
+  } else if (data.wallId === undefined) {
     if (data.type === "fittings") {
       state.garage.fittings.visible = true;
       if (data.material) {
@@ -395,5 +395,6 @@ function fillData(data) {
   Object.keys(data).forEach((key) => {
     filledData[key] = data[key];
   });
+  console.log(filledData);
   return filledData;
 }
