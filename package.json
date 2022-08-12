@@ -1,0 +1,27 @@
+{
+  "name": "eurostalgarage",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "deploy": "vite build"
+  },
+  "dependencies": {
+    "@enable3d/three-graphics": "^0.25.1",
+    "three": "^0.141.0",
+    "vue": "^3.2.26",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^28.1.6",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "@vue/test-utils": "^2.0.2",
+    "jsdom": "latest",
+    "vite": "^2.9.7",
+    "vitest": "^0.21.1"
+  }
+}
