@@ -1,0 +1,39 @@
+name: Development workflow
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Install dependency
+        run: npm install
+
+      - name: Generate website
+        run: npm run deploy --if-present
+
+      - name: Remove node
+        run: sudo rm -rf node_modules
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: 193.107.88.86
+          protocol: ftps
+          username: eurostall
+          password: ${{ secrets.REMOTE_PASSWORD }}
+          local-dir: './dist'
+          server-dir: /public_html/wp-content/plugins/garage-configurator/template
+          dry-run: true
