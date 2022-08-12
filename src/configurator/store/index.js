@@ -105,6 +105,7 @@ export const store = createStore({
     },
 
     update(state, data) {
+      data = fillData(data);
       data.eventType = "update";
       updateG(state, data);
     },
@@ -152,7 +153,6 @@ export const store = createStore({
 function updateG(state, data) {
   const wallNames = ["front", "back", "left", "right"];
   console.log(data);
-  data = fillData(data);
   if (data.wallId !== undefined && data.eventType == "update") {
     const elements = Object.values(state.garageActual.walls[wallNames[data.wallId]].elements);
     let wallSize =

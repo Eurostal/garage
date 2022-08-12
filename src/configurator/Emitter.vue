@@ -274,6 +274,7 @@ export default {
             object.type = "gate";
             object.name = "gate1";
             object.gateType = "double";
+            object.wallId = 0;
 
             if (formData[key] == "Dwuskrzydłowa_0") {
               object.gateType = "double";
@@ -292,8 +293,6 @@ export default {
             }
 
             if (formData[key] == "Zamiast bramy ściana_4") {
-              object.type = "gate1";
-              object.wallId = 0;
               this.$store.commit("remove", { ...object });
               break;
             }
