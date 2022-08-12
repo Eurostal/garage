@@ -32,10 +32,10 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: ${{ secrets.REMOTE_HOST }}
+          server: 193.107.88.86
           protocol: ftps
-          username: ${{ secrets.REMOTE_USER }}
+          username: eurostall
           password: ${{ secrets.REMOTE_PASSWORD }}
           local-dir: './dist'
-          server-dir: ${{ secrets.REMOTE_PATH }}
+          server-dir: /public_html/wp-content/plugins/garage-configurator/template
           dry-run: true
