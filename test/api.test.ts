@@ -1,6 +1,27 @@
 import { mount } from '@vue/test-utils'
 import { assert, describe, expect, it } from 'vitest'
-//import StoreAPI from './../src/App.vue'
+
+test('mount component', async () => {
+  var App = () => import('./src/configurator/store/index.js')
+  expect(App).toBeTruthy()
+
+  const wrapper = mount(App, {
+    props: {
+      count: 4,
+    },
+  })
+
+  // expect(wrapper.text()).toContain('4 x 2 = 8')
+  // expect(wrapper.html()).toMatchSnapshot()
+
+  // await wrapper.get('button').trigger('click')
+
+  // expect(wrapper.text()).toContain('4 x 3 = 12')
+
+  // await wrapper.get('button').trigger('click')
+
+  // expect(wrapper.text()).toContain('4 x 4 = 16')
+})
 
 describe('suite name', () => {
   it('foo', () => {
