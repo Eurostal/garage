@@ -361,6 +361,25 @@ export default {
             if (formData['tmcp_radio_4'] == 'Zamiast bramy ściana_4') {
               break
             }
+
+            object = {}
+            //RAL 5010_4
+            object.type = 'gate'
+            object.name = 'gate1'
+            object.material = formData['tmcp_radio_87']
+              .split('_')[0]
+              .replace(' ', '')
+
+            if (formData[key] == 'Pionowe_0') {
+              object.material = object.material + ''
+            }
+
+            if (formData[key] == 'Poziome_1') {
+              object.material = object.material + '_h'
+            }
+
+            this.$store.commit('update', { ...object })
+
             break
           case 'tmcp_select_8':
             break
