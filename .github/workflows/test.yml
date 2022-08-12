@@ -23,8 +23,6 @@ jobs:
 
       - name: Generate website
         run: npm run deploy --if-present
-        env:
-          API_URL: ${{ secrets.API_URL }}
 
       - name: Remove node
         run: sudo rm -rf node_modules
