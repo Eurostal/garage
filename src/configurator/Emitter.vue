@@ -509,6 +509,36 @@ export default {
             this.$store.commit("updateMaterial", { ...object });
             break;
 
+          case "tmcp_checkbox_33_0":
+            object = {};
+            object.type = "widnow";
+            switch (formData["tmcp_select_36"]) {
+              case "Przednia ściana_3":
+                object.wallId = 0;
+                break;
+              case "Tylna ściana_2":
+                object.wallId = 1;
+                break;
+              case "Lewa ściana_1":
+                object.wallId = 2;
+                break;
+              case "Prawa ściana_0":
+                object.wallId = 3;
+                break;
+              default:
+                object.wallId = 0;
+            }
+            if (formData["tmcp_select_35"]) {
+              let sizeData = formData["tmcp_select_35"].split("x");
+              object.width = sizeData[0] / 100;
+              object.height = sizeData.split("cm")[0] / 100;
+            }
+            object.material = "WHITE";
+
+            this.$store.commit("update", { ...object });
+
+            break;
+
           default:
             console.log(key, formData[key]);
         }
