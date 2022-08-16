@@ -256,6 +256,11 @@ export default {
 
         console.log(key, formData[key])
 
+        // By default remove fitting
+        object = {}
+        object.type = 'fittings'
+        this.$store.commit('remove', { ...object })
+
         switch (key) {
           case 'tm-epo-counter':
             break
