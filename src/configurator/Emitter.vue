@@ -435,11 +435,35 @@ export default {
             this.$store.commit("update", { ...object });
             break;
 
-          case "tmcp_radio_21":
+          case "tmcp_select_19":
             object = {};
-            object.material = formData[key];
+
+            if (formData["tmcp_radio_21"]) {
+              object.material = formData["tmcp_radio_21"].split("_")[0].replace(" ", "");
+            } else {
+              object.material = "RAL9010";
+            }
             object.type = "roof";
             this.$store.commit("updateMaterial", { ...object });
+
+            if (formData[key] == "W pionie_0") {
+              object.material = object.material + "";
+            }
+
+            if (formData[key] == "W poziomie_1") {
+              object.material = object.material + "_H";
+            }
+            object.type = "walls";
+            this.$store.commit("updateMaterial", { ...object });
+
+            break;
+          case "tmcp_radio_21":
+            object = {};
+            object.material = formData[key].split("_")[0].replace(" ", "");
+            object.type = "roof";
+
+            this.$store.commit("updateMaterial", { ...object });
+
             object.type = "walls";
             if (formData["tmcp_select_19"] == "W poziomie_1") {
               object.material = object.material + "_H";
