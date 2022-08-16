@@ -512,7 +512,7 @@ export default {
           case "tmcp_checkbox_33_0":
             object = {};
             object.name = "window1";
-            object.type = "widnow";
+            object.type = "window";
             switch (formData["tmcp_select_36"]) {
               case "Przednia ściana_3":
                 object.wallId = 0;
