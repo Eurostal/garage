@@ -316,6 +316,7 @@ export default {
             object.name = 'gate1'
             object.gateType = 'double'
             object.wallId = 0
+            console.log('----', formData[key], '----')
 
             if (formData[key] == 'Dwuskrzydłowa_0') {
               object.gateType = 'double'
