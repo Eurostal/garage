@@ -535,6 +535,8 @@ export default {
               object.height = sizeData[1].split("cm")[0] / 100;
             }
             object.material = "WHITE";
+            object.x = 0.2;
+            object.y = 1;
 
             this.$store.commit("update", { ...object });
 
