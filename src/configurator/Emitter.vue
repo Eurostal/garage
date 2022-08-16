@@ -346,6 +346,8 @@ export default {
             object.wallId = 0;
             if (formData["tmcp_radio_21"]) {
               object.material = formData["tmcp_radio_21"].split("_")[0].replace(" ", "");
+            } else if (formData["tmcp_radio_30"]) {
+              object.material = formData["tmcp_radio_30"].split("_")[0].replace(" ", "");
             } else {
               object.material = "RAL9010";
             }
@@ -435,7 +437,7 @@ export default {
             this.$store.commit("update", { ...object });
             break;
 
-          case "tmcp_select_19":
+          case "tmcp_select_19": //ułożenie poszycie
             object = {};
 
             if (formData["tmcp_radio_21"]) {
@@ -457,9 +459,13 @@ export default {
             this.$store.commit("updateMaterial", { ...object });
 
             break;
-          case "tmcp_radio_21":
+          case "tmcp_radio_21": //jednolity kolor poszycie
             object = {};
-            object.material = formData[key].split("_")[0].replace(" ", "");
+            if (formData[key]) {
+              object.material = formData[key].split("_")[0].replace(" ", "");
+            } else {
+              object.material = "RAL9010";
+            }
             object.type = "roof";
 
             this.$store.commit("updateMaterial", { ...object });
@@ -468,6 +474,34 @@ export default {
             if (formData["tmcp_select_19"] == "W poziomie_1") {
               object.material = object.material + "_H";
             }
+            this.$store.commit("updateMaterial", { ...object });
+            break;
+
+          case "tmcp_radio_26": //kolor dach
+            object = {};
+            if (formData[key]) {
+              object.material = formData[key].split("_")[0].replace(" ", "");
+            } else {
+              object.material = "RAL9010";
+            }
+            object.type = "roof";
+
+            this.$store.commit("updateMaterial", { ...object });
+            break;
+
+          case "tmcp_radio_27": //kolor ściany
+            object = {};
+            if (formData[key]) {
+              object.material = formData[key].split("_")[0].replace(" ", "");
+            } else {
+              object.material = "RAL9010";
+            }
+            object.type = "walls";
+
+            if (formData["tmcp_select_19"] == "W poziomie_1") {
+              object.material = object.material + "_H";
+            }
+
             this.$store.commit("updateMaterial", { ...object });
             break;
 
