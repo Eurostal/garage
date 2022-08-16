@@ -368,7 +368,7 @@ export default {
             //RAL 5010_4
             object.type = 'gate'
             object.name = 'gate1'
-            object.material = formData['tmcp_radio_87']
+            object.material = formData['tmcp_radio_21']
               .split('_')[0]
               .replace(' ', '')
 
