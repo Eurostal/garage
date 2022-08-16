@@ -365,12 +365,16 @@ export default {
             }
 
             object = {}
-            //RAL 5010_4
+            //RAL 9010
             object.type = 'gate'
             object.name = 'gate1'
-            object.material = formData['tmcp_radio_21']
-              .split('_')[0]
-              .replace(' ', '')
+            if (formData['tmcp_radio_21']) {
+              object.material = formData['tmcp_radio_21']
+                .split('_')[0]
+                .replace(' ', '')
+            } else {
+              object.material = 'RAL9010'
+            }
 
             if (formData[key] == 'Pionowe_0') {
               object.material = object.material + ''
