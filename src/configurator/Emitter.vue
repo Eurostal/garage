@@ -308,7 +308,7 @@ export default {
             this.$store.commit("update", { ...object });
             break;
 
-          case "tmcp_radio_5": //Brama 1 - szerokość
+          case "tmcp_select_5": //Brama 1 - szerokość
             if (formData["tmcp_radio_4"] == "Zamiast bramy ściana_4") {
               break;
             }
