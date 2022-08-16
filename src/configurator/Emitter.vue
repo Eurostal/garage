@@ -434,6 +434,19 @@ export default {
 
             this.$store.commit("update", { ...object });
             break;
+
+          case "tmcp_radio_21":
+            object = {};
+            object.material = formData[key];
+            object.type = "roof";
+            this.$store.commit("updateMaterial", { ...object });
+            object.type = "walls";
+            if (formData["tmcp_select_19"] == "W poziomie_1") {
+              object.material = object.material + "_H";
+            }
+            this.$store.commit("updateMaterial", { ...object });
+            break;
+
           default:
             console.log(key, formData[key]);
         }
