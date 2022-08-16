@@ -531,7 +531,7 @@ export default {
             if (formData["tmcp_select_35"]) {
               let sizeData = formData["tmcp_select_35"].split("x");
               object.width = sizeData[0] / 100;
-              object.height = sizeData.split("cm")[0] / 100;
+              object.height = sizeData[1].split("cm")[0] / 100;
             }
             object.material = "WHITE";
 
