@@ -463,6 +463,7 @@ export default {
             object = {}
             //RAL 5010_4
             object.type = 'fittings'
+            object.visible = true
             object.material = formData[key].split('_')[0].replace(' ', '')
             this.$store.commit('updateMaterial', { ...object })
             break
