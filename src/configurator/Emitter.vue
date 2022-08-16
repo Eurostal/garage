@@ -387,7 +387,7 @@ export default {
             }
 
             if (formData[key] == 'Poziome_1') {
-              object.material = object.material + '_H'
+              object.material = object.material + '_h'
             }
 
             this.$store.commit('update', { ...object })
@@ -448,7 +448,6 @@ export default {
             object.name = 'gate2'
             object.height = parseInt(formData[key].split(' ')[0])
             object.height = object.height / 100
-            break //TEST
 
             this.$store.commit('update', { ...object })
 
