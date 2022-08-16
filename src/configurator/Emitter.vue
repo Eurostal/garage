@@ -100,6 +100,8 @@
         <option value="WHITE">WHITE</option>
         <option value="BROWN">BROWN</option>
         <option value="GRAY">GRAY</option>
+        <option value="GOLD_OAK">Złoty dąb</option>
+        <option value="DARK_WALNUT">Ciemny orzech</option>
       </select>
       <input id="x" name="x" type="range" min="0" max="7" value="0.2" step="0.005" @input="sendChange('example6', 'window', 'window2', 1, 1)" />
       <input id="y" name="y" type="range" min="0" max="3" value="0.2" step="0.005" @input="sendChange('example6', 'window', 'window2', 1, 1)" />

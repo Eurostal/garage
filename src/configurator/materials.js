@@ -100,6 +100,8 @@ export const WOOD_DARK_SHINE_H = new Material("WOOD_SHINE", 0x45231d, true);
 export const WHITE = new Material("SOLID", 0xffffff);
 export const GRAY = new Material("SOLID", 0x595959);
 export const BROWN = new Material("SOLID", 0x7f553c);
+export const DARK_WALNUT = new Material("SOLID", 0x773c2a);
+export const GOLD_OAK = new Material("SOLID", 0xd38731);
 
 export const Materials = {
   RAL1002: RAL1002,
@@ -196,8 +198,8 @@ export const Materials = {
   WOOD_DARK_SHINE_H: WOOD_DARK_SHINE_H,
 
   WHITE: WHITE,
-
   GRAY: GRAY,
-
   BROWN: BROWN,
+  DARK_WALNUT: DARK_WALNUT,
+  GOLD_OAK: GOLD_OAK,
 };
