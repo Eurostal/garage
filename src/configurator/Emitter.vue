@@ -260,6 +260,7 @@ export default {
         object = {}
         object.type = 'fittings'
         this.$store.commit('remove', { ...object })
+        object = null
 
         switch (key) {
           case 'tm-epo-counter':
@@ -447,6 +448,7 @@ export default {
             object.name = 'gate2'
             object.height = parseInt(formData[key].split(' ')[0])
             object.height = object.height / 100
+            break //TEST
 
             this.$store.commit('update', { ...object })
 
