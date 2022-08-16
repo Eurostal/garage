@@ -381,7 +381,7 @@ export default {
             }
 
             if (formData[key] == 'Poziome_1') {
-              object.material = object.material + '_h'
+              object.material = object.material + '_H'
             }
 
             this.$store.commit('update', { ...object })
