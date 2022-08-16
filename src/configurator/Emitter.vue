@@ -365,34 +365,34 @@ export default {
 
             this.$store.commit('update', { ...object })
             break
-          case 'tmcp_select_7': //Ułoenie blachy
-            if (formData['tmcp_radio_4'] == 'Zamiast bramy ściana_4') {
-              break
-            }
+          // case 'tmcp_select_7': //Ułoenie blachy
+          //   if (formData['tmcp_radio_4'] == 'Zamiast bramy ściana_4') {
+          //     break
+          //   }
 
-            object = {}
-            //RAL 9010
-            object.type = 'gate'
-            object.name = 'gate1'
-            if (formData['tmcp_radio_21']) {
-              object.material = formData['tmcp_radio_21']
-                .split('_')[0]
-                .replace(' ', '')
-            } else {
-              object.material = 'RAL9010'
-            }
+          //   object = {}
+          //   //RAL 9010
+          //   object.type = 'gate'
+          //   object.name = 'gate1'
+          //   if (formData['tmcp_radio_21']) {
+          //     object.material = formData['tmcp_radio_21']
+          //       .split('_')[0]
+          //       .replace(' ', '')
+          //   } else {
+          //     object.material = 'RAL9010'
+          //   }
 
-            if (formData[key] == 'Pionowe_0') {
-              object.material = object.material + ''
-            }
+          //   if (formData[key] == 'Pionowe_0') {
+          //     object.material = object.material + ''
+          //   }
 
-            if (formData[key] == 'Poziome_1') {
-              object.material = object.material + '_H'
-            }
+          //   if (formData[key] == 'Poziome_1') {
+          //     object.material = object.material + '_H'
+          //   }
 
-            this.$store.commit('update', { ...object })
+          //   this.$store.commit('update', { ...object })
 
-            break
+          //   break
           case 'tmcp_select_8':
             break
           case 'tmcp_radio_9': //Brama 2 - Typ bramy
