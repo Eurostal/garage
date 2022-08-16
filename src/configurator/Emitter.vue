@@ -477,7 +477,7 @@ export default {
             this.$store.commit("updateMaterial", { ...object });
             break;
 
-          case "tmcp_radio_26": //kolor dach
+          case "tmcp_radio_24": //kolor dachu
             object = {};
             if (formData[key]) {
               object.material = formData[key].split("_")[0].replace(" ", "");
