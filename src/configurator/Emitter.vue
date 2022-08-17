@@ -472,6 +472,7 @@ export default {
             object.name = "gate2";
             object.width = parseInt(formData[key].split(" ")[0]);
             object.width = object.width / 100;
+            object.wallId = 0;
 
             this.$store.commit("update", { ...object });
 
@@ -485,10 +486,41 @@ export default {
             object.name = "gate2";
             object.height = parseInt(formData[key].split(" ")[0]);
             object.height = object.height / 100;
+            object.wallId = 0;
 
             this.$store.commit("update", { ...object });
 
             break;
+
+          case "tmcp_select_12": //Brama2 Ułoenie blachy
+            if (formData["tmcp_radio_9"] == "Zamiast bramy ściana_4") {
+              break;
+            }
+
+            object = {};
+            object.type = "gate";
+            object.name = "gate2";
+            object.wallId = 0;
+            if (formData["tmcp_radio_21"]) {
+              object.material = formData["tmcp_radio_21"].split("_")[0].replace(" ", "");
+            } else if (formData["tmcp_radio_30"]) {
+              object.material = formData["tmcp_radio_30"].split("_")[0].replace(" ", "");
+            } else {
+              object.material = "RAL9010";
+            }
+
+            if (formData[key] == "Pionowe_0") {
+              object.material = object.material + "";
+            }
+
+            if (formData[key] == "Poziome_1") {
+              object.material = object.material + "_H";
+            }
+
+            this.$store.commit("update", { ...object });
+
+            break;
+
           case "tmcp_radio_87":
             object = {};
             //RAL 5010_4
