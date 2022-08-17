@@ -16,7 +16,7 @@ export const store = createStore({
               elements: {
                 gate1: {
                   type: "gate",
-                  width: 2.95,
+                  width: 2,
                   height: 2,
                   material: "RAL9010",
                   name: "gate1",
@@ -36,7 +36,7 @@ export const store = createStore({
         },
         gate: {
           wallId: 0,
-          width: 3,
+          width: 2,
           height: 2,
           material: "RAL9010",
           gateType: "double",
