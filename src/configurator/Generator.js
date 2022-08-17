@@ -56,10 +56,9 @@ class Generator {
           console.log(data);
           this.removeExisting(data.name);
           this.garage.walls[wallId].addElement(
-            new Door(data.width, data.height, Materials[data.material], data.name),
+            new Door(data.width, data.height, Materials[data.material], data.name, data.handleSide),
             data.x,
-            data.y,
-            data.handleSide
+            data.y
           );
 
           break;
