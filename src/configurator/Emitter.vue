@@ -687,7 +687,7 @@ export default {
           //window4
           case "tmcp_checkbox_52_0":
             object = {};
-            object.name = "window4";
+            object.name = "window5";
             object.type = "window";
             switch (formData["tmcp_select_60"]) {
               case "Przednia ściana_3":
