@@ -237,6 +237,7 @@ function updateG(state, data) {
     if (data.type === "fittings") {
       state.garageActual.fittings.visible = false;
     } else if (data.wallId !== undefined) {
+      console.log("removing", data.name, state.garageActual.walls[wallNames[data.wallId]].elements);
       delete state.garageActual.walls[wallNames[data.wallId]].elements[data.name];
     }
 
