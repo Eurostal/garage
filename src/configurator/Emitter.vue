@@ -670,7 +670,56 @@ export default {
             object.y = 1;
 
             this.$store.commit("update", { ...object });
+            break;
 
+          //doors
+
+          //door1
+          case "tmcp_checkbox_65_0":
+            object = {};
+            object.name = "door1";
+            object.type = "door";
+            object.wallId = this.selectWall(formData["tmcp_select_68"]);
+            object.width = 1;
+            object.height = 1.8;
+
+            if (formData["tmcp_radio_70"]) {
+              object.material = formData["tmcp_radio_70"].split("_")[0].replace(" ", "");
+            } else {
+              object.material = "RAL9010";
+            }
+            if (formData["tmcp_select_67"] == "W poziomie_1") {
+              object.material = object.material + "_H";
+            }
+
+            object.x = 0.2;
+            object.y = 0;
+
+            this.$store.commit("update", { ...object });
+            break;
+
+          //door2
+          case "tmcp_checkbox_73_0":
+            object = {};
+            object.name = "door2";
+            object.type = "door";
+            object.wallId = this.selectWall(formData["tmcp_select_76"]);
+            object.width = 1;
+            object.height = 1.8;
+
+            if (formData["tmcp_radio_78"]) {
+              object.material = formData["tmcp_radio_78"].split("_")[0].replace(" ", "");
+            } else {
+              object.material = "RAL9010";
+            }
+            if (formData["tmcp_select_75"] == "W poziomie_1") {
+              object.material = object.material + "_H";
+            }
+
+            object.x = 0.2;
+            object.y = 0;
+
+            this.$store.commit("update", { ...object });
             break;
 
           default:
