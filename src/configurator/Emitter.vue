@@ -236,27 +236,6 @@ export default {
         }
 
         //windows
-        if (!formData["tmcp_checkbox_33_0"]) {
-          object = {};
-          object.type = "window";
-          object.name = "window1";
-          object.wallId = this.selectWall(formData["tmcp_select_36"]);
-          this.$store.commit("remove", { ...object });
-          object.name = "window2";
-          object.wallId = this.selectWall(formData["tmcp_select_42"]);
-          this.$store.commit("remove", { ...object });
-          object.name = "window3";
-          object.wallId = this.selectWall(formData["tmcp_select_48"]);
-          this.$store.commit("remove", { ...object });
-          object.name = "window4";
-          object.wallId = this.selectWall(formData["tmcp_select_54"]);
-          this.$store.commit("remove", { ...object });
-          object.name = "window5";
-          object.wallId = this.selectWall(formData["tmcp_select_60"]);
-          this.$store.commit("remove", { ...object });
-          object = null;
-        }
-
         if (!formData["tmcp_checkbox_34_0"]) {
           object = {};
           object.type = "window";
@@ -294,6 +273,25 @@ export default {
           object.type = "window";
           object.name = "window5";
           object.wallId = this.selectWall(formData["tmcp_select_60"]);
+          this.$store.commit("remove", { ...object });
+          object = null;
+        }
+
+        //doors
+        if (!formData["tmcp_checkbox_65_0"]) {
+          object = {};
+          object.type = "door";
+          object.name = "door1";
+          object.wallId = this.selectWall(formData["tmcp_select_68"]);
+          this.$store.commit("remove", { ...object });
+          object = null;
+        }
+
+        if (!formData["tmcp_checkbox_73_0"]) {
+          object = {};
+          object.type = "door";
+          object.name = "door2";
+          object.wallId = this.selectWall(formData["tmcp_select_76"]);
           this.$store.commit("remove", { ...object });
           object = null;
         }
@@ -680,8 +678,8 @@ export default {
             object.name = "door1";
             object.type = "door";
             object.wallId = this.selectWall(formData["tmcp_select_68"]);
-            object.width = 1;
-            object.height = 1.8;
+            object.width = 0.96;
+            object.height = 2;
 
             if (formData["tmcp_radio_70"]) {
               object.material = formData["tmcp_radio_70"].split("_")[0].replace(" ", "");
@@ -704,8 +702,8 @@ export default {
             object.name = "door2";
             object.type = "door";
             object.wallId = this.selectWall(formData["tmcp_select_76"]);
-            object.width = 1;
-            object.height = 1.8;
+            object.width = 0.96;
+            object.height = 2;
 
             if (formData["tmcp_radio_78"]) {
               object.material = formData["tmcp_radio_78"].split("_")[0].replace(" ", "");
