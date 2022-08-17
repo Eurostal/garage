@@ -156,10 +156,12 @@ function updateG(state, data) {
   console.log(data);
   if (data.wallId !== undefined && data.eventType == "update") {
     const elements = [];
+    console.log("---------ELEMENTS BEFORE ---------");
+    console.log(elements);
     Object.values(state.garageActual.walls[wallNames[data.wallId]].elements).forEach((element) => {
-      if (data.name && element.name !== data.name) {
-        elements.push(element);
-      }
+      // if (data.name && element.name !== data.name) {
+      elements.push(element);
+      // }
     });
     let wallSize =
       data.wallId <= 1
