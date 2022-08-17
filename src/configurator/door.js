@@ -22,8 +22,8 @@ export default class Door extends WallElement {
     handlePart2.position.x = 0.05;
     handle.add(handlePart, handlePart2);
     if (this.handleSide == "right") {
-      handle.position.x = -this.width + 0.3;
-      handle.rotateZ = Math.PI;
+      handle.position.x = this.width + 0.3;
+      handle.rotateZ(Math.PI);
     } else {
       handle.position.x = -0.3;
     }
