@@ -241,30 +241,46 @@ export default {
           object.type = "window";
           object.name = "window1";
           this.$store.commit("remove", { ...object });
+          object.name = "window2";
+          this.$store.commit("remove", { ...object });
+          object.name = "window3";
+          this.$store.commit("remove", { ...object });
+          object.name = "window4";
+          this.$store.commit("remove", { ...object });
+          object.name = "window5";
+          this.$store.commit("remove", { ...object });
           object = null;
         }
+
         if (!formData["tmcp_checkbox_34_0"]) {
           object = {};
           object.type = "window";
-          object.name = "window2";
+          object.name = "window1";
           this.$store.commit("remove", { ...object });
           object = null;
         }
         if (!formData["tmcp_checkbox_40_0"]) {
           object = {};
           object.type = "window";
-          object.name = "window3";
+          object.name = "window2";
           this.$store.commit("remove", { ...object });
           object = null;
         }
         if (!formData["tmcp_checkbox_46_0"]) {
           object = {};
           object.type = "window";
-          object.name = "window4";
+          object.name = "window3";
           this.$store.commit("remove", { ...object });
           object = null;
         }
         if (!formData["tmcp_checkbox_52_0"]) {
+          object = {};
+          object.type = "window";
+          object.name = "window4";
+          this.$store.commit("remove", { ...object });
+          object = null;
+        }
+        if (!formData["tmcp_checkbox_58_0"]) {
           object = {};
           object.type = "window";
           object.name = "window5";
@@ -549,7 +565,7 @@ export default {
             break;
 
           //window1
-          case "tmcp_checkbox_33_0":
+          case "tmcp_checkbox_34_0":
             object = {};
             object.name = "window1";
             object.type = "window";
@@ -583,7 +599,7 @@ export default {
             break;
 
           //window2
-          case "tmcp_checkbox_34_0":
+          case "tmcp_checkbox_40_0":
             object = {};
             object.name = "window2";
             object.type = "window";
@@ -617,7 +633,7 @@ export default {
             break;
 
           //window3
-          case "tmcp_checkbox_40_0":
+          case "tmcp_checkbox_46_0":
             object = {};
             object.name = "window3";
             object.type = "window";
@@ -651,7 +667,7 @@ export default {
             break;
 
           //window4
-          case "tmcp_checkbox_46_0":
+          case "tmcp_checkbox_52_0":
             object = {};
             object.name = "window4";
             object.type = "window";
@@ -685,7 +701,7 @@ export default {
             break;
 
           //window5
-          case "tmcp_checkbox_52_0":
+          case "tmcp_checkbox_58_0":
             object = {};
             object.name = "window5";
             object.type = "window";
