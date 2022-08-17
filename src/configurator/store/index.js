@@ -231,6 +231,7 @@ function updateG(state, data) {
       state.garageActual.fittings.visible = false;
     } else if (data.wallId !== undefined) {
       delete state.garageActual.walls[wallNames[data.wallId]].elements[data.name];
+      console.log("PO USUNIECIU" + data.name, state.garageActual.walls[wallNames[data.wallId]].elements);
     }
 
     generator.updateGarage(data.eventType, data, data.wallId);
