@@ -240,14 +240,19 @@ export default {
           object = {};
           object.type = "window";
           object.name = "window1";
+          object.wallId = this.selectWall(formData["tmcp_select_36"]);
           this.$store.commit("remove", { ...object });
           object.name = "window2";
+          object.wallId = this.selectWall(formData["tmcp_select_42"]);
           this.$store.commit("remove", { ...object });
           object.name = "window3";
+          object.wallId = this.selectWall(formData["tmcp_select_48"]);
           this.$store.commit("remove", { ...object });
           object.name = "window4";
+          object.wallId = this.selectWall(formData["tmcp_select_54"]);
           this.$store.commit("remove", { ...object });
           object.name = "window5";
+          object.wallId = this.selectWall(formData["tmcp_select_60"]);
           this.$store.commit("remove", { ...object });
           object = null;
         }
@@ -256,6 +261,7 @@ export default {
           object = {};
           object.type = "window";
           object.name = "window1";
+          object.wallId = this.selectWall(formData["tmcp_select_36"]);
           this.$store.commit("remove", { ...object });
           object = null;
         }
@@ -263,6 +269,7 @@ export default {
           object = {};
           object.type = "window";
           object.name = "window2";
+          object.wallId = this.selectWall(formData["tmcp_select_42"]);
           this.$store.commit("remove", { ...object });
           object = null;
         }
@@ -270,6 +277,7 @@ export default {
           object = {};
           object.type = "window";
           object.name = "window3";
+          object.wallId = this.selectWall(formData["tmcp_select_48"]);
           this.$store.commit("remove", { ...object });
           object = null;
         }
@@ -277,6 +285,7 @@ export default {
           object = {};
           object.type = "window";
           object.name = "window4";
+          object.wallId = this.selectWall(formData["tmcp_select_54"]);
           this.$store.commit("remove", { ...object });
           object = null;
         }
@@ -284,6 +293,7 @@ export default {
           object = {};
           object.type = "window";
           object.name = "window5";
+          object.wallId = this.selectWall(formData["tmcp_select_60"]);
           this.$store.commit("remove", { ...object });
           object = null;
         }
@@ -569,22 +579,8 @@ export default {
             object = {};
             object.name = "window1";
             object.type = "window";
-            switch (formData["tmcp_select_36"]) {
-              case "Przednia ściana_3":
-                object.wallId = 0;
-                break;
-              case "Tylna ściana_2":
-                object.wallId = 1;
-                break;
-              case "Lewa ściana_1":
-                object.wallId = 2;
-                break;
-              case "Prawa ściana_0":
-                object.wallId = 3;
-                break;
-              default:
-                object.wallId = 0;
-            }
+            object.wallId = this.selectWall(formData["tmcp_select_36"]);
+
             if (formData["tmcp_select_35"]) {
               let sizeData = formData["tmcp_select_35"].split("x");
               object.width = sizeData[0] / 100;
@@ -603,22 +599,8 @@ export default {
             object = {};
             object.name = "window2";
             object.type = "window";
-            switch (formData["tmcp_select_42"]) {
-              case "Przednia ściana_3":
-                object.wallId = 0;
-                break;
-              case "Tylna ściana_2":
-                object.wallId = 1;
-                break;
-              case "Lewa ściana_1":
-                object.wallId = 2;
-                break;
-              case "Prawa ściana_0":
-                object.wallId = 3;
-                break;
-              default:
-                object.wallId = 0;
-            }
+            object.wallId = this.selectWall(formData["tmcp_select_42"]);
+
             if (formData["tmcp_select_41"]) {
               let sizeData = formData["tmcp_select_41"].split("x");
               object.width = sizeData[0] / 100;
@@ -637,22 +619,8 @@ export default {
             object = {};
             object.name = "window3";
             object.type = "window";
-            switch (formData["tmcp_select_48"]) {
-              case "Przednia ściana_3":
-                object.wallId = 0;
-                break;
-              case "Tylna ściana_2":
-                object.wallId = 1;
-                break;
-              case "Lewa ściana_1":
-                object.wallId = 2;
-                break;
-              case "Prawa ściana_0":
-                object.wallId = 3;
-                break;
-              default:
-                object.wallId = 0;
-            }
+            object.wallId = this.selectWall(formData["tmcp_select_48"]);
+
             if (formData["tmcp_select_47"]) {
               let sizeData = formData["tmcp_select_47"].split("x");
               object.width = sizeData[0] / 100;
@@ -671,22 +639,8 @@ export default {
             object = {};
             object.name = "window4";
             object.type = "window";
-            switch (formData["tmcp_select_54"]) {
-              case "Przednia ściana_3":
-                object.wallId = 0;
-                break;
-              case "Tylna ściana_2":
-                object.wallId = 1;
-                break;
-              case "Lewa ściana_1":
-                object.wallId = 2;
-                break;
-              case "Prawa ściana_0":
-                object.wallId = 3;
-                break;
-              default:
-                object.wallId = 0;
-            }
+            object.wallId = this.selectWall(formData["tmcp_select_54"]);
+
             if (formData["tmcp_select_53"]) {
               let sizeData = formData["tmcp_select_53"].split("x");
               object.width = sizeData[0] / 100;
@@ -705,22 +659,7 @@ export default {
             object = {};
             object.name = "window5";
             object.type = "window";
-            switch (formData["tmcp_select_60"]) {
-              case "Przednia ściana_3":
-                object.wallId = 0;
-                break;
-              case "Tylna ściana_2":
-                object.wallId = 1;
-                break;
-              case "Lewa ściana_1":
-                object.wallId = 2;
-                break;
-              case "Prawa ściana_0":
-                object.wallId = 3;
-                break;
-              default:
-                object.wallId = 0;
-            }
+            object.wallId = this.selectWall(formData["tmcp_select_60"]);
             if (formData["tmcp_select_59"]) {
               let sizeData = formData["tmcp_select_59"].split("x");
               object.width = sizeData[0] / 100;
@@ -738,6 +677,26 @@ export default {
             console.log(key, formData[key]);
         }
       });
+    },
+    selectWall(input) {
+      let wallId = 0;
+      switch (input) {
+        case "Przednia ściana_3":
+          wallId = 0;
+          break;
+        case "Tylna ściana_2":
+          wallId = 1;
+          break;
+        case "Lewa ściana_1":
+          wallId = 2;
+          break;
+        case "Prawa ściana_0":
+          wallId = 3;
+          break;
+        default:
+          wallId = 3;
+      }
+      return wallId;
     },
   },
   mounted: function () {

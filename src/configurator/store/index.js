@@ -155,14 +155,7 @@ function updateG(state, data) {
   const wallNames = ["front", "back", "left", "right"];
   console.log(data);
   if (data.wallId !== undefined && data.eventType == "update") {
-    const elements = [];
-    console.log("---------ELEMENTS BEFORE ---------");
-    console.log(elements);
-    Object.values(state.garageActual.walls[wallNames[data.wallId]].elements).forEach((element) => {
-      // if (data.name && element.name !== data.name) {
-      elements.push(element);
-      // }
-    });
+    const elements = Object.values(state.garageActual.walls[wallNames[data.wallId]].elements);
     let wallSize =
       data.wallId <= 1
         ? { x: state.garageActual.width, y: state.garageActual.height }
@@ -237,7 +230,6 @@ function updateG(state, data) {
     if (data.type === "fittings") {
       state.garageActual.fittings.visible = false;
     } else if (data.wallId !== undefined) {
-      console.log("removing", data.name, state.garageActual.walls[wallNames[data.wallId]].elements);
       delete state.garageActual.walls[wallNames[data.wallId]].elements[data.name];
     }
 
