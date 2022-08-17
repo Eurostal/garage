@@ -2,8 +2,9 @@ import WallElement from "./wallElement";
 import { MeshStandardMaterial, MeshBasicMaterial, PlaneGeometry, Mesh, Group, BoxGeometry, MultiplyOperation, DoubleSide } from "three";
 
 export default class Door extends WallElement {
-  constructor(width, height, material, name) {
+  constructor(width, height, material, name, handleSide = "left") {
     super(width, height, material, name);
+    this.handleSide = handleSide;
 
     const handle = new Group();
     const handlePart = new Mesh(
@@ -19,7 +20,12 @@ export default class Door extends WallElement {
     handlePart2.position.z = 0.02;
     handlePart2.position.x = 0.05;
     handle.add(handlePart, handlePart2);
-    handle.position.x = -0.3;
+    if (this.handleSide == "right") {
+      handle.position.x = -this.width + 0.3;
+      handle.rotateZ = Math.PI;
+    } else {
+      handle.position.x = -0.3;
+    }
 
     const door = new Mesh(new BoxGeometry(this.width - 0.04, this.height - 0.04, 0.005), this.material);
     door.castShadow = true;

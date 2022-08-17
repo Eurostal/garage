@@ -701,6 +701,7 @@ export default {
             object = {};
             object.name = "door2";
             object.type = "door";
+            object.handleSide = "right";
             object.wallId = this.selectWall(formData["tmcp_select_76"]);
             object.width = 0.96;
             object.height = 2;
