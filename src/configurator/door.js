@@ -2,9 +2,10 @@ import WallElement from "./wallElement";
 import { MeshStandardMaterial, MeshBasicMaterial, PlaneGeometry, Mesh, Group, BoxGeometry, MultiplyOperation, DoubleSide } from "three";
 
 export default class Door extends WallElement {
-  constructor(width, height, material, name, handleSide = "left") {
+  constructor(width, height, material, name, handleSide) {
     super(width, height, material, name);
     this.handleSide = handleSide;
+    console.log(this);
 
     const handle = new Group();
     const handlePart = new Mesh(

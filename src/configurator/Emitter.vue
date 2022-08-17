@@ -681,6 +681,12 @@ export default {
             object.width = 0.96;
             object.height = 2;
 
+            if (formData["tmcp_select_66"] == "Z prawej_1") {
+              object.handleSide = "right";
+            } else {
+              object.handleSide = "left";
+            }
+
             if (formData["tmcp_radio_70"]) {
               object.material = formData["tmcp_radio_70"].split("_")[0].replace(" ", "");
             } else {
@@ -701,10 +707,15 @@ export default {
             object = {};
             object.name = "door2";
             object.type = "door";
-            object.handleSide = "right";
             object.wallId = this.selectWall(formData["tmcp_select_76"]);
             object.width = 0.96;
             object.height = 2;
+
+            if (formData["tmcp_select_74"] == "Z prawej_1") {
+              object.handleSide = "right";
+            } else {
+              object.handleSide = "left";
+            }
 
             if (formData["tmcp_radio_78"]) {
               object.material = formData["tmcp_radio_78"].split("_")[0].replace(" ", "");
