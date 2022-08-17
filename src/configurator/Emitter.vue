@@ -225,10 +225,49 @@ export default {
 
         console.log(key, formData[key]);
 
-        // By default remove fitting
+        // Default removes
+
+        // fitting
         if (!formData["tmcp_radio_87"]) {
           object = {};
           object.type = "fittings";
+          this.$store.commit("remove", { ...object });
+          object = null;
+        }
+
+        //windows
+        if (!formData["tmcp_checkbox_33_0"]) {
+          object = {};
+          object.type = "window";
+          object.name = "window1";
+          this.$store.commit("remove", { ...object });
+          object = null;
+        }
+        if (!formData["tmcp_checkbox_34_0"]) {
+          object = {};
+          object.type = "window";
+          object.name = "window1";
+          this.$store.commit("remove", { ...object });
+          object = null;
+        }
+        if (!formData["tmcp_checkbox_40_0"]) {
+          object = {};
+          object.type = "window";
+          object.name = "window1";
+          this.$store.commit("remove", { ...object });
+          object = null;
+        }
+        if (!formData["tmcp_checkbox_46_0"]) {
+          object = {};
+          object.type = "window";
+          object.name = "window1";
+          this.$store.commit("remove", { ...object });
+          object = null;
+        }
+        if (!formData["tmcp_checkbox_52_0"]) {
+          object = {};
+          object.type = "window";
+          object.name = "window1";
           this.$store.commit("remove", { ...object });
           object = null;
         }
@@ -509,6 +548,7 @@ export default {
             this.$store.commit("updateMaterial", { ...object });
             break;
 
+          //window1
           case "tmcp_checkbox_33_0":
             object = {};
             object.name = "window1";
@@ -531,6 +571,142 @@ export default {
             }
             if (formData["tmcp_select_35"]) {
               let sizeData = formData["tmcp_select_35"].split("x");
+              object.width = sizeData[0] / 100;
+              object.height = sizeData[1].split("cm")[0] / 100;
+            }
+            object.material = "WHITE";
+            object.x = 0.2;
+            object.y = 1;
+
+            this.$store.commit("update", { ...object });
+
+            break;
+
+          //window2
+          case "tmcp_checkbox_34_0":
+            object = {};
+            object.name = "window2";
+            object.type = "window";
+            switch (formData["tmcp_select_42"]) {
+              case "Przednia ściana_3":
+                object.wallId = 0;
+                break;
+              case "Tylna ściana_2":
+                object.wallId = 1;
+                break;
+              case "Lewa ściana_1":
+                object.wallId = 2;
+                break;
+              case "Prawa ściana_0":
+                object.wallId = 3;
+                break;
+              default:
+                object.wallId = 0;
+            }
+            if (formData["tmcp_select_41"]) {
+              let sizeData = formData["tmcp_select_41"].split("x");
+              object.width = sizeData[0] / 100;
+              object.height = sizeData[1].split("cm")[0] / 100;
+            }
+            object.material = "WHITE";
+            object.x = 0.2;
+            object.y = 1;
+
+            this.$store.commit("update", { ...object });
+
+            break;
+
+          //window3
+          case "tmcp_checkbox_40_0":
+            object = {};
+            object.name = "window3";
+            object.type = "window";
+            switch (formData["tmcp_select_48"]) {
+              case "Przednia ściana_3":
+                object.wallId = 0;
+                break;
+              case "Tylna ściana_2":
+                object.wallId = 1;
+                break;
+              case "Lewa ściana_1":
+                object.wallId = 2;
+                break;
+              case "Prawa ściana_0":
+                object.wallId = 3;
+                break;
+              default:
+                object.wallId = 0;
+            }
+            if (formData["tmcp_select_47"]) {
+              let sizeData = formData["tmcp_select_47"].split("x");
+              object.width = sizeData[0] / 100;
+              object.height = sizeData[1].split("cm")[0] / 100;
+            }
+            object.material = "WHITE";
+            object.x = 0.2;
+            object.y = 1;
+
+            this.$store.commit("update", { ...object });
+
+            break;
+
+          //window4
+          case "tmcp_checkbox_46_0":
+            object = {};
+            object.name = "window4";
+            object.type = "window";
+            switch (formData["tmcp_select_54"]) {
+              case "Przednia ściana_3":
+                object.wallId = 0;
+                break;
+              case "Tylna ściana_2":
+                object.wallId = 1;
+                break;
+              case "Lewa ściana_1":
+                object.wallId = 2;
+                break;
+              case "Prawa ściana_0":
+                object.wallId = 3;
+                break;
+              default:
+                object.wallId = 0;
+            }
+            if (formData["tmcp_select_53"]) {
+              let sizeData = formData["tmcp_select_53"].split("x");
+              object.width = sizeData[0] / 100;
+              object.height = sizeData[1].split("cm")[0] / 100;
+            }
+            object.material = "WHITE";
+            object.x = 0.2;
+            object.y = 1;
+
+            this.$store.commit("update", { ...object });
+
+            break;
+
+          //window4
+          case "tmcp_checkbox_52_0":
+            object = {};
+            object.name = "window4";
+            object.type = "window";
+            switch (formData["tmcp_select_60"]) {
+              case "Przednia ściana_3":
+                object.wallId = 0;
+                break;
+              case "Tylna ściana_2":
+                object.wallId = 1;
+                break;
+              case "Lewa ściana_1":
+                object.wallId = 2;
+                break;
+              case "Prawa ściana_0":
+                object.wallId = 3;
+                break;
+              default:
+                object.wallId = 0;
+            }
+            if (formData["tmcp_select_59"]) {
+              let sizeData = formData["tmcp_select_59"].split("x");
               object.width = sizeData[0] / 100;
               object.height = sizeData[1].split("cm")[0] / 100;
             }
