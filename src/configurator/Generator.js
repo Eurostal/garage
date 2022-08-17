@@ -53,6 +53,7 @@ class Generator {
 
           break;
         case "door":
+          console.log(data);
           this.removeExisting(data.name);
           this.garage.walls[wallId].addElement(
             new Door(data.width, data.height, Materials[data.material], data.name),

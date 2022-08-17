@@ -56,6 +56,7 @@ export const store = createStore({
           width: 1,
           height: 2,
           material: "RAL9010",
+          handleSide: "left",
           x: 0,
           y: 0,
         },
@@ -156,6 +157,11 @@ function updateG(state, data) {
   console.log(data);
   if (data.wallId !== undefined && data.eventType == "update") {
     const elements = [];
+    for (let i = 0; i < Object.keys(state.garageActual.walls).length; i++) {
+      if (Object.keys(state.garageActual.walls[wallNames[i]].elements).includes(data.name)) {
+        delete state.garageActual.walls[wallNames[i]].elements[data.name];
+      }
+    }
     Object.values(state.garageActual.walls[wallNames[data.wallId]].elements).forEach((element) => {
       if (data.name && element.name !== data.name) {
         elements.push(element);
