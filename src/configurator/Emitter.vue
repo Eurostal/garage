@@ -246,28 +246,28 @@ export default {
         if (!formData["tmcp_checkbox_34_0"]) {
           object = {};
           object.type = "window";
-          object.name = "window1";
+          object.name = "window2";
           this.$store.commit("remove", { ...object });
           object = null;
         }
         if (!formData["tmcp_checkbox_40_0"]) {
           object = {};
           object.type = "window";
-          object.name = "window1";
+          object.name = "window3";
           this.$store.commit("remove", { ...object });
           object = null;
         }
         if (!formData["tmcp_checkbox_46_0"]) {
           object = {};
           object.type = "window";
-          object.name = "window1";
+          object.name = "window4";
           this.$store.commit("remove", { ...object });
           object = null;
         }
         if (!formData["tmcp_checkbox_52_0"]) {
           object = {};
           object.type = "window";
-          object.name = "window1";
+          object.name = "window5";
           this.$store.commit("remove", { ...object });
           object = null;
         }
