@@ -1,9 +1,37 @@
 <script>
 export default {
   name: "Emitter",
+  data() {
+    return {
+      roofNameTranslation: {
+        "Spad w tył_1": "back",
+        "Spad w przód_2": "front",
+        "Spad w prawo_3": "right",
+        "Spad w lewo_4": "left",
+      },
+    };
+  },
   methods: {
+    changeRoof: function (name, action = "update") {
+      object = {
+        type: "roof",
+        roofType: this.roofNameTranslation[name],
+      };
+      this.$store.commit(action, { ...object });
+    },
+    changeWindow: function (name, action = "update", e) {
+      object = {
+        type: "window",
+        name: name,
+        wallId: this.selectWall(name),
+      };
+      console.log(" &&&&&&&&&&& ", e, " &&&&&&&&&&& ");
+      this.$store.commit(action, { ...object });
+    },
     changeEventForm: function (e) {
-      const formData = Object.fromEntries(new FormData(e.currentTarget).entries());
+      const formData = Object.fromEntries(
+        new FormData(e.currentTarget).entries()
+      );
 
       Object.keys(formData).forEach((key) => {
         var object;
@@ -85,37 +113,21 @@ export default {
           case "tm-epo-counter":
             break;
           case "tmcp_radio_0": //Rodzaje dachu
-            object = {};
-            object.type = "roof";
-            object.roofType = "gable";
-
-            if (formData[key] == "Spad w tył_1") {
-              object.roofType = "back";
-            }
-
-            if (formData[key] == "Spad w przód_2") {
-              object.roofType = "front";
-            }
-
-            if (formData[key] == "Spad w prawo_3") {
-              object.roofType = "right";
-            }
-
-            if (formData[key] == "Spad w lewo_4") {
-              object.roofType = "left";
-            }
-
-            this.$store.commit("update", { ...object });
+            this.changeRoof(formData[key]);
             break;
           case "tmcp_select_1": //Szerokość
             object = {};
-            object.width = parseFloat(formData[key].split(" ")[0].replace(",", "."));
+            object.width = parseFloat(
+              formData[key].split(" ")[0].replace(",", ".")
+            );
 
             this.$store.commit("reInit", { ...object });
             break;
           case "tmcp_select_2": //Długość
             object = {};
-            object.length = parseFloat(formData[key].split(" ")[0].replace(",", "."));
+            object.length = parseFloat(
+              formData[key].split(" ")[0].replace(",", ".")
+            );
 
             this.$store.commit("reInit", { ...object });
 
@@ -200,9 +212,13 @@ export default {
             object.name = "gate1";
             object.wallId = 0;
             if (formData["tmcp_radio_21"]) {
-              object.material = formData["tmcp_radio_21"].split("_")[0].replace(" ", "");
+              object.material = formData["tmcp_radio_21"]
+                .split("_")[0]
+                .replace(" ", "");
             } else if (formData["tmcp_radio_30"]) {
-              object.material = formData["tmcp_radio_30"].split("_")[0].replace(" ", "");
+              object.material = formData["tmcp_radio_30"]
+                .split("_")[0]
+                .replace(" ", "");
             } else {
               object.material = "RAL9010";
             }
@@ -290,9 +306,13 @@ export default {
             object.name = "gate2";
             object.wallId = 0;
             if (formData["tmcp_radio_21"]) {
-              object.material = formData["tmcp_radio_21"].split("_")[0].replace(" ", "");
+              object.material = formData["tmcp_radio_21"]
+                .split("_")[0]
+                .replace(" ", "");
             } else if (formData["tmcp_radio_30"]) {
-              object.material = formData["tmcp_radio_30"].split("_")[0].replace(" ", "");
+              object.material = formData["tmcp_radio_30"]
+                .split("_")[0]
+                .replace(" ", "");
             } else {
               object.material = "RAL9010";
             }
@@ -328,7 +348,9 @@ export default {
             object = {};
 
             if (formData["tmcp_radio_21"]) {
-              object.material = formData["tmcp_radio_21"].split("_")[0].replace(" ", "");
+              object.material = formData["tmcp_radio_21"]
+                .split("_")[0]
+                .replace(" ", "");
             } else {
               object.material = "RAL9010";
             }
@@ -405,11 +427,16 @@ export default {
               object.height = sizeData[1].split("cm")[0] / 100;
             }
             if (formData["tmcp_radio_37"]) {
-              if (formData["tmcp_radio_37"] == "Brązowy_0") object.material = "BROWN";
-              if (formData["tmcp_radio_37"] == "Szary_1") object.material = "GRAY";
-              if (formData["tmcp_radio_37"] == "Biały_2") object.material = "WHITE";
-              if (formData["tmcp_radio_37"] == "Ciemny orzech_3") object.material = "DARK_WALNUT";
-              if (formData["tmcp_radio_37"] == "Złoty dąb_4") object.material = "GOLD_OAK";
+              if (formData["tmcp_radio_37"] == "Brązowy_0")
+                object.material = "BROWN";
+              if (formData["tmcp_radio_37"] == "Szary_1")
+                object.material = "GRAY";
+              if (formData["tmcp_radio_37"] == "Biały_2")
+                object.material = "WHITE";
+              if (formData["tmcp_radio_37"] == "Ciemny orzech_3")
+                object.material = "DARK_WALNUT";
+              if (formData["tmcp_radio_37"] == "Złoty dąb_4")
+                object.material = "GOLD_OAK";
             } else {
               object.material = "WHITE";
             }
@@ -434,11 +461,16 @@ export default {
               object.height = sizeData[1].split("cm")[0] / 100;
             }
             if (formData["tmcp_radio_43"]) {
-              if (formData["tmcp_radio_43"] == "Brązowy_0") object.material = "BROWN";
-              if (formData["tmcp_radio_43"] == "Szary_1") object.material = "GRAY";
-              if (formData["tmcp_radio_43"] == "Biały_2") object.material = "WHITE";
-              if (formData["tmcp_radio_43"] == "Ciemny orzech_3") object.material = "DARK_WALNUT";
-              if (formData["tmcp_radio_43"] == "Złoty dąb_4") object.material = "GOLD_OAK";
+              if (formData["tmcp_radio_43"] == "Brązowy_0")
+                object.material = "BROWN";
+              if (formData["tmcp_radio_43"] == "Szary_1")
+                object.material = "GRAY";
+              if (formData["tmcp_radio_43"] == "Biały_2")
+                object.material = "WHITE";
+              if (formData["tmcp_radio_43"] == "Ciemny orzech_3")
+                object.material = "DARK_WALNUT";
+              if (formData["tmcp_radio_43"] == "Złoty dąb_4")
+                object.material = "GOLD_OAK";
             } else {
               object.material = "WHITE";
             }
@@ -462,11 +494,16 @@ export default {
               object.height = sizeData[1].split("cm")[0] / 100;
             }
             if (formData["tmcp_radio_49"]) {
-              if (formData["tmcp_radio_49"] == "Brązowy_0") object.material = "BROWN";
-              if (formData["tmcp_radio_49"] == "Szary_1") object.material = "GRAY";
-              if (formData["tmcp_radio_49"] == "Biały_2") object.material = "WHITE";
-              if (formData["tmcp_radio_49"] == "Ciemny orzech_3") object.material = "DARK_WALNUT";
-              if (formData["tmcp_radio_49"] == "Złoty dąb_4") object.material = "GOLD_OAK";
+              if (formData["tmcp_radio_49"] == "Brązowy_0")
+                object.material = "BROWN";
+              if (formData["tmcp_radio_49"] == "Szary_1")
+                object.material = "GRAY";
+              if (formData["tmcp_radio_49"] == "Biały_2")
+                object.material = "WHITE";
+              if (formData["tmcp_radio_49"] == "Ciemny orzech_3")
+                object.material = "DARK_WALNUT";
+              if (formData["tmcp_radio_49"] == "Złoty dąb_4")
+                object.material = "GOLD_OAK";
             } else {
               object.material = "WHITE";
             }
@@ -490,11 +527,16 @@ export default {
               object.height = sizeData[1].split("cm")[0] / 100;
             }
             if (formData["tmcp_radio_55"]) {
-              if (formData["tmcp_radio_55"] == "Brązowy_0") object.material = "BROWN";
-              if (formData["tmcp_radio_55"] == "Szary_1") object.material = "GRAY";
-              if (formData["tmcp_radio_55"] == "Biały_2") object.material = "WHITE";
-              if (formData["tmcp_radio_55"] == "Ciemny orzech_3") object.material = "DARK_WALNUT";
-              if (formData["tmcp_radio_55"] == "Złoty dąb_4") object.material = "GOLD_OAK";
+              if (formData["tmcp_radio_55"] == "Brązowy_0")
+                object.material = "BROWN";
+              if (formData["tmcp_radio_55"] == "Szary_1")
+                object.material = "GRAY";
+              if (formData["tmcp_radio_55"] == "Biały_2")
+                object.material = "WHITE";
+              if (formData["tmcp_radio_55"] == "Ciemny orzech_3")
+                object.material = "DARK_WALNUT";
+              if (formData["tmcp_radio_55"] == "Złoty dąb_4")
+                object.material = "GOLD_OAK";
             } else {
               object.material = "WHITE";
             }
@@ -517,11 +559,16 @@ export default {
               object.height = sizeData[1].split("cm")[0] / 100;
             }
             if (formData["tmcp_radio_61"]) {
-              if (formData["tmcp_radio_61"] == "Brązowy_0") object.material = "BROWN";
-              if (formData["tmcp_radio_61"] == "Szary_1") object.material = "GRAY";
-              if (formData["tmcp_radio_61"] == "Biały_2") object.material = "WHITE";
-              if (formData["tmcp_radio_61"] == "Ciemny orzech_3") object.material = "DARK_WALNUT";
-              if (formData["tmcp_radio_61"] == "Złoty dąb_4") object.material = "GOLD_OAK";
+              if (formData["tmcp_radio_61"] == "Brązowy_0")
+                object.material = "BROWN";
+              if (formData["tmcp_radio_61"] == "Szary_1")
+                object.material = "GRAY";
+              if (formData["tmcp_radio_61"] == "Biały_2")
+                object.material = "WHITE";
+              if (formData["tmcp_radio_61"] == "Ciemny orzech_3")
+                object.material = "DARK_WALNUT";
+              if (formData["tmcp_radio_61"] == "Złoty dąb_4")
+                object.material = "GOLD_OAK";
             } else {
               object.material = "WHITE";
             }
@@ -549,7 +596,9 @@ export default {
             }
 
             if (formData["tmcp_radio_70"]) {
-              object.material = formData["tmcp_radio_70"].split("_")[0].replace(" ", "");
+              object.material = formData["tmcp_radio_70"]
+                .split("_")[0]
+                .replace(" ", "");
             } else {
               object.material = "RAL9010";
             }
@@ -579,7 +628,9 @@ export default {
             }
 
             if (formData["tmcp_radio_78"]) {
-              object.material = formData["tmcp_radio_78"].split("_")[0].replace(" ", "");
+              object.material = formData["tmcp_radio_78"]
+                .split("_")[0]
+                .replace(" ", "");
             } else {
               object.material = "RAL9010";
             }
@@ -602,7 +653,9 @@ export default {
       let setAttribute;
       let object = {};
       // window1 szerokosc
-      target = document.querySelector('[data-uniqid="626666fc607e27.12468774"] div[aria-valuenow]');
+      target = document.querySelector(
+        '[data-uniqid="626666fc607e27.12468774"] div[aria-valuenow]'
+      );
       setAttribute = target.setAttribute;
       // override setAttribte
       target.setAttribute = (key, value) => {
@@ -619,7 +672,9 @@ export default {
       };
 
       // window1 wysokosc
-      target = document.querySelector('[data-uniqid="626666fc607e37.33496203"] div[aria-valuenow]');
+      target = document.querySelector(
+        '[data-uniqid="626666fc607e37.33496203"] div[aria-valuenow]'
+      );
       setAttribute = target.setAttribute;
       // override setAttribte
       target.setAttribute = (key, value) => {
@@ -636,7 +691,9 @@ export default {
       };
 
       // window2 szerokosc
-      target = document.querySelector('[data-uniqid="626666fc607e72.58094923"] div[aria-valuenow]');
+      target = document.querySelector(
+        '[data-uniqid="626666fc607e72.58094923"] div[aria-valuenow]'
+      );
       setAttribute = target.setAttribute;
       // override setAttribte
       target.setAttribute = (key, value) => {
@@ -653,7 +710,9 @@ export default {
       };
 
       // window2 wysokosc
-      target = document.querySelector('[data-uniqid="626666fc607e84.50408653"] div[aria-valuenow]');
+      target = document.querySelector(
+        '[data-uniqid="626666fc607e84.50408653"] div[aria-valuenow]'
+      );
       setAttribute = target.setAttribute;
       // override setAttribte
       target.setAttribute = (key, value) => {
@@ -670,7 +729,9 @@ export default {
       };
 
       // window3 szerokosc
-      target = document.querySelector('[data-uniqid="626666fc607ec0.38279999"] div[aria-valuenow]');
+      target = document.querySelector(
+        '[data-uniqid="626666fc607ec0.38279999"] div[aria-valuenow]'
+      );
       setAttribute = target.setAttribute;
       // override setAttribte
       target.setAttribute = (key, value) => {
@@ -687,7 +748,9 @@ export default {
       };
 
       // window3 wysokosc
-      target = document.querySelector('[data-uniqid="626666fc607ed0.11804888"] div[aria-valuenow]');
+      target = document.querySelector(
+        '[data-uniqid="626666fc607ed0.11804888"] div[aria-valuenow]'
+      );
       setAttribute = target.setAttribute;
       // override setAttribte
       target.setAttribute = (key, value) => {
@@ -704,7 +767,9 @@ export default {
       };
 
       // window4 szerokosc
-      target = document.querySelector('[data-uniqid="626666fc607f13.98580250"] div[aria-valuenow]');
+      target = document.querySelector(
+        '[data-uniqid="626666fc607f13.98580250"] div[aria-valuenow]'
+      );
       setAttribute = target.setAttribute;
       // override setAttribte
       target.setAttribute = (key, value) => {
@@ -721,7 +786,9 @@ export default {
       };
 
       // window4 wysokosc
-      target = document.querySelector('[data-uniqid="626666fc607f29.14038358"] div[aria-valuenow]');
+      target = document.querySelector(
+        '[data-uniqid="626666fc607f29.14038358"] div[aria-valuenow]'
+      );
       setAttribute = target.setAttribute;
       // override setAttribte
       target.setAttribute = (key, value) => {
@@ -738,7 +805,9 @@ export default {
       };
 
       // window5 szerokosc
-      target = document.querySelector('[data-uniqid="626666fc607f67.37945639"] div[aria-valuenow]');
+      target = document.querySelector(
+        '[data-uniqid="626666fc607f67.37945639"] div[aria-valuenow]'
+      );
       setAttribute = target.setAttribute;
       // override setAttribte
       target.setAttribute = (key, value) => {
@@ -755,7 +824,9 @@ export default {
       };
 
       // window5 wysokosc
-      target = document.querySelector('[data-uniqid="626666fc607f79.78538581"] div[aria-valuenow]');
+      target = document.querySelector(
+        '[data-uniqid="626666fc607f79.78538581"] div[aria-valuenow]'
+      );
       setAttribute = target.setAttribute;
       // override setAttribte
       target.setAttribute = (key, value) => {
@@ -796,6 +867,15 @@ export default {
     var form = document.querySelector("form.cart");
     if (document.querySelector("form.cart")) {
       form.addEventListener("change", this.changeEventForm, { passive: true });
+      form
+        .querySelector('div[data-uniqid="626666fc607df3.98247608"] input')
+        .addEventListener(
+          "change",
+          this.changeWindow("window", "window1", this),
+          {
+            passive: true,
+          }
+        );
     }
   },
 };
