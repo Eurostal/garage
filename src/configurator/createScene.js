@@ -3,7 +3,7 @@ import { grassTexture } from "./textures";
 
 export default function createScene() {
   const scene = new Scene();
-  scene.background = new Color(0xffffff);
+  scene.background = new Color(0xf8f8f8);
   const ground = new Mesh(
     new CircleGeometry(5, 50),
     new MeshStandardMaterial({
