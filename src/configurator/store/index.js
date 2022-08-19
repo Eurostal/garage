@@ -21,7 +21,7 @@ export const store = createStore({
                   material: "RAL9010",
                   name: "gate1",
                   gateType: "double",
-                  x: 0,
+                  x: 0.02,
                   y: 0,
                 },
               },
@@ -40,7 +40,7 @@ export const store = createStore({
           height: 2,
           material: "RAL9010",
           gateType: "double",
-          x: 0,
+          x: 0.02,
           y: 0,
         },
         window: {
