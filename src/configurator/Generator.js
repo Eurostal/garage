@@ -64,7 +64,7 @@ class Generator {
           break;
         case "fittings":
           if (!this.garage.fittings.visible) {
-            this.garage.fittings.create().updateMaterial(Materials[data.material]);
+            this.garage.fittings.create(data.fittingWidth).updateMaterial(Materials[data.material]);
           }
 
           break;

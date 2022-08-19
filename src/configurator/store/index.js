@@ -32,7 +32,7 @@ export const store = createStore({
             right: { elements: {}, material: "RAL9010" },
           },
           roof: { roofType: "gable", material: "RAL9010" },
-          fittings: { visible: false, material: "RAL9010" },
+          fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
         },
         gate: {
           wallId: 0,
@@ -60,6 +60,7 @@ export const store = createStore({
           x: 0,
           y: 0,
         },
+        fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
       },
       msg: "",
     };
@@ -91,10 +92,15 @@ export const store = createStore({
               fits = false;
             }
           } else {
-            let gateOffset = 0.1;
-            if (element.gateType == "double") {
-              gateOffset = 0.02;
-            }
+            let gateOffset;
+            let hasDoubleGate = false;
+            elements.forEach((el) => {
+              if (el.gateType == "double") {
+                hasDoubleGate = true;
+              }
+            });
+            gateOffset = hasDoubleGate ? 0.02 : 0.1;
+            state.garageUpdated.fittings.fittingWidth = gateOffset;
             if (element.x + element.width + gateOffset > wallSize.x || element.y + element.height > wallSize.y) {
               fits = false;
             }
