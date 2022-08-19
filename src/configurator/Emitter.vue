@@ -44,7 +44,11 @@
     <button @click="sendRemove('window1', 'example2')">REMOVE WINDOW</button>
     <hr />
     <h3>Roof type</h3>
-    <form id="example3" @submit.prevent="sendRoofAdd('example3', 'roof', 'roof')" @change="sendRoofAdd('example3', 'roof', 'roof')">
+    <form
+      id="example3"
+      @submit.prevent="sendRoofAdd('example3', 'roof', 'roof')"
+      @change="sendRoofAdd('example3', 'roof', 'roof')"
+    >
       <select name="roofType" id="roofType">
         <option value="gable">Gable</option>
         <option value="front">Front</option>
@@ -103,11 +107,34 @@
         <option value="GOLD_OAK">Złoty dąb</option>
         <option value="DARK_WALNUT">Ciemny orzech</option>
       </select>
-      <input id="x" name="x" type="range" min="0" max="7" value="0.2" step="0.005" @input="sendChange('example6', 'window', 'window2', 1, 1)" />
-      <input id="y" name="y" type="range" min="0" max="3" value="0.2" step="0.005" @input="sendChange('example6', 'window', 'window2', 1, 1)" />
+      <input
+        id="x"
+        name="x"
+        type="range"
+        min="0"
+        max="7"
+        value="0.2"
+        step="0.005"
+        @input="sendChange('example6', 'window', 'window2', 1, 1)"
+      />
+      <input
+        id="y"
+        name="y"
+        type="range"
+        min="0"
+        max="3"
+        value="0.2"
+        step="0.005"
+        @input="sendChange('example6', 'window', 'window2', 1, 1)"
+      />
     </form>
     <h3>fittings</h3>
-    <form id="example7" @submit.prevent="sendChange('example7', 'fittings', 'window2', 0, 0, 0, 0)">
+    <form
+      id="example7"
+      @submit.prevent="
+        sendChange('example7', 'fittings', 'window2', 0, 0, 0, 0)
+      "
+    >
       <select name="material" id="material">
         <option value="RAL9010">RAL9010</option>
         <option value="RAL9010_H">RAL9010 horizontal</option>
@@ -117,7 +144,9 @@
       </select>
       <button>ADD FITTINGS</button>
     </form>
-    <button @click="sendRemove('', 'example7', 'fittings')">REMOVE FITTINGS</button>
+    <button @click="sendRemove('', 'example7', 'fittings')">
+      REMOVE FITTINGS
+    </button>
     <h3>door1</h3>
     <form
       id="example8"
@@ -218,7 +247,9 @@ export default {
       this.$store.commit("reInit", object);
     },
     changeEventForm: function (e) {
-      const formData = Object.fromEntries(new FormData(e.currentTarget).entries());
+      const formData = Object.fromEntries(
+        new FormData(e.currentTarget).entries()
+      );
 
       Object.keys(formData).forEach((key) => {
         var object;
@@ -324,13 +355,13 @@ export default {
             break;
           case "tmcp_select_1": //Szerokość
             object = {};
-            object.width = parseFloat(formData[key].split(" ")[0].replace(",", "."));
+            object.width = parseInt(formData[key].split(" ")[0]);
 
             this.$store.commit("reInit", { ...object });
             break;
           case "tmcp_select_2": //Długość
             object = {};
-            object.length = parseFloat(formData[key].split(" ")[0].replace(",", "."));
+            object.length = parseInt(formData[key].split(" ")[0]);
 
             this.$store.commit("reInit", { ...object });
 
@@ -412,9 +443,13 @@ export default {
             object.name = "gate1";
             object.wallId = 0;
             if (formData["tmcp_radio_21"]) {
-              object.material = formData["tmcp_radio_21"].split("_")[0].replace(" ", "");
+              object.material = formData["tmcp_radio_21"]
+                .split("_")[0]
+                .replace(" ", "");
             } else if (formData["tmcp_radio_30"]) {
-              object.material = formData["tmcp_radio_30"].split("_")[0].replace(" ", "");
+              object.material = formData["tmcp_radio_30"]
+                .split("_")[0]
+                .replace(" ", "");
             } else {
               object.material = "RAL9010";
             }
@@ -502,9 +537,13 @@ export default {
             object.name = "gate2";
             object.wallId = 0;
             if (formData["tmcp_radio_21"]) {
-              object.material = formData["tmcp_radio_21"].split("_")[0].replace(" ", "");
+              object.material = formData["tmcp_radio_21"]
+                .split("_")[0]
+                .replace(" ", "");
             } else if (formData["tmcp_radio_30"]) {
-              object.material = formData["tmcp_radio_30"].split("_")[0].replace(" ", "");
+              object.material = formData["tmcp_radio_30"]
+                .split("_")[0]
+                .replace(" ", "");
             } else {
               object.material = "RAL9010";
             }
@@ -540,7 +579,9 @@ export default {
             object = {};
 
             if (formData["tmcp_radio_21"]) {
-              object.material = formData["tmcp_radio_21"].split("_")[0].replace(" ", "");
+              object.material = formData["tmcp_radio_21"]
+                .split("_")[0]
+                .replace(" ", "");
             } else {
               object.material = "RAL9010";
             }
@@ -616,7 +657,21 @@ export default {
               object.width = sizeData[0] / 100;
               object.height = sizeData[1].split("cm")[0] / 100;
             }
-            object.material = "WHITE";
+            if (formData["tmcp_radio_37"]) {
+              if (formData["tmcp_radio_37"] == "Brązowy_0")
+                object.material = "BROWN";
+              if (formData["tmcp_radio_37"] == "Szary")
+                object.material = "GRAY";
+              if (formData["tmcp_radio_37"] == "Biały")
+                object.material = "WHITE";
+              if (formData["tmcp_radio_37"] == "Ciemny orzech_3")
+                object.material = "DARK_WALNUT";
+              if (formData["tmcp_radio_37"] == "Złoty dąb_4")
+                object.material = "GOLD_OAK";
+            } else {
+              object.material = "WHITE";
+            }
+
             object.x = 0.2;
             object.y = 1;
 
@@ -636,7 +691,20 @@ export default {
               object.width = sizeData[0] / 100;
               object.height = sizeData[1].split("cm")[0] / 100;
             }
-            object.material = "WHITE";
+            if (formData["tmcp_radio_43"]) {
+              if (formData["tmcp_radio_37"] == "Brązowy_0")
+                object.material = "BROWN";
+              if (formData["tmcp_radio_37"] == "Szary")
+                object.material = "GRAY";
+              if (formData["tmcp_radio_37"] == "Biały")
+                object.material = "WHITE";
+              if (formData["tmcp_radio_37"] == "Ciemny orzech_3")
+                object.material = "DARK_WALNUT";
+              if (formData["tmcp_radio_37"] == "Złoty dąb_4")
+                object.material = "GOLD_OAK";
+            } else {
+              object.material = "WHITE";
+            }
             object.x = 0.2;
             object.y = 1;
 
@@ -656,7 +724,20 @@ export default {
               object.width = sizeData[0] / 100;
               object.height = sizeData[1].split("cm")[0] / 100;
             }
-            object.material = "WHITE";
+            if (formData["tmcp_radio_49"]) {
+              if (formData["tmcp_radio_37"] == "Brązowy_0")
+                object.material = "BROWN";
+              if (formData["tmcp_radio_37"] == "Szary")
+                object.material = "GRAY";
+              if (formData["tmcp_radio_37"] == "Biały")
+                object.material = "WHITE";
+              if (formData["tmcp_radio_37"] == "Ciemny orzech_3")
+                object.material = "DARK_WALNUT";
+              if (formData["tmcp_radio_37"] == "Złoty dąb_4")
+                object.material = "GOLD_OAK";
+            } else {
+              object.material = "WHITE";
+            }
             object.x = 0.2;
             object.y = 1;
 
@@ -676,7 +757,20 @@ export default {
               object.width = sizeData[0] / 100;
               object.height = sizeData[1].split("cm")[0] / 100;
             }
-            object.material = "WHITE";
+            if (formData["tmcp_radio_55"]) {
+              if (formData["tmcp_radio_37"] == "Brązowy_0")
+                object.material = "BROWN";
+              if (formData["tmcp_radio_37"] == "Szary")
+                object.material = "GRAY";
+              if (formData["tmcp_radio_37"] == "Biały")
+                object.material = "WHITE";
+              if (formData["tmcp_radio_37"] == "Ciemny orzech_3")
+                object.material = "DARK_WALNUT";
+              if (formData["tmcp_radio_37"] == "Złoty dąb_4")
+                object.material = "GOLD_OAK";
+            } else {
+              object.material = "WHITE";
+            }
             object.x = 0.2;
             object.y = 1;
 
@@ -695,7 +789,20 @@ export default {
               object.width = sizeData[0] / 100;
               object.height = sizeData[1].split("cm")[0] / 100;
             }
-            object.material = "WHITE";
+            if (formData["tmcp_radio_61"]) {
+              if (formData["tmcp_radio_37"] == "Brązowy_0")
+                object.material = "BROWN";
+              if (formData["tmcp_radio_37"] == "Szary")
+                object.material = "GRAY";
+              if (formData["tmcp_radio_37"] == "Biały")
+                object.material = "WHITE";
+              if (formData["tmcp_radio_37"] == "Ciemny orzech_3")
+                object.material = "DARK_WALNUT";
+              if (formData["tmcp_radio_37"] == "Złoty dąb_4")
+                object.material = "GOLD_OAK";
+            } else {
+              object.material = "WHITE";
+            }
             object.x = 0.2;
             object.y = 1;
 
@@ -720,7 +827,9 @@ export default {
             }
 
             if (formData["tmcp_radio_70"]) {
-              object.material = formData["tmcp_radio_70"].split("_")[0].replace(" ", "");
+              object.material = formData["tmcp_radio_70"]
+                .split("_")[0]
+                .replace(" ", "");
             } else {
               object.material = "RAL9010";
             }
@@ -750,7 +859,9 @@ export default {
             }
 
             if (formData["tmcp_radio_78"]) {
-              object.material = formData["tmcp_radio_78"].split("_")[0].replace(" ", "");
+              object.material = formData["tmcp_radio_78"]
+                .split("_")[0]
+                .replace(" ", "");
             } else {
               object.material = "RAL9010";
             }
