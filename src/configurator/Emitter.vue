@@ -355,20 +355,20 @@ export default {
             break;
           case "tmcp_select_1": //Szerokość
             object = {};
-            object.width = parseInt(formData[key].split(" ")[0]);
+            object.width = parseFloat(formData[key].split(" ")[0]);
 
             this.$store.commit("reInit", { ...object });
             break;
           case "tmcp_select_2": //Długość
             object = {};
-            object.length = parseInt(formData[key].split(" ")[0]);
+            object.length = parseFloat(formData[key].split(" ")[0]);
 
             this.$store.commit("reInit", { ...object });
 
             break;
           case "tmcp_select_3":
             object = {};
-            object.length = parseInt(formData[key].split(" ")[0]);
+            object.length = parseFloat(formData[key].split(" ")[0]);
 
             this.$store.commit("reInit", { ...object });
 
@@ -413,7 +413,7 @@ export default {
             object.wallId = 0;
             object.type = "gate";
             object.name = "gate1";
-            object.width = parseInt(formData[key].split(" ")[0]);
+            object.width = parseFloat(formData[key].split(" ")[0]);
             object.width = object.width / 100;
 
             this.$store.commit("update", { ...object });
@@ -427,7 +427,7 @@ export default {
             object.type = "gate";
             object.name = "gate1";
             object.wallId = 0;
-            object.height = parseInt(formData[key].split(" ")[0]);
+            object.height = parseFloat(formData[key].split(" ")[0]);
             object.height = object.height / 100;
 
             this.$store.commit("update", { ...object });
@@ -505,7 +505,7 @@ export default {
             object = {};
             object.type = "gate";
             object.name = "gate2";
-            object.width = parseInt(formData[key].split(" ")[0]);
+            object.width = parseFloat(formData[key].split(" ")[0]);
             object.width = object.width / 100;
             object.wallId = 0;
 
@@ -519,7 +519,7 @@ export default {
             object = {};
             object.type = "gate";
             object.name = "gate2";
-            object.height = parseInt(formData[key].split(" ")[0]);
+            object.height = parseFloat(formData[key].split(" ")[0]);
             object.height = object.height / 100;
             object.wallId = 0;
 
