@@ -879,6 +879,44 @@ export default {
             console.log(key, formData[key]);
         }
       });
+
+      let target;
+      let setAttribute;
+      // window1 szerokosc
+      target = document.querySelector(
+        '[data-uniqid="626666fc607e27.12468774"] div[aria-valuenow]'
+      );
+      setAttribute = target.setAttribute;
+      // override setAttribte
+      target.setAttribute = (key, value) => {
+        if(key == 'aria-valuenow'){
+            object = {};
+            object.name = "window1";
+            object.type = "window";
+            object.x = value;
+            this.$store.commit("update", { ...object });
+        }
+        // use call, to set the context and prevent illegal invocation errors
+        setAttribute.call(target, key, value);
+      };
+
+      // window1 wysokosc
+      target = document.querySelector(
+        '[data-uniqid="626666fc607e37.33496203"] div[aria-valuenow]'
+      );
+      setAttribute = target.setAttribute;
+      // override setAttribte
+      target.setAttribute = (key, value) => {
+        if(key == 'aria-valuenow'){
+            object = {};
+            object.name = "window1";
+            object.type = "window";
+            object.y = value;
+            this.$store.commit("update", { ...object });
+        }
+        // use call, to set the context and prevent illegal invocation errors
+        setAttribute.call(target, key, value);
+      };
     },
     selectWall(input) {
       let wallId = 0;
