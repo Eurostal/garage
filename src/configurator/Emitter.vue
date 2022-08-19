@@ -660,9 +660,9 @@ export default {
             if (formData["tmcp_radio_37"]) {
               if (formData["tmcp_radio_37"] == "Brązowy_0")
                 object.material = "BROWN";
-              if (formData["tmcp_radio_37"] == "Szary")
+              if (formData["tmcp_radio_37"] == "Szary_1")
                 object.material = "GRAY";
-              if (formData["tmcp_radio_37"] == "Biały")
+              if (formData["tmcp_radio_37"] == "Biały_2")
                 object.material = "WHITE";
               if (formData["tmcp_radio_37"] == "Ciemny orzech_3")
                 object.material = "DARK_WALNUT";
@@ -694,9 +694,9 @@ export default {
             if (formData["tmcp_radio_43"]) {
               if (formData["tmcp_radio_37"] == "Brązowy_0")
                 object.material = "BROWN";
-              if (formData["tmcp_radio_37"] == "Szary")
+              if (formData["tmcp_radio_37"] == "Szary_1")
                 object.material = "GRAY";
-              if (formData["tmcp_radio_37"] == "Biały")
+              if (formData["tmcp_radio_37"] == "Biały_2")
                 object.material = "WHITE";
               if (formData["tmcp_radio_37"] == "Ciemny orzech_3")
                 object.material = "DARK_WALNUT";
@@ -727,9 +727,9 @@ export default {
             if (formData["tmcp_radio_49"]) {
               if (formData["tmcp_radio_37"] == "Brązowy_0")
                 object.material = "BROWN";
-              if (formData["tmcp_radio_37"] == "Szary")
+              if (formData["tmcp_radio_37"] == "Szary_1")
                 object.material = "GRAY";
-              if (formData["tmcp_radio_37"] == "Biały")
+              if (formData["tmcp_radio_37"] == "Biały_2")
                 object.material = "WHITE";
               if (formData["tmcp_radio_37"] == "Ciemny orzech_3")
                 object.material = "DARK_WALNUT";
@@ -760,9 +760,9 @@ export default {
             if (formData["tmcp_radio_55"]) {
               if (formData["tmcp_radio_37"] == "Brązowy_0")
                 object.material = "BROWN";
-              if (formData["tmcp_radio_37"] == "Szary")
+              if (formData["tmcp_radio_37"] == "Szary_1")
                 object.material = "GRAY";
-              if (formData["tmcp_radio_37"] == "Biały")
+              if (formData["tmcp_radio_37"] == "Biały_2")
                 object.material = "WHITE";
               if (formData["tmcp_radio_37"] == "Ciemny orzech_3")
                 object.material = "DARK_WALNUT";
@@ -792,9 +792,9 @@ export default {
             if (formData["tmcp_radio_61"]) {
               if (formData["tmcp_radio_37"] == "Brązowy_0")
                 object.material = "BROWN";
-              if (formData["tmcp_radio_37"] == "Szary")
+              if (formData["tmcp_radio_37"] == "Szary_1")
                 object.material = "GRAY";
-              if (formData["tmcp_radio_37"] == "Biały")
+              if (formData["tmcp_radio_37"] == "Biały_2")
                 object.material = "WHITE";
               if (formData["tmcp_radio_37"] == "Ciemny orzech_3")
                 object.material = "DARK_WALNUT";
