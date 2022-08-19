@@ -188,7 +188,13 @@ function updateG(state, data) {
           return;
         } else {
           let garageHeight = data.height + 0.13;
-          state.garageActual.walls[wallNames[data.wallId]].elements[data.name] = data;
+          Object.values(state.garageActual.walls.front.elements[data.name]).forEach((element) => {
+            if (element.type == "gate" && garageHeight < element.height + 0.13) {
+              garageHeight = element.height + 0.13;
+            }
+          });
+
+          state.garageActual.walls.front.elements[data.name] = data;
           store.commit("reInit", { height: garageHeight });
         }
       } else {
