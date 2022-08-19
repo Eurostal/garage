@@ -306,14 +306,14 @@ export default {
 
             break;
 
-          case "tmcp_radio_87":
+          case "tmcp_radio_89":
             object = {};
             //RAL 5010_4
             object.type = "fittings";
             object.material = formData[key].split("_")[0].replace(" ", "");
             this.$store.commit("updateMaterial", { ...object });
             break;
-          case "tmcp_checkbox_86_0":
+          case "tmcp_checkbox_88_0":
             object = {};
             object.type = "fittings";
             object.visible = true;
