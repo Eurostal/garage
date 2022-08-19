@@ -45,12 +45,17 @@ export default {
         .querySelector("form.cart")
         .querySelector(
           'div[data-uniqid="627a9ae125d4d6.54277708"] .tc-epo-label'
-        ).textContent = e.target.value.split("_")[0].replace(",", ".");
+        ).textContent = e.target.value.split("_")[0];
     },
     changeGarageLengthEvent: function (e) {
       this.changeGarageSize({
         length: parseFloat(e.target.value.split(" ")[0].replace(",", ".")),
       });
+      document
+        .querySelector("form.cart")
+        .querySelector(
+          'div[data-uniqid="627a9ad625d4b6.52719206"] .tc-epo-label'
+        ).textContent = e.target.value.split("_")[0];
     },
     changeWindow: function ({ name, action = true }) {
       let object = {
