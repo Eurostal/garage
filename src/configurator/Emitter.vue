@@ -324,13 +324,13 @@ export default {
             break;
           case "tmcp_select_1": //Szerokość
             object = {};
-            object.width = parseInt(formData[key].split(" ")[0]);
+            object.width = parseFloat(formData[key].split(" ")[0].replace(",", "."));
 
             this.$store.commit("reInit", { ...object });
             break;
           case "tmcp_select_2": //Długość
             object = {};
-            object.length = parseInt(formData[key].split(" ")[0]);
+            object.length = parseFloat(formData[key].split(" ")[0].replace(",", "."));
 
             this.$store.commit("reInit", { ...object });
 
