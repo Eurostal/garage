@@ -870,27 +870,31 @@ export default {
 
       form
         .querySelectorAll('div[data-uniqid="62581d466f2312.18396791"] input')
-        .addEventListener(
-          "change",
-          function (e) {
-            this.changeRoof(e.target.value);
-          },
-          {
-            passive: true,
-          }
+        .forEach((input) =>
+          input.addEventListener(
+            "change",
+            function (e) {
+              this.changeRoof(e.target.value);
+            },
+            {
+              passive: true,
+            }
+          )
         );
 
       form
         .querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input')
-        .addEventListener(
-          "change",
-          function (e) {
-            console.log(e.target.value);
-            this.changeWindow("window", "window1", this);
-          },
-          {
-            passive: true,
-          }
+        .forEach((input) =>
+          input.addEventListener(
+            "change",
+            function (e) {
+              console.log(e.target.value);
+              this.changeWindow("window", "window1", this);
+            },
+            {
+              passive: true,
+            }
+          )
         );
     }
   },
