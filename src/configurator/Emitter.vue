@@ -12,7 +12,7 @@ export default {
     };
   },
   methods: {
-    changeRoof: function (name, action = "update") {
+    changeRoof: function (name = "Spad w tył_1", action = "update") {
       let object = {
         type: "roof",
         roofType: this.roofNameTranslation[name],
@@ -113,7 +113,7 @@ export default {
           case "tm-epo-counter":
             break;
           case "tmcp_radio_0": //Rodzaje dachu
-            this.changeRoof(formData[key]);
+            this.changeRoof(formData["tmcp_radio_0"]);
             break;
           case "tmcp_select_1": //Szerokość
             object = {};
