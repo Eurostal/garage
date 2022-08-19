@@ -869,12 +869,11 @@ export default {
       // form.addEventListener("change", this.changeEventForm, { passive: true });
 
       form
-        .querySelector('div[data-uniqid="62581d466f2312.18396791"] input')
+        .querySelectorAll('div[data-uniqid="62581d466f2312.18396791"] input')
         .addEventListener(
           "change",
           function (e) {
-            console.log(e);
-            this.changeRoof();
+            this.changeRoof(e.target.value);
           },
           {
             passive: true,
@@ -882,10 +881,13 @@ export default {
         );
 
       form
-        .querySelector('div[data-uniqid="626666fc607df3.98247608"] input')
+        .querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input')
         .addEventListener(
           "change",
-          this.changeWindow("window", "window1", this),
+          function (e) {
+            console.log(e.target.value);
+            this.changeWindow("window", "window1", this);
+          },
           {
             passive: true,
           }
