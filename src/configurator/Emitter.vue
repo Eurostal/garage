@@ -13,14 +13,14 @@ export default {
   },
   methods: {
     changeRoof: function (name, action = "update") {
-      object = {
+      let object = {
         type: "roof",
         roofType: this.roofNameTranslation[name],
       };
       this.$store.commit(action, { ...object });
     },
     changeWindow: function (name, action = "update", e) {
-      object = {
+      let object = {
         type: "window",
         name: name,
         wallId: this.selectWall(name),
