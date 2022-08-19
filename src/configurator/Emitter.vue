@@ -866,9 +866,13 @@ export default {
       form.addEventListener("change", this.changeEventForm, { passive: true });
       form
         .querySelector('div[data-uniqid="626666fc607df3.98247608"] input')
-        .addEventListener("change", this.changeWindow("window", "window1", e), {
-          passive: true,
-        });
+        .addEventListener(
+          "change",
+          this.changeWindow("window", "window1", this),
+          {
+            passive: true,
+          }
+        );
     }
   },
 };
