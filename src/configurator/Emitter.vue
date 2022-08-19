@@ -103,6 +103,8 @@ export default {
         object.style = this.gateNameTranslation[type];
       }
 
+      console.log(object);
+
       if (type || width || height || position || style) {
         this.$store.commit("update", { ...object });
       } else {
