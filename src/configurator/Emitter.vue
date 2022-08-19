@@ -873,7 +873,7 @@ export default {
 
       form
         .querySelector('div[data-uniqid="62581d466f2312.18396791"] input')
-        .addEventListener("change", this.changeRoof, {
+        .addEventListener("change", this.changeRoof($event), {
           passive: true,
         });
 
