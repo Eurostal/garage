@@ -40,7 +40,7 @@ export const store = createStore({
           height: 2,
           material: "RAL9010",
           gateType: "double",
-          x: 0.02,
+          x: 0,
           y: 0,
         },
         window: {
