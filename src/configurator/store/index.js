@@ -71,10 +71,10 @@ export const store = createStore({
       generator.initialize(state.garageActual);
     },
     reInit(state, data) {
-      state.garageUpdated = { ...state.garageActual, ...data };
-      if (state.garageUpdated.walls.front.elements["gate1"] && state.garageUpdated.width < 5.5) {
+      if (state.garageActual.walls.front.elements["gate2"] && state.garageUpdated.width < 5.5) {
         this.commit("remove", { type: "gate", name: "gate2", wallId: 3 });
       }
+      state.garageUpdated = { ...state.garageActual, ...data };
       const wallNames = ["front", "back", "left", "right"];
       const walls = Object.values(state.garageUpdated.walls);
       let fits = true;
