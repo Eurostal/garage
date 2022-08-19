@@ -133,6 +133,9 @@ export default {
             object.name = "gate1";
             object.gateType = "double";
             object.wallId = 0;
+            if (formData["tmcp_range_8"]) {
+              object.x = formData["tmcp_range_8"].value / 100;
+            }
             console.log("----", formData[key], "----");
 
             if (formData[key] == "Dwuskrzydłowa_0") {
