@@ -141,22 +141,22 @@ export default {
     },
     changeGate1WidthEvent: function (e) {
       this.changeGate("gate1", {
-        width: e.target.value / 100,
+        width: e.target.value.split("_")[0] / 100,
       });
     },
     changeGate2WidthEvent: function (e) {
       this.changeGate("gate2", {
-        width: e.target.value / 100,
+        width: e.target.value.split("_")[0] / 100,
       });
     },
     changeGate1HeightEvent: function (e) {
       this.changeGate("gate1", {
-        height: e.target.value / 100,
+        height: e.target.value.split("_")[0] / 100,
       });
     },
     changeGate2HeightEvent: function (e) {
       this.changeGate("gate2", {
-        height: e.target.value / 100,
+        height: e.target.value.split("_")[0] / 100,
       });
     },
     changeGate1StyleEvent: function (e) {
