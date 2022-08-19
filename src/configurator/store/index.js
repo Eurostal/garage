@@ -188,7 +188,7 @@ function updateG(state, data) {
           return;
         } else {
           let garageHeight = data.height + 0.13;
-          Object.values(state.garageActual.walls.front.elements[data.name]).forEach((element) => {
+          Object.values(state.garageActual.walls.front.elements).forEach((element) => {
             if (element.type == "gate" && garageHeight < element.height + 0.13) {
               garageHeight = element.height + 0.13;
             }
