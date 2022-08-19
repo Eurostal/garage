@@ -6,12 +6,12 @@
 import Configurator from "./configurator/Configurator.vue";
 </script>
 
-<style scoped>
-.single-product div.tm-has-options.product.type-product {
+<style>
+.single-product.postid-15 div.tm-has-options.product.type-product {
   width: 50%;
   z-index: 20;
 }
-.single-product div.product .summary.entry-summary.tc-init {
+.single-product.postid-15 div.product .summary.entry-summary.tc-init {
   width: 90%;
 }
 </style>

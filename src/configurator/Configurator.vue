@@ -52,7 +52,7 @@ onMounted(() => {
 }
 
 .configurator-container {
-  width: 50%;
+  width: 100%;
   position: relative;
 }
 
