@@ -55,7 +55,7 @@ export default {
     },
     changeGarageLengthEvent: function (e) {
       this.changeGarageSize({
-        height: e.target.value,
+        length: e.target.value,
       });
     },
     changeWindow: function ({ name, action = true }) {
