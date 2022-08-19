@@ -72,7 +72,7 @@ export const store = createStore({
     },
     reInit(state, data) {
       if (state.garageActual.walls.front.elements["gate2"] && state.garageUpdated.width < 5.5) {
-        this.commit("remove", { type: "gate", name: "gate2", wallId: 3 });
+        this.commit("remove", { type: "gate", name: "gate2", wallId: 0 });
       }
       state.garageUpdated = { ...state.garageActual, ...data };
       const wallNames = ["front", "back", "left", "right"];
