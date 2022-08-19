@@ -72,7 +72,9 @@ export const store = createStore({
     },
     reInit(state, data) {
       state.garageUpdated = { ...state.garageActual, ...data };
-
+      if (state.garageUpdated.walls.front.elements["gate1"] && state.garageUpdated.width < 5.5) {
+        this.commit("remove", { type: "gate", name: "gate2", wallId: 3 });
+      }
       const wallNames = ["front", "back", "left", "right"];
       const walls = Object.values(state.garageUpdated.walls);
       let fits = true;
