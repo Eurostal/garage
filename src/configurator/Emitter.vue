@@ -45,7 +45,7 @@ export default {
         .querySelector("form.cart")
         .querySelector(
           'div[data-uniqid="627a9ae125d4d6.54277708"] .tc-epo-label'
-        ).textContent = e.target.value;
+        ).textContent = e.target.value.split("_")[0].replace(",", ".");
     },
     changeGarageLengthEvent: function (e) {
       this.changeGarageSize({
