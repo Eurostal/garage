@@ -932,8 +932,8 @@ export default {
           object = {};
           object.name = "window1";
           object.type = "window";
-          object.wallId = this.selectWall(formData["tmcp_select_36"]);
-          object.y = parseFloat(value) / 100;
+          object.wallId = this.selectWall(formData["tmcp_select_42"]);
+          object.x = parseFloat(value) / 100;
           this.$store.commit("update", { ...object });
         }
         // use call, to set the context and prevent illegal invocation errors
@@ -951,7 +951,7 @@ export default {
           object = {};
           object.name = "window1";
           object.type = "window";
-          object.wallId = this.selectWall(formData["tmcp_select_36"]);
+          object.wallId = this.selectWall(formData["tmcp_select_42"]);
           object.y = parseFloat(value) / 100;
           this.$store.commit("update", { ...object });
         }
@@ -970,8 +970,8 @@ export default {
           object = {};
           object.name = "window1";
           object.type = "window";
-          object.wallId = this.selectWall(formData["tmcp_select_36"]);
-          object.y = parseFloat(value) / 100;
+          object.wallId = this.selectWall(formData["tmcp_select_48"]);
+          object.x = parseFloat(value) / 100;
           this.$store.commit("update", { ...object });
         }
         // use call, to set the context and prevent illegal invocation errors
@@ -989,7 +989,7 @@ export default {
           object = {};
           object.name = "window1";
           object.type = "window";
-          object.wallId = this.selectWall(formData["tmcp_select_36"]);
+          object.wallId = this.selectWall(formData["tmcp_select_48"]);
           object.y = parseFloat(value) / 100;
           this.$store.commit("update", { ...object });
         }
@@ -1008,8 +1008,8 @@ export default {
           object = {};
           object.name = "window1";
           object.type = "window";
-          object.wallId = this.selectWall(formData["tmcp_select_36"]);
-          object.y = parseFloat(value) / 100;
+          object.wallId = this.selectWall(formData["tmcp_select_54"]);
+          object.x = parseFloat(value) / 100;
           this.$store.commit("update", { ...object });
         }
         // use call, to set the context and prevent illegal invocation errors
@@ -1027,7 +1027,7 @@ export default {
           object = {};
           object.name = "window1";
           object.type = "window";
-          object.wallId = this.selectWall(formData["tmcp_select_36"]);
+          object.wallId = this.selectWall(formData["tmcp_select_54"]);
           object.y = parseFloat(value) / 100;
           this.$store.commit("update", { ...object });
         }
@@ -1046,8 +1046,8 @@ export default {
           object = {};
           object.name = "window1";
           object.type = "window";
-          object.wallId = this.selectWall(formData["tmcp_select_36"]);
-          object.y = parseFloat(value) / 100;
+          object.wallId = this.selectWall(formData["tmcp_select_60"]);
+          object.x = parseFloat(value) / 100;
           this.$store.commit("update", { ...object });
         }
         // use call, to set the context and prevent illegal invocation errors
@@ -1065,7 +1065,7 @@ export default {
           object = {};
           object.name = "window1";
           object.type = "window";
-          object.wallId = this.selectWall(formData["tmcp_select_36"]);
+          object.wallId = this.selectWall(formData["tmcp_select_60"]);
           object.y = parseFloat(value) / 100;
           this.$store.commit("update", { ...object });
         }
