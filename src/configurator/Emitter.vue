@@ -24,12 +24,12 @@ export default {
     };
   },
   methods: {
-    changeRoof: function (name = "Dwuspadowy_0", { action = "update" }) {
+    changeRoof: function (name = "Dwuspadowy_0") {
       let object = {
         type: "roof",
         roofType: this.roofNameTranslation[name],
       };
-      this.$store.commit(action, { ...object });
+      this.$store.commit("update", { ...object });
     },
     changeRoofEvent: function (e) {
       this.changeRoof(e.target.value);
