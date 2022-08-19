@@ -25,23 +25,12 @@ export default {
     },
     changeGarageSize: function ({ width = 0, length = 0 }) {
       let object = { width: width, length: length };
-      if (width) {
-        object = {
-          width: parseFloat(width.split(" ")[0].replace(",", ".")),
-        };
+      if (!width) {
+        delete object.width;
       }
 
-      if (length) {
-        object = {
-          length: parseFloat(length.split(" ")[0].replace(",", ".")),
-        };
-      }
-
-      if (width && length) {
-        object = {
-          width: parseFloat(width.split(" ")[0].replace(",", ".")),
-          length: parseFloat(length.split(" ")[0].replace(",", ".")),
-        };
+      if (!length) {
+        delete object.length;
       }
 
       if (width || length) {
@@ -50,12 +39,17 @@ export default {
     },
     changeGarageWidthEvent: function (e) {
       this.changeGarageSize({
-        width: e.target.value,
+        width: parseFloat(e.target.value.split(" ")[0].replace(",", ".")),
       });
+      document
+        .querySelector("form.cart")
+        .querySelector(
+          'div[data-uniqid="627a9ae125d4d6.54277708"] .tc-epo-label'
+        ).textContent = e.target.value;
     },
     changeGarageLengthEvent: function (e) {
       this.changeGarageSize({
-        length: e.target.value,
+        length: parseFloat(e.target.value.split(" ")[0].replace(",", ".")),
       });
     },
     changeWindow: function ({ name, action = true }) {
