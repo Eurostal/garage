@@ -8,11 +8,12 @@ export default {
         "Spad w przód_2": "front",
         "Spad w prawo_3": "right",
         "Spad w lewo_4": "left",
+        Dwuspadowy_0: "gable",
       },
     };
   },
   methods: {
-    changeRoof: function (name = "Spad w tył_1", action = "update") {
+    changeRoof: function (name = "Dwuspadowy_0", action = "update") {
       let object = {
         type: "roof",
         roofType: this.roofNameTranslation[name],
