@@ -15,7 +15,7 @@ export default {
         Uchylna_1: "tilted",
         "Uchylna - szeroki panel_2": "wide",
         "Bez bramy - otwarty przód_3": "empty",
-        "Zamiast bramy ściana_4": "",
+        "Zamiast bramy ściana": "",
       },
       gateStyleTranslation: {
         Pionowe_0: "",
