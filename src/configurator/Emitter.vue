@@ -78,7 +78,7 @@ export default {
         style = "",
       }
     ) {
-      object = {};
+      let object = {};
       object.type = "gate";
       object.name = name;
       object.wallId = 0;
