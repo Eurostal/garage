@@ -882,6 +882,7 @@ export default {
 
       let target;
       let setAttribute;
+      let object = {};
       // window1 szerokosc
       target = document.querySelector(
         '[data-uniqid="626666fc607e27.12468774"] div[aria-valuenow]'
@@ -889,12 +890,12 @@ export default {
       setAttribute = target.setAttribute;
       // override setAttribte
       target.setAttribute = (key, value) => {
-        if(key == 'aria-valuenow'){
-            object = {};
-            object.name = "window1";
-            object.type = "window";
-            object.x = value;
-            this.$store.commit("update", { ...object });
+        if (key == "aria-valuenow") {
+          object = {};
+          object.name = "window1";
+          object.type = "window";
+          object.x = value;
+          this.$store.commit("update", { ...object });
         }
         // use call, to set the context and prevent illegal invocation errors
         setAttribute.call(target, key, value);
@@ -907,12 +908,12 @@ export default {
       setAttribute = target.setAttribute;
       // override setAttribte
       target.setAttribute = (key, value) => {
-        if(key == 'aria-valuenow'){
-            object = {};
-            object.name = "window1";
-            object.type = "window";
-            object.y = value;
-            this.$store.commit("update", { ...object });
+        if (key == "aria-valuenow") {
+          object = {};
+          object.name = "window1";
+          object.type = "window";
+          object.y = value;
+          this.$store.commit("update", { ...object });
         }
         // use call, to set the context and prevent illegal invocation errors
         setAttribute.call(target, key, value);
