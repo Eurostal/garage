@@ -13,17 +13,17 @@ export default {
     };
   },
   methods: {
-    changeRoof: function (name = "Dwuspadowy_0", action = "update") {
+    changeRoof: function ({ name = "Dwuspadowy_0", action = "update" }) {
       let object = {
         type: "roof",
         roofType: this.roofNameTranslation[name],
       };
       this.$store.commit(action, { ...object });
     },
-    changeRoofProxy: function (e) {
-      this.changeRoof(e.target.value);
+    changeRoofEvent: function (e) {
+      this.changeRoof({ name: e.target.value });
     },
-    changeWindow: function (name, action = "update") {
+    changeWindow: function ({ name, action = "update" }) {
       let object = {
         type: "window",
         name: name,
@@ -31,9 +31,35 @@ export default {
       };
       this.$store.commit(action, { ...object });
     },
-    changeWindowProxy: function (e) {
-      console.log(e.target.value);
-      this.changeWindow("window", "window1");
+    changeWindowFirstEvent: function (e) {
+      this.changeWindow({
+        name: "window1",
+        action: e.target.checked ? "update" : "remove",
+      });
+    },
+    changeWindowSecondEvent: function (e) {
+      this.changeWindow({
+        name: "window2",
+        action: e.target.checked ? "update" : "remove",
+      });
+    },
+    changeWindowThirdEvent: function (e) {
+      this.changeWindow({
+        name: "window3",
+        action: e.target.checked ? "update" : "remove",
+      });
+    },
+    changeWindowFourthEvent: function (e) {
+      this.changeWindow({
+        name: "window4",
+        action: e.target.checked ? "update" : "remove",
+      });
+    },
+    changeWindowFifthEvent: function (e) {
+      this.changeWindow({
+        name: "window5",
+        action: e.target.checked ? "update" : "remove",
+      });
     },
     changeEventForm: function (e) {
       const formData = Object.fromEntries(
@@ -878,16 +904,47 @@ export default {
       form
         .querySelectorAll('div[data-uniqid="62581d466f2312.18396791"] input')
         .forEach((input) =>
-          input.addEventListener("change", this.changeRoofProxy, {
+          input.addEventListener("change", this.changeRoofEvent, {
             passive: true,
           })
         );
 
-      let changeWindowProxy = this.changeWindow;
       form
         .querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input')
         .forEach((input) =>
-          input.addEventListener("change", this.changeWindowProxy, {
+          input.addEventListener("change", this.changeWindowFirstEvent, {
+            passive: true,
+          })
+        );
+
+      form
+        .querySelectorAll('div[data-uniqid="626666fc607e49.00803437"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeWindowSecondEvent, {
+            passive: true,
+          })
+        );
+
+      form
+        .querySelectorAll('div[data-uniqid="626666fc607e94.51163204"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeWindowThirdEvent, {
+            passive: true,
+          })
+        );
+
+      form
+        .querySelectorAll('div[data-uniqid="626666fc607ee3.26554221"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeWindowFourthEvent, {
+            passive: true,
+          })
+        );
+
+      form
+        .querySelectorAll('div[data-uniqid="626666fc607f38.30729408"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeWindowFifthEvent, {
             passive: true,
           })
         );
