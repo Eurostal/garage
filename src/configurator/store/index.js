@@ -93,16 +93,16 @@ export const store = createStore({
             }
           } else {
             let gateOffset;
-            let hasDoubleGate = false;
+            let noDoubleGate = false;
             console.log("------SPRAWDZAM BRAMY 2-------");
             elements.forEach((el) => {
-              if (el.gateType == "double") {
-                hasDoubleGate = true;
-                console.log(el, hasDoubleGate);
+              if (el.gateType !== "double") {
+                noDoubleGate = true;
+                console.log(el, noDoubleGate);
               }
             });
             console.log(has);
-            gateOffset = hasDoubleGate ? 0.02 : 0.1;
+            gateOffset = noDoubleGate ? 0.1 : 0.02;
             state.garageUpdated.fittings.fittingWidth = gateOffset;
             if (element.x + element.width + gateOffset > wallSize.x || element.y + element.height > wallSize.y) {
               fits = false;
