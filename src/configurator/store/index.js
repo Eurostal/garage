@@ -94,14 +94,11 @@ export const store = createStore({
           } else {
             let gateOffset;
             let noDoubleGate = false;
-            console.log("------SPRAWDZAM BRAMY 2-------");
             elements.forEach((el) => {
               if (el.gateType !== "double") {
                 noDoubleGate = true;
-                console.log(el, noDoubleGate);
               }
             });
-            console.log(has);
             gateOffset = noDoubleGate ? 0.1 : 0.02;
             state.garageUpdated.fittings.fittingWidth = gateOffset;
             if (element.x + element.width + gateOffset > wallSize.x || element.y + element.height > wallSize.y) {
