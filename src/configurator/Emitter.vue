@@ -626,7 +626,7 @@ export default {
               object.material = "WHITE";
             }
 
-            object.x = 0.2;
+            object.x = 0.1;
             object.y = 1;
 
             this.$store.commit("update", { ...object });
@@ -654,7 +654,7 @@ export default {
             } else {
               object.material = "WHITE";
             }
-            object.x = 0.2;
+            object.x = 0.1;
             object.y = 1;
 
             this.$store.commit("update", { ...object });
@@ -682,7 +682,7 @@ export default {
             } else {
               object.material = "WHITE";
             }
-            object.x = 0.2;
+            object.x = 0.1;
             object.y = 1;
 
             this.$store.commit("update", { ...object });
@@ -710,7 +710,7 @@ export default {
             } else {
               object.material = "WHITE";
             }
-            object.x = 0.2;
+            object.x = 0.1;
             object.y = 1;
 
             this.$store.commit("update", { ...object });
@@ -737,7 +737,7 @@ export default {
             } else {
               object.material = "WHITE";
             }
-            object.x = 0.2;
+            object.x = 0.1;
             object.y = 1;
 
             this.$store.commit("update", { ...object });
@@ -769,7 +769,7 @@ export default {
               object.material = object.material + "_H";
             }
 
-            object.x = 0.2;
+            object.x = 0.1;
             object.y = 0;
 
             this.$store.commit("update", { ...object });
@@ -799,7 +799,7 @@ export default {
               object.material = object.material + "_H";
             }
 
-            object.x = 0.2;
+            object.x = 0.1;
             object.y = 0;
 
             this.$store.commit("update", { ...object });
