@@ -15,7 +15,7 @@ import Configurator from "./configurator/Configurator.vue";
   width: 90%;
 }
 
-.tc-cell.tc-col > .tc-row {
-  padding: 0 15px;
+.single-product.postid-15 #tc-epo-form-15-0 > div {
+  padding: 0 15px !important;
 }
 </style>
