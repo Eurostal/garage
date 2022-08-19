@@ -874,7 +874,6 @@ export default {
     if (document.querySelector("form.cart")) {
       // form.addEventListener("change", this.changeEventForm, { passive: true });
 
-      let changeRoofProxy = this.changeRoof;
       form
         .querySelectorAll('div[data-uniqid="62581d466f2312.18396791"] input')
         .forEach((input) =>
