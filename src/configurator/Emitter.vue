@@ -110,10 +110,14 @@ export default {
       }
     },
     changeGate1Event: function (e) {
-      this.changeGate("gate1");
+      this.changeGate("gate1", {
+        type: e.target.value,
+      });
     },
     changeGate2Event: function (e) {
-      this.changeGate("gate2");
+      this.changeGate("gate2", {
+        type: e.target.value,
+      });
     },
     changeGate1PositionEvent: function (e) {
       this.changeGate("gate1", {
@@ -1085,7 +1089,7 @@ export default {
         );
 
       form
-        .querySelectorAll('div[data-uniqid="625928cfacd5f2.48728982"] input')
+        .querySelectorAll('div[data-uniqid="625928cfacd5f2.48728982"] select')
         .forEach((input) =>
           input.addEventListener("change", this.changeGate1WidthEvent, {
             passive: true,
@@ -1093,7 +1097,7 @@ export default {
         );
 
       form
-        .querySelectorAll('div[data-uniqid="627b7720c54f10.62015977"] input')
+        .querySelectorAll('div[data-uniqid="627b7720c54f10.62015977"] select')
         .forEach((input) =>
           input.addEventListener("change", this.changeGate2WidthEvent, {
             passive: true,
@@ -1101,7 +1105,7 @@ export default {
         );
 
       form
-        .querySelectorAll('div[data-uniqid="625928cfacd608.04744343"] input')
+        .querySelectorAll('div[data-uniqid="625928cfacd608.04744343"] select')
         .forEach((input) =>
           input.addEventListener("change", this.changeGate1HeightEvent, {
             passive: true,
@@ -1109,7 +1113,7 @@ export default {
         );
 
       form
-        .querySelectorAll('div[data-uniqid="627b772ac54f28.86727207"] input')
+        .querySelectorAll('div[data-uniqid="627b772ac54f28.86727207"] select')
         .forEach((input) =>
           input.addEventListener("change", this.changeGate2HeightEvent, {
             passive: true,
