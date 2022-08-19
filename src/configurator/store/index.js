@@ -87,11 +87,15 @@ export const store = createStore({
               ? { x: state.garageUpdated.width, y: state.garageUpdated.height }
               : { x: state.garageUpdated.length, y: state.garageUpdated.height };
           if (element.type !== "gate") {
-            if (element.x + element.width + 0.2 > wallSize.x || element.y + element.height + 0.2 > wallSize.y) {
+            if (element.x + element.width + 0.1 > wallSize.x || element.y + element.height + 0.1 > wallSize.y) {
               fits = false;
             }
           } else {
-            if (element.x + element.width > wallSize.x || element.y + element.height > wallSize.y) {
+            let gateOffset = 0.1;
+            if (element.gateType == "double") {
+              gateOffset = 0.02;
+            }
+            if (element.x + element.width + gateOffset > wallSize.x || element.y + element.height > wallSize.y) {
               fits = false;
             }
           }
@@ -304,37 +308,41 @@ function updateG(state, data) {
 
 function checkPlacement(item, wallElements, wallSize) {
   if (item.type !== "gate") {
-    if (item.height + 0.2 > wallSize.y) {
+    if (item.height + 0.1 > wallSize.y) {
       console.warn(item.name + "is too big to fit in the wall");
       return false;
     }
-    if (item.width + 0.4 > wallSize.x) {
+    if (item.width + 0.2 > wallSize.x) {
       console.warn(item.name + "is too big to fit in the wall");
       return false;
     }
-    if (item.x + item.width + 0.2 > wallSize.x) {
-      item.x = wallSize.x - 0.2 - item.width;
+    if (item.x + item.width + 0.1 > wallSize.x) {
+      item.x = wallSize.x - 0.1 - item.width;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
     }
-    if (item.x < 0.2) {
-      item.x = 0.2;
+    if (item.x < 0.1) {
+      item.x = 0.1;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
     }
-    if (item.y + item.height + 0.2 > wallSize.y) {
-      item.y = wallSize.y - 0.2 - item.height;
+    if (item.y + item.height + 0.1 > wallSize.y) {
+      item.y = wallSize.y - 0.1 - item.height;
       console.warn(item.name + " exceeds wall boundary, yOffset changed to " + item.y);
     }
   } else {
-    if (item.width > wallSize.x) {
+    let gateOffset = 0.1;
+    if (item.gateType == "double") {
+      gateOffset = 0.02;
+    }
+    if (item.width + gateOffset * 2 > wallSize.x) {
       console.warn(item.name + "is too big to fit in the wall");
       return false;
     }
-    if (item.x + item.width > wallSize.x) {
-      item.x = wallSize.x - item.width;
+    if (item.x + item.width + gateOffset > wallSize.x) {
+      item.x = wallSize.x - gateOffset - item.width;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
     }
-    if (item.x < 0) {
-      item.x = 0;
+    if (item.x < gateOffset) {
+      item.x = gateOffset;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
     }
     if (item.y + item.height > wallSize.y) {
