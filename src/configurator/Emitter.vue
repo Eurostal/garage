@@ -12,10 +12,7 @@ export default {
     };
   },
   methods: {
-    changeRoof: function (e) {
-      console.log(e);
-      let name = "Spad w tył_1";
-      let action = "update";
+    changeRoof: function (name = "Spad w tył_1", action = "update") {
       let object = {
         type: "roof",
         roofType: this.roofNameTranslation[name],
@@ -873,9 +870,16 @@ export default {
 
       form
         .querySelector('div[data-uniqid="62581d466f2312.18396791"] input')
-        .addEventListener("change", this.changeRoof($event), {
-          passive: true,
-        });
+        .addEventListener(
+          "change",
+          function (e) {
+            console.log(e);
+            this.changeRoof();
+          },
+          {
+            passive: true,
+          }
+        );
 
       form
         .querySelector('div[data-uniqid="626666fc607df3.98247608"] input')
