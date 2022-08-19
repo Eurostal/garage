@@ -894,7 +894,7 @@ export default {
           object = {};
           object.name = "window1";
           object.type = "window";
-          object.wallId = this.selectWall(formData["tmcp_select_76"]);
+          object.wallId = this.selectWall(formData["tmcp_select_36"]);
           object.x = parseFloat(value) / 100;
           this.$store.commit("update", { ...object });
         }
@@ -913,7 +913,7 @@ export default {
           object = {};
           object.name = "window1";
           object.type = "window";
-          object.wallId = this.selectWall(formData["tmcp_select_76"]);
+          object.wallId = this.selectWall(formData["tmcp_select_36"]);
           object.y = parseFloat(value) / 100;
           this.$store.commit("update", { ...object });
         }
