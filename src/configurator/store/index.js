@@ -156,6 +156,9 @@ function updateG(state, data) {
   const wallNames = ["front", "back", "left", "right"];
   console.log(data);
   if (data.wallId !== undefined && data.eventType == "update") {
+    if (data.name === "gate2" && state.garageActual.width < 5.5) {
+      return;
+    }
     const elements = [];
     Object.values(state.garageActual.walls[wallNames[data.wallId]].elements).forEach((element) => {
       if (data.name && element.name !== data.name) {
