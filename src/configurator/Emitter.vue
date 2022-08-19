@@ -19,14 +19,20 @@ export default {
       };
       this.$store.commit(action, { ...object });
     },
-    changeWindow: function (name, action = "update", e) {
+    changeRoofProxy: function (e) {
+      this.changeRoof(e.target.value);
+    },
+    changeWindow: function (name, action = "update") {
       let object = {
         type: "window",
         name: name,
         wallId: this.selectWall(name),
       };
-      console.log(" &&&&&&&&&&& ", e, " &&&&&&&&&&& ");
       this.$store.commit(action, { ...object });
+    },
+    changeWindowProxy: function (e) {
+      console.log(e.target.value);
+      this.changeWindow("window", "window1");
     },
     changeEventForm: function (e) {
       const formData = Object.fromEntries(
@@ -868,33 +874,22 @@ export default {
     if (document.querySelector("form.cart")) {
       // form.addEventListener("change", this.changeEventForm, { passive: true });
 
+      let changeRoofProxy = this.changeRoof;
       form
         .querySelectorAll('div[data-uniqid="62581d466f2312.18396791"] input')
         .forEach((input) =>
-          input.addEventListener(
-            "change",
-            function (e) {
-              this.changeRoof(e.target.value);
-            },
-            {
-              passive: true,
-            }
-          )
+          input.addEventListener("change", this.changeRoofProxy, {
+            passive: true,
+          })
         );
 
+      let changeWindowProxy = this.changeWindow;
       form
         .querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input')
         .forEach((input) =>
-          input.addEventListener(
-            "change",
-            function (e) {
-              console.log(e.target.value);
-              this.changeWindow("window", "window1", this);
-            },
-            {
-              passive: true,
-            }
-          )
+          input.addEventListener("change", this.changeWindowProxy, {
+            passive: true,
+          })
         );
     }
   },
