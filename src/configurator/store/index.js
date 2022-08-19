@@ -10,14 +10,14 @@ export const store = createStore({
         garage: {
           width: 2.95,
           length: 5,
-          height: 2.13,
+          height: 1.85 + 0.13,
           walls: {
             front: {
               elements: {
                 gate1: {
                   type: "gate",
                   width: 2,
-                  height: 2,
+                  height: 1.85,
                   material: "RAL9010",
                   name: "gate1",
                   gateType: "double",
