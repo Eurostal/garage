@@ -14,4 +14,8 @@ import Configurator from "./configurator/Configurator.vue";
 .single-product.postid-15 div.product .summary.entry-summary.tc-init {
   width: 90%;
 }
+
+.tc-cell.tc-col > .tc-row {
+  padding: 0 15px;
+}
 </style>
