@@ -337,7 +337,7 @@ function checkPlacement(item, wallElements, wallSize) {
   } else {
     let gateOffset = 0.1;
     if (item.gateType == "double") {
-      gateOffset = 0.02;
+      gateOffset = 0;
     }
     if (item.width + gateOffset * 2 > wallSize.x) {
       console.warn(item.name + "is too big to fit in the wall");
