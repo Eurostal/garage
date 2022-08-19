@@ -12,7 +12,10 @@ export default {
     };
   },
   methods: {
-    changeRoof: function (name = "Spad w tył_1", action = "update") {
+    changeRoof: function (e) {
+      console.log(e);
+      let name = "Spad w tył_1";
+      let action = "update";
       let object = {
         type: "roof",
         roofType: this.roofNameTranslation[name],
@@ -49,7 +52,7 @@ export default {
         }
 
         //windows
-        if (!formData["tmcp_checkbox_34_0"]) {
+        if (!formData["tmcp_checkbox_35_0"]) {
           object = {};
           object.type = "window";
           object.name = "window1";
@@ -866,7 +869,14 @@ export default {
   mounted: function () {
     var form = document.querySelector("form.cart");
     if (document.querySelector("form.cart")) {
-      form.addEventListener("change", this.changeEventForm, { passive: true });
+      // form.addEventListener("change", this.changeEventForm, { passive: true });
+
+      form
+        .querySelector('div[data-uniqid="62581d466f2312.18396791"] input')
+        .addEventListener("change", this.changeRoof, {
+          passive: true,
+        });
+
       form
         .querySelector('div[data-uniqid="626666fc607df3.98247608"] input')
         .addEventListener(
