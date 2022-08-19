@@ -945,7 +945,7 @@ export default {
         );
 
       form
-        .querySelectorAll('div[data-uniqid="6259298d5b5755.33518299"] input')
+        .querySelectorAll('div[data-uniqid="6259298d5b5755.33518299"] select')
         .forEach((input) =>
           input.addEventListener("change", this.changeGarageWidthEvent, {
             passive: true,
@@ -953,7 +953,7 @@ export default {
         );
 
       form
-        .querySelectorAll('div[data-uniqid="626932f0482669.99437527"] input')
+        .querySelectorAll('div[data-uniqid="626932f0482669.99437527"] select')
         .forEach((input) =>
           input.addEventListener("change", this.changeGarageLengthEvent, {
             passive: true,
