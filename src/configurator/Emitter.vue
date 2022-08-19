@@ -23,42 +23,77 @@ export default {
     changeRoofEvent: function (e) {
       this.changeRoof({ name: e.target.value });
     },
-    changeWindow: function ({ name, action = "update" }) {
+    changeGarageSize: function ({ width = 0, length = 0 }) {
+      let object = { width: width, length: length };
+      if (width) {
+        object = {
+          width: parseFloat(width.split(" ")[0].replace(",", ".")),
+        };
+      }
+
+      if (length) {
+        object = {
+          length: parseFloat(length.split(" ")[0].replace(",", ".")),
+        };
+      }
+
+      if (width && length) {
+        object = {
+          width: parseFloat(width.split(" ")[0].replace(",", ".")),
+          length: parseFloat(length.split(" ")[0].replace(",", ".")),
+        };
+      }
+
+      if (width || length) {
+        this.$store.commit("reInit", { ...object });
+      }
+    },
+    changeGarageWidthEvent: function (e) {
+      this.changeGarageSize({
+        width: e.target.value,
+      });
+    },
+    changeGarageLengthEvent: function (e) {
+      this.changeGarageSize({
+        height: e.target.value,
+      });
+    },
+    changeWindow: function ({ name, action = true }) {
       let object = {
         type: "window",
         name: name,
         wallId: this.selectWall(name),
       };
-      this.$store.commit(action, { ...object });
+      this.$store.commit(action ? "update" : "remove", { ...object });
     },
     changeWindowFirstEvent: function (e) {
       this.changeWindow({
         name: "window1",
-        action: e.target.checked ? "update" : "remove",
+        action: e.target.checked,
       });
     },
     changeWindowSecondEvent: function (e) {
       this.changeWindow({
         name: "window2",
-        action: e.target.checked ? "update" : "remove",
+        action: e.target.checked,
       });
     },
     changeWindowThirdEvent: function (e) {
       this.changeWindow({
         name: "window3",
-        action: e.target.checked ? "update" : "remove",
+        action: e.target.checked,
       });
     },
     changeWindowFourthEvent: function (e) {
       this.changeWindow({
         name: "window4",
-        action: e.target.checked ? "update" : "remove",
+        action: e.target.checked,
       });
     },
     changeWindowFifthEvent: function (e) {
       this.changeWindow({
         name: "window5",
-        action: e.target.checked ? "update" : "remove",
+        action: e.target.checked,
       });
     },
     changeEventForm: function (e) {
@@ -905,6 +940,22 @@ export default {
         .querySelectorAll('div[data-uniqid="62581d466f2312.18396791"] input')
         .forEach((input) =>
           input.addEventListener("change", this.changeRoofEvent, {
+            passive: true,
+          })
+        );
+
+      form
+        .querySelectorAll('div[data-uniqid="6259298d5b5755.33518299"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeGarageWidthEvent, {
+            passive: true,
+          })
+        );
+
+      form
+        .querySelectorAll('div[data-uniqid="626932f0482669.99437527"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeGarageLengthEvent, {
             passive: true,
           })
         );
