@@ -97,6 +97,8 @@ export const store = createStore({
             elements.forEach((el) => {
               if (el.gateType == "double") {
                 hasDoubleGate = true;
+                console.log("------SPRAWDZAM BRAMY 2-------");
+                console.log(el, hasDoubleGate);
               }
             });
             gateOffset = hasDoubleGate ? 0.02 : 0.1;
