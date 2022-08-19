@@ -894,7 +894,7 @@ export default {
           object = {};
           object.name = "window1";
           object.type = "window";
-          object.x = value;
+          object.x = parseFloat(value);
           this.$store.commit("update", { ...object });
         }
         // use call, to set the context and prevent illegal invocation errors
@@ -912,7 +912,7 @@ export default {
           object = {};
           object.name = "window1";
           object.type = "window";
-          object.y = value;
+          object.y = parseFloat(value);
           this.$store.commit("update", { ...object });
         }
         // use call, to set the context and prevent illegal invocation errors
