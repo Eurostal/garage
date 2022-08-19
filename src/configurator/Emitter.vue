@@ -920,6 +920,158 @@ export default {
         // use call, to set the context and prevent illegal invocation errors
         setAttribute.call(target, key, value);
       };
+
+      // window2 szerokosc
+      target = document.querySelector(
+        '[data-uniqid="626666fc607e72.58094923"] div[aria-valuenow]'
+      );
+      setAttribute = target.setAttribute;
+      // override setAttribte
+      target.setAttribute = (key, value) => {
+        if (key == "aria-valuenow") {
+          object = {};
+          object.name = "window1";
+          object.type = "window";
+          object.wallId = this.selectWall(formData["tmcp_select_36"]);
+          object.y = parseFloat(value) / 100;
+          this.$store.commit("update", { ...object });
+        }
+        // use call, to set the context and prevent illegal invocation errors
+        setAttribute.call(target, key, value);
+      };
+
+      // window2 wysokosc
+      target = document.querySelector(
+        '[data-uniqid="626666fc607e84.50408653"] div[aria-valuenow]'
+      );
+      setAttribute = target.setAttribute;
+      // override setAttribte
+      target.setAttribute = (key, value) => {
+        if (key == "aria-valuenow") {
+          object = {};
+          object.name = "window1";
+          object.type = "window";
+          object.wallId = this.selectWall(formData["tmcp_select_36"]);
+          object.y = parseFloat(value) / 100;
+          this.$store.commit("update", { ...object });
+        }
+        // use call, to set the context and prevent illegal invocation errors
+        setAttribute.call(target, key, value);
+      };
+
+      // window3 szerokosc
+      target = document.querySelector(
+        '[data-uniqid="626666fc607ec0.38279999"] div[aria-valuenow]'
+      );
+      setAttribute = target.setAttribute;
+      // override setAttribte
+      target.setAttribute = (key, value) => {
+        if (key == "aria-valuenow") {
+          object = {};
+          object.name = "window1";
+          object.type = "window";
+          object.wallId = this.selectWall(formData["tmcp_select_36"]);
+          object.y = parseFloat(value) / 100;
+          this.$store.commit("update", { ...object });
+        }
+        // use call, to set the context and prevent illegal invocation errors
+        setAttribute.call(target, key, value);
+      };
+
+      // window3 wysokosc
+      target = document.querySelector(
+        '[data-uniqid="626666fc607ed0.11804888"] div[aria-valuenow]'
+      );
+      setAttribute = target.setAttribute;
+      // override setAttribte
+      target.setAttribute = (key, value) => {
+        if (key == "aria-valuenow") {
+          object = {};
+          object.name = "window1";
+          object.type = "window";
+          object.wallId = this.selectWall(formData["tmcp_select_36"]);
+          object.y = parseFloat(value) / 100;
+          this.$store.commit("update", { ...object });
+        }
+        // use call, to set the context and prevent illegal invocation errors
+        setAttribute.call(target, key, value);
+      };
+
+      // window4 szerokosc
+      target = document.querySelector(
+        '[data-uniqid="626666fc607f13.98580250"] div[aria-valuenow]'
+      );
+      setAttribute = target.setAttribute;
+      // override setAttribte
+      target.setAttribute = (key, value) => {
+        if (key == "aria-valuenow") {
+          object = {};
+          object.name = "window1";
+          object.type = "window";
+          object.wallId = this.selectWall(formData["tmcp_select_36"]);
+          object.y = parseFloat(value) / 100;
+          this.$store.commit("update", { ...object });
+        }
+        // use call, to set the context and prevent illegal invocation errors
+        setAttribute.call(target, key, value);
+      };
+
+      // window4 wysokosc
+      target = document.querySelector(
+        '[data-uniqid="626666fc607f29.14038358"] div[aria-valuenow]'
+      );
+      setAttribute = target.setAttribute;
+      // override setAttribte
+      target.setAttribute = (key, value) => {
+        if (key == "aria-valuenow") {
+          object = {};
+          object.name = "window1";
+          object.type = "window";
+          object.wallId = this.selectWall(formData["tmcp_select_36"]);
+          object.y = parseFloat(value) / 100;
+          this.$store.commit("update", { ...object });
+        }
+        // use call, to set the context and prevent illegal invocation errors
+        setAttribute.call(target, key, value);
+      };
+
+      // window5 szerokosc
+      target = document.querySelector(
+        '[data-uniqid="626666fc607f67.37945639"] div[aria-valuenow]'
+      );
+      setAttribute = target.setAttribute;
+      // override setAttribte
+      target.setAttribute = (key, value) => {
+        if (key == "aria-valuenow") {
+          object = {};
+          object.name = "window1";
+          object.type = "window";
+          object.wallId = this.selectWall(formData["tmcp_select_36"]);
+          object.y = parseFloat(value) / 100;
+          this.$store.commit("update", { ...object });
+        }
+        // use call, to set the context and prevent illegal invocation errors
+        setAttribute.call(target, key, value);
+      };
+
+      // window5 wysokosc
+      target = document.querySelector(
+        '[data-uniqid="626666fc607f79.78538581"] div[aria-valuenow]'
+      );
+      setAttribute = target.setAttribute;
+      // override setAttribte
+      target.setAttribute = (key, value) => {
+        if (key == "aria-valuenow") {
+          object = {};
+          object.name = "window1";
+          object.type = "window";
+          object.wallId = this.selectWall(formData["tmcp_select_36"]);
+          object.y = parseFloat(value) / 100;
+          this.$store.commit("update", { ...object });
+        }
+        // use call, to set the context and prevent illegal invocation errors
+        setAttribute.call(target, key, value);
+      };
     },
     selectWall(input) {
       let wallId = 0;
