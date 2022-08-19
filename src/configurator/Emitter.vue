@@ -103,7 +103,7 @@ export default {
         object.style = this.gateNameTranslation[type];
       }
 
-      if (object.gateType) {
+      if (type || width || height || position || style) {
         this.$store.commit("update", { ...object });
       } else {
         this.$store.commit("remove", { ...object });
