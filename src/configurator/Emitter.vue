@@ -77,6 +77,7 @@ export default {
         height = false,
         position = false,
         style = "",
+        material = "",
       }
     ) {
       let object = {};
@@ -104,6 +105,14 @@ export default {
         object.style = this.gateStyleTranslation[style];
       }
 
+      if (material) {
+        object.material = material;
+
+        if (style) {
+          object.material = material + object.style;
+        }
+      }
+
       console.log(object);
 
       this.$store.commit("update", { ...object });
@@ -123,7 +132,6 @@ export default {
       });
     },
     changeGate1PositionEvent: function (e) {
-      debugger;
       this.changeGate("gate1", {
         position: e.target.value / 100,
       });
@@ -164,9 +172,31 @@ export default {
       });
     },
     changeGate1StyleEvent: function (e) {
-      console.log("~~~ ", e.target.value, " ~~~~~");
+      if (formData["tmcp_radio_78"]) {
+        object.material = formData["tmcp_radio_78"]
+          .split("_")[0]
+          .replace(" ", "");
+      } else {
+        object.material = "RAL9010";
+      }
+      if (formData["tmcp_select_75"] == "W poziomie_1") {
+        object.material = object.material + "_H";
+      }
+
+      let material = "RAL9010";
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="6267c6616c1022.10988552"] input')
+        .forEach((input) => {
+          if (input.checked) {
+            material = input.value.split("_")[0];
+          }
+        });
+
       this.changeGate("gate1", {
         style: e.target.value,
+        material: material,
       });
     },
     changeGate2StyleEvent: function (e) {
