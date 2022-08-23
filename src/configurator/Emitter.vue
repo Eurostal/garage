@@ -88,10 +88,6 @@ export default {
         object.gateType = this.gateNameTranslation[type];
       }
 
-      if (type === "") {
-        this.$store.commit("remove", { ...object });
-      }
-
       if (width) {
         object.width = width;
       }
@@ -110,7 +106,7 @@ export default {
 
       console.log(object);
 
-      if (type || width || height || position || style) {
+      if (type !== "" || width || height || position || style) {
         this.$store.commit("update", { ...object });
       } else {
         this.$store.commit("remove", { ...object });
