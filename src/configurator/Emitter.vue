@@ -112,6 +112,7 @@ export default {
       }
     },
     changeGate1Event: function (e) {
+      console.log("~~~ ", e.target.value, " ~~~");
       this.changeGate("gate1", {
         type: e.target.value,
       });
