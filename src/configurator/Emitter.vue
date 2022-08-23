@@ -101,7 +101,7 @@ export default {
       }
 
       if (style) {
-        object.style = this.gateNameTranslation[style];
+        object.style = this.gateStyleTranslation[style];
       }
 
       console.log(object);
