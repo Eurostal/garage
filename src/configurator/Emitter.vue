@@ -101,12 +101,12 @@ export default {
       }
 
       if (style) {
-        object.style = this.gateNameTranslation[type];
+        object.style = this.gateNameTranslation[style];
       }
 
       console.log(object);
 
-      if (type !== "" || width || height || position || style) {
+      if (type !== "" && (width || height || position || style)) {
         this.$store.commit("update", { ...object });
       } else {
         this.$store.commit("remove", { ...object });
