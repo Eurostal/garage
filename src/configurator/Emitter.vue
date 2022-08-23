@@ -106,9 +106,9 @@ export default {
 
       console.log(object);
 
-      if (object.gateType !== "" && (width || height || position || style)) {
-        this.$store.commit("update", { ...object });
-      } else {
+      this.$store.commit("update", { ...object });
+
+      if (object.gateType === "") {
         this.$store.commit("remove", { ...object });
       }
     },
