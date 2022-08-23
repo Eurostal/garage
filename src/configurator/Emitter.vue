@@ -106,7 +106,7 @@ export default {
 
       console.log(object);
 
-      if (type !== "" && (width || height || position || style)) {
+      if (object.gateType !== "" && (width || height || position || style)) {
         this.$store.commit("update", { ...object });
       } else {
         this.$store.commit("remove", { ...object });
