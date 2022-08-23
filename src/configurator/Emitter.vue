@@ -189,8 +189,20 @@ export default {
       });
     },
     changeGate2StyleEvent: function (e) {
+      let material = "RAL9010";
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="6267c6616c1022.10988552"] input')
+        .forEach((input) => {
+          if (input.checked) {
+            material = input.value.split("_")[0];
+          }
+        });
+
       this.changeGate("gate2", {
         style: e.target.value,
+        material: material,
       });
     },
 
@@ -1161,9 +1173,11 @@ export default {
         );
 
       form
-        .querySelectorAll('div[data-uniqid="62ffad9da82021.94156944"] input')
+        .querySelectorAll(
+          'div[data-uniqid="62ffad9da82021.94156944"] .noui-target'
+        )
         .forEach((input) =>
-          input.addEventListener("change", this.changeGate1PositionEvent, {
+          input.addEventListener("set", this.changeGate1PositionEvent, {
             passive: true,
           })
         );
