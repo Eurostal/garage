@@ -172,17 +172,6 @@ export default {
       });
     },
     changeGate1StyleEvent: function (e) {
-      if (formData["tmcp_radio_78"]) {
-        object.material = formData["tmcp_radio_78"]
-          .split("_")[0]
-          .replace(" ", "");
-      } else {
-        object.material = "RAL9010";
-      }
-      if (formData["tmcp_select_75"] == "W poziomie_1") {
-        object.material = object.material + "_H";
-      }
-
       let material = "RAL9010";
 
       document
