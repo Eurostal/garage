@@ -113,7 +113,6 @@ export default {
       }
     },
     changeGate1Event: function (e) {
-      console.log("~~~ ", e.target.value, " ~~~");
       this.changeGate("gate1", {
         type: e.target.value,
       });
@@ -1126,7 +1125,7 @@ export default {
         );
 
       form
-        .querySelectorAll('div[data-uniqid="625929fa7219b1.06715193"] input')
+        .querySelectorAll('div[data-uniqid="625929fa7219b1.06715193"] select')
         .forEach((input) =>
           input.addEventListener("change", this.changeGate1StyleEvent, {
             passive: true,
@@ -1134,7 +1133,7 @@ export default {
         );
 
       form
-        .querySelectorAll('div[data-uniqid="627b7732c54f35.77583366"] input')
+        .querySelectorAll('div[data-uniqid="627b7732c54f35.77583366"] select')
         .forEach((input) =>
           input.addEventListener("change", this.changeGate2StyleEvent, {
             passive: true,
