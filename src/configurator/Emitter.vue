@@ -86,6 +86,10 @@ export default {
 
       if (type) {
         object.gateType = this.gateNameTranslation[type];
+      } 
+
+      if(type === ""){
+        this.$store.commit("remove", { ...object });
       }
 
       if (width) {
