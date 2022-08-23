@@ -132,6 +132,7 @@ export default {
       });
     },
     changeGate1PositionEvent: function (e) {
+      console.log("~~~ ", e, " ~~~~");
       this.changeGate("gate1", {
         position: e.target.value / 100,
       });
