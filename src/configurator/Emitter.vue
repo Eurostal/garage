@@ -86,9 +86,9 @@ export default {
 
       if (type) {
         object.gateType = this.gateNameTranslation[type];
-      } 
+      }
 
-      if(type === ""){
+      if (type === "") {
         this.$store.commit("remove", { ...object });
       }
 
@@ -168,6 +168,7 @@ export default {
       });
     },
     changeGate1StyleEvent: function (e) {
+      console.log("~~~ ", e.target.value, " ~~~~~");
       this.changeGate("gate1", {
         style: e.target.value,
       });
