@@ -1177,11 +1177,12 @@ export default {
         .querySelectorAll(
           'div[data-uniqid="62ffad9da82021.94156944"] .noui-target'
         )
-        .forEach((input) =>
+        .forEach((input) => {
+          console.log(input);
           input.addEventListener("set", this.changeGate1PositionEvent, {
             passive: true,
-          })
-        );
+          });
+        });
 
       form
         .querySelectorAll('div[data-uniqid="62ffaf77735284.94935292"] input')
