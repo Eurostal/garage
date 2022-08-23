@@ -1178,8 +1178,7 @@ export default {
           'div[data-uniqid="62ffad9da82021.94156944"] .tm-range-picker'
         )
         .forEach((input) => {
-          console.log(input);
-          input.addEventListener("set", this.changeGate1PositionEvent, {
+          input.noUiSlider.on("set", this.changeGate1PositionEvent, {
             passive: true,
           });
         });
