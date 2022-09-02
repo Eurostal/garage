@@ -952,22 +952,22 @@ export default {
 
       //window4
       form.querySelectorAll('div[data-uniqid="626666fc607ee3.26554221"] input').forEach((input) =>
-        input.addEventListener("change", this.changeWindow3Event, {
+        input.addEventListener("change", this.changeWindow4Event, {
           passive: true,
         })
       );
       form.querySelectorAll('div[data-uniqid="626666fc607ef9.15943710"] select').forEach((input) =>
-        input.addEventListener("change", this.changeWindow3SizeEvent, {
+        input.addEventListener("change", this.changeWindow4SizeEvent, {
           passive: true,
         })
       );
       form.querySelectorAll('div[data-uniqid="6267b836218ad3.26225604"] select').forEach((input) =>
-        input.addEventListener("change", this.changeWindow3WallEvent, {
+        input.addEventListener("change", this.changeWindow4WallEvent, {
           passive: true,
         })
       );
       form.querySelectorAll('div[data-uniqid="62f22c812e8675.77136207"] input').forEach((input) =>
-        input.addEventListener("change", this.changeWindow3MaterialEvent, {
+        input.addEventListener("change", this.changeWindow4MaterialEvent, {
           passive: true,
         })
       );
@@ -976,7 +976,7 @@ export default {
         var vm = this;
         Object.defineProperty(input, "value", {
           set: function (t) {
-            vm.changeWindow3PositionXEvent(t);
+            vm.changeWindow4PositionXEvent(t);
             input.setAttribute("value", t);
           },
           get: function () {
@@ -988,7 +988,7 @@ export default {
         var vm = this;
         Object.defineProperty(input, "value", {
           set: function (t) {
-            vm.changeWindow3PositionYEvent(t);
+            vm.changeWindow4PositionYEvent(t);
             input.setAttribute("value", t);
           },
           get: function () {
@@ -1000,22 +1000,22 @@ export default {
 
       //window5
       form.querySelectorAll('div[data-uniqid="626666fc607f38.30729408"] input').forEach((input) =>
-        input.addEventListener("change", this.changeWindow3Event, {
+        input.addEventListener("change", this.changeWindow5Event, {
           passive: true,
         })
       );
       form.querySelectorAll('div[data-uniqid="626666fc607f40.14629036"] select').forEach((input) =>
-        input.addEventListener("change", this.changeWindow3SizeEvent, {
+        input.addEventListener("change", this.changeWindow5SizeEvent, {
           passive: true,
         })
       );
       form.querySelectorAll('div[data-uniqid="6267b85e218ae1.80232513"] select').forEach((input) =>
-        input.addEventListener("change", this.changeWindow3WallEvent, {
+        input.addEventListener("change", this.changeWindow5WallEvent, {
           passive: true,
         })
       );
       form.querySelectorAll('div[data-uniqid="62f22c982e8686.31004466"] input').forEach((input) =>
-        input.addEventListener("change", this.changeWindow3MaterialEvent, {
+        input.addEventListener("change", this.changeWindow5MaterialEvent, {
           passive: true,
         })
       );
@@ -1024,7 +1024,7 @@ export default {
         var vm = this;
         Object.defineProperty(input, "value", {
           set: function (t) {
-            vm.changeWindow3PositionXEvent(t);
+            vm.changeWindow5PositionXEvent(t);
             input.setAttribute("value", t);
           },
           get: function () {
@@ -1036,7 +1036,7 @@ export default {
         var vm = this;
         Object.defineProperty(input, "value", {
           set: function (t) {
-            vm.changeWindow3PositionYEvent(t);
+            vm.changeWindow5PositionYEvent(t);
             input.setAttribute("value", t);
           },
           get: function () {
