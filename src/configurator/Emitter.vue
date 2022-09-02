@@ -482,6 +482,9 @@ export default {
         document.querySelector('[data-uniqid="6267c6616c1022.10988552"] input:checked').forEach((input) => {
           object.material = input.value.split("_")[0].replace(" ", "");
         });
+
+        object.type = "roof";
+        this.$store.commit("updateMaterial", { ...object });
       } else {
         document.querySelector('[data-uniqid="6267c6836c1098.51557180"] input:checked').forEach((input) => {
           object.material = input.value.split("_")[0].replace(" ", "");
@@ -491,6 +494,9 @@ export default {
       if (e.target.value === "W poziomie_1") {
         object.material = object.material + "_H";
       }
+
+      object.type = "walls";
+      this.$store.commit("updateMaterial", { ...object });
     },
 
     changeGarageMaterial: function (e) {
@@ -594,7 +600,6 @@ export default {
         })
       );
 
-
       //window1
       form.querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input').forEach((input) =>
         input.addEventListener("change", this.changeWindow1Event, {
@@ -643,7 +648,7 @@ export default {
       });
 
       //window2
-      
+
       form.querySelectorAll('div[data-uniqid="626666fc607e49.00803437"] input').forEach((input) =>
         input.addEventListener("change", this.changeWindow2Event, {
           passive: true,
