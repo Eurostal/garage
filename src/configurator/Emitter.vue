@@ -239,6 +239,12 @@ export default {
 
     changeWindow1WallEvent: function (e) {
       this.changeWindow("window1", {wallID: this.selectWall(e.target.value)});
+      
+      document
+        .querySelector("form.cart").querySelectorAll('div[data-uniqid="626666fc607e09.04638628"] input').forEach((input) => input.dispatchEvent(new Event("change")));
+          
+      document
+        .querySelector("form.cart").querySelectorAll('div[data-uniqid="626666fc607e10.77344128"] input').forEach((input) => input.dispatchEvent(new Event("change")));
     },
 
     changeWindow1MaterialEvent: function (e) {
@@ -471,13 +477,10 @@ export default {
           passive: true,
         })
       );
-      form.querySelectorAll('div[data-uniqid="62666dcf882f62.16373762"] select').forEach((input) => {
-          input.addEventListener("change", this.changeWindow1WallEvent, {
-            passive: true,
-          });
-          form.querySelectorAll('div[data-uniqid="626666fc607e09.04638628"] input').forEach((input) => input.dispatchEvent(new Event("change")));
-          form.querySelectorAll('div[data-uniqid="626666fc607e10.77344128"] input').forEach((input) => input.dispatchEvent(new Event("change")));
-        }
+      form.querySelectorAll('div[data-uniqid="62666dcf882f62.16373762"] select').forEach((input) => 
+        input.addEventListener("change", this.changeWindow1WallEvent, {
+          passive: true,
+        })        
       );
       form.querySelectorAll('div[data-uniqid="626666fc607e10.77344128"] input').forEach((input) =>
         input.addEventListener("change", this.changeWindow1MaterialEvent, {
