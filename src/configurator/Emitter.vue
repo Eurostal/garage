@@ -1178,8 +1178,15 @@ export default {
           'div[data-uniqid="62ffad9da82021.94156944"] .tm-range-picker'
         )
         .forEach((input) => {
-          input.noUiSlider.on("set", this.changeGate1PositionEvent, {
-            passive: true,
+          Object.defineProperty(input, "value", {
+            set: function (t) {
+              console.log("value of hidden field changed!");
+              this.changeGate1PositionEvent(t);
+              targetNode.setAttribute("value", t);
+            },
+            get: function () {
+              return targetNode.getAttribute("value");
+            },
           });
         });
 
