@@ -245,6 +245,20 @@ export default {
       });
     },
 
+    changeWindow1PositionXEvent: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
+      this.changeWindow("window1", wallId, {
+        x: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
+      });
+    },
+
+    changeWindow1PositionYEvent: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
+      this.changeWindow("window1", wallId, {
+        y: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
+      });
+    },
+
     changeWindow2Event: function (e) {
       this.changeWindow("window2", {
         action: e.target.checked,
@@ -338,11 +352,14 @@ export default {
       });
     },
     changeFittingsMaterialEvent: function (e) {
-      if(e.target.checked){
-        document.querySelector("form.cart").querySelectorAll('div[data-uniqid="6267a577abc002.73453783"] input:checked:not(#' + e.target.id + ')').forEach((input) => {
-          input.checked = false;
-          input.dispatchEvent(new Event("change"));
-        })
+      if (e.target.checked) {
+        document
+          .querySelector("form.cart")
+          .querySelectorAll('div[data-uniqid="6267a577abc002.73453783"] input:checked:not(#' + e.target.id + ")")
+          .forEach((input) => {
+            input.checked = false;
+            input.dispatchEvent(new Event("change"));
+          });
 
         var value = e.target.value.split("_")[0].replace(" ", "");
         this.changeFittings({
@@ -462,6 +479,31 @@ export default {
           passive: true,
         })
       );
+
+      form.querySelectorAll('div[data-uniqid="626666fc607e27.12468774"] .tmcp-range').forEach((input) => {
+        var vm = this;
+        Object.defineProperty(input, "value", {
+          set: function (t) {
+            vm.changeWindow1PositionXEvent(t);
+            input.setAttribute("value", t);
+          },
+          get: function () {
+            return input.getAttribute("value");
+          },
+        });
+      });
+      form.querySelectorAll('div[data-uniqid="626666fc607e37.33496203"] .tmcp-range').forEach((input) => {
+        var vm = this;
+        Object.defineProperty(input, "value", {
+          set: function (t) {
+            vm.changeWindow1PositionYEvent(t);
+            input.setAttribute("value", t);
+          },
+          get: function () {
+            return input.getAttribute("value");
+          },
+        });
+      });
 
       form.querySelectorAll('div[data-uniqid="626666fc607e94.51163204"] input').forEach((input) =>
         input.addEventListener("change", this.changeWindowThirdEvent, {
