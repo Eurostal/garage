@@ -542,18 +542,24 @@ export default {
     // Materials
     changeSheetOrientation: function (e) {
       let object = {};
-      object.material = "RAL_9010";
       if (document.querySelector('[data-uniqid="6268636725a2c5.41006929"] select').value === "Jednolity kolor_0") {
-        document.querySelector('[data-uniqid="6267c6616c1022.10988552"] input:checked').forEach((input) => {
-          object.material = input.value.split("_")[0].replace(" ", "");
-        });
-
+        if (document.querySelectorAll('[data-uniqid="6267c6616c1022.10988552"] input:checked') !== undefined) {
+          document.querySelectorAll('[data-uniqid="6267c6616c1022.10988552"] input:checked').forEach((input) => {
+            object.material = input.value.split("_")[0].replace(" ", "");
+          });
+        } else {
+          object.material = "RAL_9010";
+        }
         object.type = "roof";
         this.$store.commit("updateMaterial", { ...object });
       } else {
-        document.querySelector('[data-uniqid="6267c6836c1098.51557180"] input:checked').forEach((input) => {
-          object.material = input.value.split("_")[0].replace(" ", "");
-        });
+        if (document.querySelectorAll('[data-uniqid="6267c6836c1098.51557180"] input:checked') !== undefined) {
+          document.querySelectorAll('[data-uniqid="6267c6836c1098.51557180"] input:checked').forEach((input) => {
+            object.material = input.value.split("_")[0].replace(" ", "");
+          });
+        } else {
+          object.material = "RAL_9010";
+        }
       }
 
       if (e.target.value === "W poziomie_1") {
