@@ -89,7 +89,7 @@ export default {
         object.material = material;
 
         if (style) {
-          object.material = material + this.gateStyleTranslation[object.style];
+          object.material = material + this.gateStyleTranslation[object.material];
         }
       }
 
