@@ -134,7 +134,7 @@ export default {
     changeGate1PositionEvent: function (e) {
       console.log("~~~ ", e, " ~~~~");
       this.changeGate("gate1", {
-        position: e.target.value / 100,
+        position: parseFloat(e) / 100,
       });
     },
     changeGate2PositionEvent: function (e) {
