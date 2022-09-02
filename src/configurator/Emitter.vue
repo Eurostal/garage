@@ -249,6 +249,16 @@ export default {
         .querySelector("form.cart")
         .querySelectorAll('div[data-uniqid="626666fc607e10.77344128"] input:checked')
         .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="626666fc607e27.12468774"] .tmcp-range')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="626666fc607e37.33496203"] .tmcp-range')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
     },
 
     changeWindow1MaterialEvent: function (e) {
