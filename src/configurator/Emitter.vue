@@ -463,22 +463,22 @@ export default {
 
       document
         .querySelector("form.cart")
-        .querySelectorAll('div[data-uniqid="626666fc607ea4.67519101"] select')
+        .querySelectorAll('div[data-uniqid="626666fc607ef9.15943710"] select')
         .forEach((input) => input.dispatchEvent(new Event("change")));
 
       document
         .querySelector("form.cart")
-        .querySelectorAll('div[data-uniqid="62f22c432e8664.47573288"] input:checked')
+        .querySelectorAll('div[data-uniqid="62f22c812e8675.77136207"] input:checked')
         .forEach((input) => input.dispatchEvent(new Event("change")));
 
       document
         .querySelector("form.cart")
-        .querySelectorAll('div[data-uniqid="626666fc607ec0.38279999"] .tmcp-range')
+        .querySelectorAll('div[data-uniqid="626666fc607f13.98580250"] .tmcp-range')
         .forEach((input) => (input.value = input.value));
 
       document
         .querySelector("form.cart")
-        .querySelectorAll('div[data-uniqid="626666fc607ed0.11804888"] .tmcp-range')
+        .querySelectorAll('div[data-uniqid="626666fc607f29.14038358"] .tmcp-range')
         .forEach((input) => (input.value = input.value));
     },
 
@@ -514,7 +514,7 @@ export default {
 
     //window5
     changeWindow5Event: function (e) {
-      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b85e218ae1.80232513"] select').value);
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="626666fc607f67.37945639"] select').value);
       this.changeWindow("window5", {
         wallId: wallId,
         action: e.target.checked,
@@ -523,7 +523,7 @@ export default {
 
     changeWindow5SizeEvent: function (e) {
       let sizeData = e.target.value.split("x");
-      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b85e218ae1.80232513"] select').value);
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="626666fc607f79.78538581"] select').value);
       this.changeWindow("window5", {
         wallId: wallId,
         width: sizeData[0] / 100,
