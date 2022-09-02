@@ -339,7 +339,7 @@ export default {
     },
     changeFittingsMaterialEvent: function (e) {
       if(e.target.checked){
-        document.querySelector("form.cart").querySelectorAll('div[data-uniqid="6267a577abc002.73453783"] input').forEach((input) => {
+        document.querySelector("form.cart").querySelectorAll('div[data-uniqid="6267a577abc002.73453783"] input:checked:not(#' + e.target.id + ')').forEach((input) => {
           input.checked = false;
           input.dispatchEvent(new Event("change"));
         })
