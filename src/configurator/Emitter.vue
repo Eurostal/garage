@@ -1179,10 +1179,15 @@ export default {
         )
         .forEach((input) => {
           var vm = this;
+          var eventUpdate;
           Object.defineProperty(input, "value", {
             set: function (t) {
-              console.log("value of hidden field changed!");
-              vm.changeGate1PositionEvent(t);
+              if (typeof eventUpdate === "number") {
+                clearTimeout(eventUpdate);
+              }
+              eventUpdate = setTimeout(function () {
+                vm.changeGate1PositionEvent(t);
+              }, 200);
               input.setAttribute("value", t);
             },
             get: function () {
