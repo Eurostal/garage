@@ -397,6 +397,20 @@ export default {
         });
       }
     },
+
+    changeSheetOrientation: function (e) {
+      //ulozenie blachy
+    },
+
+    changeGarageMaterial: function (e) {
+      // jednolity
+    },
+    changeWallsMaterial: function (e) {
+      // sciany
+    },
+    changeRoofMaterial: function (e) {
+      // dach
+    },
   },
 
   mounted: function () {
@@ -561,6 +575,18 @@ export default {
 
       form.querySelectorAll('div[data-uniqid="6267a577abc002.73453783"] input').forEach((input) =>
         input.addEventListener("change", this.changeFittingsMaterialEvent, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="6268636725a2b2.40930404"] .tmcp-radio').forEach((input) =>
+        input.addEventListener("change", this.changeSheetOrientation, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="6267c6616c1022.10988552"] select').forEach((input) =>
+        input.addEventListener("change", this.changeSheetOrientation, {
           passive: true,
         })
       );
