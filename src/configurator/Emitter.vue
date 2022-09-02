@@ -258,7 +258,12 @@ export default {
       document
         .querySelector("form.cart")
         .querySelectorAll('div[data-uniqid="626666fc607e37.33496203"] .tmcp-range')
-        .forEach((input) => input.dispatchEvent(new Event("change")));
+        .forEach((input) => input.value = input.value);
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="626666fc607e27.12468774"] .tmcp-range')
+        .forEach((input) => input.value = input.value);
     },
 
     changeWindow1MaterialEvent: function (e) {
@@ -561,6 +566,18 @@ export default {
 
       form.querySelectorAll('div[data-uniqid="6267a577abc002.73453783"] input').forEach((input) =>
         input.addEventListener("change", this.changeFittingsMaterialEvent, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="6268636725a2b2.40930404"] select').forEach((input) =>
+        input.addEventListener("change", this.changeSheathingStyleEvent, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="6268636725a2b2.40930404"] select').forEach((input) =>
+        input.addEventListener("change", this.changeSheathingColorTypeEvent, {
           passive: true,
         })
       );
