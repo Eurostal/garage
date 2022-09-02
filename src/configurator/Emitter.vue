@@ -53,17 +53,33 @@ export default {
       this.changeGarageSize({
         width: parseFloat(e.target.value.split(" ")[0].replace(",", ".")),
       });
-      document.querySelector("form.cart").querySelector('div[data-uniqid="627a9ae125d4d6.54277708"] .tc-epo-label').textContent =
-        e.target.value.split("_")[0];
+      document
+        .querySelector("form.cart")
+        .querySelector(
+          'div[data-uniqid="627a9ae125d4d6.54277708"] .tc-epo-label'
+        ).textContent = e.target.value.split("_")[0];
     },
     changeGarageLengthEvent: function (e) {
       this.changeGarageSize({
         length: parseFloat(e.target.value.split(" ")[0].replace(",", ".")),
       });
-      document.querySelector("form.cart").querySelector('div[data-uniqid="627a9ad625d4b6.52719206"] .tc-epo-label').textContent =
-        e.target.value.split("_")[0];
+      document
+        .querySelector("form.cart")
+        .querySelector(
+          'div[data-uniqid="627a9ad625d4b6.52719206"] .tc-epo-label'
+        ).textContent = e.target.value.split("_")[0];
     },
-    changeGate: function (name, { type = false, width = false, height = false, position = false, style = "", material = "" }) {
+    changeGate: function (
+      name,
+      {
+        type = false,
+        width = false,
+        height = false,
+        position = false,
+        style = "",
+        material = "",
+      }
+    ) {
       let object = {};
       object.type = "gate";
       object.name = name;
@@ -188,7 +204,18 @@ export default {
 
     //WINDOWS
 
-    changeWindow: function (name, wallId, { width = false, height = false, x = false, y = false, material = "", action = true }) {
+    changeWindow: function (
+      name,
+      wallId,
+      {
+        width = false,
+        height = false,
+        x = false,
+        y = false,
+        material = "",
+        action = true,
+      }
+    ) {
       let object = {
         type: "window",
         name: name,
@@ -220,13 +247,21 @@ export default {
 
     //window1
     changeWindow1Event: function (e) {
-      let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
+      let wallId = this.selectWall(
+        document.querySelector(
+          'div[data-uniqid="62666dcf882f62.16373762"] select'
+        ).value
+      );
       this.changeWindow("window1", wallId, {
         action: e.target.checked,
       });
     },
     changeWindow1SizeEvent: function (e) {
-      let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
+      let wallId = this.selectWall(
+        document.querySelector(
+          'div[data-uniqid="62666dcf882f62.16373762"] select'
+        ).value
+      );
       let sizeData = e.target.value.split("x");
       this.changeWindow("window1", wallId, {
         width: sizeData[0] / 100,
@@ -235,7 +270,11 @@ export default {
     },
 
     changeWindow1MaterialEvent: function (e) {
-      let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
+      let wallId = this.selectWall(
+        document.querySelector(
+          'div[data-uniqid="62666dcf882f62.16373762"] select'
+        ).value
+      );
       this.changeWindow("window1", wallId, {
         material: this.selectColorCustom(e.target.value),
       });
@@ -311,6 +350,34 @@ export default {
       }
       return material;
     },
+    changeFittings: function ({ material = false, action = true }) {
+      object = {};
+      object.type = "fittings";
+
+      if (action) {
+        if (material) {
+          object.material = material;
+          this.$store.commit("updateMaterial", { ...object });
+        } else {
+          object.visible = true;
+          this.$store.commit("update", { ...object });
+        }
+      } else {
+        object.visible = false;
+        this.$store.commit("remove", { ...object });
+      }
+    },
+    changeFittingsEvent: function (e) {
+      console.log("~~~~ ", e, " ~~~~");
+      this.changeFittings();
+    },
+    changeFittingsMaterialEvent: function (e) {
+      console.log("~~~~ ", e, " ~~~~");
+      var value = e.value.split("_")[0].replace(" ", "");
+      this.changeFittings({
+        material: value,
+      });
+    },
   },
 
   mounted: function () {
@@ -318,126 +385,182 @@ export default {
     if (document.querySelector("form.cart")) {
       // form.addEventListener("change", this.changeEventForm, { passive: true });
 
-      form.querySelectorAll('div[data-uniqid="62581d466f2312.18396791"] input').forEach((input) =>
-        input.addEventListener("change", this.changeRoofEvent, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="62581d466f2312.18396791"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeRoofEvent, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="6259298d5b5755.33518299"] select').forEach((input) =>
-        input.addEventListener("change", this.changeGarageWidthEvent, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="6259298d5b5755.33518299"] select')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeGarageWidthEvent, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="626932f0482669.99437527"] select').forEach((input) =>
-        input.addEventListener("change", this.changeGarageLengthEvent, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="626932f0482669.99437527"] select')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeGarageLengthEvent, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="625928cfacd5e1.56204472"] input').forEach((input) =>
-        input.addEventListener("change", this.changeGate1Event, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="625928cfacd5e1.56204472"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeGate1Event, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="627b7715c54f09.72204841"] input').forEach((input) =>
-        input.addEventListener("change", this.changeGate2Event, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="627b7715c54f09.72204841"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeGate2Event, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="625928cfacd5f2.48728982"] select').forEach((input) =>
-        input.addEventListener("change", this.changeGate1WidthEvent, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="625928cfacd5f2.48728982"] select')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeGate1WidthEvent, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="627b7720c54f10.62015977"] select').forEach((input) =>
-        input.addEventListener("change", this.changeGate2WidthEvent, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="627b7720c54f10.62015977"] select')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeGate2WidthEvent, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="625928cfacd608.04744343"] select').forEach((input) =>
-        input.addEventListener("change", this.changeGate1HeightEvent, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="625928cfacd608.04744343"] select')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeGate1HeightEvent, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="627b772ac54f28.86727207"] select').forEach((input) =>
-        input.addEventListener("change", this.changeGate2HeightEvent, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="627b772ac54f28.86727207"] select')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeGate2HeightEvent, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="625929fa7219b1.06715193"] select').forEach((input) =>
-        input.addEventListener("change", this.changeGate1StyleEvent, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="625929fa7219b1.06715193"] select')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeGate1StyleEvent, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="627b7732c54f35.77583366"] select').forEach((input) =>
-        input.addEventListener("change", this.changeGate2StyleEvent, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="627b7732c54f35.77583366"] select')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeGate2StyleEvent, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="62ffad9da82021.94156944"] .tmcp-range').forEach((input) => {
-        var vm = this;
-        Object.defineProperty(input, "value", {
-          set: function (t) {
-            vm.changeGate1PositionEvent(t);
-            input.setAttribute("value", t);
-          },
-          get: function () {
-            return input.getAttribute("value");
-          },
+      form
+        .querySelectorAll(
+          'div[data-uniqid="62ffad9da82021.94156944"] .tmcp-range'
+        )
+        .forEach((input) => {
+          var vm = this;
+          Object.defineProperty(input, "value", {
+            set: function (t) {
+              vm.changeGate1PositionEvent(t);
+              input.setAttribute("value", t);
+            },
+            get: function () {
+              return input.getAttribute("value");
+            },
+          });
         });
-      });
 
-      form.querySelectorAll('div[data-uniqid="62ffaf77735284.94935292"] input').forEach((input) =>
-        input.addEventListener("change", this.changeGate2PositionEvent, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="62ffaf77735284.94935292"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeGate2PositionEvent, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="626666fc607e09.04638628"] select').forEach((input) =>
-        input.addEventListener("change", this.changeWindow1SizeEvent, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="626666fc607e09.04638628"] select')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeWindow1SizeEvent, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input').forEach((input) =>
-        input.addEventListener("change", this.changeWindow1Event, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeWindow1Event, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="626666fc607e10.77344128"] input').forEach((input) =>
-        input.addEventListener("change", this.changeWindow1Material, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="626666fc607e10.77344128"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeWindow1Material, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="626666fc607e94.51163204"] input').forEach((input) =>
-        input.addEventListener("change", this.changeWindowThirdEvent, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="626666fc607e94.51163204"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeWindowThirdEvent, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="626666fc607ee3.26554221"] input').forEach((input) =>
-        input.addEventListener("change", this.changeWindowFourthEvent, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="626666fc607ee3.26554221"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeWindowFourthEvent, {
+            passive: true,
+          })
+        );
 
-      form.querySelectorAll('div[data-uniqid="626666fc607f38.30729408"] input').forEach((input) =>
-        input.addEventListener("change", this.changeWindowFifthEvent, {
-          passive: true,
-        })
-      );
+      form
+        .querySelectorAll('div[data-uniqid="626666fc607f38.30729408"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeWindowFifthEvent, {
+            passive: true,
+          })
+        );
+
+      form
+        .querySelectorAll('div[data-uniqid="626930c9de35d5.89950433"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeFittingsEvent, {
+            passive: true,
+          })
+        );
+
+      form
+        .querySelectorAll('div[data-uniqid="6267a577abc002.73453783"] input')
+        .forEach((input) =>
+          input.addEventListener("change", this.changeFittingsMaterialEvent, {
+            passive: true,
+          })
+        );
     }
   },
 };
