@@ -315,6 +315,34 @@ export default {
       }
       return material;
     },
+    changeFittings: function ({ material = false, action = true }) {
+      object = {};
+      object.type = "fittings";
+
+      if (action) {
+        if (material) {
+          object.material = material;
+          this.$store.commit("updateMaterial", { ...object });
+        } else {
+          object.visible = true;
+          this.$store.commit("update", { ...object });
+        }
+      } else {
+        object.visible = false;
+        this.$store.commit("remove", { ...object });
+      }
+    },
+    changeFittingsEvent: function (e) {
+      console.log("~~~~ ", e, " ~~~~");
+      this.changeFittings();
+    },
+    changeFittingsMaterialEvent: function (e) {
+      console.log("~~~~ ", e, " ~~~~");
+      var value = e.value.split("_")[0].replace(" ", "");
+      this.changeFittings({
+        material: value,
+      });
+    },
   },
 
   mounted: function () {
@@ -442,6 +470,18 @@ export default {
 
       form.querySelectorAll('div[data-uniqid="626666fc607f38.30729408"] input').forEach((input) =>
         input.addEventListener("change", this.changeWindowFifthEvent, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="626930c9de35d5.89950433"] input').forEach((input) =>
+        input.addEventListener("change", this.changeFittingsEvent, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="6267a577abc002.73453783"] input').forEach((input) =>
+        input.addEventListener("change", this.changeFittingsMaterialEvent, {
           passive: true,
         })
       );
