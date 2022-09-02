@@ -316,7 +316,7 @@ export default {
       return material;
     },
     changeFittings: function ({ material = false, action = true }) {
-      object = {};
+      var object = {};
       object.type = "fittings";
 
       if (action) {
