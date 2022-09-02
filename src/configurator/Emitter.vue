@@ -85,10 +85,6 @@ export default {
         object.x = position;
       }
 
-      if (style) {
-        object.style = this.gateStyleTranslation[style];
-      }
-
       if (material) {
         object.material = material;
 
@@ -190,26 +186,67 @@ export default {
       });
     },
 
-    changeWindow: function ({ name, action = true }) {
+    //WINDOWS
+
+    changeWindow: function (name, wallId, { width = false, height = false, x = false, y = false, material = "", action = true }) {
       let object = {
         type: "window",
         name: name,
-        wallId: this.selectWall(name),
+        wallId: this.selectWall(wallId),
       };
+
+      if (typeof width === "number") {
+        object.width = width;
+      }
+
+      if (typeof height === "number") {
+        object.height = height;
+      }
+
+      if (typeof x === "number") {
+        object.x = x;
+      }
+
+      if (typeof y === "number") {
+        object.y = y;
+      }
+
+      if (material) {
+        object.material = material;
+      }
+
       this.$store.commit(action ? "update" : "remove", { ...object });
     },
-    changeWindowFirstEvent: function (e) {
-      this.changeWindow({
-        name: "window1",
+
+    //window1
+    changeWindow1Event: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
+      this.changeWindow("window1", wallId, {
         action: e.target.checked,
       });
     },
-    changeWindowSecondEvent: function (e) {
-      this.changeWindow({
-        name: "window2",
+    changeWindow1SizeEvent: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
+      let sizeData = e.target.value.split("x");
+      this.changeWindow("window1", wallId, {
+        width: sizeData[0] / 100,
+        height: sizeData[1].split("cm")[0] / 100,
+      });
+    },
+
+    changeWindow1MaterialEvent: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
+      this.changeWindow("window1", wallId, {
+        material: this.selectColorCustom(e.target.value),
+      });
+    },
+
+    changeWindow2Event: function (e) {
+      this.changeWindow("window2", {
         action: e.target.checked,
       });
     },
+
     changeWindowThirdEvent: function (e) {
       this.changeWindow({
         name: "window3",
@@ -228,6 +265,7 @@ export default {
         action: e.target.checked,
       });
     },
+
     selectWall(input) {
       let wallId = 0;
       switch (input) {
@@ -247,6 +285,31 @@ export default {
           wallId = 3;
       }
       return wallId;
+    },
+
+    selectColorCustom(input) {
+      let material = "";
+      switch (input) {
+        case "Brązowy_0":
+          material = "BROWN";
+          break;
+        case "Szary_1":
+          material = "GRAY";
+          break;
+        case "Biały_2":
+          material = "WHITE";
+          break;
+        case "Ciemny orzech_3":
+          material = "DARK_WALNUT";
+          break;
+        case "Złoty dąb_4":
+          material = "GOLD_OAK";
+          break;
+        default:
+          material = "WHITE";
+          break;
+      }
+      return material;
     },
   },
 
@@ -340,14 +403,20 @@ export default {
         })
       );
 
-      form.querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input').forEach((input) =>
-        input.addEventListener("change", this.changeWindowFirstEvent, {
+      form.querySelectorAll('div[data-uniqid="626666fc607e09.04638628"] select').forEach((input) =>
+        input.addEventListener("change", this.changeWindow1SizeEvent, {
           passive: true,
         })
       );
 
-      form.querySelectorAll('div[data-uniqid="626666fc607e49.00803437"] input').forEach((input) =>
-        input.addEventListener("change", this.changeWindowSecondEvent, {
+      form.querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input').forEach((input) =>
+        input.addEventListener("change", this.changeWindow1Event, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="626666fc607e10.77344128"] input').forEach((input) =>
+        input.addEventListener("change", this.changeWindow1Material, {
           passive: true,
         })
       );
