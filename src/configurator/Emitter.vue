@@ -1175,7 +1175,7 @@ export default {
 
       form
         .querySelectorAll(
-          'div[data-uniqid="62ffad9da82021.94156944"] .tm-range-picker'
+          'div[data-uniqid="62ffad9da82021.94156944"] .tmcp-range'
         )
         .forEach((input) => {
           Object.defineProperty(input, "value", {
