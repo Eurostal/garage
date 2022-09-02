@@ -339,9 +339,11 @@ export default {
     },
     changeFittingsMaterialEvent: function (e) {
       if(e.target.checked){
-        document.querySelector("form.cart").querySelectorAll('div[data-uniqid="6267a577abc002.73453783"] input').forEach((input) => {
-          input.checked = false;
-          input.dispatchEvent(new Event("change"));
+        document.querySelector("form.cart").querySelectorAll('div[data-uniqid="6267a577abc002.73453783"] input:checked').forEach((input) => {
+          if(input.id !== e.target.value){
+            input.checked = false;
+            input.dispatchEvent(new Event("change"));
+          }
         })
 
         var value = e.target.value.split("_")[0].replace(" ", "");
