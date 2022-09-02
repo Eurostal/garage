@@ -726,7 +726,7 @@ export default {
         })
       );
 
-      form.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').forEach((input) =>
+      form.querySelectorAll('div[data-uniqid="6268636725a2b2.40930404"] select').forEach((input) =>
         input.addEventListener("change", this.changeSheetOrientation, {
           passive: true,
         })
