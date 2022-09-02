@@ -241,10 +241,10 @@ export default {
       this.changeWindow("window1", {wallID: this.selectWall(e.target.value)});
       
       document
-        .querySelector("form.cart").querySelectorAll('div[data-uniqid="626666fc607e09.04638628"] input').forEach((input) => input.dispatchEvent(new Event("change")));
+        .querySelector("form.cart").querySelectorAll('div[data-uniqid="626666fc607e09.04638628"] input:checked').forEach((input) => input.dispatchEvent(new Event("change")));
           
       document
-        .querySelector("form.cart").querySelectorAll('div[data-uniqid="626666fc607e10.77344128"] input').forEach((input) => input.dispatchEvent(new Event("change")));
+        .querySelector("form.cart").querySelectorAll('div[data-uniqid="626666fc607e10.77344128"] input:checked').forEach((input) => input.dispatchEvent(new Event("change")));
     },
 
     changeWindow1MaterialEvent: function (e) {
