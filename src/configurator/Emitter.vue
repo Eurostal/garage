@@ -132,9 +132,8 @@ export default {
       });
     },
     changeGate1PositionEvent: function (e) {
-      console.log("~~~ ", e, " ~~~~");
       this.changeGate("gate1", {
-        position: parseFloat(e) / 100,
+        position: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
       });
     },
     changeGate2PositionEvent: function (e) {
