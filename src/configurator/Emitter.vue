@@ -89,7 +89,7 @@ export default {
         object.material = material;
 
         if (style) {
-          object.material = material + this.gateStyleTranslation[object.style];
+          object.material = material + this.gateStyleTranslation[style];
         }
       }
 
@@ -225,36 +225,35 @@ export default {
 
     //window1
     changeWindow1Event: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
       this.changeWindow("window1", {
+        wallId: wallId,
         action: e.target.checked,
       });
     },
+
     changeWindow1SizeEvent: function (e) {
       let sizeData = e.target.value.split("x");
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
       this.changeWindow("window1", {
+        wallId: wallId,
         width: sizeData[0] / 100,
         height: sizeData[1].split("cm")[0] / 100,
       });
     },
 
     changeWindow1WallEvent: function (e) {
-      this.changeWindow("window1", { wallID: this.selectWall(e.target.value) });
+      this.changeWindow("window1", { wallId: this.selectWall(e.target.value) });
 
       document
         .querySelector("form.cart")
-        .querySelectorAll('div[data-uniqid="626666fc607e09.04638628"] input:checked')
+        .querySelectorAll('div[data-uniqid="626666fc607e09.04638628"] select')
         .forEach((input) => input.dispatchEvent(new Event("change")));
 
       document
         .querySelector("form.cart")
         .querySelectorAll('div[data-uniqid="626666fc607e10.77344128"] input:checked')
         .forEach((input) => input.dispatchEvent(new Event("change")));
-
-      document
-        .querySelector("form.cart")
-        .querySelectorAll('div[data-uniqid="626666fc607e27.12468774"] .tmcp-range')
-        .forEach((input) => input.dispatchEvent(new Event("change")));
-
       document
         .querySelector("form.cart")
         .querySelectorAll('div[data-uniqid="626666fc607e37.33496203"] .tmcp-range')
@@ -294,24 +293,96 @@ export default {
       }
     },
 
+    //window2
     changeWindow2Event: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b819218ab2.27821592"] select').value);
       this.changeWindow("window2", {
+        wallId: wallId,
         action: e.target.checked,
       });
     },
 
+    changeWindow2SizeEvent: function (e) {
+      let sizeData = e.target.value.split("x");
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b819218ab2.27821592"] select').value);
+      this.changeWindow("window2", {
+        wallId: wallId,
+        width: sizeData[0] / 100,
+        height: sizeData[1].split("cm")[0] / 100,
+      });
+    },
+
+    changeWindow2WallEvent: function (e) {
+      this.changeWindow("window2", { wallId: this.selectWall(e.target.value) });
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="626666fc607e59.49199639"] select')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="626666fc607e65.66848936"] input:checked')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="626666fc607e72.58094923"] .tmcp-range')
+        .forEach((input) => (input.value = input.value));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="626666fc607e84.50408653"] .tmcp-range')
+        .forEach((input) => (input.value = input.value));
+    },
+
+    changeWindow2MaterialEvent: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b819218ab2.27821592"] select').value);
+      this.changeWindow("window2", {
+        wallId: wallId,
+        material: this.selectColorCustom(e.target.value),
+      });
+    },
+
+    changeWindow2PositionXEvent: function (e) {
+      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607e49.00803437"] input').checked;
+      if (windowActive) {
+        let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b819218ab2.27821592"] select').value);
+        this.changeWindow("window2", {
+          wallId: wallId,
+          x: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
+        });
+      }
+    },
+
+    changeWindow2PositionYEvent: function (e) {
+      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607e49.00803437"] input').checked;
+      if (windowActive) {
+        let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b819218ab2.27821592"] select').value);
+        this.changeWindow("window2", {
+          wallId: wallId,
+          y: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
+        });
+      }
+    },
+
+    //window3
     changeWindowThirdEvent: function (e) {
       this.changeWindow({
         name: "window3",
         action: e.target.checked,
       });
     },
+
+    //window4
     changeWindowFourthEvent: function (e) {
       this.changeWindow({
         name: "window4",
         action: e.target.checked,
       });
     },
+
+    //window5
     changeWindowFifthEvent: function (e) {
       this.changeWindow({
         name: "window5",
@@ -523,6 +594,8 @@ export default {
         })
       );
 
+
+      //window1
       form.querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input').forEach((input) =>
         input.addEventListener("change", this.changeWindow1Event, {
           passive: true,
@@ -569,6 +642,55 @@ export default {
         });
       });
 
+      //window2
+      
+      form.querySelectorAll('div[data-uniqid="626666fc607e49.00803437"] input').forEach((input) =>
+        input.addEventListener("change", this.changeWindow2Event, {
+          passive: true,
+        })
+      );
+      form.querySelectorAll('div[data-uniqid="626666fc607e59.49199639"] select').forEach((input) =>
+        input.addEventListener("change", this.changeWindow2SizeEvent, {
+          passive: true,
+        })
+      );
+      form.querySelectorAll('div[data-uniqid="6267b819218ab2.27821592"] select').forEach((input) =>
+        input.addEventListener("change", this.changeWindow2WallEvent, {
+          passive: true,
+        })
+      );
+      form.querySelectorAll('div[data-uniqid="626666fc607e65.66848936"] input').forEach((input) =>
+        input.addEventListener("change", this.changeWindow2MaterialEvent, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="626666fc607e72.58094923"] .tmcp-range').forEach((input) => {
+        var vm = this;
+        Object.defineProperty(input, "value", {
+          set: function (t) {
+            vm.changeWindow2PositionXEvent(t);
+            input.setAttribute("value", t);
+          },
+          get: function () {
+            return input.getAttribute("value");
+          },
+        });
+      });
+      form.querySelectorAll('div[data-uniqid="626666fc607e84.50408653"] .tmcp-range').forEach((input) => {
+        var vm = this;
+        Object.defineProperty(input, "value", {
+          set: function (t) {
+            vm.changeWindow2PositionYEvent(t);
+            input.setAttribute("value", t);
+          },
+          get: function () {
+            return input.getAttribute("value");
+          },
+        });
+      });
+
+      //window3
       form.querySelectorAll('div[data-uniqid="626666fc607e94.51163204"] input').forEach((input) =>
         input.addEventListener("change", this.changeWindowThirdEvent, {
           passive: true,
