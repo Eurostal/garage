@@ -1183,10 +1183,10 @@ export default {
             set: function (t) {
               console.log("value of hidden field changed!");
               vm.changeGate1PositionEvent(t);
-              targetNode.setAttribute("value", t);
+              input.setAttribute("value", t);
             },
             get: function () {
-              return targetNode.getAttribute("value");
+              return input.getAttribute("value");
             },
           });
         });
