@@ -1178,15 +1178,9 @@ export default {
         )
         .forEach((input) => {
           var vm = this;
-          var eventUpdate;
           Object.defineProperty(input, "value", {
             set: function (t) {
-              if (typeof eventUpdate === "number") {
-                clearTimeout(eventUpdate);
-              }
-              eventUpdate = setTimeout(function () {
-                vm.changeGate1PositionEvent(t);
-              }, 200);
+              vm.changeGate1PositionEvent(t);
               input.setAttribute("value", t);
             },
             get: function () {
