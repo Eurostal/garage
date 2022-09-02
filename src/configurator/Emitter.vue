@@ -89,15 +89,15 @@ export default {
         object.gateType = this.gateNameTranslation[type];
       }
 
-      if (width) {
+      if (typeof width === "number") {
         object.width = width;
       }
 
-      if (height) {
+      if (typeof height === "number") {
         object.height = height;
       }
 
-      if (position) {
+      if (typeof position === "number") {
         object.x = position;
       }
 
