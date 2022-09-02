@@ -268,19 +268,25 @@ export default {
     },
 
     changeWindow1PositionXEvent: function (e) {
-      let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
-      this.changeWindow("window1", {
-        wallId: wallId,
-        x: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
-      });
+      let windowActive = form.querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input').value;
+      if (windowActive) {
+        let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
+        this.changeWindow("window1", {
+          wallId: wallId,
+          x: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
+        });
+      }
     },
 
     changeWindow1PositionYEvent: function (e) {
-      let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
-      this.changeWindow("window1", {
-        wallId: wallId,
-        y: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
-      });
+      let windowActive = form.querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input').value;
+      if (windowActive) {
+        let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
+        this.changeWindow("window1", {
+          wallId: wallId,
+          y: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
+        });
+      }
     },
 
     changeWindow2Event: function (e) {
