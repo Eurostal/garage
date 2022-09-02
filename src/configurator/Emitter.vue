@@ -239,7 +239,7 @@ export default {
     },
 
     changeWindow1WallEvent: function (e) {
-      this.changeWindow("window1", { wallID: this.selectWall(e.target.value) });
+      this.changeWindow("window1", { wallId: this.selectWall(e.target.value) });
 
       document
         .querySelector("form.cart")
@@ -305,7 +305,7 @@ export default {
     },
 
     changeWindow2WallEvent: function (e) {
-      this.changeWindow("window2", { wallID: this.selectWall(e.target.value) });
+      this.changeWindow("window2", { wallId: this.selectWall(e.target.value) });
 
       document
         .querySelector("form.cart")
