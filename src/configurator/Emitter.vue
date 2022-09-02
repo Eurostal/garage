@@ -333,12 +333,12 @@ export default {
       }
     },
     changeFittingsEvent: function (e) {
-      console.log("~~~~ ", e, " ~~~~");
-      this.changeFittings();
+      this.changeFittings({
+        action: e.target.checked,
+      });
     },
     changeFittingsMaterialEvent: function (e) {
-      console.log("~~~~ ", e, " ~~~~");
-      var value = e.value.split("_")[0].replace(" ", "");
+      var value = e.target.value.split("_")[0].replace(" ", "");
       this.changeFittings({
         material: value,
       });
