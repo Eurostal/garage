@@ -192,7 +192,7 @@ export default {
       let object = {
         type: "window",
         name: name,
-        wallId: this.selectWall(wallId),
+        wallId: wallId,
       };
 
       if (typeof width === "number") {
