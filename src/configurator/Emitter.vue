@@ -1178,10 +1178,11 @@ export default {
           'div[data-uniqid="62ffad9da82021.94156944"] .tmcp-range'
         )
         .forEach((input) => {
+          vm = this;
           Object.defineProperty(input, "value", {
             set: function (t) {
               console.log("value of hidden field changed!");
-              this.changeGate1PositionEvent(t);
+              vm.changeGate1PositionEvent(t);
               targetNode.setAttribute("value", t);
             },
             get: function () {
