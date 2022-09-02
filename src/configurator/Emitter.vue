@@ -225,14 +225,18 @@ export default {
 
     //window1
     changeWindow1Event: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
       this.changeWindow("window1", {
+        wallId: wallId,
         action: e.target.checked,
       });
     },
 
     changeWindow1SizeEvent: function (e) {
       let sizeData = e.target.value.split("x");
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
       this.changeWindow("window1", {
+        wallId: wallId,
         width: sizeData[0] / 100,
         height: sizeData[1].split("cm")[0] / 100,
       });
@@ -291,14 +295,18 @@ export default {
 
     //window2
     changeWindow2Event: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b819218ab2.27821592"] select').value);
       this.changeWindow("window2", {
+        wallId: wallId,
         action: e.target.checked,
       });
     },
 
     changeWindow2SizeEvent: function (e) {
       let sizeData = e.target.value.split("x");
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b819218ab2.27821592"] select').value);
       this.changeWindow("window2", {
+        wallId: wallId,
         width: sizeData[0] / 100,
         height: sizeData[1].split("cm")[0] / 100,
       });
@@ -329,7 +337,9 @@ export default {
     },
 
     changeWindow2MaterialEvent: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b819218ab2.27821592"] select').value);
       this.changeWindow("window2", {
+        wallId: wallId,
         material: this.selectColorCustom(e.target.value),
       });
     },
