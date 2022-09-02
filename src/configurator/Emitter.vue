@@ -316,7 +316,7 @@ export default {
       return material;
     },
     changeFittings: function ({ material = false, action = true }) {
-      object = {};
+      var object = {};
       object.type = "fittings";
 
       if (action) {
@@ -333,15 +333,24 @@ export default {
       }
     },
     changeFittingsEvent: function (e) {
-      console.log("~~~~ ", e, " ~~~~");
-      this.changeFittings();
+      this.changeFittings({
+        action: e.target.checked,
+      });
     },
     changeFittingsMaterialEvent: function (e) {
-      console.log("~~~~ ", e, " ~~~~");
-      var value = e.value.split("_")[0].replace(" ", "");
-      this.changeFittings({
-        material: value,
-      });
+      if(e.target.checked){
+        document.querySelector("form.cart").querySelectorAll('div[data-uniqid="6267a577abc002.73453783"] input').forEach((input) => {
+          input.checked = false;
+          input.dispatchEvent(new Event("change"));
+        })
+
+        var value = e.target.value.split("_")[0].replace(" ", "");
+        e.target.checked = true;
+        e.target.dispatchEvent(new Event("change"));
+        this.changeFittings({
+          material: value,
+        });
+      }
     },
   },
 
