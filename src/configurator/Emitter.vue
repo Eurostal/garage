@@ -339,7 +339,7 @@ export default {
     },
     changeFittingsMaterialEvent: function (e) {
       var value = e.target.value.split("_")[0].replace(" ", "");
-      document.querySelector("form.cart").querySelector('div[data-uniqid="6267a577abc002.73453783"] input').checked = false;
+      document.querySelector("form.cart").querySelectorAll('div[data-uniqid="6267a577abc002.73453783"] input').forEach((input) => {input.checked = false;input.dispatchEvent(new Event("change"));})
       this.changeFittings({
         material: value,
       });
