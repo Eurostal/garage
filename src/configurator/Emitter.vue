@@ -418,7 +418,7 @@ export default {
     },
 
     changeWindow3PositionXEvent: function (e) {
-      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607ee3.26554221"] input').checked;
+      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607e94.51163204"] input').checked;
       if (windowActive) {
         let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b829218ac5.43623952"] select').value);
         this.changeWindow("window3", {
@@ -429,7 +429,7 @@ export default {
     },
 
     changeWindow3PositionYEvent: function (e) {
-      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607ee3.26554221"] input').checked;
+      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607e94.51163204"] input').checked;
       if (windowActive) {
         let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b829218ac5.43623952"] select').value);
         this.changeWindow("window3", {
@@ -440,19 +440,149 @@ export default {
     },
 
     //window4
-    changeWindowFourthEvent: function (e) {
-      this.changeWindow({
-        name: "window4",
+    changeWindow4Event: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b836218ad3.26225604"] select').value);
+      this.changeWindow("window4", {
+        wallId: wallId,
         action: e.target.checked,
       });
     },
 
+    changeWindow4SizeEvent: function (e) {
+      let sizeData = e.target.value.split("x");
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b836218ad3.26225604"] select').value);
+      this.changeWindow("window4", {
+        wallId: wallId,
+        width: sizeData[0] / 100,
+        height: sizeData[1].split("cm")[0] / 100,
+      });
+    },
+
+    changeWindow4WallEvent: function (e) {
+      this.changeWindow("window4", { wallId: this.selectWall(e.target.value) });
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="626666fc607ea4.67519101"] select')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="62f22c432e8664.47573288"] input:checked')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="626666fc607ec0.38279999"] .tmcp-range')
+        .forEach((input) => (input.value = input.value));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="626666fc607ed0.11804888"] .tmcp-range')
+        .forEach((input) => (input.value = input.value));
+    },
+
+    changeWindow4MaterialEvent: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b836218ad3.26225604"] select').value);
+      this.changeWindow("window4", {
+        wallId: wallId,
+        material: this.selectColorCustom(e.target.value),
+      });
+    },
+
+    changeWindow4PositionXEvent: function (e) {
+      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607ee3.26554221"] input').checked;
+      if (windowActive) {
+        let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b836218ad3.26225604"] select').value);
+        this.changeWindow("window4", {
+          wallId: wallId,
+          x: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
+        });
+      }
+    },
+
+    changeWindow4PositionYEvent: function (e) {
+      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607ee3.26554221"] input').checked;
+      if (windowActive) {
+        let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b836218ad3.26225604"] select').value);
+        this.changeWindow("window4", {
+          wallId: wallId,
+          y: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
+        });
+      }
+    },
+
     //window5
-    changeWindowFifthEvent: function (e) {
-      this.changeWindow({
-        name: "window5",
+    changeWindow5Event: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b85e218ae1.80232513"] select').value);
+      this.changeWindow("window5", {
+        wallId: wallId,
         action: e.target.checked,
       });
+    },
+
+    changeWindow5SizeEvent: function (e) {
+      let sizeData = e.target.value.split("x");
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b85e218ae1.80232513"] select').value);
+      this.changeWindow("window5", {
+        wallId: wallId,
+        width: sizeData[0] / 100,
+        height: sizeData[1].split("cm")[0] / 100,
+      });
+    },
+
+    changeWindow5WallEvent: function (e) {
+      this.changeWindow("window5", { wallId: this.selectWall(e.target.value) });
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="626666fc607ea4.67519101"] select')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="62f22c432e8664.47573288"] input:checked')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="626666fc607ec0.38279999"] .tmcp-range')
+        .forEach((input) => (input.value = input.value));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="626666fc607ed0.11804888"] .tmcp-range')
+        .forEach((input) => (input.value = input.value));
+    },
+
+    changeWindow5MaterialEvent: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b85e218ae1.80232513"] select').value);
+      this.changeWindow("window5", {
+        wallId: wallId,
+        material: this.selectColorCustom(e.target.value),
+      });
+    },
+
+    changeWindow5PositionXEvent: function (e) {
+      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607f38.30729408"] input').checked;
+      if (windowActive) {
+        let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b85e218ae1.80232513"] select').value);
+        this.changeWindow("window5", {
+          wallId: wallId,
+          x: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
+        });
+      }
+    },
+
+    changeWindow5PositionYEvent: function (e) {
+      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607f38.30729408"] input').checked;
+      if (windowActive) {
+        let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b85e218ae1.80232513"] select').value);
+        this.changeWindow("window5", {
+          wallId: wallId,
+          y: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
+        });
+      }
     },
 
     selectWall(input) {
