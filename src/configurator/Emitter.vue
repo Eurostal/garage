@@ -418,7 +418,7 @@ export default {
     },
 
     changeWindow3PositionXEvent: function (e) {
-      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607ee3.26554221"] input').checked;
+      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607e94.51163204"] input').checked;
       if (windowActive) {
         let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b829218ac5.43623952"] select').value);
         this.changeWindow("window3", {
@@ -429,7 +429,7 @@ export default {
     },
 
     changeWindow3PositionYEvent: function (e) {
-      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607ee3.26554221"] input').checked;
+      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607e94.51163204"] input').checked;
       if (windowActive) {
         let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b829218ac5.43623952"] select').value);
         this.changeWindow("window3", {
