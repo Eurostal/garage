@@ -403,8 +403,23 @@ export default {
       }
     },
 
+    // Materials
     changeSheetOrientation: function (e) {
-      //ulozenie blachy
+      let object = {};
+      object.material = "RAL_9010";
+      if (document.querySelector('[data-uniqid="6268636725a2c5.41006929"] select').value === "Jednolity kolor_0") {
+        document.querySelector('[data-uniqid="6267c6616c1022.10988552"] input:checked').forEach((input) => {
+          object.material = input.value.split("_")[0].replace(" ", "");
+        });
+      } else {
+        document.querySelector('[data-uniqid="6267c6836c1098.51557180"] input:checked').forEach((input) => {
+          object.material = input.value.split("_")[0].replace(" ", "");
+        });
+      }
+
+      if (e.target.value === "W poziomie_1") {
+        object.material = object.material + "_H";
+      }
     },
 
     changeGarageMaterial: function (e) {
@@ -584,17 +599,17 @@ export default {
         })
       );
 
-      form.querySelectorAll('div[data-uniqid="6268636725a2b2.40930404"] .tmcp-radio').forEach((input) =>
+      form.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').forEach((input) =>
         input.addEventListener("change", this.changeSheetOrientation, {
           passive: true,
         })
       );
 
-      form.querySelectorAll('div[data-uniqid="6267c6616c1022.10988552"] select').forEach((input) =>
-        input.addEventListener("change", this.changeSheetOrientation, {
-          passive: true,
-        })
-      );
+      // form.querySelectorAll('div[data-uniqid="6268636725a2b2.40930404"] .tmcp-radio').forEach((input) =>
+      //   input.addEventListener("change", this.changeSheetMaterial, {
+      //     passive: true,
+      //   })
+      // );
     }
   },
 };
