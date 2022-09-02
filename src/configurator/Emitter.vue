@@ -258,7 +258,12 @@ export default {
       document
         .querySelector("form.cart")
         .querySelectorAll('div[data-uniqid="626666fc607e37.33496203"] .tmcp-range')
-        .forEach((input) => input.dispatchEvent(new Event("change")));
+        .forEach((input) => (input.value = input.value));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="626666fc607e27.12468774"] .tmcp-range')
+        .forEach((input) => (input.value = input.value));
     },
 
     changeWindow1MaterialEvent: function (e) {
