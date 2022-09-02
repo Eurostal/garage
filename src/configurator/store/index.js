@@ -228,12 +228,16 @@ function updateG(state, data) {
         });
       }
 
+      let tempData = null;
       if (fits) {
         for (let i = 0; i < Object.keys(state.garageActual.walls).length; i++) {
           if (Object.keys(state.garageActual.walls[wallNames[i]].elements).includes(data.name)) {
+            tempData = state.garageActual.walls[wallNames[i]].elements[data.name];
             delete state.garageActual.walls[wallNames[i]].elements[data.name];
           }
         }
+
+        data = { ...tempData, ...data };
 
         console.warn("changed " + data.name + " xOffset to " + data.x);
         if (data.type === "gate" && data.height) {
