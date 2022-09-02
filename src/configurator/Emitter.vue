@@ -345,8 +345,6 @@ export default {
         })
 
         var value = e.target.value.split("_")[0].replace(" ", "");
-        e.target.checked = true;
-        e.target.dispatchEvent(new Event("change"));
         this.changeFittings({
           material: value,
         });
