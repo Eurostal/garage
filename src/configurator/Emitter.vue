@@ -585,6 +585,10 @@ export default {
       }
     },
 
+    changeAllMaterialEvent: function(e){
+      this.changeSheetOrientation(e);
+    },
+
     selectWall(input) {
       let wallId = 0;
       switch (input) {
@@ -1064,6 +1068,12 @@ export default {
         })
       );
 
+      form.querySelectorAll('div[data-uniqid="6267c6616c1022.10988552"] input').forEach((input) =>
+        input.addEventListener("change", this.changeAllMaterialEvent, {
+          passive: true,
+        })
+      );
+      
       // form.querySelectorAll('div[data-uniqid="6268636725a2b2.40930404"] .tmcp-radio').forEach((input) =>
       //   input.addEventListener("change", this.changeSheetMaterial, {
       //     passive: true,
