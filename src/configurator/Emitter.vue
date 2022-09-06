@@ -161,7 +161,7 @@ export default {
         .querySelectorAll('div[data-uniqid="6267c6616c1022.10988552"] input')
         .forEach((input) => {
           if (input.checked) {
-            material = input.value.split("_")[0];
+            material = this.materialNameTranslation(input.value.split("_")[0].replace(" ", ""));
           }
         });
 
@@ -178,7 +178,7 @@ export default {
         .querySelectorAll('div[data-uniqid="6267c6616c1022.10988552"] input')
         .forEach((input) => {
           if (input.checked) {
-            material = input.value.split("_")[0];
+            material = this.materialNameTranslation(input.value.split("_")[0].replace(" ", ""));
           }
         });
 
