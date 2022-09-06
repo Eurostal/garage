@@ -689,7 +689,7 @@ export default {
     changeWallMaterial: function (e) {
       let object = {};
       object.type = "walls";
-      object.material = e.value.split("_")[0].replace(" ", "");
+      object.material = e.target.value.split("_")[0].replace(" ", "");
       object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
       if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
         object.material = object.material + "_H";
@@ -700,14 +700,14 @@ export default {
     changeRoofMaterial: function (e) {
       let object = {};
       object.type = "roof";
-      object.material = e.value.split("_")[0].replace(" ", "");
+      object.material = e.target.value.split("_")[0].replace(" ", "");
       object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
       this.$store.commit("updateMaterial", { ...object });
     },
 
     changeGatesMaterial: function (e) {
       let object = {};
-      object.material = e.value.split("_")[0].replace(" ", "");
+      object.material = e.target.value.split("_")[0].replace(" ", "");
       if (this.gateNameTranslation[document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input:checked').value != ""]) {
         this.changeGate("gate1", {
           material: object.material,
