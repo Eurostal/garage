@@ -710,7 +710,7 @@ export default {
     changeWallMaterial: function (e) {
       document.querySelectorAll('div[data-uniqid="6267c6836c1098.51557180"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
         input.checked = false;
-        input.dispatchEvent(new Event("change"));
+        input.parentElement?.parentElement?.classList.remove("tc-active");
       });
 
       let object = {};
@@ -726,7 +726,7 @@ export default {
     changeRoofMaterial: function (e) {
       document.querySelectorAll('div[data-uniqid="6268597436a4e8.74048409"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
         input.checked = false;
-        input.dispatchEvent(new Event("change"));
+        input.parentElement?.parentElement?.classList.remove("tc-active");
       });
 
       let object = {};
@@ -739,7 +739,7 @@ export default {
     changeGatesMaterial: function (e) {
       document.querySelectorAll('div[data-uniqid="6267c6936c1105.52576630"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
         input.checked = false;
-        input.dispatchEvent(new Event("change"));
+        input.parentElement?.parentElement?.classList.remove("tc-active");
       });
 
       let object = {};
