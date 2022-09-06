@@ -141,7 +141,7 @@ export default {
     },
     changeGate2PositionEvent: function (e) {
       this.changeGate("gate2", {
-        position: e.target.value / 100,
+        position: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
       });
     },
     changeGate1SizeEvent: function (e) {
@@ -889,11 +889,18 @@ export default {
         });
       });
 
-      form.querySelectorAll('div[data-uniqid="62ffaf77735284.94935292"] input').forEach((input) =>
-        input.addEventListener("change", this.changeGate2PositionEvent, {
-          passive: true,
-        })
-      );
+      form.querySelectorAll('div[data-uniqid="62ffaf77735284.94935292"] .tmcp-range').forEach((input) => {
+        var vm = this;
+        Object.defineProperty(input, "value", {
+          set: function (t) {
+            vm.changeGate2PositionEvent(t);
+            input.setAttribute("value", t);
+          },
+          get: function () {
+            return input.getAttribute("value");
+          },
+        });
+      });
 
       //window1
       form.querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input').forEach((input) =>
