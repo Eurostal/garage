@@ -109,8 +109,29 @@ export default {
       });
     },
     changeGate2Event: function (e) {
+      let inputId = "";
+      let material = "";
+
+      if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value == "Jednolity kolor_0") {
+        inputId = "6267c6616c1022.10988552";
+      } else {
+        inputId = "6267c6936c1105.52576630";
+      }
+
+      document
+        .querySelector("form.cart")
+        .querySelector('div[data-uniqid="' + inputId + '"] input')
+        .forEach((input) => {
+          if (input.checked) {
+            material = this.materialNameTranslation(input.value.split("_")[0].replace(" ", ""));
+          }
+        });
+
+      material = Materials[material] != undefined ? material : "RAL9010";
+
       this.changeGate("gate2", {
         type: e.target.value,
+        material: material,
       });
     },
     changeGate1PositionEvent: function (e) {
