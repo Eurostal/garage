@@ -155,6 +155,7 @@ export default {
     },
     changeGate1StyleEvent: function (e) {
       let material = "RAL9010";
+      let inputId = null;
 
       if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value == "Jednolity kolor_0") {
         inputId = "6267c6616c1022.10988552";
