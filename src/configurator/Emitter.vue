@@ -120,7 +120,7 @@ export default {
 
       document
         .querySelector("form.cart")
-        .querySelector('div[data-uniqid="' + inputId + '"] input')
+        .querySelectorAll('div[data-uniqid="' + inputId + '"] input')
         .forEach((input) => {
           if (input.checked) {
             material = this.materialNameTranslation(input.value.split("_")[0].replace(" ", ""));
