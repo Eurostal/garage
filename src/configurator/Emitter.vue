@@ -141,7 +141,7 @@ export default {
     },
     changeGate2PositionEvent: function (e) {
       this.changeGate("gate2", {
-        position: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
+        position: e.target.value / 100,
       });
     },
     changeGate1SizeEvent: function (e) {
@@ -1007,18 +1007,11 @@ export default {
         });
       });
 
-      form.querySelectorAll('div[data-uniqid="62ffaf77735284.94935292"] .tmcp-range').forEach((input) => {
-        var vm = this;
-        Object.defineProperty(input, "value", {
-          set: function (t) {
-            vm.changeGate2PositionEvent(t);
-            input.setAttribute("value", t);
-          },
-          get: function () {
-            return input.getAttribute("value");
-          },
-        });
-      });
+      form.querySelectorAll('div[data-uniqid="62ffaf77735284.94935292"] input').forEach((input) =>
+        input.addEventListener("change", this.changeGate2PositionEvent, {
+          passive: true,
+        })
+      );
 
       //window1
       form.querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input').forEach((input) =>
@@ -1248,6 +1241,66 @@ export default {
         Object.defineProperty(input, "value", {
           set: function (t) {
             vm.changeWindow5PositionYEvent(t);
+            input.setAttribute("value", t);
+          },
+          get: function () {
+            return input.getAttribute("value");
+          },
+        });
+      });
+
+
+      //door1
+      form.querySelectorAll('div[data-uniqid="62666b39a2cd72.64951747"] input').forEach((input) =>
+        input.addEventListener("change", this.changeDoor1Event, {
+          passive: true,
+        })
+      );
+      form.querySelectorAll('div[data-uniqid="6267b940ff8d56.42586482"] select').forEach((input) =>
+        input.addEventListener("change", this.changeDoor1WallEvent, {
+          passive: true,
+        })
+      );
+      form.querySelectorAll('div[data-uniqid="6267a7849054a6.96450831"] input').forEach((input) =>
+        input.addEventListener("change", this.changeDoor1MaterialEvent, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="62666bae882df0.44298974"] .tmcp-range').forEach((input) => {
+        var vm = this;
+        Object.defineProperty(input, "value", {
+          set: function (t) {
+            vm.changeDoor1PositionXEvent(t);
+            input.setAttribute("value", t);
+          },
+          get: function () {
+            return input.getAttribute("value");
+          },
+        });
+      });
+      //door2
+      form.querySelectorAll('div[data-uniqid="6267a72c905212.61206813"] input').forEach((input) =>
+        input.addEventListener("change", this.changeDoor2Event, {
+          passive: true,
+        })
+      );
+      form.querySelectorAll('div[data-uniqid="6267b951ff8d63.21986646"] select').forEach((input) =>
+        input.addEventListener("change", this.changeDoor2WallEvent, {
+          passive: true,
+        })
+      );
+      form.querySelectorAll('div[data-uniqid="6267aabb3ebb46.11907871"] input').forEach((input) =>
+        input.addEventListener("change", this.changeDoor2MaterialEvent, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="6267a72c905252.02727997"] .tmcp-range').forEach((input) => {
+        var vm = this;
+        Object.defineProperty(input, "value", {
+          set: function (t) {
+            vm.changeDoor2PositionXEvent(t);
             input.setAttribute("value", t);
           },
           get: function () {
