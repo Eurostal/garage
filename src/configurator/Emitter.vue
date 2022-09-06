@@ -269,7 +269,7 @@ export default {
 
     changeWindow1MaterialEvent: function (e) {
       this.changeWindow("window1", {
-        material: this.selectColorCustom(e.target.value),
+        material: this.materialNameTranslation(e.target.value),
       });
     },
 
@@ -342,7 +342,7 @@ export default {
       let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b819218ab2.27821592"] select').value);
       this.changeWindow("window2", {
         wallId: wallId,
-        material: this.selectColorCustom(e.target.value),
+        material: this.materialNameTranslation(e.target.value),
       });
     },
 
@@ -415,7 +415,7 @@ export default {
       let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b829218ac5.43623952"] select').value);
       this.changeWindow("window3", {
         wallId: wallId,
-        material: this.selectColorCustom(e.target.value),
+        material: this.materialNameTranslation(e.target.value),
       });
     },
 
@@ -488,7 +488,7 @@ export default {
       let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b836218ad3.26225604"] select').value);
       this.changeWindow("window4", {
         wallId: wallId,
-        material: this.selectColorCustom(e.target.value),
+        material: this.materialNameTranslation(e.target.value),
       });
     },
 
@@ -561,7 +561,7 @@ export default {
       let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b85e218ae1.80232513"] select').value);
       this.changeWindow("window5", {
         wallId: wallId,
-        material: this.selectColorCustom(e.target.value),
+        material: this.materialNameTranslation(e.target.value),
       });
     },
 
@@ -608,7 +608,7 @@ export default {
       return wallId;
     },
 
-    selectColorCustom(input) {
+    materialNameTranslation(input) {
       let material = "";
       switch (input) {
         case "Brązowy_0":
@@ -626,8 +626,20 @@ export default {
         case "Złoty dąb_4":
           material = "GOLD_OAK";
           break;
+        case "Złotydąb matowy":
+          material = "WOOD_LIGHT";
+          break;
+        case "Złotydąb połysk":
+          material = "WOOD_LIGHT_SHINE";
+          break;
+        case "Ciemnyorzech mat":
+          material = "WOOD_DARK";
+          break;
+        case "Ciemnyorzech połysk":
+          material = "WOOD_DARK_SHINE";
+          break;
         default:
-          material = "WHITE";
+          material = input;
           break;
       }
       return material;
@@ -698,11 +710,12 @@ export default {
     changeWallMaterial: function (e) {
       document.querySelectorAll('div[data-uniqid="6267c6836c1098.51557180"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
         input.checked = false;
+        input.parentElement?.parentElement?.classList.remove("tc-active");
       });
 
       let object = {};
       object.type = "walls";
-      object.material = e.target.value.split("_")[0].replace(" ", "");
+      object.material = materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
       object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
       if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
         object.material = object.material + "_H";
@@ -713,11 +726,12 @@ export default {
     changeRoofMaterial: function (e) {
       document.querySelectorAll('div[data-uniqid="6268597436a4e8.74048409"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
         input.checked = false;
+        input.parentElement?.parentElement?.classList.remove("tc-active");
       });
 
       let object = {};
       object.type = "roof";
-      object.material = e.target.value.split("_")[0].replace(" ", "");
+      object.material = materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
       object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
       this.$store.commit("updateMaterial", { ...object });
     },
@@ -725,10 +739,11 @@ export default {
     changeGatesMaterial: function (e) {
       document.querySelectorAll('div[data-uniqid="6267c6936c1105.52576630"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
         input.checked = false;
+        input.parentElement?.parentElement?.classList.remove("tc-active");
       });
 
       let object = {};
-      object.material = e.target.value.split("_")[0].replace(" ", "");
+      object.material = materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
       if (this.gateNameTranslation[document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input:checked').value] != "") {
         this.changeGate("gate1", {
           material: object.material,
