@@ -53,8 +53,8 @@ export const store = createStore({
         },
         door: {
           wallId: 0,
-          width: 1,
-          height: 2,
+          width: 0.9,
+          height: 1.85,
           material: "RAL9010",
           handleSide: "left",
           x: 0,
