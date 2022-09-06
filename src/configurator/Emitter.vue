@@ -715,14 +715,27 @@ export default {
       this.changeSheetOrientation(document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value);
     },
 
-    changeGarageMaterial: function (e) {
-      // jednolity
+    changeWallMaterialEvent: function (e) {
+      this.changeSheetOrientation(document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value);
     },
-    changeWallsMaterial: function (e) {
-      // sciany
+
+    changeRoofMaterialEvent: function (e) {
+      let object = {};
+      object.type = "roof";
+      object.material = Materials[e.value] != undefined ? object.material : "RAL9010";
+      this.$store.commit("updateMaterial", { ...object });
     },
-    changeRoofMaterial: function (e) {
-      // dach
+
+    changeGatesMaterialEvent: function (e) {
+      let object = {};
+
+      object.material = e.value.split("_")[0].replace(" ", "");
+
+      if (this.gateNameTranslation[document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input:checked').value != ""]) {
+        this.changeGate("gate1", {
+          material: object.material,
+        });
+      }
     },
   },
 
@@ -1076,11 +1089,23 @@ export default {
         })
       );
 
-      // form.querySelectorAll('div[data-uniqid="6268636725a2b2.40930404"] .tmcp-radio').forEach((input) =>
-      //   input.addEventListener("change", this.changeSheetMaterial, {
-      //     passive: true,
-      //   })
-      // );
+      form.querySelectorAll('div[data-uniqid="6267c6836c1098.51557180"] input').forEach((input) =>
+        input.addEventListener("change", this.changeWallMaterialEvent, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="6268597436a4e8.74048409"] input').forEach((input) =>
+        input.addEventListener("change", this.changeRoofMaterialEvent, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="6267c6936c1105.52576630"] input').forEach((input) =>
+        input.addEventListener("change", this.changeGatesMaterialEvent, {
+          passive: true,
+        })
+      );
     }
   },
 };
