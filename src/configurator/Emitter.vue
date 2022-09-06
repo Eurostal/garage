@@ -687,12 +687,19 @@ export default {
     },
 
     changeAllMaterialEvent: function (e) {
+      document.querySelectorAll('div[data-uniqid="6267c6616c1022.10988552"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
+        input.checked = false;
+      });
       this.changeWallMaterial(e);
       this.changeRoofMaterial(e);
       this.changeGatesMaterial(e);
     },
 
     changeWallMaterial: function (e) {
+      document.querySelectorAll('div[data-uniqid="6267c6836c1098.51557180"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
+        input.checked = false;
+      });
+
       let object = {};
       object.type = "walls";
       object.material = e.target.value.split("_")[0].replace(" ", "");
@@ -704,6 +711,10 @@ export default {
     },
 
     changeRoofMaterial: function (e) {
+      document.querySelectorAll('div[data-uniqid="6268597436a4e8.74048409"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
+        input.checked = false;
+      });
+
       let object = {};
       object.type = "roof";
       object.material = e.target.value.split("_")[0].replace(" ", "");
@@ -712,6 +723,10 @@ export default {
     },
 
     changeGatesMaterial: function (e) {
+      document.querySelectorAll('div[data-uniqid="6267c6936c1105.52576630"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
+        input.checked = false;
+      });
+
       let object = {};
       object.material = e.target.value.split("_")[0].replace(" ", "");
       if (this.gateNameTranslation[document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input:checked').value] != "") {
