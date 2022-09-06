@@ -172,10 +172,17 @@ export default {
     },
     changeGate2StyleEvent: function (e) {
       let material = "RAL9010";
+      let inputId = null;
+
+      if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value == "Jednolity kolor_0") {
+        inputId = "6267c6616c1022.10988552";
+      } else {
+        inputId = "6267c6836c1098.51557180";
+      }
 
       document
         .querySelector("form.cart")
-        .querySelectorAll('div[data-uniqid="6267c6616c1022.10988552"] input')
+        .querySelectorAll('div[data-uniqid="' + inputId + '"] input')
         .forEach((input) => {
           if (input.checked) {
             material = this.materialNameTranslation(input.value.split("_")[0].replace(" ", ""));
@@ -743,15 +750,19 @@ export default {
       });
 
       let object = {};
+      let horizontal = document.querySelector('div[data-uniqid="625929fa7219b1.06715193"] select').value == "Poziome_1";
+
       object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
       if (this.gateNameTranslation[document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input:checked').value] != "") {
         this.changeGate("gate1", {
-          material: object.material,
+          material: object.material + (horizontal ? "_H" : ""),
         });
       }
+
+      horizontal = document.querySelector('div[data-uniqid="627b7732c54f35.77583366"] select').value == "Poziome_1";
       if (this.gateNameTranslation[document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input:checked').value] != "") {
         this.changeGate("gate2", {
-          material: object.material,
+          material: object.material + (horizontal ? "_H" : ""),
         });
       }
     },
