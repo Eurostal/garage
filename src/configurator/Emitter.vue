@@ -712,7 +712,7 @@ export default {
     },
 
     changeAllMaterialEvent: function (e) {
-      this.changeSheetOrientation(e);
+      this.changeSheetOrientation(document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value);
     },
 
     changeGarageMaterial: function (e) {
