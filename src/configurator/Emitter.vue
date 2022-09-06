@@ -585,10 +585,6 @@ export default {
       }
     },
 
-    changeAllMaterialEvent: function(e){
-      this.changeSheetOrientation(e);
-    },
-
     selectWall(input) {
       let wallId = 0;
       switch (input) {
@@ -689,6 +685,10 @@ export default {
         }
         object.type = "roof";
         this.$store.commit("updateMaterial", { ...object });
+
+        this.changeGate("gate1", {
+          material: object.material,
+        });
       } else {
         if (
           document.querySelector('[data-uniqid="6267c6836c1098.51557180"] input:checked') != undefined &&
@@ -708,6 +708,10 @@ export default {
 
       object.type = "walls";
       this.$store.commit("updateMaterial", { ...object });
+    },
+
+    changeAllMaterialEvent: function(e){
+      this.changeSheetOrientation(e);
     },
 
     changeGarageMaterial: function (e) {
