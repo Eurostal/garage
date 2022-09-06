@@ -734,64 +734,73 @@ export default {
     },
 
     changeAllMaterialEvent: function (e) {
-      document.querySelectorAll('div[data-uniqid="6267c6616c1022.10988552"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
-        input.checked = false;
-      });
-      this.changeWallMaterial(e);
-      this.changeRoofMaterial(e);
-      this.changeGatesMaterial(e);
+      if (e.target.checked) {
+        document.querySelectorAll('div[data-uniqid="6267c6616c1022.10988552"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
+          input.checked = false;
+          input.dispatchEvent(new Event("change"));
+        });
+        this.changeWallMaterial(e);
+        this.changeRoofMaterial(e);
+        this.changeGatesMaterial(e);
+      }
     },
 
     changeWallMaterial: function (e) {
-      document.querySelectorAll('div[data-uniqid="6267c6836c1098.51557180"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
-        input.checked = false;
-        input.dispatchEvent(new Event("change"));
-      });
+      if (e.target.checked) {
+        document.querySelectorAll('div[data-uniqid="6267c6836c1098.51557180"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
+          input.checked = false;
+          input.dispatchEvent(new Event("change"));
+        });
 
-      let object = {};
-      object.type = "walls";
-      object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
-      object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
-      if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
-        object.material = object.material + "_H";
+        let object = {};
+        object.type = "walls";
+        object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
+        if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
+          object.material = object.material + "_H";
+        }
+        this.$store.commit("updateMaterial", { ...object });
       }
-      this.$store.commit("updateMaterial", { ...object });
     },
 
     changeRoofMaterial: function (e) {
-      document.querySelectorAll('div[data-uniqid="6268597436a4e8.74048409"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
-        input.checked = false;
-        input.dispatchEvent(new Event("change"));
-      });
+      if (e.target.checked) {
+        document.querySelectorAll('div[data-uniqid="6268597436a4e8.74048409"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
+          input.checked = false;
+          input.dispatchEvent(new Event("change"));
+        });
 
-      let object = {};
-      object.type = "roof";
-      object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
-      object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
-      this.$store.commit("updateMaterial", { ...object });
+        let object = {};
+        object.type = "roof";
+        object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
+        this.$store.commit("updateMaterial", { ...object });
+      }
     },
 
     changeGatesMaterial: function (e) {
-      document.querySelectorAll('div[data-uniqid="6267c6936c1105.52576630"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
-        input.checked = false;
-        input.dispatchEvent(new Event("change"));
-      });
-
-      let object = {};
-      let horizontal = document.querySelector('div[data-uniqid="625929fa7219b1.06715193"] select').value == "Poziome_1";
-
-      object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
-      if (this.gateNameTranslation[document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input:checked').value] != "") {
-        this.changeGate("gate1", {
-          material: object.material + (horizontal ? "_H" : ""),
+      if (e.target.checked) {
+        document.querySelectorAll('div[data-uniqid="6267c6936c1105.52576630"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
+          input.checked = false;
+          input.dispatchEvent(new Event("change"));
         });
-      }
 
-      horizontal = document.querySelector('div[data-uniqid="627b7732c54f35.77583366"] select').value == "Poziome_1";
-      if (this.gateNameTranslation[document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input:checked').value] != "") {
-        this.changeGate("gate2", {
-          material: object.material + (horizontal ? "_H" : ""),
-        });
+        let object = {};
+        let horizontal = document.querySelector('div[data-uniqid="625929fa7219b1.06715193"] select').value == "Poziome_1";
+
+        object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        if (this.gateNameTranslation[document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input:checked').value] != "") {
+          this.changeGate("gate1", {
+            material: object.material + (horizontal ? "_H" : ""),
+          });
+        }
+
+        horizontal = document.querySelector('div[data-uniqid="627b7732c54f35.77583366"] select').value == "Poziome_1";
+        if (this.gateNameTranslation[document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input:checked').value] != "") {
+          this.changeGate("gate2", {
+            material: object.material + (horizontal ? "_H" : ""),
+          });
+        }
       }
     },
   },
