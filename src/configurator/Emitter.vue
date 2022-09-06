@@ -1,4 +1,6 @@
 <script>
+import { Materials } from "./materials";
+
 export default {
   name: "Emitter",
   data() {
@@ -722,7 +724,8 @@ export default {
     changeRoofMaterialEvent: function (e) {
       let object = {};
       object.type = "roof";
-      object.material = Materials[e.value] != undefined ? object.material : "RAL9010";
+      object.material = e.value.split("_")[0].replace(" ", "");
+      object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
       this.$store.commit("updateMaterial", { ...object });
     },
 
