@@ -672,62 +672,32 @@ export default {
     },
 
     // Materials
-    changeSheetOrientation: function (e) {
-      let object = {};
-      if (document.querySelector('[data-uniqid="6268636725a2c5.41006929"] select').value === "Jednolity kolor_0") {
-        if (
-          document.querySelector('[data-uniqid="6267c6616c1022.10988552"] input:checked') != undefined &&
-          document.querySelector('[data-uniqid="6267c6616c1022.10988552"] input:checked').value != undefined
-        ) {
-          document.querySelectorAll('[data-uniqid="6267c6616c1022.10988552"] input:checked').forEach((input) => {
-            object.material = input.value.split("_")[0].replace(" ", "");
-          });
-        }
-        object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
-
-        object.type = "roof";
-        this.$store.commit("updateMaterial", { ...object });
-
-        if (this.gateNameTranslation[document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input:checked').value != ""]) {
-          this.changeGate("gate1", {
-            material: object.material,
-          });
-        }
-
-        if (this.gateNameTranslation[document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input:checked').value != ""]) {
-          this.changeGate("gate2", {
-            material: object.material,
-          });
-        }
+    changeSheetOrientationEvent: function (e) {
+      if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value == "Jednolity kolor_0") {
+        document.querySelector('div[data-uniqid="6267c6616c1022.10988552"] input').dispatchEvent(new Event("change"));
       } else {
-        if (
-          document.querySelector('[data-uniqid="6267c6836c1098.51557180"] input:checked') != undefined &&
-          document.querySelector('[data-uniqid="6267c6836c1098.51557180"] input:checked').value != undefined
-        ) {
-          document.querySelectorAll('[data-uniqid="6267c6836c1098.51557180"] input:checked').forEach((input) => {
-            object.material = input.value.split("_")[0].replace(" ", "");
-          });
-        }
-        object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
+        document.querySelector('div[data-uniqid="6267c6836c1098.51557180"] input').dispatchEvent(new Event("change"));
       }
-
-      if (e.target.value === "W poziomie_1") {
-        object.material = object.material + "_H";
-      }
-
-      object.type = "walls";
-      this.$store.commit("updateMaterial", { ...object });
     },
 
     changeAllMaterialEvent: function (e) {
-      this.changeSheetOrientation(document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value);
+      this.changeWallMaterial(e);
+      this.changeRoofMaterial(e);
+      this.changeGatesMaterial(e);
     },
 
-    changeWallMaterialEvent: function (e) {
-      this.changeSheetOrientation(document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value);
+    changeWallMaterial: function (e) {
+      let object = {};
+      object.type = "walls";
+      object.material = e.value.split("_")[0].replace(" ", "");
+      object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
+      if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
+        object.material = object.material + "_H";
+      }
+      this.$store.commit("updateMaterial", { ...object });
     },
 
-    changeRoofMaterialEvent: function (e) {
+    changeRoofMaterial: function (e) {
       let object = {};
       object.type = "roof";
       object.material = e.value.split("_")[0].replace(" ", "");
@@ -735,17 +705,14 @@ export default {
       this.$store.commit("updateMaterial", { ...object });
     },
 
-    changeGatesMaterialEvent: function (e) {
+    changeGatesMaterial: function (e) {
       let object = {};
-
       object.material = e.value.split("_")[0].replace(" ", "");
-
       if (this.gateNameTranslation[document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input:checked').value != ""]) {
         this.changeGate("gate1", {
           material: object.material,
         });
       }
-
       if (this.gateNameTranslation[document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input:checked').value != ""]) {
         this.changeGate("gate2", {
           material: object.material,
@@ -1093,7 +1060,7 @@ export default {
       );
 
       form.querySelectorAll('div[data-uniqid="6268636725a2b2.40930404"] select').forEach((input) =>
-        input.addEventListener("change", this.changeSheetOrientation, {
+        input.addEventListener("change", this.changeSheetOrientationEvent, {
           passive: true,
         })
       );
@@ -1105,19 +1072,19 @@ export default {
       );
 
       form.querySelectorAll('div[data-uniqid="6267c6836c1098.51557180"] input').forEach((input) =>
-        input.addEventListener("change", this.changeWallMaterialEvent, {
+        input.addEventListener("change", this.changeWallMaterial, {
           passive: true,
         })
       );
 
       form.querySelectorAll('div[data-uniqid="6268597436a4e8.74048409"] input').forEach((input) =>
-        input.addEventListener("change", this.changeRoofMaterialEvent, {
+        input.addEventListener("change", this.changeRoofMaterial, {
           passive: true,
         })
       );
 
       form.querySelectorAll('div[data-uniqid="6267c6936c1105.52576630"] input').forEach((input) =>
-        input.addEventListener("change", this.changeGatesMaterialEvent, {
+        input.addEventListener("change", this.changeGatesMaterial, {
           passive: true,
         })
       );
