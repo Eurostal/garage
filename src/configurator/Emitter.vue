@@ -622,6 +622,124 @@ export default {
       }
     },
 
+    //DOORS
+    changeDoor: function (name, { wallId = undefined, width = false, height = false, x = false, y = false, material = "", action = true }) {
+      let object = {
+        type: "door",
+        name: name,
+      };
+
+      if (typeof wallId === "number") {
+        object.wallId = wallId;
+      } else {
+        object.wallId = 0;
+      }
+
+      if (typeof x === "number") {
+        object.x = x;
+      }
+
+      if (material) {
+        object.material = material;
+      }
+
+      this.$store.commit(action ? "update" : "remove", { ...object });
+    },
+
+    //door1
+    changeDoor1Event: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b940ff8d56.42586482"] select').value);
+      this.changeDoor("door1", {
+        wallId: wallId,
+        action: e.target.checked,
+      });
+    },
+
+    changeDoor1WallEvent: function (e) {
+      this.changeDoor("door1", { wallId: this.selectWall(e.target.value) });
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="62666ca2882f55.58904320"] select')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="6267a7849054a6.96450831"] input:checked')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="62666bae882df0.44298974"] .tmcp-range')
+        .forEach((input) => (input.value = input.value));
+    },
+
+    changeDoor1MaterialEvent: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b940ff8d56.42586482"] select').value);
+      this.changeDoor("door1", {
+        wallId: wallId,
+        material: this.materialNameTranslation(e.target.value),
+      });
+    },
+
+    changeDoor1PositionXEvent: function (e) {
+      let doorActive = document.querySelector('form.cart div[data-uniqid="626666fc607f38.30729408"] input').checked;
+      if (doorActive) {
+        let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b940ff8d56.42586482"] select').value);
+        this.changeDoor("door1", {
+          wallId: wallId,
+          x: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
+        });
+      }
+    },
+
+    //door2
+    changeDoor2Event: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b951ff8d63.21986646"] select').value);
+      this.changeWindow("door2", {
+        wallId: wallId,
+        action: e.target.checked,
+      });
+    },
+
+    changeDoor2WallEvent: function (e) {
+      this.changeDoor("door2", { wallId: this.selectWall(e.target.value) });
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="6267a72c905239.21013961"] select')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="6267aabb3ebb46.11907871"] input:checked')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="6267a72c905252.02727997"] .tmcp-range')
+        .forEach((input) => (input.value = input.value));
+    },
+
+    changeDoor2MaterialEvent: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b951ff8d63.21986646"] select').value);
+      this.changeDoor("door2", {
+        wallId: wallId,
+        material: this.materialNameTranslation(e.target.value),
+      });
+    },
+
+    changeDoor2PositionXEvent: function (e) {
+      let windowActive = document.querySelector('form.cart div[data-uniqid="6267a72c905212.61206813"] input').checked;
+      if (windowActive) {
+        let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b951ff8d63.21986646"] select').value);
+        this.changeDoor("door2", {
+          wallId: wallId,
+          x: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
+        });
+      }
+    },
+
     selectWall(input) {
       let wallId = 0;
       switch (input) {
