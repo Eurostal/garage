@@ -156,9 +156,15 @@ export default {
     changeGate1StyleEvent: function (e) {
       let material = "RAL9010";
 
+      if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value == "Jednolity kolor_0") {
+        inputId = "6267c6616c1022.10988552";
+      } else {
+        inputId = "6267c6936c1105.52576630";
+      }
+
       document
         .querySelector("form.cart")
-        .querySelectorAll('div[data-uniqid="6267c6616c1022.10988552"] input')
+        .querySelectorAll('div[data-uniqid="' + inputId + '"] input')
         .forEach((input) => {
           if (input.checked) {
             material = this.materialNameTranslation(input.value.split("_")[0].replace(" ", ""));
@@ -177,7 +183,7 @@ export default {
       if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value == "Jednolity kolor_0") {
         inputId = "6267c6616c1022.10988552";
       } else {
-        inputId = "6267c6836c1098.51557180";
+        inputId = "6267c6936c1105.52576630";
       }
 
       document
