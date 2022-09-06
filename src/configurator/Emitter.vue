@@ -693,6 +693,12 @@ export default {
             material: object.material,
           });
         }
+
+        if (this.gateNameTranslation[document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input:checked').value != ""]) {
+          this.changeGate("gate2", {
+            material: object.material,
+          });
+        }
       } else {
         if (
           document.querySelector('[data-uniqid="6267c6836c1098.51557180"] input:checked') != undefined &&
@@ -736,6 +742,12 @@ export default {
 
       if (this.gateNameTranslation[document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input:checked').value != ""]) {
         this.changeGate("gate1", {
+          material: object.material,
+        });
+      }
+
+      if (this.gateNameTranslation[document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input:checked').value != ""]) {
+        this.changeGate("gate2", {
           material: object.material,
         });
       }
