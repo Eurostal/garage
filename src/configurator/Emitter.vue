@@ -680,15 +680,17 @@ export default {
           document.querySelectorAll('[data-uniqid="6267c6616c1022.10988552"] input:checked').forEach((input) => {
             object.material = input.value.split("_")[0].replace(" ", "");
           });
-        } else {
-          object.material = "RAL9010";
         }
+        object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
+
         object.type = "roof";
         this.$store.commit("updateMaterial", { ...object });
 
-        this.changeGate("gate1", {
-          material: object.material,
-        });
+        if (this.gateNameTranslation[document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input:checked').value != ""]) {
+          this.changeGate("gate1", {
+            material: object.material,
+          });
+        }
       } else {
         if (
           document.querySelector('[data-uniqid="6267c6836c1098.51557180"] input:checked') != undefined &&
@@ -697,9 +699,8 @@ export default {
           document.querySelectorAll('[data-uniqid="6267c6836c1098.51557180"] input:checked').forEach((input) => {
             object.material = input.value.split("_")[0].replace(" ", "");
           });
-        } else {
-          object.material = "RAL9010";
         }
+        object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
       }
 
       if (e.target.value === "W poziomie_1") {
@@ -710,7 +711,7 @@ export default {
       this.$store.commit("updateMaterial", { ...object });
     },
 
-    changeAllMaterialEvent: function(e){
+    changeAllMaterialEvent: function (e) {
       this.changeSheetOrientation(e);
     },
 
@@ -957,7 +958,6 @@ export default {
         });
       });
 
-
       //window4
       form.querySelectorAll('div[data-uniqid="626666fc607ee3.26554221"] input').forEach((input) =>
         input.addEventListener("change", this.changeWindow4Event, {
@@ -1004,7 +1004,6 @@ export default {
           },
         });
       });
-
 
       //window5
       form.querySelectorAll('div[data-uniqid="626666fc607f38.30729408"] input').forEach((input) =>
@@ -1053,7 +1052,6 @@ export default {
         });
       });
 
-
       form.querySelectorAll('div[data-uniqid="626930c9de35d5.89950433"] input').forEach((input) =>
         input.addEventListener("change", this.changeFittingsEvent, {
           passive: true,
@@ -1077,7 +1075,7 @@ export default {
           passive: true,
         })
       );
-      
+
       // form.querySelectorAll('div[data-uniqid="6268636725a2b2.40930404"] .tmcp-radio').forEach((input) =>
       //   input.addEventListener("change", this.changeSheetMaterial, {
       //     passive: true,
