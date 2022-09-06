@@ -675,12 +675,22 @@ export default {
     },
 
     changeDoor1MaterialEvent: function (e) {
-      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b940ff8d56.42586482"] select').value);
-      this.changeDoor("door1", {
-        wallId: wallId,
-        material: this.materialNameTranslation(e.target.value),
-      });
+      if (e.target.checked) {
+        document
+          .querySelector("form.cart")
+          .querySelectorAll('div[data-uniqid="6267a7849054a6.96450831"] input:checked:not(#' + e.target.id + ")")
+          .forEach((input) => {
+            input.checked = false;
+            input.dispatchEvent(new Event("change"));
+          });
+
+        var value = e.target.value.split("_")[0].replace(" ", "");
+        this.changeDoor("door1", {
+          material: value,
+        });
+      }
     },
+
 
     changeDoor1PositionXEvent: function (e) {
       let doorActive = document.querySelector('form.cart div[data-uniqid="626666fc607f38.30729408"] input').checked;
@@ -696,7 +706,7 @@ export default {
     //door2
     changeDoor2Event: function (e) {
       let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b951ff8d63.21986646"] select').value);
-      this.changeWindow("door2", {
+      this.changeDoor("door2", {
         wallId: wallId,
         action: e.target.checked,
       });
@@ -722,11 +732,20 @@ export default {
     },
 
     changeDoor2MaterialEvent: function (e) {
-      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b951ff8d63.21986646"] select').value);
-      this.changeDoor("door2", {
-        wallId: wallId,
-        material: this.materialNameTranslation(e.target.value),
-      });
+      if (e.target.checked) {
+        document
+          .querySelector("form.cart")
+          .querySelectorAll('div[data-uniqid="6267aabb3ebb46.11907871"] input:checked:not(#' + e.target.id + ")")
+          .forEach((input) => {
+            input.checked = false;
+            input.dispatchEvent(new Event("change"));
+          });
+
+        var value = e.target.value.split("_")[0].replace(" ", "");
+        this.changeDoor("door2", {
+          material: value,
+        });
+      }
     },
 
     changeDoor2PositionXEvent: function (e) {
