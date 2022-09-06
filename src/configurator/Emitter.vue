@@ -680,6 +680,12 @@ export default {
       }
     },
 
+    changeMaterialArrangementEvent: function (e) {
+      if (e.target.value == "Jednolity kolor_0") {
+        document.querySelector('div[data-uniqid="6267c6616c1022.10988552"] input:checked')?.dispatchEvent(new Event("change"));
+      }
+    },
+
     changeAllMaterialEvent: function (e) {
       this.changeWallMaterial(e);
       this.changeRoofMaterial(e);
@@ -1061,6 +1067,12 @@ export default {
 
       form.querySelectorAll('div[data-uniqid="6268636725a2b2.40930404"] select').forEach((input) =>
         input.addEventListener("change", this.changeSheetOrientationEvent, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="6268636725a2c5.41006929"] select').forEach((input) =>
+        input.addEventListener("change", this.changeMaterialArrangementEvent, {
           passive: true,
         })
       );
