@@ -198,25 +198,7 @@ function updateG(state, data) {
         }
       }
       if (data.type === "gate" && data.height) {
-        if (data.type === "gate" && data.wallId != 0) {
-          store.commit("setMsg", "Brama może znajdować się tylko na przedniej ścianie");
-          return;
-        } else {
-          let garageHeight = data.height + 0.13;
-          Object.values(state.garageActual.walls.front.elements).forEach((element) => {
-            if (element.type == "gate" && garageHeight < element.height + 0.13) {
-              garageHeight = element.height + 0.13;
-            }
-          });
-
-          if (tempElement?.height != undefined && data.height == tempElement.height) {
-            state.garageActual.walls.front.elements[data.name] = data;
-            generator.updateGarage(data.eventType, data, 0);
-          } else {
-            state.garageActual.walls.front.elements[data.name] = data;
-            store.commit("reInit", { height: garageHeight });
-          }
-        }
+        validateGate(data, tempElement, state);
       } else {
         state.garageActual.walls[wallNames[data.wallId]].elements[data.name] = data;
         generator.updateGarage(data.eventType, data, data.wallId);
@@ -247,15 +229,7 @@ function updateG(state, data) {
 
         console.warn("changed " + data.name + " xOffset to " + data.x);
         if (data.type === "gate" && data.height) {
-          if (data.type === "gate" && data.wallId != 0) {
-            store.commit("setMsg", "Brama może znajdować się tylko na przedniej ścianie");
-            return;
-          } else {
-            let garageHeight = data.height + 0.13;
-            state.garageActual.walls[wallNames[data.wallId]].elements[data.name] = data;
-
-            store.commit("reInit", { height: garageHeight });
-          }
+          validateGate(data, tempElement, state);
         } else {
           state.garageActual.walls[wallNames[data.wallId]].elements[data.name] = data;
           generator.updateGarage(data.eventType, data, data.wallId);
@@ -432,4 +406,26 @@ function fillData(data) {
   };
   console.log(filledData);
   return filledData;
+}
+
+function validateGate(data, tempElement, state) {
+  if (data.type === "gate" && data.wallId != 0) {
+    store.commit("setMsg", "Brama może znajdować się tylko na przedniej ścianie");
+    return;
+  } else {
+    let garageHeight = data.height + 0.13;
+    Object.values(state.garageActual.walls.front.elements).forEach((element) => {
+      if (element.type == "gate" && garageHeight < element.height + 0.13) {
+        garageHeight = element.height + 0.13;
+      }
+    });
+
+    if (tempElement?.height != undefined && data.height == tempElement.height) {
+      state.garageActual.walls.front.elements[data.name] = data;
+      generator.updateGarage(data.eventType, data, 0);
+    } else {
+      state.garageActual.walls.front.elements[data.name] = data;
+      store.commit("reInit", { height: garageHeight });
+    }
+  }
 }
