@@ -209,7 +209,7 @@ function updateG(state, data) {
             }
           });
 
-          if (data.height == tempElement.height) {
+          if (tempElement.height && data.height == tempElement.height) {
             state.garageActual.walls.front.elements[data.name] = data;
             generator.updateGarage(data.eventType, data, 0);
           } else {
