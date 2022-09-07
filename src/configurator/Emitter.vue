@@ -648,7 +648,7 @@ export default {
       }
 
       if (handle) {
-        object.handle = this.handleNameTranslations[handle];;
+        object.handleSide = this.handleNameTranslations[handle];;
       }
 
       this.$store.commit(action ? "update" : "remove", { ...object });
@@ -780,6 +780,14 @@ export default {
           x: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
         });
       }
+    },
+
+    changeDoor2HandleEvent: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b951ff8d63.21986646"] select').value);
+      this.changeDoor("door2", {
+        wallId: wallId,
+        handle: e.target.value,
+      });
     },
 
     selectWall(input) {
@@ -1315,7 +1323,7 @@ export default {
           passive: true,
         })
       );
-      form.querySelectorAll('div[data-uniqid="62666bae882dd8.31559354"] input').forEach((input) =>
+      form.querySelectorAll('div[data-uniqid="62666bae882dd8.31559354"] select').forEach((input) =>
         input.addEventListener("change", this.changeDoor1HandleEvent, {
           passive: true,
         })
@@ -1347,6 +1355,11 @@ export default {
       //door2
       form.querySelectorAll('div[data-uniqid="6267a72c905212.61206813"] input').forEach((input) =>
         input.addEventListener("change", this.changeDoor2Event, {
+          passive: true,
+        })
+      );
+      form.querySelectorAll('div[data-uniqid="6267a72c905227.37498764"] select').forEach((input) =>
+        input.addEventListener("change", this.changeDoor2HandleEvent, {
           passive: true,
         })
       );
