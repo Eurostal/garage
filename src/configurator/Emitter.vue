@@ -1315,7 +1315,7 @@ export default {
           passive: true,
         })
       );
-      form.querySelectorAll('div[data-uniqid="62666bae882dd8.31559354"] input').forEach((input) =>
+      form.querySelectorAll('div[data-uniqid="62666bae882dd8.31559354"] select').forEach((input) =>
         input.addEventListener("change", this.changeDoor1HandleEvent, {
           passive: true,
         })
