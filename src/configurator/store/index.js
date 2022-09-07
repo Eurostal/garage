@@ -244,12 +244,7 @@ function updateG(state, data) {
     if (data.type === "fittings") {
       state.garageActual.fittings.visible = false;
     } else if (data.wallId !== undefined) {
-      tempElement = state.garageActual.walls[wallNames[data.wallId]].elements[data.name];
       delete state.garageActual.walls[wallNames[data.wallId]].elements[data.name];
-      if (data.type == "gate") {
-        validateGate(data, tempElement, state);
-        return;
-      }
     }
     generator.updateGarage(data.eventType, data, data.wallId);
   } else if (data.type === "roof") {
