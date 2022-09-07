@@ -141,7 +141,7 @@ export default {
     },
     changeGate2PositionEvent: function (e) {
       this.changeGate("gate2", {
-        position: e.target.value / 100,
+        position: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
       });
     },
     changeGate1SizeEvent: function (e) {
