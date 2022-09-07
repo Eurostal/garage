@@ -24,6 +24,10 @@ export default {
         Pionowe_0: "",
         Poziome_1: "_H",
       },
+      handleNameTranslations: {
+        "Z lewej_0": "left",
+        "Z prawej_1": "right"
+      }
     };
   },
   methods: {
@@ -623,7 +627,7 @@ export default {
     },
 
     //DOORS
-    changeDoor: function (name, { wallId = undefined, width = false, height = false, x = false, y = false, material = "", action = true }) {
+    changeDoor: function (name, { wallId = undefined, width = false, height = false, x = false, y = false, material = "", handle = false, action = true }) {
       let object = {
         type: "door",
         name: name,
@@ -641,6 +645,10 @@ export default {
 
       if (material) {
         object.material = material;
+      }
+
+      if (handle) {
+        object.handle = this.handleNameTranslations[handle];;
       }
 
       this.$store.commit(action ? "update" : "remove", { ...object });
@@ -704,6 +712,14 @@ export default {
           x: parseFloat(e) < 1 ? 0 : parseFloat(e) / 100,
         });
       }
+    },
+
+    changeDoor1HandleEvent: function (e) {
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b940ff8d56.42586482"] select').value);
+      this.changeDoor("door1", {
+        wallId: wallId,
+        handle: e.target.value,
+      });
     },
 
     //door2
@@ -1299,6 +1315,11 @@ export default {
           passive: true,
         })
       );
+      form.querySelectorAll('div[data-uniqid="62666bae882dd8.31559354"] input').forEach((input) =>
+        input.addEventListener("change", this.changeDoor1HandleEvent, {
+          passive: true,
+        })
+      );
       form.querySelectorAll('div[data-uniqid="6267b940ff8d56.42586482"] select').forEach((input) =>
         input.addEventListener("change", this.changeDoor1WallEvent, {
           passive: true,
@@ -1322,6 +1343,7 @@ export default {
           },
         });
       });
+
       //door2
       form.querySelectorAll('div[data-uniqid="6267a72c905212.61206813"] input').forEach((input) =>
         input.addEventListener("change", this.changeDoor2Event, {
