@@ -83,11 +83,14 @@ export const store = createStore({
       walls.forEach((wall, index) => {
         let elements = Object.values(state.garageUpdated.walls[wallNames[index]].elements);
         elements.forEach((element) => {
-          const wallSize =
+          var wallSize =
             index <= 1
               ? { x: state.garageUpdated.width, y: state.garageUpdated.height }
               : { x: state.garageUpdated.length, y: state.garageUpdated.height };
           if (element.type !== "gate") {
+            if (index != 0 && state.garageActual.roof.roofType === "back") {
+              wallSize.y = wallSize.y - 0.23;
+            }
             if (element.x + element.width + 0.1 > wallSize.x || element.y + element.height + 0.1 > wallSize.y) {
               fits = false;
             }
