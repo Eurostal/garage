@@ -892,17 +892,18 @@ export default {
     },
 
     changeWallMaterial: function (e) {
+      let object = {};
+      object.material = "RAL9010";
       if (e.target.checked) {
         document.querySelectorAll('div[data-uniqid="6267c6836c1098.51557180"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
           input.checked = false;
           input.dispatchEvent(new Event("change"));
         });
-      }
 
-      let object = {};
-      object.type = "walls";
-      object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
-      object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
+        object.type = "walls";
+        object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
+      }
       if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
         object.material = object.material + "_H";
       }
