@@ -246,9 +246,11 @@ function updateG(state, data) {
     } else if (data.wallId !== undefined) {
       tempElement = state.garageActual.walls[wallNames[data.wallId]].elements[data.name];
       delete state.garageActual.walls[wallNames[data.wallId]].elements[data.name];
-      validateGate(data, tempElement, state);
+      if (data.type == "gate") {
+        validateGate(data, tempElement, state);
+        return;
+      }
     }
-
     generator.updateGarage(data.eventType, data, data.wallId);
   } else if (data.type === "roof") {
     let roofCheck = true;
