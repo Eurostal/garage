@@ -712,7 +712,11 @@ export default {
     },
 
     changeDoor1SheetOrientation: function (e) {
-      document.querySelector('div[data-uniqid="6267a7849054a6.96450831"] input:checked').dispatchEvent(new Event("change"));
+      if (document.querySelector('div[data-uniqid="6267a7849054a6.96450831"] input:checked') != undefined) {
+        document.querySelector('div[data-uniqid="6267a7849054a6.96450831"] input:checked').dispatchEvent(new Event("change"));
+      } else {
+        document.querySelector('div[data-uniqid="6267a7849054a6.96450831"] input').dispatchEvent(new Event("change"));
+      }
     },
 
     changeDoor1PositionXEvent: function (e) {
@@ -789,7 +793,11 @@ export default {
     },
 
     changeDoor2SheetOrientation: function (e) {
-      document.querySelectorAll('div[data-uniqid="6267a72c905239.21013961"] input:checked').dispatchEvent(new Event("change"));
+      if (document.querySelector('div[data-uniqid="6267a72c905239.21013961"] input:checked') != undefined) {
+        document.querySelector('div[data-uniqid="6267a72c905239.21013961"] input:checked').dispatchEvent(new Event("change"));
+      } else {
+        document.querySelector('div[data-uniqid="6267a72c905239.21013961"] input').dispatchEvent(new Event("change"));
+      }
     },
 
     changeDoor2PositionXEvent: function (e) {
