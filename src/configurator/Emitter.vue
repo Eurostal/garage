@@ -867,9 +867,9 @@ export default {
     // Materials
     changeSheetOrientationEvent: function (e) {
       if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value == "Jednolity kolor_0") {
-        document.querySelector('div[data-uniqid="6267c6616c1022.10988552"] input')?.dispatchEvent(new Event("change"));
+        document.querySelector('div[data-uniqid="6267c6616c1022.10988552"] input:checked')?.dispatchEvent(new Event("change"));
       } else {
-        document.querySelector('div[data-uniqid="6267c6836c1098.51557180"] input')?.dispatchEvent(new Event("change"));
+        document.querySelector('div[data-uniqid="6267c6836c1098.51557180"] input:checked')?.dispatchEvent(new Event("change"));
       }
     },
 
@@ -885,10 +885,10 @@ export default {
           input.checked = false;
           input.dispatchEvent(new Event("change"));
         });
-        this.changeWallMaterial(e);
-        this.changeRoofMaterial(e);
-        this.changeGatesMaterial(e);
       }
+      this.changeWallMaterial(e);
+      this.changeRoofMaterial(e);
+      this.changeGatesMaterial(e);
     },
 
     changeWallMaterial: function (e) {
@@ -897,16 +897,16 @@ export default {
           input.checked = false;
           input.dispatchEvent(new Event("change"));
         });
-
-        let object = {};
-        object.type = "walls";
-        object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
-        object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
-        if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
-          object.material = object.material + "_H";
-        }
-        this.$store.commit("updateMaterial", { ...object });
       }
+
+      let object = {};
+      object.type = "walls";
+      object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+      object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
+      if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
+        object.material = object.material + "_H";
+      }
+      this.$store.commit("updateMaterial", { ...object });
     },
 
     changeRoofMaterial: function (e) {
