@@ -684,16 +684,17 @@ export default {
             input.dispatchEvent(new Event("change"));
           });
 
+        let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b940ff8d56.42586482"] select').value);
         var value = e.target.value.split("_")[0].replace(" ", "");
         this.changeDoor("door1", {
+          wallId: wallId,
           material: value,
         });
       }
     },
 
-
     changeDoor1PositionXEvent: function (e) {
-      let doorActive = document.querySelector('form.cart div[data-uniqid="626666fc607f38.30729408"] input').checked;
+      let doorActive = document.querySelector('form.cart div[data-uniqid="62666b39a2cd72.64951747"] input').checked;
       if (doorActive) {
         let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b940ff8d56.42586482"] select').value);
         this.changeDoor("door1", {
@@ -741,16 +742,18 @@ export default {
             input.dispatchEvent(new Event("change"));
           });
 
+        let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b951ff8d63.21986646"] select').value);
         var value = e.target.value.split("_")[0].replace(" ", "");
         this.changeDoor("door2", {
+          wallId: wallId,
           material: value,
         });
       }
     },
 
     changeDoor2PositionXEvent: function (e) {
-      let windowActive = document.querySelector('form.cart div[data-uniqid="6267a72c905212.61206813"] input').checked;
-      if (windowActive) {
+      let doorActive = document.querySelector('form.cart div[data-uniqid="6267a72c905212.61206813"] input').checked;
+      if (doorActive) {
         let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b951ff8d63.21986646"] select').value);
         this.changeDoor("door2", {
           wallId: wallId,
@@ -1267,7 +1270,6 @@ export default {
           },
         });
       });
-
 
       //door1
       form.querySelectorAll('div[data-uniqid="62666b39a2cd72.64951747"] input').forEach((input) =>
