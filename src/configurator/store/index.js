@@ -187,9 +187,10 @@ function updateG(state, data) {
     }
     if (checkPlacement(data, elements, wallSize)) {
       console.log("checked");
-
+      let tempElement = null;
       for (let i = 0; i < Object.keys(state.garageActual.walls).length; i++) {
         if (Object.keys(state.garageActual.walls[wallNames[i]].elements).includes(data.name)) {
+          tempElement = state.garageActual.walls[wallNames[i]].elements[data.name];
           delete state.garageActual.walls[wallNames[i]].elements[data.name];
         }
       }
@@ -205,7 +206,8 @@ function updateG(state, data) {
             }
           });
 
-          if (data.height == state.garageActual.walls.front.elements[data.name].height) {
+          if (data.height == tempElement.height) {
+            state.garageActual.walls.front.elements[data.name] = data;
             generator.updateGarage(data.eventType, data, 0);
           } else {
             state.garageActual.walls.front.elements[data.name] = data;
