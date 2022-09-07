@@ -828,10 +828,10 @@ export default {
         case "Tylna ściana_2":
           wallId = 1;
           break;
-        case "Lewa ściana_1":
+        case "Prawa ściana_0":
           wallId = 2;
           break;
-        case "Prawa ściana_0":
+        case "Lewa ściana_1":
           wallId = 3;
           break;
         default:
