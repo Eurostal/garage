@@ -555,7 +555,7 @@ export default {
 
     //window5
     changeWindow5Event: function (e) {
-      let wallId = this.selectWall(document.querySelector('div[data-uniqid="626666fc607f67.37945639"] select').value);
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b85e218ae1.80232513"] select').value);
       this.changeWindow("window5", {
         wallId: wallId,
         action: e.target.checked,
