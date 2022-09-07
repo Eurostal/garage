@@ -867,9 +867,17 @@ export default {
     // Materials
     changeSheetOrientationEvent: function (e) {
       if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value == "Jednolity kolor_0") {
-        document.querySelector('div[data-uniqid="6267c6616c1022.10988552"] input')?.dispatchEvent(new Event("change"));
+        if (document.querySelector('div[data-uniqid="6267c6616c1022.10988552"] input:checked') != undefined) {
+          document.querySelector('div[data-uniqid="6267c6616c1022.10988552"] input:checked')?.dispatchEvent(new Event("change"));
+        } else {
+          document.querySelector('div[data-uniqid="6267c6616c1022.10988552"] input')?.dispatchEvent(new Event("change"));
+        }
       } else {
-        document.querySelector('div[data-uniqid="6267c6836c1098.51557180"] input')?.dispatchEvent(new Event("change"));
+        if (document.querySelector('div[data-uniqid="6267c6836c1098.51557180"] input:checked') != undefined) {
+          document.querySelector('div[data-uniqid="6267c6836c1098.51557180"] input:checked')?.dispatchEvent(new Event("change"));
+        } else {
+          document.querySelector('div[data-uniqid="6267c6836c1098.51557180"] input')?.dispatchEvent(new Event("change"));
+        }
       }
     },
 
