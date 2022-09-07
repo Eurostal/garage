@@ -686,6 +686,7 @@ export default {
     },
 
     changeDoor1MaterialEvent: function (e) {
+      var value = "RAL9010";
       if (e.target.checked) {
         document
           .querySelector("form.cart")
@@ -695,19 +696,19 @@ export default {
             input.dispatchEvent(new Event("change"));
           });
 
-        let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666ca2882f55.58904320"] select').value);
-        var value = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        var wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b940ff8d56.42586482"] select').value);
+        value = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
         value = Materials[value] != undefined ? value : "RAL9010";
-
-        if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
-          value = value + "_H";
-        }
-
-        this.changeDoor("door1", {
-          wallId: wallId,
-          material: value,
-        });
       }
+
+      if (document.querySelector('div[data-uniqid="62666ca2882f55.58904320"] select').value == "W poziomie_1") {
+        value = value + "_H";
+      }
+
+      this.changeDoor("door1", {
+        wallId: wallId,
+        material: value,
+      });
     },
 
     changeDoor1PositionXEvent: function (e) {
@@ -758,6 +759,7 @@ export default {
     },
 
     changeDoor2MaterialEvent: function (e) {
+      var value = "RAL9010";
       if (e.target.checked) {
         document
           .querySelector("form.cart")
@@ -767,19 +769,19 @@ export default {
             input.dispatchEvent(new Event("change"));
           });
 
-        let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b951ff8d63.21986646"] select').value);
-        var value = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        var wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b951ff8d63.21986646"] select').value);
+        value = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
         value = Materials[value] != undefined ? value : "RAL9010";
-
-        if (document.querySelector('div[data-uniqid="6267a72c905239.21013961"] select').value == "W poziomie_1") {
-          value = value + "_H";
-        }
-
-        this.changeDoor("door2", {
-          wallId: wallId,
-          material: value,
-        });
       }
+
+      if (document.querySelector('div[data-uniqid="6267a72c905239.21013961"] select').value == "W poziomie_1") {
+        value = value + "_H";
+      }
+
+      this.changeDoor("door2", {
+        wallId: wallId,
+        material: value,
+      });
     },
 
     changeDoor2PositionXEvent: function (e) {
