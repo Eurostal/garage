@@ -105,7 +105,7 @@ export const GOLD_OAK = new Material("SOLID", 0xd38731);
 
 export const Materials = {
   RAL1002: RAL1002,
-  RAL1002_H: RAL1002,
+  RAL1002_H: RAL1002_H,
 
   RAL3005: RAL3005,
   RAL3005_H: RAL3005_H,
