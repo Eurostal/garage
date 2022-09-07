@@ -894,13 +894,13 @@ export default {
     changeWallMaterial: function (e) {
       let object = {};
       object.material = "RAL9010";
+      object.type = "walls";
       if (e.target.checked) {
         document.querySelectorAll('div[data-uniqid="6267c6836c1098.51557180"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
           input.checked = false;
           input.dispatchEvent(new Event("change"));
         });
 
-        object.type = "walls";
         object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
         object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
       }
