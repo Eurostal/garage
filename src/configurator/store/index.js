@@ -45,8 +45,8 @@ export const store = createStore({
         },
         window: {
           wallId: 0,
-          width: 1,
-          height: 1,
+          width: 0.8,
+          height: 0.6,
           material: "WHITE",
           x: 0,
           y: 1,
