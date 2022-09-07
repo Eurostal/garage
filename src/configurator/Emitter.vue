@@ -685,7 +685,9 @@ export default {
           });
 
         let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b940ff8d56.42586482"] select').value);
-        var value = e.target.value.split("_")[0].replace(" ", "");
+        var value = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        value = Materials[value] != undefined ? value : "RAL9010";
+
         this.changeDoor("door1", {
           wallId: wallId,
           material: value,
@@ -743,7 +745,9 @@ export default {
           });
 
         let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b951ff8d63.21986646"] select').value);
-        var value = e.target.value.split("_")[0].replace(" ", "");
+        var value = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        value = Materials[value] != undefined ? value : "RAL9010";
+
         this.changeDoor("door2", {
           wallId: wallId,
           material: value,
@@ -851,7 +855,9 @@ export default {
             input.dispatchEvent(new Event("change"));
           });
 
-        var value = e.target.value.split("_")[0].replace(" ", "");
+        var value = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        value = Materials[value] != undefined ? value : "RAL9010";
+
         this.changeFittings({
           material: value,
         });
