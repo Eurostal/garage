@@ -687,6 +687,7 @@ export default {
 
     changeDoor1MaterialEvent: function (e) {
       var value = "RAL9010";
+      var wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b940ff8d56.42586482"] select').value);
       if (e.target.checked) {
         document
           .querySelector("form.cart")
@@ -696,7 +697,6 @@ export default {
             input.dispatchEvent(new Event("change"));
           });
 
-        var wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b940ff8d56.42586482"] select').value);
         value = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
         value = Materials[value] != undefined ? value : "RAL9010";
       }
@@ -764,6 +764,7 @@ export default {
 
     changeDoor2MaterialEvent: function (e) {
       var value = "RAL9010";
+      var wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b951ff8d63.21986646"] select').value);
       if (e.target.checked) {
         document
           .querySelector("form.cart")
@@ -773,7 +774,6 @@ export default {
             input.dispatchEvent(new Event("change"));
           });
 
-        var wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b951ff8d63.21986646"] select').value);
         value = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
         value = Materials[value] != undefined ? value : "RAL9010";
       }
