@@ -111,6 +111,9 @@ export default {
       this.changeGate("gate1", {
         type: e.target.value,
       });
+
+      document.querySelector("form.cart").querySelector('div[data-uniqid="627ae6909e8ac6.12947879"] .tc-epo-label').textContent =
+        e.target.value;
     },
     changeGate2Event: function (e) {
       let inputId = "";
@@ -137,6 +140,9 @@ export default {
         type: e.target.value,
         material: material,
       });
+
+      document.querySelector("form.cart").querySelector('div[data-uniqid="631872d1491992.81432171"] .tc-epo-label').textContent =
+        e.target.value;
     },
     changeGate1PositionEvent: function (e) {
       this.changeGate("gate1", {
@@ -162,11 +168,17 @@ export default {
       this.changeGate("gate1", {
         width: parseFloat(e.target.value.split(" ")[0]) / 100,
       });
+      
+      document.querySelector("form.cart").querySelector('div[data-uniqid="627ae6819e8a97.45224982"] .tc-epo-label').textContent =
+        e.target.value.split("_")[0];
     },
     changeGate2WidthEvent: function (e) {
       this.changeGate("gate2", {
         width: parseFloat(e.target.value.split(" ")[0]) / 100,
       });
+
+      document.querySelector("form.cart").querySelector('div[data-uniqid="631872d1491992.81432171"] .tc-epo-label').textContent =
+        e.target.value.split("_")[0];
     },
     changeGate1HeightEvent: function (e) {
       this.changeGate("gate1", {
