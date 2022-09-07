@@ -170,7 +170,9 @@ export const store = createStore({
 //Private
 function updateG(state, data) {
   const wallNames = ["front", "back", "left", "right"];
+  let tempElement = null;
   console.log(data);
+
   if (data.wallId !== undefined && data.eventType == "update") {
     if (data.name === "gate2" && state.garageActual.width < 5.5) {
       return;
@@ -190,7 +192,6 @@ function updateG(state, data) {
     }
     if (checkPlacement(data, elements, wallSize)) {
       console.log("checked");
-      let tempElement = null;
       for (let i = 0; i < Object.keys(state.garageActual.walls).length; i++) {
         if (Object.keys(state.garageActual.walls[wallNames[i]].elements).includes(data.name)) {
           tempElement = state.garageActual.walls[wallNames[i]].elements[data.name];
@@ -223,6 +224,7 @@ function updateG(state, data) {
       if (fits) {
         for (let i = 0; i < Object.keys(state.garageActual.walls).length; i++) {
           if (Object.keys(state.garageActual.walls[wallNames[i]].elements).includes(data.name)) {
+            tempElement = state.garageActual.walls[wallNames[i]].elements[data.name];
             delete state.garageActual.walls[wallNames[i]].elements[data.name];
           }
         }
@@ -242,7 +244,9 @@ function updateG(state, data) {
     if (data.type === "fittings") {
       state.garageActual.fittings.visible = false;
     } else if (data.wallId !== undefined) {
+      tempElement = state.garageActual.walls[wallNames[data.wallId]].elements[data.name];
       delete state.garageActual.walls[wallNames[data.wallId]].elements[data.name];
+      validateGate(data, tempElement, state);
     }
 
     generator.updateGarage(data.eventType, data, data.wallId);
