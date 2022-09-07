@@ -37,7 +37,7 @@ export const store = createStore({
         gate: {
           wallId: 0,
           width: 2,
-          height: 2,
+          height: 1.85,
           material: "RAL9010",
           gateType: "double",
           x: 0,
