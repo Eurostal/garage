@@ -26,8 +26,8 @@ export default {
       },
       handleNameTranslations: {
         "Z lewej_0": "left",
-        "Z prawej_1": "right"
-      }
+        "Z prawej_1": "right",
+      },
     };
   },
   methods: {
@@ -627,7 +627,10 @@ export default {
     },
 
     //DOORS
-    changeDoor: function (name, { wallId = undefined, width = false, height = false, x = false, y = false, material = "", handle = false, action = true }) {
+    changeDoor: function (
+      name,
+      { wallId = undefined, width = false, height = false, x = false, y = false, material = "", handle = false, action = true }
+    ) {
       let object = {
         type: "door",
         name: name,
@@ -648,7 +651,7 @@ export default {
       }
 
       if (handle) {
-        object.handleSide = this.handleNameTranslations[handle];;
+        object.handleSide = this.handleNameTranslations[handle];
       }
 
       this.$store.commit(action ? "update" : "remove", { ...object });
@@ -692,9 +695,13 @@ export default {
             input.dispatchEvent(new Event("change"));
           });
 
-        let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b940ff8d56.42586482"] select').value);
+        let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666ca2882f55.58904320"] select').value);
         var value = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
         value = Materials[value] != undefined ? value : "RAL9010";
+
+        if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
+          value = value + "_H";
+        }
 
         this.changeDoor("door1", {
           wallId: wallId,
@@ -763,6 +770,10 @@ export default {
         let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b951ff8d63.21986646"] select').value);
         var value = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
         value = Materials[value] != undefined ? value : "RAL9010";
+
+        if (document.querySelector('div[data-uniqid="6267a72c905239.21013961"] select').value == "W poziomie_1") {
+          value = value + "_H";
+        }
 
         this.changeDoor("door2", {
           wallId: wallId,
@@ -1338,6 +1349,11 @@ export default {
           passive: true,
         })
       );
+      form.querySelectorAll('div[data-uniqid="62666ca2882f55.58904320"] select').forEach((input) =>
+        input.addEventListener("change", this.changeDoor1MaterialEvent, {
+          passive: true,
+        })
+      );
 
       form.querySelectorAll('div[data-uniqid="62666bae882df0.44298974"] .tmcp-range').forEach((input) => {
         var vm = this;
@@ -1369,6 +1385,12 @@ export default {
         })
       );
       form.querySelectorAll('div[data-uniqid="6267aabb3ebb46.11907871"] input').forEach((input) =>
+        input.addEventListener("change", this.changeDoor2MaterialEvent, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="6267a72c905239.21013961"] select').forEach((input) =>
         input.addEventListener("change", this.changeDoor2MaterialEvent, {
           passive: true,
         })
