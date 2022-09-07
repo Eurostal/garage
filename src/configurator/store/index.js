@@ -366,7 +366,7 @@ function checkPlacement(item, wallElements, wallSize) {
   const itemPoints = [
     { x: item.x, y: item.y },
     { x: item.x + item.width, y: item.y },
-    { x: item.x, y: item.x + item.height },
+    { x: item.x, y: item.y + item.height },
     { x: item.x + item.width, y: item.y + item.height },
   ];
   let elementPoints = [];
@@ -377,7 +377,7 @@ function checkPlacement(item, wallElements, wallSize) {
       elementPoints = [
         { x: element.x, y: element.y },
         { x: element.x + element.width, y: element.y },
-        { x: element.x, y: element.x + element.height },
+        { x: element.x, y: element.y + element.height },
         { x: element.x + element.width, y: element.y + element.height },
       ];
     }
