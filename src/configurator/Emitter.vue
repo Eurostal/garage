@@ -113,7 +113,7 @@ export default {
       });
 
       document.querySelector("form.cart").querySelector('div[data-uniqid="627ae6909e8ac6.12947879"] .tc-epo-label').textContent =
-        e.target.value;
+        e.target.value.split("_")[0];
     },
     changeGate2Event: function (e) {
       let inputId = "";
@@ -142,7 +142,7 @@ export default {
       });
 
       document.querySelector("form.cart").querySelector('div[data-uniqid="631872d1491992.81432171"] .tc-epo-label').textContent =
-        e.target.value;
+        e.target.value.split("_")[0];
     },
     changeGate1PositionEvent: function (e) {
       this.changeGate("gate1", {
@@ -184,11 +184,17 @@ export default {
       this.changeGate("gate1", {
         height: parseFloat(e.target.value.split(" ")[0]) / 100,
       });
+
+      document.querySelector("form.cart").querySelector('div[data-uniqid="627ae6a39e8af4.67785060"] .tc-epo-label').textContent =
+        e.target.value.split("_")[0];
     },
     changeGate2HeightEvent: function (e) {
       this.changeGate("gate2", {
         height: parseFloat(e.target.value.split(" ")[0]) / 100,
       });
+
+      document.querySelector("form.cart").querySelector('div[data-uniqid="631872d84919a3.06627727"] .tc-epo-label').textContent =
+        e.target.value.split("_")[0];
     },
     changeGate1StyleEvent: function (e) {
       let material = "RAL9010";
