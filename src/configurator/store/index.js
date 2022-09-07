@@ -205,8 +205,12 @@ function updateG(state, data) {
             }
           });
 
-          state.garageActual.walls.front.elements[data.name] = data;
-          store.commit("reInit", { height: garageHeight });
+          if (data.height == state.garageActual.walls.front.elements[data.name].height) {
+            generator.updateGarage(data.eventType, data, 0);
+          } else {
+            state.garageActual.walls.front.elements[data.name] = data;
+            store.commit("reInit", { height: garageHeight });
+          }
         }
       } else {
         state.garageActual.walls[wallNames[data.wallId]].elements[data.name] = data;
