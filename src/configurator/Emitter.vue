@@ -711,6 +711,10 @@ export default {
       });
     },
 
+    changeDoor1SheetOrientation: function (e) {
+      document.querySelectorAll('div[data-uniqid="6267a7849054a6.96450831"] input').forEach((input) => input.dispatchEvent(new Event("change")));
+    },
+
     changeDoor1PositionXEvent: function (e) {
       let doorActive = document.querySelector('form.cart div[data-uniqid="62666b39a2cd72.64951747"] input').checked;
       if (doorActive) {
@@ -782,6 +786,10 @@ export default {
         wallId: wallId,
         material: value,
       });
+    },
+
+    changeDoor2SheetOrientation: function (e) {
+      document.querySelectorAll('div[data-uniqid="6267a72c905239.21013961"] input').forEach((input) => input.dispatchEvent(new Event("change")));
     },
 
     changeDoor2PositionXEvent: function (e) {
@@ -1352,7 +1360,7 @@ export default {
         })
       );
       form.querySelectorAll('div[data-uniqid="62666ca2882f55.58904320"] select').forEach((input) =>
-        input.addEventListener("change", this.changeDoor1MaterialEvent, {
+        input.addEventListener("change", this.changeDoor1SheetOrientation, {
           passive: true,
         })
       );
@@ -1393,7 +1401,7 @@ export default {
       );
 
       form.querySelectorAll('div[data-uniqid="6267a72c905239.21013961"] select').forEach((input) =>
-        input.addEventListener("change", this.changeDoor2MaterialEvent, {
+        input.addEventListener("change", this.changeDoor2SheetOrientation, {
           passive: true,
         })
       );
