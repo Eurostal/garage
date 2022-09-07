@@ -54,6 +54,18 @@ export default {
       if (width || length) {
         this.$store.commit("reInit", { ...object });
       }
+
+      if(width){
+        var sliderGate1 =  document.querySelector("form.cart").querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
+        if(typeof sliderGate1 === 'object'){
+          sliderGate1.updateOptions({"range":{"min":0,"max": width}})
+        }
+
+        var sliderGate2 =  document.querySelector("form.cart").querySelector('div[data-uniqid="62ffaf77735284.94935292"] .noui-target').noUiSlider;
+        if(typeof sliderGate2 === 'object'){
+          sliderGate2.updateOptions({"range":{"min":0,"max": width}})
+        }
+      }
     },
     changeGarageWidthEvent: function (e) {
       this.changeGarageSize({
