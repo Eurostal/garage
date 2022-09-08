@@ -269,6 +269,13 @@ function updateG(state, data) {
 }
 
 function checkPlacement(item, wallElements, wallSize) {
+  wallSize.y = roundTwoDec(wallSize.y);
+  wallSize.x = roundTwoDec(wallSize.x);
+  item.height = roundTwoDec(item.height);
+  item.width = roundTwoDec(item.width);
+  item.x = roundTwoDec(item.x);
+  item.y = roundTwoDec(item.y);
+
   if (item.type !== "gate") {
     if (item.height + 0.1 > wallSize.y) {
       console.warn(item.name + "is too big to fit in the wall");
@@ -408,4 +415,8 @@ function validateDoor(data, state) {
   } else if (data.type == "door") {
     data.height = 1.85;
   }
+}
+
+function roundTwoDec(value) {
+  return Math.round(value * 100) / 100;
 }
