@@ -404,7 +404,7 @@ function validateGate(data, tempElement, state) {
       generator.updateGarage(data.eventType, data, 0);
     } else {
       state.garageActual.walls.front.elements[data.name] = data;
-      store.commit("reInit", { height: garageHeight });
+      store.commit("reInit", { height: roundTwoDec(garageHeight) });
     }
   }
 }
