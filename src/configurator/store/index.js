@@ -87,13 +87,13 @@ export const store = createStore({
             index <= 1
               ? { x: state.garageUpdated.width, y: state.garageUpdated.height }
               : { x: state.garageUpdated.length, y: state.garageUpdated.height };
-          if (element.type == "door" && state.garageUpdated.height >= 2.13 && state.garageActual.roof.roofType !== "back") {
+          if (element.type == "door" && state.garageUpdated.height >= 2.13 && state.garageUpdated.roof.roofType !== "back") {
             element.height = 2;
           } else if (element.type == "door") {
             element.height = 1.85;
           }
           if (element.type !== "gate") {
-            if (index != 0 && state.garageActual.roof.roofType === "back") {
+            if (index != 0 && state.garageUpdated.roof.roofType === "back") {
               wallSize.y = wallSize.y - 0.23;
             }
             if (element.x + element.width + 0.1 > wallSize.x || element.y + element.height + 0.1 > wallSize.y) {
@@ -253,39 +253,12 @@ function updateG(state, data) {
     }
     generator.updateGarage(data.eventType, data, data.wallId);
   } else if (data.type === "roof") {
-    let roofCheck = true;
-    if (data.roofType) {
-      if (data.roofType == "back") {
-        for (let i = 0; i < Object.values(state.garageActual.walls).length; i++) {
-          const elements = Object.values(state.garageActual.walls)[i].elements;
-          let wallSize =
-            i <= 1 ? { x: state.garageActual.width, y: state.garageActual.height } : { x: state.garageActual.length, y: state.garageActual.height };
-          if (i != 0) {
-            wallSize.y = wallSize.y - 0.23;
-          }
-          const elementsArray = Object.values(elements);
-          for (let j = 0; j < elementsArray.length; j++) {
-            const element = elementsArray[j];
-            console.log(wallSize.y, element);
-            if (element.type !== "gate" && element.y + element.height + 0.2 > wallSize.y) {
-              console.log("WYSTAJE");
-              roofCheck = false;
-              store.commit("setMsg", "Posiadasz element na ścianie, nie można zmienić dachu na niższy");
-              return;
-            }
-          }
-        }
-      }
-      if (roofCheck) {
-        state.garageActual.roof.roofType = data.roofType;
-      }
-    }
     if (data.material) {
       state.garageActual.roof.material = data.material;
     } else {
       data[material] = state.garageActual.roof.material;
     }
-    generator.updateGarage(data.eventType, data, data.wallId);
+    store.commit("reInit", data);
   } else if (data.type === "walls") {
     Object.values(state.garageActual.walls).forEach((wall) => {
       wall.material = data.material;
