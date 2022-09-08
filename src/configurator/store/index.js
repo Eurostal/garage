@@ -386,7 +386,12 @@ function contains(element, { x, y }) {
     width: element.width,
     height: element.height,
   };
-  return rect.x - 0.2 < x && x < rect.x + rect.width + 0.2 && rect.y - 0.2 < y && y < rect.y + rect.height + 0.2;
+  return (
+    roundTwoDec(rect.x - 0.2) < x &&
+    x < roundTwoDec(rect.x + rect.width + 0.2) &&
+    roundTwoDec(rect.y - 0.2) < y &&
+    y < roundTwoDec(rect.y + rect.height + 0.2)
+  );
 }
 
 function fillData(data) {
