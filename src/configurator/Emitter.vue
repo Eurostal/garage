@@ -55,16 +55,16 @@ export default {
         this.$store.commit("reInit", { ...object });
       }
 
-      if(width){
-        if(width > length)
-        var sliderGate1 =  document.querySelector("form.cart").querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
-        if(typeof sliderGate1 === 'object'){
-          sliderGate1.updateOptions({"range":{"min":0,"max": width * 100}})
+      if (width) {
+        if (width > length)
+          var sliderGate1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
+        if (typeof sliderGate1 === "object") {
+          sliderGate1.updateOptions({ range: { min: 0, max: width * 100 } });
         }
 
-        var sliderGate2 =  document.querySelector("form.cart").querySelector('div[data-uniqid="62ffaf77735284.94935292"] .noui-target').noUiSlider;
-        if(typeof sliderGate2 === 'object'){
-          sliderGate2.updateOptions({"range":{"min":0,"max": width * 100 }})
+        var sliderGate2 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffaf77735284.94935292"] .noui-target').noUiSlider;
+        if (typeof sliderGate2 === "object") {
+          sliderGate2.updateOptions({ range: { min: 0, max: width * 100 } });
         }
       }
     },
@@ -125,6 +125,10 @@ export default {
         type: e.target.value,
       });
 
+      if (this.gateNameTranslation[e.target.value] != "") {
+        document.querySelector('div[data-uniqid="625928cfacd608.04744343"] select').dispatchEvent(new Event("change"));
+      }
+
       document.querySelector("form.cart").querySelector('div[data-uniqid="627ae6909e8ac6.12947879"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
     },
@@ -154,6 +158,10 @@ export default {
         material: material,
       });
 
+      if (this.gateNameTranslation[e.target.value] != "") {
+        document.querySelector('div[data-uniqid="627b772ac54f28.86727207"] select').dispatchEvent(new Event("change"));
+      }
+
       document.querySelector("form.cart").querySelector('div[data-uniqid="631872d1491992.81432171"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
     },
@@ -181,7 +189,7 @@ export default {
       this.changeGate("gate1", {
         width: parseFloat(e.target.value.split(" ")[0]) / 100,
       });
-      
+
       document.querySelector("form.cart").querySelector('div[data-uniqid="627ae6819e8a97.45224982"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
     },
