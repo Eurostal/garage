@@ -87,11 +87,7 @@ export const store = createStore({
             index <= 1
               ? { x: state.garageUpdated.width, y: state.garageUpdated.height }
               : { x: state.garageUpdated.length, y: state.garageUpdated.height };
-          if (element.type == "door" && state.garageUpdated.height >= 2.13 && state.garageUpdated.roof.roofType !== "back") {
-            element.height = 2;
-          } else if (element.type == "door") {
-            element.height = 1.85;
-          }
+          validateDoor(element, state);
           if (element.type !== "gate") {
             if (index != 0 && state.garageUpdated.roof.roofType === "back") {
               wallSize.y = wallSize.y - 0.23;
@@ -179,11 +175,8 @@ function updateG(state, data) {
   console.log(data);
 
   if (data.wallId !== undefined && data.eventType == "update") {
-    if (data.type == "door" && state.garageActual.height >= 2.13 && state.garageActual.roof.roofType !== "back") {
-      data.height = 2;
-    } else if (data.type == "door") {
-      data.height = 1.85;
-    }
+    validateDoor(data, state);
+
     if (data.name === "gate2" && state.garageActual.width < 5.5) {
       return;
     }
@@ -406,5 +399,13 @@ function validateGate(data, tempElement, state) {
       state.garageActual.walls.front.elements[data.name] = data;
       store.commit("reInit", { height: garageHeight });
     }
+  }
+}
+
+function validateDoor(data, state) {
+  if (data.type == "door" && state.garageActual.height >= 2.13 && state.garageActual.roof.roofType !== "back") {
+    data.height = 2;
+  } else if (data.type == "door") {
+    data.height = 1.85;
   }
 }
