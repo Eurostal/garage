@@ -277,24 +277,24 @@ function checkPlacement(item, wallElements, wallSize) {
   item.y = roundTwoDec(item.y);
 
   if (item.type !== "gate") {
-    if (item.height + 0.1 > wallSize.y) {
+    if (roundTwoDec(item.height + 0.1) > wallSize.y) {
       console.warn(item.name + "is too big to fit in the wall");
       return false;
     }
-    if (item.width + 0.2 > wallSize.x) {
+    if (roundTwoDec(item.width + 0.2) > wallSize.x) {
       console.warn(item.name + "is too big to fit in the wall");
       return false;
     }
-    if (item.x + item.width + 0.1 > wallSize.x) {
-      item.x = wallSize.x - 0.1 - item.width;
+    if (item.x + roundTwoDec(item.width + 0.1) > wallSize.x) {
+      item.x = roundTwoDec(wallSize.x - 0.1 - item.width);
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
     }
     if (item.x < 0.1) {
       item.x = 0.1;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
     }
-    if (item.y + item.height + 0.1 > wallSize.y) {
-      item.y = wallSize.y - 0.1 - item.height;
+    if (item.y + roundTwoDec(item.height + 0.1) > wallSize.y) {
+      item.y = roundTwoDec(wallSize.y - 0.1 - item.height);
       console.warn(item.name + " exceeds wall boundary, yOffset changed to " + item.y);
     }
   } else {
