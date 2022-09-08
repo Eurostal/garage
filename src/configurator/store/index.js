@@ -209,13 +209,14 @@ function updateG(state, data) {
       }
     } else {
       let fits = false;
+      let xBefore = data.x;
       data.x = 0;
       if (checkPlacement(data, elements, wallSize)) {
         fits = true;
       } else {
         elements.forEach((element, index) => {
           if (!fits) {
-            console.log(data.x, element.width + 0.2);
+            xBefore = data.x;
             data.x = element.x + element.width + 0.2;
             if (checkPlacement(data, elements, wallSize)) {
               fits = true;
@@ -233,6 +234,8 @@ function updateG(state, data) {
         }
 
         console.warn("changed " + data.name + " xOffset to " + data.x);
+        store.commit("setMsg", { item: data.name, eventName: "xOffsetChange", value: { before: xBefore, after: data.x } });
+
         if (data.type === "gate" && data.height) {
           validateGate(data, tempElement, state);
         } else {
@@ -240,7 +243,7 @@ function updateG(state, data) {
           generator.updateGarage(data.eventType, data, data.wallId);
         }
       } else {
-        store.commit("setMsg", "no space on selected wall ");
+        store.commit("setMsg", { item: data.name, eventName: "noSpaceWall" + data.wallId });
       }
     }
   } else if (data.eventType === "remove") {
@@ -276,26 +279,37 @@ function checkPlacement(item, wallElements, wallSize) {
   item.x = roundTwoDec(item.x);
   item.y = roundTwoDec(item.y);
 
+  let xBefore = 0;
+  let yBefore = 0;
+
   if (item.type !== "gate") {
     if (roundTwoDec(item.height + 0.05) > wallSize.y) {
       console.warn(item.name + "is too big to fit in the wall");
+      store.commit("setMsg", { item: item.name, eventName: "OversizeY" });
       return false;
     }
     if (roundTwoDec(item.width + 0.2) > wallSize.x) {
       console.warn(item.name + "is too big to fit in the wall");
+      store.commit("setMsg", { item: item.name, eventName: "OversizeX" });
       return false;
     }
     if (item.x + roundTwoDec(item.width + 0.1) > wallSize.x) {
+      xBefore = item.x;
       item.x = roundTwoDec(wallSize.x - 0.1 - item.width);
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
+      store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: item.x } });
     }
     if (item.x < 0.1) {
+      xBefore = item.x;
       item.x = 0.1;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
+      store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: item.x } });
     }
     if (item.y + roundTwoDec(item.height + 0.05) > wallSize.y) {
+      yBefore = item.y;
       item.y = roundTwoDec(wallSize.y - 0.05 - item.height);
       console.warn(item.name + " exceeds wall boundary, yOffset changed to " + item.y);
+      store.commit("setMsg", { item: item.name, eventName: "yOffsetChange", value: { before: yBefore, after: item.x } });
     }
   } else {
     let gateOffset = 0.1;
@@ -304,19 +318,27 @@ function checkPlacement(item, wallElements, wallSize) {
     }
     if (item.width + gateOffset * 2 > wallSize.x) {
       console.warn(item.name + "is too big to fit in the wall");
+      store.commit("setMsg", { item: item.name, eventName: "OversizeY" });
+
       return false;
     }
     if (item.x + item.width + gateOffset > wallSize.x) {
+      xBefore = item.x;
       item.x = wallSize.x - gateOffset - item.width;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
+      store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: item.x } });
     }
     if (item.x < gateOffset) {
+      xBefore = item.x;
       item.x = gateOffset;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
+      store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: item.x } });
     }
     if (item.y + item.height > wallSize.y) {
+      yBefore = item.y;
       item.y = wallSize.y - item.height;
       console.warn(item.name + " exceeds wall boundary, yOffset changed to " + item.y);
+      store.commit("setMsg", { item: item.name, eventName: "yOffsetChange", value: { before: yBefore, after: item.x } });
     }
   }
   const itemPoints = [
@@ -389,7 +411,7 @@ function fillData(data) {
 
 function validateGate(data, tempElement, state) {
   if (data.type === "gate" && data.wallId != 0) {
-    store.commit("setMsg", "Brama może znajdować się tylko na przedniej ścianie");
+    console.warn("Gate can be placed on front wall only");
     return;
   } else {
     let garageHeight = data.height + 0.13;
