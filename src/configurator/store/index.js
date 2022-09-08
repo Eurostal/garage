@@ -179,6 +179,11 @@ function updateG(state, data) {
   console.log(data);
 
   if (data.wallId !== undefined && data.eventType == "update") {
+    if (data.type == "door" && state.garageActual.height >= 2.13 && state.garageActual.roof.roofType !== "back") {
+      data.height = 2;
+    } else if (data.type == "door") {
+      data.height = 1.85;
+    }
     if (data.name === "gate2" && state.garageActual.width < 5.5) {
       return;
     }
