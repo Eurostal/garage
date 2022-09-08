@@ -140,7 +140,7 @@ export const store = createStore({
     },
 
     setMsg(state, data) {
-      state.msg = data;
+      state.msg = JSON.stringify(data);
       setTimeout(() => {
         state.msg = "";
       }, 3000);
