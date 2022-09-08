@@ -258,7 +258,7 @@ function updateG(state, data) {
     } else {
       data[material] = state.garageActual.roof.material;
     }
-    store.commit("reInit", data);
+    store.commit("reInit", { roof: data });
   } else if (data.type === "walls") {
     Object.values(state.garageActual.walls).forEach((wall) => {
       wall.material = data.material;
