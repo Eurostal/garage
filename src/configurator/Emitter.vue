@@ -121,9 +121,14 @@ export default {
       }
     },
     changeGate1Event: function (e) {
-      this.changeGate("gate1", {
-        type: e.target.value,
-      });
+      let object = {};
+      object.type = e.target.value;
+      if (this.gateNameTranslation[e.target.value] != "") {
+        let position = document.querySelector('div[data-uniqid="62ffad9da82021.94156944"] .tmcp-range').value;
+        object.position = parseFloat(position) < 1 ? 0 : parseFloat(position) / 100;
+      }
+
+      this.changeGate("gate1", object);
 
       if (this.gateNameTranslation[e.target.value] != "") {
         document.querySelector('div[data-uniqid="625928cfacd608.04744343"] select').dispatchEvent(new Event("change"));
@@ -133,8 +138,10 @@ export default {
         e.target.value.split("_")[0];
     },
     changeGate2Event: function (e) {
+      let object = {};
+      object.type = e.target.value;
+
       let inputId = "";
-      let material = "";
 
       if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value == "Jednolity kolor_0") {
         inputId = "6267c6616c1022.10988552";
@@ -147,16 +154,18 @@ export default {
         .querySelectorAll('div[data-uniqid="' + inputId + '"] input')
         .forEach((input) => {
           if (input.checked) {
-            material = this.materialNameTranslation(input.value.split("_")[0].replace(" ", ""));
+            object.material = this.materialNameTranslation(input.value.split("_")[0].replace(" ", ""));
           }
         });
 
-      material = Materials[material] != undefined ? material : "RAL9010";
+      object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
 
-      this.changeGate("gate2", {
-        type: e.target.value,
-        material: material,
-      });
+      if (this.gateNameTranslation[e.target.value] != "") {
+        let position = document.querySelector('div[data-uniqid="62ffaf77735284.94935292"] .tmcp-range').value;
+        object.position = parseFloat(position) < 1 ? 0 : parseFloat(position) / 100;
+      }
+
+      this.changeGate("gate2", object);
 
       if (this.gateNameTranslation[e.target.value] != "") {
         document.querySelector('div[data-uniqid="627b772ac54f28.86727207"] select').dispatchEvent(new Event("change"));
