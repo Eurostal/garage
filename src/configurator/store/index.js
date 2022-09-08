@@ -253,12 +253,7 @@ function updateG(state, data) {
     }
     generator.updateGarage(data.eventType, data, data.wallId);
   } else if (data.type === "roof") {
-    if (data.material) {
-      state.garageActual.roof.material = data.material;
-    } else {
-      data[material] = state.garageActual.roof.material;
-    }
-    store.commit("reInit", { roof: data });
+    store.commit("reInit", { roof: { ...state.garageActual.roof, ...data } });
   } else if (data.type === "walls") {
     Object.values(state.garageActual.walls).forEach((wall) => {
       wall.material = data.material;
