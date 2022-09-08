@@ -92,7 +92,7 @@ export const store = createStore({
             if (index != 0 && state.garageUpdated.roof.roofType === "back") {
               wallSize.y = wallSize.y - 0.23;
             }
-            if (element.x + element.width + 0.1 > wallSize.x || element.y + element.height + 0.1 > wallSize.y) {
+            if (element.x + element.width + 0.1 > wallSize.x || element.y + element.height + 0.05 > wallSize.y) {
               fits = false;
             }
           } else {
