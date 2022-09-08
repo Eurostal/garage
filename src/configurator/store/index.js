@@ -110,7 +110,7 @@ export const store = createStore({
             }
           }
           if (!fits) {
-            this.commit("setMsg", "Posiadasz element na ścianie, nie można zmienić jej wymiarów");
+            this.commit("setMsg", { eventName: "reInitFailed", value: { before: state.garageUpdated, after: state.garageActual } });
           }
         });
       });
