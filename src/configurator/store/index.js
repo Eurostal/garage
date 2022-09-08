@@ -277,7 +277,7 @@ function checkPlacement(item, wallElements, wallSize) {
   item.y = roundTwoDec(item.y);
 
   if (item.type !== "gate") {
-    if (roundTwoDec(item.height + 0.1) > wallSize.y) {
+    if (roundTwoDec(item.height + 0.05) > wallSize.y) {
       console.warn(item.name + "is too big to fit in the wall");
       return false;
     }
@@ -293,8 +293,8 @@ function checkPlacement(item, wallElements, wallSize) {
       item.x = 0.1;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
     }
-    if (item.y + roundTwoDec(item.height + 0.1) > wallSize.y) {
-      item.y = roundTwoDec(wallSize.y - 0.1 - item.height);
+    if (item.y + roundTwoDec(item.height + 0.05) > wallSize.y) {
+      item.y = roundTwoDec(wallSize.y - 0.05 - item.height);
       console.warn(item.name + " exceeds wall boundary, yOffset changed to " + item.y);
     }
   } else {
