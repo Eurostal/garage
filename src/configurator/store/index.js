@@ -87,6 +87,11 @@ export const store = createStore({
             index <= 1
               ? { x: state.garageUpdated.width, y: state.garageUpdated.height }
               : { x: state.garageUpdated.length, y: state.garageUpdated.height };
+          if (element.type == "door" && state.garageUpdated.height >= 2.13 && state.garageActual.roof.roofType !== "back") {
+            element.height = 2;
+          } else if (element.type == "door") {
+            element.height = 1.85;
+          }
           if (element.type !== "gate") {
             if (index != 0 && state.garageActual.roof.roofType === "back") {
               wallSize.y = wallSize.y - 0.23;
