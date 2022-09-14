@@ -1395,7 +1395,9 @@ export default {
       });
 
       form.querySelectorAll('div[data-uniqid="62666b39a2cd72.64951747"] input').forEach((input) => {
+        document.querySelector('div[data-uniqid="62666bae882dc3.07513822"] input:checked')?.checked = false;
         document.querySelector('div[data-uniqid="62666bae882dc3.07513822"] input:checked')?.dispatchEvent(new Event("change"));
+        document.querySelector('div[data-uniqid="6267a72c905212.61206813"] input:checked')?.checked = false;
         document.querySelector('div[data-uniqid="6267a72c905212.61206813"] input:checked')?.dispatchEvent(new Event("change"));
       });
 
