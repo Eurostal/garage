@@ -1395,14 +1395,14 @@ export default {
       });
 
       form.querySelectorAll('div[data-uniqid="62666b39a2cd72.64951747"] input').forEach((input) => {
-        var door1el = document.querySelector('div[data-uniqid="62666bae882dc3.07513822"] input:checked');
+        var door1el = form.querySelector('div[data-uniqid="62666bae882dc3.07513822"] input:checked');
         if(door1el){
           door1el.removeAttribute('checked');
           door1el.checked = false;
           door1el.dispatchEvent(new Event("change"));
         }
         
-        var door2el = document.querySelector('div[data-uniqid="6267a72c905212.61206813"] input:checked');
+        var door2el = form.querySelector('div[data-uniqid="6267a72c905212.61206813"] input:checked');
         if(door2el){
           door2el.removeAttribute('checked');
           door2el.checked = false;
@@ -1411,11 +1411,32 @@ export default {
       });
 
       //door1
-      form.querySelectorAll('div[data-uniqid="62666bae882dc3.07513822"] input').forEach((input) =>
+      form.querySelectorAll('div[data-uniqid="62666bae882dc3.07513822"] input').forEach((input) => {
         input.addEventListener("change", this.changeDoor1Event, {
           passive: true,
         })
-      );
+        
+        form
+        .querySelectorAll('div[data-uniqid="62666bae882dd8.31559354"] select')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+        form
+        .querySelectorAll('div[data-uniqid="62666ca2882f55.58904320"] select')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+        form
+        .querySelectorAll('div[data-uniqid="6267b940ff8d56.42586482"] select')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+        form
+        .querySelectorAll('div[data-uniqid="62666bae882df0.44298974"] .tmcp-range')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+        form
+        .querySelectorAll('div[data-uniqid="6267a7849054a6.96450831"] input:checked')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      });
       form.querySelectorAll('div[data-uniqid="62666bae882dd8.31559354"] select').forEach((input) =>
         input.addEventListener("change", this.changeDoor1HandleEvent, {
           passive: true,
@@ -1451,11 +1472,32 @@ export default {
       });
 
       //door2
-      form.querySelectorAll('div[data-uniqid="6267a72c905212.61206813"] input').forEach((input) =>
+      form.querySelectorAll('div[data-uniqid="6267a72c905212.61206813"] input').forEach((input) =>{
         input.addEventListener("change", this.changeDoor2Event, {
           passive: true,
         })
-      );
+
+        form
+        .querySelectorAll('div[data-uniqid="6267a72c905227.37498764"] select')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+        form
+        .querySelectorAll('div[data-uniqid="6267a72c905239.21013961"] select')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+        form
+        .querySelectorAll('div[data-uniqid="6267b951ff8d63.21986646"] select')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+        form
+        .querySelectorAll('div[data-uniqid="6267a72c905252.02727997"] .tmcp-range')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+        form
+        .querySelectorAll('div[data-uniqid="6267a795905511.58992699"] input:checked')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      });
       form.querySelectorAll('div[data-uniqid="6267a72c905227.37498764"] select').forEach((input) =>
         input.addEventListener("change", this.changeDoor2HandleEvent, {
           passive: true,
