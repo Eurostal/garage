@@ -830,7 +830,7 @@ export default {
 
         document
           .querySelector("form.cart")
-          .querySelectorAll('div[data-uniqid="62666bae882dd8.31559354"] select')
+          .querySelectorAll('div[data-uniqid="6267a72c905239.21013961"] select')
           .forEach((input) => input.dispatchEvent(new Event("change")));
       }
     },
