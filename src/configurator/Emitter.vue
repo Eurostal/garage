@@ -841,10 +841,10 @@ export default {
     },
 
     changeDoor2SheetOrientation: function (e) {
-      if (document.querySelector('div[data-uniqid="6267a72c905239.21013961"] input:checked') != undefined) {
-        document.querySelector('div[data-uniqid="6267a72c905239.21013961"] input:checked').dispatchEvent(new Event("change"));
+      if (document.querySelector('div[data-uniqid="6267aabb3ebb46.11907871"] input:checked') != undefined) {
+        document.querySelector('div[data-uniqid="6267aabb3ebb46.11907871"] input:checked').dispatchEvent(new Event("change"));
       } else {
-        document.querySelector('div[data-uniqid="6267a72c905239.21013961"] input').dispatchEvent(new Event("change"));
+        document.querySelector('div[data-uniqid="6267aabb3ebb46.11907871"] input').dispatchEvent(new Event("change"));
       }
     },
 
