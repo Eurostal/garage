@@ -705,6 +705,22 @@ export default {
       this.$store.commit(action ? "update" : "remove", { ...object });
     },
 
+    changeDoorsEvent: function(e){
+      var door1el = form.querySelector('div[data-uniqid="62666bae882dc3.07513822"] input:checked');
+        if(door1el){
+          door1el.removeAttribute('checked');
+          door1el.checked = false;
+          door1el.dispatchEvent(new Event("change"));
+        }
+        
+        var door2el = form.querySelector('div[data-uniqid="6267a72c905212.61206813"] input:checked');
+        if(door2el){
+          door2el.removeAttribute('checked');
+          door2el.checked = false;
+          door2el.dispatchEvent(new Event("change"));
+        }
+    },
+
     //door1
     changeDoor1Event: function (e) {
       let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b940ff8d56.42586482"] select').value);
@@ -768,7 +784,7 @@ export default {
     },
 
     changeDoor1PositionXEvent: function (e) {
-      let doorActive = document.querySelector('form.cart div[data-uniqid="62666b39a2cd72.64951747"] input').checked;
+      let doorActive = document.querySelector('form.cart div[data-uniqid="62666bae882dc3.07513822"] input').checked;
       if (doorActive) {
         let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b940ff8d56.42586482"] select').value);
         this.changeDoor("door1", {
@@ -1394,21 +1410,11 @@ export default {
         });
       });
 
-      form.querySelectorAll('div[data-uniqid="62666b39a2cd72.64951747"] input').forEach((input) => {
-        var door1el = form.querySelector('div[data-uniqid="62666bae882dc3.07513822"] input:checked');
-        if(door1el){
-          door1el.removeAttribute('checked');
-          door1el.checked = false;
-          door1el.dispatchEvent(new Event("change"));
-        }
-        
-        var door2el = form.querySelector('div[data-uniqid="6267a72c905212.61206813"] input:checked');
-        if(door2el){
-          door2el.removeAttribute('checked');
-          door2el.checked = false;
-          door2el.dispatchEvent(new Event("change"));
-        }
-      });
+      form.querySelectorAll('div[data-uniqid="62666b39a2cd72.64951747"] input').forEach((input) => 
+        input.addEventListener("change", this.changeDoorsEvent, {
+          passive: true,
+        })
+      );
 
       //door1
       form.querySelectorAll('div[data-uniqid="62666bae882dc3.07513822"] input').forEach((input) => {
