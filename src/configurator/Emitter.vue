@@ -312,6 +312,42 @@ export default {
       this.$store.commit(action ? "update" : "remove", { ...object });
     },
 
+    changeWindowsEvent: function(e){
+      var window1el = document.querySelector("form.cart").querySelector('div[data-uniqid="62666bae882db9.11397527"] input:checked');
+      if(window1el){
+        window1el.removeAttribute('checked');
+        window1el.checked = false;
+        window1el.dispatchEvent(new Event("change"));
+      }
+
+      var window2el = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e49.00803437"] input:checked');
+      if(window2el){
+        window2el.removeAttribute('checked');
+        window2el.checked = false;
+        window2el.dispatchEvent(new Event("change"));
+      }
+
+      var window3el = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e94.51163204"] input:checked');
+      if(window3el){
+        window3el.removeAttribute('checked');
+        window3el.checked = false;
+        window3el.dispatchEvent(new Event("change"));
+      }
+
+      var window4el = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ee3.26554221"] input:checked');
+      if(window4el){
+        window4el.removeAttribute('checked');
+        window4el.checked = false;
+        window4el.dispatchEvent(new Event("change"));
+      }
+
+      var window5el = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f38.30729408"] input:checked');
+      if(window5el){
+        window5el.removeAttribute('checked');
+        window5el.checked = false;
+        window5el.dispatchEvent(new Event("change"));
+      }
+    },
     //window1
     changeWindow1Event: function (e) {
       let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
@@ -361,7 +397,7 @@ export default {
     },
 
     changeWindow1PositionXEvent: function (e) {
-      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607df3.98247608"] input').checked;
+      let windowActive = document.querySelector('form.cart div[data-uniqid="6266674e607f87.48123623"] input').checked;
       if (windowActive) {
         let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
         this.changeWindow("window1", {
@@ -372,7 +408,7 @@ export default {
     },
 
     changeWindow1PositionYEvent: function (e) {
-      let windowActive = document.querySelector('form.cart div[data-uniqid="626666fc607df3.98247608"] input').checked;
+      let windowActive = document.querySelector('form.cart div[data-uniqid="6266674e607f87.48123623"] input').checked;
       if (windowActive) {
         let wallId = this.selectWall(document.querySelector('div[data-uniqid="62666dcf882f62.16373762"] select').value);
         this.changeWindow("window1", {
@@ -707,18 +743,18 @@ export default {
 
     changeDoorsEvent: function(e){
       var door1el = document.querySelector("form.cart").querySelector('div[data-uniqid="62666bae882dc3.07513822"] input:checked');
-        if(door1el){
-          door1el.removeAttribute('checked');
-          door1el.checked = false;
-          door1el.dispatchEvent(new Event("change"));
-        }
-        
-        var door2el = document.querySelector("form.cart").querySelector('div[data-uniqid="6267a72c905212.61206813"] input:checked');
-        if(door2el){
-          door2el.removeAttribute('checked');
-          door2el.checked = false;
-          door2el.dispatchEvent(new Event("change"));
-        }
+      if(door1el){
+        door1el.removeAttribute('checked');
+        door1el.checked = false;
+        door1el.dispatchEvent(new Event("change"));
+      }
+      
+      var door2el = document.querySelector("form.cart").querySelector('div[data-uniqid="6267a72c905212.61206813"] input:checked');
+      if(door2el){
+        door2el.removeAttribute('checked');
+        door2el.checked = false;
+        door2el.dispatchEvent(new Event("change"));
+      }
     },
 
     //door1
@@ -1198,12 +1234,19 @@ export default {
         });
       });
 
-      //window1
       form.querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input').forEach((input) =>
+        input.addEventListener("change", this.changeWindowsEvent, {
+          passive: true,
+        })
+      );
+
+      //window1
+      form.querySelectorAll('div[data-uniqid="6266674e607f87.48123623"] input').forEach((input) =>
         input.addEventListener("change", this.changeWindow1Event, {
           passive: true,
         })
       );
+      
       form.querySelectorAll('div[data-uniqid="626666fc607e09.04638628"] select').forEach((input) =>
         input.addEventListener("change", this.changeWindow1SizeEvent, {
           passive: true,
