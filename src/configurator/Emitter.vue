@@ -728,6 +728,11 @@ export default {
         wallId: wallId,
         action: e.target.checked,
       });
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="6267a536abbe61.28260243"] *')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
     },
 
     changeDoor1WallEvent: function (e) {
@@ -809,6 +814,11 @@ export default {
         wallId: wallId,
         action: e.target.checked,
       });
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="6267a752905359.36399750"] *')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
     },
 
     changeDoor2WallEvent: function (e) {
