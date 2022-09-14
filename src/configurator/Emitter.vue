@@ -706,14 +706,14 @@ export default {
     },
 
     changeDoorsEvent: function(e){
-      var door1el = form.querySelector('div[data-uniqid="62666bae882dc3.07513822"] input:checked');
+      var door1el = document.querySelector("form.cart").querySelector('div[data-uniqid="62666bae882dc3.07513822"] input:checked');
         if(door1el){
           door1el.removeAttribute('checked');
           door1el.checked = false;
           door1el.dispatchEvent(new Event("change"));
         }
         
-        var door2el = form.querySelector('div[data-uniqid="6267a72c905212.61206813"] input:checked');
+        var door2el = document.querySelector("form.cart").querySelector('div[data-uniqid="6267a72c905212.61206813"] input:checked');
         if(door2el){
           door2el.removeAttribute('checked');
           door2el.checked = false;
