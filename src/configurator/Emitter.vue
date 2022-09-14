@@ -731,7 +731,12 @@ export default {
 
       document
         .querySelector("form.cart")
-        .querySelectorAll('div[data-uniqid="6267a536abbe61.28260243"] input:checked')
+        .querySelectorAll('div[data-uniqid="62666bae882dd8.31559354"] select')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="6267b940ff8d56.42586482"] select')
         .forEach((input) => input.dispatchEvent(new Event("change")));
     },
 
@@ -817,7 +822,12 @@ export default {
 
       document
         .querySelector("form.cart")
-        .querySelectorAll('div[data-uniqid="6267a752905359.36399750"] input:checked')
+        .querySelectorAll('div[data-uniqid="6267a72c905227.37498764"] select')
+        .forEach((input) => input.dispatchEvent(new Event("change")));
+
+      document
+        .querySelector("form.cart")
+        .querySelectorAll('div[data-uniqid="62666bae882dd8.31559354"] select')
         .forEach((input) => input.dispatchEvent(new Event("change")));
     },
 
