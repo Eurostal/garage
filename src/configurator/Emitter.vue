@@ -171,13 +171,13 @@ export default {
       document.querySelector('div[data-uniqid="625928cfacd608.04744343"] select').dispatchEvent(new Event("change"));
       document.querySelector('div[data-uniqid="625929fa7219b1.06715193"] select').dispatchEvent(new Event("change"));
 
-      this.changeGate("gate1", object);
-
       //Disable gate2 if gate1 is
       if (!this.gateNameTranslation[e.target.value] != "") {
         document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').click();
         document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').dispatchEvent(new Event("change"));
       }
+
+      this.changeGate("gate1", object);
       
       //Label update
       document.querySelector("form.cart").querySelector('div[data-uniqid="627ae6909e8ac6.12947879"] .tc-epo-label').textContent =
