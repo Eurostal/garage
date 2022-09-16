@@ -63,8 +63,8 @@ export default {
                 }
                 break;
               case "window2":
-                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e84.50408653"] input').checked){
-                  var window2 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e84.50408653"] .noui-target').noUiSlider;
+                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e49.00803437"] input').checked){
+                  var window2 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e72.58094923"] .noui-target').noUiSlider;
                   if (typeof window2 === "object") {
                     window2.set(parseInt(newMsg.value.after * 100))
                   }
