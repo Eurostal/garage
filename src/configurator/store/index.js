@@ -140,11 +140,12 @@ export const store = createStore({
     },
 
     setMsg(state, data) {
-      state.msg = JSON.stringify(data);
-      setTimeout(() => {
-        state.msg = { eventName: false };
-      }, 3000);
+      state.msg = data;
     },
+
+    clearMsg(state) {
+      state.msg = { eventName: false }
+    }
   },
   actions: {
     init(context, data) {

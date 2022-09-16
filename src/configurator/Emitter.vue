@@ -32,7 +32,13 @@ export default {
   },
   watch: {
     '$store.state.msg': function(newMsg, oldMsg) {
-      console.log(this.$store.state.msg)
+      if(newMsg.eventName){
+        console.log(JSON.stringify(newMsg))
+      }
+
+      setTimeout(() => {
+        this.$store.commit("clearMsg");
+      }, 3000);
     }
   },
   methods: {
