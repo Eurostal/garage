@@ -34,11 +34,30 @@ export default {
     '$store.state.msg': function(newMsg, oldMsg) {
       if(newMsg.eventName){
         console.log(JSON.stringify(newMsg))
-      }
 
-      setTimeout(() => {
-        this.$store.commit("clearMsg");
-      }, 3000);
+        switch(newMsg.eventName) {
+          case "xOffsetChange":
+            switch(newMsg.eventName) {
+              case "gate1":
+                var sliderGate1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
+                if (typeof sliderGate1 === "object") {
+                  sliderGate1.set(100)
+                }
+                break;
+              default:
+                console.log(newMsg.value.after);
+            break;
+          case y:
+            // code block
+            break;
+          default:
+            // code block
+        }
+      
+        setTimeout(() => {
+          this.$store.commit("clearMsg");
+        }, 3000);
+      }
     }
   },
   methods: {

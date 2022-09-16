@@ -235,7 +235,7 @@ function updateG(state, data) {
         }
 
         console.warn("changed " + data.name + " xOffset to " + data.x);
-        store.commit("setMsg", { item: data.name, eventName: "xOffsetChange", value: { before: xBefore, after: data.x } });
+        store.commit("setMsg", { item: data.name, eventName: "xOffsetChange", value: { before: xBefore, after: data.x.toFixed(2) } });
 
         if (data.type === "gate" && data.height) {
           validateGate(data, tempElement, state);
@@ -298,19 +298,19 @@ function checkPlacement(item, wallElements, wallSize) {
       xBefore = item.x;
       item.x = roundTwoDec(wallSize.x - 0.1 - item.width);
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
-      store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: item.x } });
+      store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: item.x.toFixed(2) } });
     }
     if (item.x < 0.1) {
       xBefore = item.x;
       item.x = 0.1;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
-      store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: item.x } });
+      store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: item.x.toFixed(2) } });
     }
     if (item.y + roundTwoDec(item.height + 0.05) > wallSize.y) {
       yBefore = item.y;
       item.y = roundTwoDec(wallSize.y - 0.05 - item.height);
       console.warn(item.name + " exceeds wall boundary, yOffset changed to " + item.y);
-      store.commit("setMsg", { item: item.name, eventName: "yOffsetChange", value: { before: yBefore, after: item.x } });
+      store.commit("setMsg", { item: item.name, eventName: "yOffsetChange", value: { before: yBefore, after: item.x.toFixed(2) } });
     }
   } else {
     let gateOffset = 0.1;
@@ -327,19 +327,19 @@ function checkPlacement(item, wallElements, wallSize) {
       xBefore = item.x;
       item.x = wallSize.x - gateOffset - item.width;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
-      store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: item.x } });
+      store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: item.x.toFixed(2) } });
     }
     if (item.x < gateOffset) {
       xBefore = item.x;
       item.x = gateOffset;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
-      store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: item.x } });
+      store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: item.x.toFixed(2) } });
     }
     if (item.y + item.height > wallSize.y) {
       yBefore = item.y;
       item.y = wallSize.y - item.height;
       console.warn(item.name + " exceeds wall boundary, yOffset changed to " + item.y);
-      store.commit("setMsg", { item: item.name, eventName: "yOffsetChange", value: { before: yBefore, after: item.x } });
+      store.commit("setMsg", { item: item.name, eventName: "yOffsetChange", value: { before: yBefore, after: item.x.toFixed(2) } });
     }
   }
   const itemPoints = [
