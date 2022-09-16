@@ -114,6 +114,49 @@ export default {
                 console.log(newMsg.item);
             }
             break;
+          case "yOffsetChange":
+            switch(newMsg.item){
+              case "window1":
+                if(document.querySelector("form.cart").querySelector('div[data-uniqid="6266674e607f87.48123623"] input').checked){
+                  var window1 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e37.33496203"] .noui-target').noUiSlider;
+                  if (typeof window1 === "object") {
+                    window1.set(parseInt(newMsg.value.after * 100))
+                  }
+                }
+                break;
+              case "window2":
+                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e84.50408653"] input').checked){
+                  var window2 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e72.58094923"] .noui-target').noUiSlider;
+                  if (typeof window2 === "object") {
+                    window2.set(parseInt(newMsg.value.after * 100))
+                  }
+                }
+                break;
+              case "window3":
+                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e94.51163204"] input').checked){
+                  var window3 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ed0.11804888"] .noui-target').noUiSlider;
+                  if (typeof window3 === "object") {
+                    window3.set(parseInt(newMsg.value.after * 100))
+                  }
+                }
+                break;
+              case "window4":
+                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ee3.26554221"] input').checked){
+                  var window4 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f29.14038358"] .noui-target').noUiSlider;
+                  if (typeof window4 === "object") {
+                    window4.set(parseInt(newMsg.value.after * 100))
+                  }
+                }
+                break;
+              case "window5":
+                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f38.30729408"] input').checked){
+                  var window5 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f67.37945639"] .noui-target').noUiSlider;
+                  if (typeof window5 === "object") {
+                    window5.set(parseInt(newMsg.value.after * 100))
+                  }
+                }
+                break;
+            }
           default:
             console.log(JSON.stringify(newMsg))
         }
