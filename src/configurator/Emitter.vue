@@ -41,13 +41,12 @@ export default {
                 var sliderGate1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
                 if (typeof sliderGate1 === "object") {
                   sliderGate1.set(newMsg.value.after * 100)
-                  console.log(JSON.stringify(newMsg))
                 }
                 break;
               case "gate2":
                 var sliderGate2 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffaf77735284.94935292"] .noui-target').noUiSlider;
                 if (typeof sliderGate2 === "object") {
-                  // sliderGate2.set(newMsg.value.after)
+                  sliderGate2.set(newMsg.value.after * 100)
                 }
                 break;
               default:
