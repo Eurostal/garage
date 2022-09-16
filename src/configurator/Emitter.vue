@@ -173,6 +173,7 @@ export default {
 
       //Disable gate2 if gate1 is
       if (!this.gateNameTranslation[e.target.value] != "") {
+        document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').click();
         this.changeGate("gate2", object);
       }
 
