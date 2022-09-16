@@ -56,29 +56,36 @@ export default {
       }
 
       if (width) {
-        if (width > length)
-          var sliderGate1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
+        var sliderGate1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
+        var sliderGate2 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffaf77735284.94935292"] .noui-target').noUiSlider;
+
         if (typeof sliderGate1 === "object") {
           sliderGate1.updateOptions({ range: { min: 0, max: width * 100 } });
         }
 
-        var sliderGate2 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffaf77735284.94935292"] .noui-target').noUiSlider;
         if (typeof sliderGate2 === "object") {
           sliderGate2.updateOptions({ range: { min: 0, max: width * 100 } });
         }
+
       }
     },
     changeGarageWidthEvent: function (e) {
+      let garageWidth = parseFloat(e.target.value.split(" ")[0].replace(",", "."))
       this.changeGarageSize({
-        width: parseFloat(e.target.value.split(" ")[0].replace(",", ".")),
+        width: garageWidth,
       });
+
+      //Label update
       document.querySelector("form.cart").querySelector('div[data-uniqid="627a9ae125d4d6.54277708"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
     },
     changeGarageLengthEvent: function (e) {
+      let garareLength = parseFloat(e.target.value.split(" ")[0].replace(",", "."))
       this.changeGarageSize({
-        length: parseFloat(e.target.value.split(" ")[0].replace(",", ".")),
+        length: garareLength,
       });
+
+      //Label update
       document.querySelector("form.cart").querySelector('div[data-uniqid="627a9ad625d4b6.52719206"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
     },
