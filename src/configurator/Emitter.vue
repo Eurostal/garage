@@ -55,7 +55,7 @@ export default {
                 }
                 break;
               case "window1":
-                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="6266674e607f87.48123623"] input').checked){
+                if(document.querySelector("form.cart").querySelector('div[data-uniqid="6266674e607f87.48123623"] input').checked){
                   var window1 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e27.12468774"] .noui-target').noUiSlider;
                   if (typeof window1 === "object") {
                     window1.set(parseInt(newMsg.value.after * 100))
@@ -63,7 +63,7 @@ export default {
                 }
                 break;
               case "window2":
-                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e49.00803437"] input').checked){
+                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e49.00803437"] input').checked){
                   var window2 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e72.58094923"] .noui-target').noUiSlider;
                   if (typeof window2 === "object") {
                     window2.set(parseInt(newMsg.value.after * 100))
@@ -71,7 +71,7 @@ export default {
                 }
                 break;
               case "window3":
-                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e94.51163204"] input').checked){
+                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e94.51163204"] input').checked){
                   var window3 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ec0.38279999"] .noui-target').noUiSlider;
                   if (typeof window3 === "object") {
                     window3.set(parseInt(newMsg.value.after * 100))
@@ -79,7 +79,7 @@ export default {
                 }
                 break;
               case "window4":
-                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ee3.26554221"] input').checked){
+                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ee3.26554221"] input').checked){
                   var window4 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f13.98580250"] .noui-target').noUiSlider;
                   if (typeof window4 === "object") {
                     window4.set(parseInt(newMsg.value.after * 100))
@@ -87,7 +87,7 @@ export default {
                 }
                 break;
               case "window5":
-                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f38.30729408"] input').checked){
+                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f38.30729408"] input').checked){
                   var window5 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f79.78538581"] .noui-target').noUiSlider;
                   if (typeof window5 === "object") {
                     window5.set(parseInt(newMsg.value.after * 100))
