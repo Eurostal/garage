@@ -41,11 +41,11 @@ export default {
               case "gate1":
                 var sliderGate1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
                 if (typeof sliderGate1 === "object") {
-                  sliderGate1.set(100)
+                  sliderGate1.set(newMsg.value.after)
                 }
                 break;
               default:
-                console.log(newMsg.value.after);
+                console.log(newMsg.eventName);
             break;
           case y:
             // code block
