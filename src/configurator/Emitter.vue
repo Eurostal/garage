@@ -33,11 +33,10 @@ export default {
   watch: {
     '$store.state.msg': function(newMsg, oldMsg) {
       if(newMsg.eventName){
-        console.log(JSON.stringify(newMsg))
 
         switch(newMsg.eventName) {
           case "xOffsetChange":
-            switch(newMsg.eventName) {
+            switch(newMsg.item) {
               case "gate1":
                 var sliderGate1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
                 if (typeof sliderGate1 === "object") {
@@ -45,14 +44,14 @@ export default {
                 }
                 break;
               default:
-                console.log(newMsg.eventName);
+                console.log(newMsg.item);
             }
             break;
           case y:
             // code block
             break;
           default:
-            // code block
+            console.log(JSON.stringify(newMsg))
         }
       
         setTimeout(() => {
