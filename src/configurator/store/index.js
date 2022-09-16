@@ -62,7 +62,7 @@ export const store = createStore({
         },
         fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
       },
-      msg: { eventName: false, value: { before: null, after: null } },
+      msg: { eventName: false },
     };
   },
   mutations: {
@@ -142,7 +142,7 @@ export const store = createStore({
     setMsg(state, data) {
       state.msg = JSON.stringify(data);
       setTimeout(() => {
-        state.msg = "";
+        state.msg = { eventName: false };
       }, 3000);
     },
   },
