@@ -130,10 +130,14 @@ export default {
 
       this.changeGate("gate1", object);
 
+      //Update gate by other properties in form after enabling it
       if (this.gateNameTranslation[e.target.value] != "") {
+        document.querySelector('div[data-uniqid="625928cfacd5f2.48728982"] select').dispatchEvent(new Event("change"));
         document.querySelector('div[data-uniqid="625928cfacd608.04744343"] select').dispatchEvent(new Event("change"));
+        document.querySelector('div[data-uniqid="625929fa7219b1.06715193"] select').dispatchEvent(new Event("change"));
       }
 
+      //Label update
       document.querySelector("form.cart").querySelector('div[data-uniqid="627ae6909e8ac6.12947879"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
     },
@@ -167,10 +171,14 @@ export default {
 
       this.changeGate("gate2", object);
 
+      //Update gate by other properties in form after enabling it
       if (this.gateNameTranslation[e.target.value] != "") {
+        document.querySelector('div[data-uniqid="627b7720c54f10.62015977"] select').dispatchEvent(new Event("change"));
         document.querySelector('div[data-uniqid="627b772ac54f28.86727207"] select').dispatchEvent(new Event("change"));
+        document.querySelector('div[data-uniqid="627b7732c54f35.77583366"] select').dispatchEvent(new Event("change"));
       }
 
+      //Label update
       document.querySelector("form.cart").querySelector('div[data-uniqid="631872d1491992.81432171"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
     },
