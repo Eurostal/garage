@@ -173,8 +173,10 @@ export default {
         document.querySelector('div[data-uniqid="625928cfacd5f2.48728982"] select').dispatchEvent(new Event("change"));
         document.querySelector('div[data-uniqid="625928cfacd608.04744343"] select').dispatchEvent(new Event("change"));
         document.querySelector('div[data-uniqid="625929fa7219b1.06715193"] select').dispatchEvent(new Event("change"));
+      } else {
+        document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input#tmcp_choice_10_4_2463246def5c690').click();
       }
-
+      
       //Label update
       document.querySelector("form.cart").querySelector('div[data-uniqid="627ae6909e8ac6.12947879"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
