@@ -47,9 +47,6 @@ export default {
                 console.log(newMsg.item);
             }
             break;
-          case y:
-            // code block
-            break;
           default:
             console.log(JSON.stringify(newMsg))
         }
