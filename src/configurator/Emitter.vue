@@ -30,6 +30,11 @@ export default {
       },
     };
   },
+  watch: {
+    '$store.state.msg': function(newMsg, oldMsg) {
+      console.log(this.$store.state.msg)
+    }
+  },
   methods: {
     changeRoof: function (name = "Dwuspadowy_0") {
       let object = {

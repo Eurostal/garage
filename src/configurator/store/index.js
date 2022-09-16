@@ -62,7 +62,7 @@ export const store = createStore({
         },
         fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
       },
-      msg: "",
+      msg: { eventName: false, value: { before: null, after: null } },
     };
   },
   mutations: {
