@@ -152,10 +152,10 @@ export default {
         }
       }
 
-      this.$store.commit("update", { ...object });
-
       if (object.gateType === "") {
         this.$store.commit("remove", { ...object });
+      } else {
+        this.$store.commit("update", { ...object });
       }
     },
     changeGate1Event: function (e) {
