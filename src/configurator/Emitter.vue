@@ -93,6 +93,22 @@ export default {
                     window5.set(parseInt(newMsg.value.after * 100))
                   }
                 }
+                break;
+              case "door1":
+                if(document.querySelector("form.cart").querySelector('div[data-uniqid="62666bae882dc3.07513822"] input').checked){
+                  var door1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62666bae882df0.44298974"] .noui-target').noUiSlider;
+                  if (typeof door1 === "object") {
+                    door1.set(parseInt(newMsg.value.after * 100))
+                  }
+                }
+                break;
+              case "door2":
+                if(document.querySelector("form.cart").querySelector('div[data-uniqid="6267a72c905212.61206813"] input').checked){
+                  var door2 = document.querySelector("form.cart").querySelector('div[data-uniqid="6267a72c905252.02727997"] .noui-target').noUiSlider;
+                  if (typeof door2 === "object") {
+                    door2.set(parseInt(newMsg.value.after * 100))
+                  }
+                }
                 break;                
               default:
                 console.log(newMsg.item);
