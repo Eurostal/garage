@@ -38,7 +38,7 @@ export default {
           case "xOffsetChange":
             switch(newMsg.item) {
               case "gate1":
-                if(!document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input[value="Zamiast bramy ściana_4"]').checked){
+                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input[value="Zamiast bramy ściana_4"]').checked){
                   var sliderGate1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
                   if (typeof sliderGate1 === "object") {
                     sliderGate1.set(parseInt(newMsg.value.after * 100))
@@ -47,14 +47,53 @@ export default {
                 }
                 break;
               case "gate2":
-                if(!document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').checked){
+                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').checked){
                   var sliderGate2 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffaf77735284.94935292"] .noui-target').noUiSlider;
                   if (typeof sliderGate2 === "object") {
                     sliderGate2.set(parseInt(newMsg.value.after * 100))
-                    // console.log(newMsg.value.after * 100)
                   }
                 }
                 break;
+              case "window1":
+                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="6266674e607f87.48123623"] input').checked){
+                  var window1 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e27.12468774"] .noui-target').noUiSlider;
+                  if (typeof window1 === "object") {
+                    window1.set(parseInt(newMsg.value.after * 100))
+                  }
+                }
+                break;
+              case "window2":
+                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e84.50408653"] input').checked){
+                  var window2 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e84.50408653"] .noui-target').noUiSlider;
+                  if (typeof window2 === "object") {
+                    window2.set(parseInt(newMsg.value.after * 100))
+                  }
+                }
+                break;
+              case "window3":
+                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ed0.11804888"] input').checked){
+                  var window3 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ed0.11804888"] .noui-target').noUiSlider;
+                  if (typeof window3 === "object") {
+                    window3.set(parseInt(newMsg.value.after * 100))
+                  }
+                }
+                break;
+              case "window4":
+                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f29.14038358"] input').checked){
+                  var window4 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f29.14038358"] .noui-target').noUiSlider;
+                  if (typeof window4 === "object") {
+                    window4.set(parseInt(newMsg.value.after * 100))
+                  }
+                }
+                break;
+              case "window5":
+                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f79.78538581"] input').checked){
+                  var window5 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f79.78538581"] .noui-target').noUiSlider;
+                  if (typeof window5 === "object") {
+                    window5.set(parseInt(newMsg.value.after * 100))
+                  }
+                }
+                break;                
               default:
                 console.log(newMsg.item);
             }
