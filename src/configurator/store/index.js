@@ -12,21 +12,7 @@ export const store = createStore({
           length: 5,
           height: 1.85 + 0.13,
           walls: {
-            front: {
-              elements: {
-                gate1: {
-                  type: "gate",
-                  width: 2,
-                  height: 1.85,
-                  material: "RAL9010",
-                  name: "gate1",
-                  gateType: "double",
-                  x: 0,
-                  y: 0,
-                },
-              },
-              material: "RAL9010",
-            },
+            front: { elements: {}, material: "RAL9010" },
             back: { elements: {}, material: "RAL9010" },
             left: { elements: {}, material: "RAL9010" },
             right: { elements: {}, material: "RAL9010" },
