@@ -41,7 +41,7 @@ export default {
                 if(!document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input[value="Zamiast bramy ściana_4"]').checked){
                   var sliderGate1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
                   if (typeof sliderGate1 === "object") {
-                    sliderGate1.set(newMsg.value.after * 100)
+                    sliderGate1.set(parseInt(newMsg.value.after * 100))
                     // console.log(newMsg.value.after * 100)
                   }
                 }
@@ -50,7 +50,7 @@ export default {
                 if(!document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').checked){
                   var sliderGate2 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffaf77735284.94935292"] .noui-target').noUiSlider;
                   if (typeof sliderGate2 === "object") {
-                    sliderGate2.set(newMsg.value.after * 100)
+                    sliderGate2.set(parseInt(newMsg.value.after * 100))
                     // console.log(newMsg.value.after * 100)
                   }
                 }
