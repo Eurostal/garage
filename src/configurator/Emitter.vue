@@ -71,23 +71,23 @@ export default {
                 }
                 break;
               case "window3":
-                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ed0.11804888"] input').checked){
-                  var window3 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ed0.11804888"] .noui-target').noUiSlider;
+                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e94.51163204"] input').checked){
+                  var window3 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ec0.38279999"] .noui-target').noUiSlider;
                   if (typeof window3 === "object") {
                     window3.set(parseInt(newMsg.value.after * 100))
                   }
                 }
                 break;
               case "window4":
-                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f29.14038358"] input').checked){
-                  var window4 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f29.14038358"] .noui-target').noUiSlider;
+                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ee3.26554221"] input').checked){
+                  var window4 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f13.98580250"] .noui-target').noUiSlider;
                   if (typeof window4 === "object") {
                     window4.set(parseInt(newMsg.value.after * 100))
                   }
                 }
                 break;
               case "window5":
-                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f79.78538581"] input').checked){
+                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f38.30729408"] input').checked){
                   var window5 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f79.78538581"] .noui-target').noUiSlider;
                   if (typeof window5 === "object") {
                     window5.set(parseInt(newMsg.value.after * 100))
