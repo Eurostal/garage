@@ -44,8 +44,6 @@ export default {
                   sliderGate1.set(newMsg.value.after)
                 }
                 break;
-              default:
-                console.log(newMsg.eventName);
             break;
           case y:
             // code block
