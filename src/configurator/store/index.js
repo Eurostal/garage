@@ -8,9 +8,9 @@ export const store = createStore({
       garageUpdated: {},
       defaults: {
         garage: {
-          width: 2.95,
+          width: 3,
           length: 5,
-          height: 1.85 + 0.13,
+          height: 2 + 0.13,
           walls: {
             front: { elements: {}, material: "RAL9010" },
             back: { elements: {}, material: "RAL9010" },
@@ -22,8 +22,8 @@ export const store = createStore({
         },
         gate: {
           wallId: 0,
-          width: 2,
-          height: 1.85,
+          width: 3,
+          height: 2,
           material: "RAL9010",
           gateType: "double",
           x: 0,
@@ -130,8 +130,8 @@ export const store = createStore({
     },
 
     clearMsg(state) {
-      state.msg = { eventName: false }
-    }
+      state.msg = { eventName: false };
+    },
   },
   actions: {
     init(context, data) {
