@@ -74,38 +74,12 @@ export default class WallCustom extends Wall {
     wallPunched.receiveShadow = true;
     this.object.remove(this.object.getObjectByName("wall"));
     wallPunched.name = "wall";
+    wallPunched.geometry.groups.forEach(function (face, i) {
+      face.materialIndex = 0;
+      if (i === 5) {
+        face.materialIndex = 1;
+      }
+    });
     this.object.add(wallPunched);
   }
-
-  // checkBoundaries(element, xOffset, yOffset) {
-  //   if (element instanceof Gate) {
-  //     yOffset = 0;
-  //     if (element.gateType == "tilted" && element.height >= this.height - 0.2) {
-  //       console.log(element.name + " is tilted gate, which needs 20cm gap from roof start, reduced to: " + (this.height - 0.2));
-  //       element.height = this.height - 0.2;
-  //       element.updateModel();
-  //     }
-  //   }
-
-  //   if (xOffset < 0.1) {
-  //     console.log(element.name + " item xOffset is out of wall's bounds ");
-  //     return false;
-  //   }
-
-  //   if (xOffset > this.width - element.width - 0.1) {
-  //     console.log(element.name + " item xOffset is out of wall's bounds ");
-  //     return false;
-  //   }
-
-  //   if (yOffset > this.height - element.height) {
-  //     console.log(element.name + " item yOffset is out of wall's bounds ");
-  //     return false;
-  //   }
-  //   if (yOffset < 0) {
-  //     console.log(element.name + " item yOffset is out of wall's bounds ");
-  //     return false;
-  //   }
-
-  //   return true;
-  // }
 }
