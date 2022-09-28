@@ -13,8 +13,10 @@ export default class Wall {
     this.materialTemp = material;
     this.clippingPlane = clippingPlane;
     this.object.add(this.createWall());
+    this.defaultInside = defaultInside;
     this.material = this.updateMaterial(material, clippingPlane, defaultInside);
   }
+
   createWall() {
     const overflowHeight = this.roofHeight;
     let geometry = new BoxGeometry(this.width, this.height + overflowHeight, 0.01);
@@ -31,6 +33,7 @@ export default class Wall {
     wall.translateZ(this.offset - 0.01 / 2);
     wall.castShadow = true;
     wall.receiveShadow = true;
+    console.log(wall, this);
     return wall;
   }
 
@@ -71,8 +74,10 @@ export default class Wall {
         wallMaterial.roughnessMap ? wallMaterial.roughnessMap.repeat.set(this.height, this.width) : null;
         wallMaterial.bumpMap ? wallMaterial.bumpMap.repeat.set(this.height, this.width) : null;
       }
+
       wall.material = materials;
       this.material = materials;
+      this.defaultInside = defaultInside;
     }
   }
 }
