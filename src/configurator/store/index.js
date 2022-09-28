@@ -12,10 +12,10 @@ export const store = createStore({
           length: 5,
           height: 2 + 0.13,
           walls: {
-            front: { elements: {}, material: "RAL9010" },
-            back: { elements: {}, material: "RAL9010" },
-            left: { elements: {}, material: "RAL9010" },
-            right: { elements: {}, material: "RAL9010" },
+            front: { elements: {}, material: "RAL9010", defaultInside: true },
+            back: { elements: {}, material: "RAL9010", defaultInside: true },
+            left: { elements: {}, material: "RAL9010", defaultInside: true },
+            right: { elements: {}, material: "RAL9010", defaultInside: true },
           },
           roof: { roofType: "gable", material: "RAL9010" },
           fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
@@ -245,6 +245,7 @@ function updateG(state, data) {
   } else if (data.type === "walls") {
     Object.values(state.garageActual.walls).forEach((wall) => {
       wall.material = data.material;
+      wall.defaultInside = data.defaultInside;
     });
     generator.updateGarage(data.eventType, data, data.wallId);
   } else if (data.wallId === undefined) {
