@@ -48,7 +48,6 @@ export default class Wall {
         innerWallMaterial.map = innerWallMaterial.map.clone();
         innerWallMaterial.normalMap = innerWallMaterial.normalMap.clone();
         innerWallMaterial.roughnessMap = innerWallMaterial.roughnessMap.clone();
-        innerWallMaterial.bumpMap = innerWallMaterial.bumpMap.clone();
 
         let rotation = wallMaterial.map.clone().rotation;
         innerWallMaterial.map.repeat.set(this.height, this.width);
@@ -57,7 +56,6 @@ export default class Wall {
         innerWallMaterial.normalMap.rotation = rotation;
         innerWallMaterial.roughnessMap.repeat.set(this.height, this.width);
         innerWallMaterial.roughnessMap.rotation = rotation;
-        innerWallMaterial.bumpMap.repeat.set(this.height, this.width);
       }
 
       if (clippingPlane !== undefined) {
