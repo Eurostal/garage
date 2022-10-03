@@ -12,9 +12,37 @@ export const store = createStore({
           length: 5,
           height: 2 + 0.13,
           walls: {
-            front: { elements: {}, material: "RAL9010", defaultInside: true },
+            front: {
+              elements: {
+                window1: {
+                  type: "window",
+                  wallId: 0,
+                  width: 0.8,
+                  height: 0.6,
+                  material: "WHITE",
+                  x: 0,
+                  y: 1,
+                },
+              },
+              material: "RAL9010",
+              defaultInside: true,
+            },
             back: { elements: {}, material: "RAL9010", defaultInside: true },
-            left: { elements: {}, material: "RAL9010", defaultInside: true },
+            left: {
+              elements: {
+                window1: {
+                  type: "window",
+                  wallId: 0,
+                  width: 0.8,
+                  height: 0.6,
+                  material: "WHITE",
+                  x: 0,
+                  y: 1,
+                },
+              },
+              material: "RAL9010",
+              defaultInside: true,
+            },
             right: { elements: {}, material: "RAL9010", defaultInside: true },
           },
           roof: { roofType: "gable", material: "RAL9010" },

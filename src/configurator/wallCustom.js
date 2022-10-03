@@ -1,5 +1,5 @@
 import Wall from "./wall";
-import { Mesh, BoxGeometry, MeshStandardMaterial, Group } from "three";
+import { Mesh, BoxGeometry, MeshStandardMaterial, Group, Vector3 } from "three";
 import { CSG } from "@enable3d/three-graphics/jsm/csg";
 
 export default class WallCustom extends Wall {
@@ -69,17 +69,21 @@ export default class WallCustom extends Wall {
     for (let i = 0; i < this.holes.children.length; i++) {
       wallPunched = CSG.subtract(wallPunched, this.holes.children[i]);
     }
-    wallPunched.material = this.material;
+    wallPunched.material = this.material[0];
     wallPunched.castShadow = true;
     wallPunched.receiveShadow = true;
     this.object.remove(this.object.getObjectByName("wall"));
     wallPunched.name = "wall";
-    wallPunched.geometry.groups.forEach(function (face, i) {
-      face.materialIndex = 0;
-      if (i === 5) {
-        face.materialIndex = 1;
-      }
-    });
+
+    if (this.defaultInside) {
+      const wallPunchedBack = wallPunched.clone();
+
+      wallPunchedBack.material = this.material[1];
+      wallPunchedBack.geometry.groups[0].materialIndex = 1;
+      wallPunchedBack.scale.set(0.99, 0.99, 0.2);
+      wallPunchedBack.translateZ(-0.05);
+      this.object.add(wallPunchedBack);
+    }
     this.object.add(wallPunched);
   }
 }

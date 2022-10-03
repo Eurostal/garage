@@ -33,14 +33,12 @@ export default class Wall {
     wall.translateZ(this.offset - 0.01 / 2);
     wall.castShadow = true;
     wall.receiveShadow = true;
-    console.log(wall, this);
     return wall;
   }
 
   updateMaterial(material, clippingPlane, defaultInside) {
     if (material !== undefined) {
       const wall = this.object.getObjectByName("wall");
-      console.log(wall);
       const wallMaterial = material.clone();
       const materials = [wallMaterial];
 
@@ -78,6 +76,7 @@ export default class Wall {
       wall.material = materials;
       this.material = materials;
       this.defaultInside = defaultInside;
+      return materials;
     }
   }
 }
