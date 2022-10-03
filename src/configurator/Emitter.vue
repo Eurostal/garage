@@ -1301,7 +1301,7 @@ export default {
         object.type = "roof";
         object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
         object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
-        object.defaultInside = true;
+        object.defaultInside = false;
 
         if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value == "Z profila zamkniętgo_0") {
           object.defaultInside = true;
