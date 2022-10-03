@@ -20,7 +20,7 @@ handle.position.x = 0.1;
 export const doubleDoor = function createDoubleDoor(width, height, material) {
   const gateGroup = new Group();
 
-  const gateDoor = new Mesh(new BoxGeometry(width - 0.04, height - 0.04, 0.005), material[0]);
+  const gateDoor = new Mesh(new BoxGeometry(width - 0.04, height - 0.04, 0.005), material);
   gateDoor.geometry.groups.forEach((face, index) => {
     face.materialIndex = 0;
     if (index == 5) {
