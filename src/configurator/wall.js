@@ -45,9 +45,12 @@ export default class Wall {
       if (defaultInside) {
         const innerWallMaterial = Material.RAL9010.clone();
         materials.push(innerWallMaterial);
+        innerWallMaterial.map.rotation = wallMaterial.map.clone().rotation;
         innerWallMaterial.map ? innerWallMaterial.map.repeat.set(this.height, this.width) : null;
         innerWallMaterial.normalMap ? innerWallMaterial.normalMap.repeat.set(this.height, this.width) : null;
+        innerWallMaterial.normalMap.rotation = wallMaterial.normalMap.clone().rotation;
         innerWallMaterial.roughnessMap ? innerWallMaterial.roughnessMap.repeat.set(this.height, this.width) : null;
+        innerWallMaterial.roughnessMap.rotation = wallMaterial.roughnessMap.clone().rotation;
         innerWallMaterial.bumpMap ? innerWallMaterial.bumpMap.repeat.set(this.height, this.width) : null;
       }
 
