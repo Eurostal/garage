@@ -30,20 +30,17 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
 
   gateDoor.castShadow = true;
   gateDoor.receiveShadow = true;
-
-  for (let i = 0; i < material.length; i++) {
-    gateDoor.material[i].map = material[i].map;
-    gateDoor.material[i].map.rotation = material[0].map.rotation;
-    if (material[i].horizontal) {
-      gateDoor.material[i].map.repeat.set(width - 0.04, height - 0.04);
-      gateDoor.material[i].map.offset.set(gateDoor.material[i].map.offset.x, gateDoor.material[i].map.offset.y + 0.02);
-    } else {
-      gateDoor.material[i].map.repeat.set(height - 0.04, width - 0.04);
-      gateDoor.material[i].map.offset.set(gateDoor.material[i].map.offset.x, gateDoor.material[i].map.offset.y - 0.02);
-    }
+  if (material.horizontal) {
+    gateDoor.material.map = material.map.clone();
+    gateDoor.material.map.repeat.set(width - 0.04, height - 0.04);
+    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y + 0.02);
+  } else {
+    gateDoor.material.map = material.map.clone();
+    gateDoor.material.map.repeat.set(height - 0.04, width - 0.04);
+    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y - 0.02);
   }
 
-  const frameColor = material[0].color.clone();
+  const frameColor = material.color.clone();
   frameColor.addScalar(-0.5);
 
   const frameMaterial = new MeshBasicMaterial({
@@ -78,7 +75,7 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
 
 export const tiltedWidepanelDoor = function createTiltedWidepanelDoor(width, height, material) {
   const gateGroup = new Group();
-  const gateDoorMaterial = material[0].clone();
+  const gateDoorMaterial = material.clone();
   if (material.customType.includes("WOOD")) {
     gateDoorMaterial.map = Texture.woodTextureWide.clone();
     gateDoorMaterial.roughnessMap = Texture.woodTextureWideMap.clone();
@@ -101,7 +98,7 @@ export const tiltedWidepanelDoor = function createTiltedWidepanelDoor(width, hei
   gateDoor.castShadow = true;
   gateDoor.receiveShadow = true;
 
-  const frameColor = material[0].color.clone();
+  const frameColor = material.color.clone();
   frameColor.addScalar(-0.5);
 
   const frameMaterial = new MeshBasicMaterial({
@@ -133,19 +130,17 @@ export const tiltedDoor = function createTiltedDoor(width, height, material) {
   const gateDoor = new Mesh(new BoxGeometry(width - 0.04, height - 0.04, 0.005), material);
   gateDoor.castShadow = true;
   gateDoor.receiveShadow = true;
-  for (let i = 0; i < material.length; i++) {
-    gateDoor.material[i].map = material[i].map;
-    gateDoor.material[i].map.rotation = material[0].map.rotation;
-    if (material[i].horizontal) {
-      gateDoor.material[i].map.repeat.set(width - 0.04, height - 0.04);
-      gateDoor.material[i].map.offset.set(gateDoor.material[i].map.offset.x, gateDoor.material[i].map.offset.y + 0.02);
-    } else {
-      gateDoor.material[i].map.repeat.set(height - 0.04, width - 0.04);
-      gateDoor.material[i].map.offset.set(gateDoor.material[i].map.offset.x, gateDoor.material[i].map.offset.y - 0.02);
-    }
+  if (material.horizontal) {
+    gateDoor.material.map = material.map.clone();
+    gateDoor.material.map.repeat.set(width - 0.04, height - 0.04);
+    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y + 0.02);
+  } else {
+    gateDoor.material.map = material.map.clone();
+    gateDoor.material.map.repeat.set(height - 0.04, width - 0.04);
+    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y - 0.02);
   }
 
-  const frameColor = material[0].color.clone();
+  const frameColor = material.color.clone();
   frameColor.addScalar(-0.5);
 
   const frameMaterial = new MeshBasicMaterial({
