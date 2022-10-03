@@ -70,6 +70,7 @@ export default class WallCustom extends Wall {
       wallPunched = CSG.subtract(wallPunched, this.holes.children[i]);
     }
     wallPunched.material = this.material;
+    wallPunched.geometry.groups[0].materialIndex = 0;
     wallPunched.castShadow = true;
     wallPunched.receiveShadow = true;
     this.object.remove(this.object.getObjectByName("wall"));
@@ -79,9 +80,11 @@ export default class WallCustom extends Wall {
     if (this.defaultInside) {
       const wallPunchedBack = wallPunched.clone();
       wallPunchedBack.name = "wallBack";
+      wallPunchedBack.geometry = wallPunchedBack.geometry.clone();
       wallPunchedBack.geometry.groups[0].materialIndex = 1;
       wallPunchedBack.scale.set(0.99, 0.99, 0.2);
       wallPunchedBack.translateZ(-0.01);
+      console.log(wallPunched, wallPunchedBack);
       this.object.add(wallPunchedBack);
     }
     this.object.add(wallPunched);
