@@ -1,17 +1,29 @@
+import { Materials } from "./materials";
+
 export default class WallElement {
-  constructor(width, height, material, name = "unnamed wall object") {
+  constructor(width, height, material, defaultInside, name = "unnamed wall object") {
     this.width = width;
     this.height = height;
-    this.material = this.updateMaterial(material);
+    this.defaultInside = defaultInside;
+    this.material = this.updateMaterial(material, backMaterial, defaultInside);
     this.name = name;
   }
 
-  updateMaterial(material) {
+  updateMaterial(material, defaultInside) {
     if (material !== undefined) {
       const newMaterial = material.clone();
       newMaterial.horizontal = material.horizontal;
       newMaterial.customType = material.customType;
-      return newMaterial;
+      const materials = [newMaterial];
+
+      if (defaultInside) {
+        const backMaterial = Materials.RAL9010.clone();
+        backMaterial.horizontal = material.horizontal;
+
+        materials.push(backMaterial);
+      }
+
+      return materials;
     }
   }
 }

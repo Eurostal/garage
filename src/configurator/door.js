@@ -2,8 +2,8 @@ import WallElement from "./wallElement";
 import { MeshStandardMaterial, MeshBasicMaterial, PlaneGeometry, Mesh, Group, BoxGeometry, MultiplyOperation, DoubleSide } from "three";
 
 export default class Door extends WallElement {
-  constructor(width, height, material, name, handleSide) {
-    super(width, height, material, name);
+  constructor(width, height, material, defaultInside, name, handleSide) {
+    super(width, height, material, defaultInside, name);
     this.handleSide = handleSide;
     console.log(this);
 
@@ -29,16 +29,22 @@ export default class Door extends WallElement {
     }
 
     const door = new Mesh(new BoxGeometry(this.width - 0.04, this.height - 0.04, 0.005), this.material);
+    door.geometry.groups.forEach((face, index) => {
+      face.materialIndex = 0;
+      if (index == 5) {
+        face.materialIndex = 1;
+      }
+    });
     door.castShadow = true;
     door.receiveShadow = true;
     if (material.horizontal) {
-      door.material.map = material.map.clone();
-      door.material.map.repeat.set(width - 0.04, height - 0.04);
-      door.material.map.offset.set(door.material.map.offset.x, door.material.map.offset.y + 0.02);
+      door.material[0].map = material.map.clone();
+      door.material[0].map.repeat.set(width - 0.04, height - 0.04);
+      door.material[0].map.offset.set(door.material[0].map.offset.x, door.material[0].map.offset.y + 0.02);
     } else {
-      door.material.map = material.map.clone();
-      door.material.map.repeat.set(height - 0.04, width - 0.04);
-      door.material.map.offset.set(door.material.map.offset.x, door.material.map.offset.y - 0.02);
+      door.material[0].map = material.map.clone();
+      door.material[0].map.repeat.set(height - 0.04, width - 0.04);
+      door.material[0].map.offset.set(door.material[0].map.offset.x, door.material[0].map.offset.y - 0.02);
     }
 
     const frameColor = material.color.clone();
@@ -48,7 +54,7 @@ export default class Door extends WallElement {
       color: frameColor,
       combine: MultiplyOperation,
       reflectivity: 0.5,
-      map: this.material.map,
+      map: this.material[0].map,
       side: DoubleSide,
     });
     const doorFrame = new Mesh(new PlaneGeometry(this.width, this.height), frameMaterial);

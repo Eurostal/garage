@@ -21,6 +21,13 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
   const gateGroup = new Group();
 
   const gateDoor = new Mesh(new BoxGeometry(width - 0.04, height - 0.04, 0.005), material);
+  gateDoor.geometry.groups.forEach((face, index) => {
+    face.materialIndex = 0;
+    if (index == 5) {
+      face.materialIndex = 1;
+    }
+  });
+
   gateDoor.castShadow = true;
   gateDoor.receiveShadow = true;
   if (material.horizontal) {
@@ -81,6 +88,13 @@ export const tiltedWidepanelDoor = function createTiltedWidepanelDoor(width, hei
   }
 
   const gateDoor = new Mesh(new BoxGeometry(width - 0.04, height - 0.04, 0.005), gateDoorMaterial);
+  gateDoor.geometry.groups.forEach((face, index) => {
+    face.materialIndex = 0;
+    if (index == 5) {
+      face.materialIndex = 1;
+    }
+  });
+
   gateDoor.castShadow = true;
   gateDoor.receiveShadow = true;
 

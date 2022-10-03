@@ -44,7 +44,11 @@ class Generator {
       switch (data.type) {
         case "gate":
           this.removeExisting(data.name);
-          this.garage.walls[wallId].addElement(new Gate(data.width, data.height, Materials[data.material], data.name, data.gateType), data.x, 0);
+          this.garage.walls[wallId].addElement(
+            new Gate(data.width, data.height, Materials[data.material], data.defaultInside, data.name, data.gateType),
+            data.x,
+            0
+          );
 
           break;
         case "window":
@@ -56,7 +60,7 @@ class Generator {
           console.log(data);
           this.removeExisting(data.name);
           this.garage.walls[wallId].addElement(
-            new Door(data.width, data.height, Materials[data.material], data.name, data.handleSide),
+            new Door(data.width, data.height, Materials[data.material], data.defaultInside, data.name, data.handleSide),
             data.x,
             data.y
           );
