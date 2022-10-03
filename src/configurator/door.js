@@ -49,7 +49,7 @@ export default class Door extends WallElement {
       }
     }
 
-    const frameColor = material[0].color.clone();
+    const frameColor = door.material[0].color.clone();
     frameColor.addScalar(-0.6);
 
     const frameMaterial = new MeshBasicMaterial({
