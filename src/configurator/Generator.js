@@ -78,7 +78,7 @@ class Generator {
     } else if (action === "updateMaterial") {
       switch (data.type) {
         case "roof":
-          this.garage.roof.updateMaterial(Materials[data.material]);
+          this.garage.roof.updateMaterial(Materials[data.material], data.defaultInside);
           break;
         case "walls":
           this.garage.updateWallsMaterial(Materials[data.material], data.defaultInside);

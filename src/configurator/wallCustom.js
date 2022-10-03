@@ -85,7 +85,6 @@ export default class WallCustom extends Wall {
       wallPunchedBack.geometry.groups[0].materialIndex = 1;
       wallPunchedBack.scale.set(0.999, 0.999, 0.2);
       wallPunchedBack.translateZ(-0.01);
-      console.log(wallPunched, wallPunchedBack);
       this.object.add(wallPunchedBack);
     }
     this.object.add(wallPunched);

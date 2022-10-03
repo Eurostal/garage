@@ -4,7 +4,6 @@ import * as Material from "./materials";
 export default class Wall {
   constructor(width, height, offset = 0, rotation = 0, clippingPlane, material, defaultInside, roofHeight) {
     this.roofHeight = roofHeight;
-    console.log(this.roofHeight);
     this.width = width;
     this.height = height;
     this.offset = offset;

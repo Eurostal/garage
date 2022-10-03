@@ -14,7 +14,7 @@ export default class Garage {
     this.material = material;
     this.defaultInside = defaultInside;
     this.walls = [];
-    this.roof = new Roof("gable", this.width, this.length, this.height, this.material);
+    this.roof = new Roof("gable", this.width, this.length, this.height, this.material, true);
     this.fittings = new Fittings(this.width, this.length, this.height, this.roof.clippingPlane);
     this.object = this._createGarage();
   }
@@ -74,7 +74,7 @@ export default class Garage {
   }
 
   updateRoof(type) {
-    this.roof = new Roof(type, this.width, this.length, this.height, this.roof.material);
+    this.roof = new Roof(type, this.width, this.length, this.height, this.roof.material, this.roof.defaultInside);
     this.object.remove(this.object.getObjectByName("roof"));
     this.object.add(this.roof.object);
     this.walls.forEach((wall) => {

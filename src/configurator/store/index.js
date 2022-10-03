@@ -13,7 +13,17 @@ export const store = createStore({
           height: 2 + 0.13,
           walls: {
             front: {
-              elements: {},
+              elements: {
+                gate1: {
+                  type: "gate",
+                  width: 3,
+                  height: 2,
+                  material: "RAL9010",
+                  gateType: "empty",
+                  x: 0,
+                  y: 0,
+                },
+              },
               material: "RAL9010",
               defaultInside: true,
             },
@@ -21,7 +31,7 @@ export const store = createStore({
             left: { elements: {}, material: "RAL9010", defaultInside: true },
             right: { elements: {}, material: "RAL9010", defaultInside: true },
           },
-          roof: { roofType: "gable", material: "RAL9010" },
+          roof: { roofType: "gable", material: "RAL9010", defaultInside: true },
           fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
         },
         gate: {
