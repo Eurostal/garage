@@ -80,9 +80,10 @@ export default class WallCustom extends Wall {
     if (this.defaultInside) {
       const wallPunchedBack = wallPunched.clone();
       wallPunchedBack.name = "wallBack";
+      wallPunchedBack.material = this.material;
       wallPunchedBack.geometry = wallPunchedBack.geometry.clone();
       wallPunchedBack.geometry.groups[0].materialIndex = 1;
-      wallPunchedBack.scale.set(0.99, 0.99, 0.2);
+      wallPunchedBack.scale.set(0.999, 0.999, 0.2);
       wallPunchedBack.translateZ(-0.01);
       console.log(wallPunched, wallPunchedBack);
       this.object.add(wallPunchedBack);

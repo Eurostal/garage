@@ -13,7 +13,17 @@ export const store = createStore({
           height: 2 + 0.13,
           walls: {
             front: {
-              elements: {},
+              elements: {
+                gate1: {
+                  type: "gate",
+                  width: 3,
+                  height: 2,
+                  material: "RAL9010",
+                  gateType: "empty",
+                  x: 0,
+                  y: 0,
+                },
+              },
               material: "RAL9010",
               defaultInside: true,
             },

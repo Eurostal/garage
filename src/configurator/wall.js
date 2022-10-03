@@ -39,11 +39,12 @@ export default class Wall {
   updateMaterial(material, clippingPlane, defaultInside) {
     if (material !== undefined) {
       const wall = this.object.getObjectByName("wall");
+      const wallBack = this.object.getObjectByName("wallBack");
       const wallMaterial = material.clone();
       const materials = [wallMaterial];
 
       if (defaultInside) {
-        const innerWallMaterial = Material.RAL3005.clone();
+        const innerWallMaterial = Material.RAL9010.clone();
         materials.push(innerWallMaterial);
         innerWallMaterial.map ? innerWallMaterial.map.repeat.set(this.height, this.width) : null;
         innerWallMaterial.normalMap ? innerWallMaterial.normalMap.repeat.set(this.height, this.width) : null;
@@ -74,6 +75,9 @@ export default class Wall {
       }
 
       wall.material = materials;
+      if (wallBack) {
+        wallBack.material = materials;
+      }
       this.material = materials;
       this.defaultInside = defaultInside;
       return materials;
