@@ -1303,6 +1303,10 @@ export default {
         object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
         object.defaultInside = true;
 
+        if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value == "Z profila zamkniętgo_0") {
+          object.defaultInside = true;
+        }
+
         this.$store.commit("updateMaterial", { ...object });
       }
     },
