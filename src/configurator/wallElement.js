@@ -21,6 +21,8 @@ export default class WallElement {
         backMaterial.horizontal = material.horizontal;
 
         materials.push(backMaterial);
+      } else {
+        materials.push(newMaterial);
       }
 
       return materials;
