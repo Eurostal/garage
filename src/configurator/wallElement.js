@@ -5,7 +5,7 @@ export default class WallElement {
     this.width = width;
     this.height = height;
     this.defaultInside = defaultInside;
-    this.material = this.updateMaterial(material, backMaterial, defaultInside);
+    this.material = this.updateMaterial(material, defaultInside);
     this.name = name;
   }
 
