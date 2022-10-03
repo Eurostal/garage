@@ -47,7 +47,7 @@ export default class Roof {
 
         this.material = [this.material];
         if (defaultInside) {
-          const innerRoofMaterial = Materials.RAL9010.clone();
+          const innerRoofMaterial = Materials.RAL5010.clone();
           innerRoofMaterial.map = roofPart.material.map.clone();
           innerRoofMaterial.map.rotation = partOldRotation;
           this.material.push(innerRoofMaterial);
