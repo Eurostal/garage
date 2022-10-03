@@ -924,6 +924,10 @@ export default {
         object.handleSide = this.handleNameTranslations[handle];
       }
 
+      if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value == "Z profila zamkniętgo_0") {
+        object.defaultInside = true;
+      }
+
       this.$store.commit(action ? "update" : "remove", { ...object });
     },
 
@@ -1293,6 +1297,10 @@ export default {
 
     changeInnerMaterial: function (e) {
       this.dispatchMaterialsEvents();
+
+      // doors
+      document.querySelectorAll('div[data-uniqid="6267a7849054a6.96450831"] input').forEach((input) => input.dispatchEvent(new Event("change")));
+      document.querySelectorAll('div[data-uniqid="6267aabb3ebb46.11907871"] input').forEach((input) => input.dispatchEvent(new Event("change")));
     },
 
     changeRoofMaterial: function (e) {

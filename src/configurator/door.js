@@ -39,6 +39,7 @@ export default class Door extends WallElement {
     door.receiveShadow = true;
     for (let i = 0; i < door.material.length; i++) {
       door.material[i].map = door.material[i].map.clone();
+      door.material[i].map.rotation = door.material[0].map.rotation;
       if (door.material[i].horizontal) {
         door.material[i].map.repeat.set(width - 0.04, height - 0.04);
         door.material[i].map.offset.set(door.material[i].map.offset.x, door.material[i].map.offset.y + 0.02);
