@@ -1241,6 +1241,11 @@ export default {
         } else {
           document.querySelector('div[data-uniqid="6267c6836c1098.51557180"] input')?.dispatchEvent(new Event("change"));
         }
+        if (document.querySelector('div[data-uniqid="6268597436a4e8.74048409"] input:checked') != undefined) {
+          document.querySelector('div[data-uniqid="6268597436a4e8.74048409"] input:checked')?.dispatchEvent(new Event("change"));
+        } else {
+          document.querySelector('div[data-uniqid="6268597436a4e8.74048409"] input')?.dispatchEvent(new Event("change"));
+        }
       }
     },
 
