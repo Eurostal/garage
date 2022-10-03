@@ -74,10 +74,11 @@ export default class WallCustom extends Wall {
     wallPunched.receiveShadow = true;
     this.object.remove(this.object.getObjectByName("wall"));
     wallPunched.name = "wall";
+    this.object.remove(this.object.getObjectByName("wallBack"));
 
     if (this.defaultInside) {
       const wallPunchedBack = wallPunched.clone();
-
+      wallPunchedBack.name = "wallBack";
       wallPunchedBack.material = this.material[1];
       wallPunchedBack.geometry.groups[0].materialIndex = 1;
       wallPunchedBack.scale.set(0.99, 0.99, 0.2);
