@@ -49,10 +49,6 @@ export default class Roof {
         if (defaultInside) {
           const innerRoofMaterial = Materials.RAL9010.clone();
           this.material.push(innerRoofMaterial);
-          innerRoofMaterial.map ? innerRoofMaterial.map.repeat.set(this.height, this.width) : null;
-          innerRoofMaterial.normalMap ? innerRoofMaterial.normalMap.repeat.set(this.height, this.width) : null;
-          innerRoofMaterial.roughnessMap ? innerRoofMaterial.roughnessMap.repeat.set(this.height, this.width) : null;
-          innerRoofMaterial.bumpMap ? innerRoofMaterial.bumpMap.repeat.set(this.height, this.width) : null;
         }
         roofPart.material = this.material;
       });
