@@ -38,19 +38,18 @@ export default class Door extends WallElement {
     door.castShadow = true;
     door.receiveShadow = true;
     for (let i = 0; i < door.material.length; i++) {
+      door.material[i].map = door.material[i].map.clone();
       if (door.material[i].horizontal) {
-        door.material[i].map = material[0].map.clone();
         door.material[i].map.repeat.set(width - 0.04, height - 0.04);
         door.material[i].map.offset.set(door.material[i].map.offset.x, door.material[i].map.offset.y + 0.02);
       } else {
-        door.material[i].map = material.map.clone();
         door.material[i].map.repeat.set(height - 0.04, width - 0.04);
         door.material[i].map.offset.set(door.material[i].map.offset.x, door.material[i].map.offset.y - 0.02);
       }
     }
 
     const frameColor = door.material[0].color.clone();
-    frameColor.addScalar(-0.6);
+    frameColor.addScalar(-0.5);
 
     const frameMaterial = new MeshBasicMaterial({
       color: frameColor,
