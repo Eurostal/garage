@@ -1228,7 +1228,7 @@ export default {
     },
 
     // Materials
-    changeSheetOrientationEvent: function (e) {
+    dispatchMaterialsEvents: function (e) {
       if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value == "Jednolity kolor_0") {
         if (document.querySelector('div[data-uniqid="6267c6616c1022.10988552"] input:checked') != undefined) {
           document.querySelector('div[data-uniqid="6267c6616c1022.10988552"] input:checked')?.dispatchEvent(new Event("change"));
@@ -1277,7 +1277,7 @@ export default {
         object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
         object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
       }
-      if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value == "Konstrukcja ocynkowana_1") {
+      if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value == "Z profila zamkniętgo_0") {
         object.defaultInside = true;
       }
       if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
@@ -1287,7 +1287,7 @@ export default {
     },
 
     changeInnerMaterial: function (e) {
-      this.changeSheetOrientationEvent(); //Function that dispatches correct wall material events
+      this.dispatchMaterialsEvents();
     },
 
     changeRoofMaterial: function (e) {
@@ -1774,7 +1774,7 @@ export default {
       );
 
       form.querySelectorAll('div[data-uniqid="6268636725a2b2.40930404"] select').forEach((input) =>
-        input.addEventListener("change", this.changeSheetOrientationEvent, {
+        input.addEventListener("change", this.dispatchMaterialsEvents, {
           passive: true,
         })
       );
