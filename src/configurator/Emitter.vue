@@ -904,6 +904,7 @@ export default {
       let object = {
         type: "door",
         name: name,
+        defaultInside: false,
       };
 
       if (typeof wallId === "number") {
@@ -1299,8 +1300,8 @@ export default {
       this.dispatchMaterialsEvents();
 
       // doors
-      document.querySelectorAll('div[data-uniqid="6267a7849054a6.96450831"] input').forEach((input) => input.dispatchEvent(new Event("change")));
-      document.querySelectorAll('div[data-uniqid="6267aabb3ebb46.11907871"] input').forEach((input) => input.dispatchEvent(new Event("change")));
+      document.querySelectorAll('div[data-uniqid="62666bae882dc3.07513822"] input').forEach((input) => input.dispatchEvent(new Event("change")));
+      document.querySelectorAll('div[data-uniqid="6267a72c905212.61206813"] input').forEach((input) => input.dispatchEvent(new Event("change")));
     },
 
     changeRoofMaterial: function (e) {
