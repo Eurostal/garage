@@ -46,7 +46,7 @@ export const roofGable = function (width, length, yOffset, material, peakHeight)
   geometryRoof.groups.forEach((face) => {
     face.materialIndex = 0;
   });
-  const roof = new Mesh(geometryRoof, [roofMaterial, Array.isArray(material) ? material[1] : null]);
+  const roof = new Mesh(geometryRoof, roofMaterial);
   roof.castShadow = true;
   roof.scale.set(1.05, 1.05, 1.05);
   roof.position.y = peakHeight * -0.05;

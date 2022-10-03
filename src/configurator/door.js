@@ -37,18 +37,20 @@ export default class Door extends WallElement {
     });
     door.castShadow = true;
     door.receiveShadow = true;
-    if (material.horizontal) {
-      door.material[0].map = material.map.clone();
-      door.material[0].map.repeat.set(width - 0.04, height - 0.04);
-      door.material[0].map.offset.set(door.material[0].map.offset.x, door.material[0].map.offset.y + 0.02);
-    } else {
-      door.material[0].map = material.map.clone();
-      door.material[0].map.repeat.set(height - 0.04, width - 0.04);
-      door.material[0].map.offset.set(door.material[0].map.offset.x, door.material[0].map.offset.y - 0.02);
+    for (let i = 0; i < door.material.length; i++) {
+      if (material[i].horizontal) {
+        door.material[i].map = material[0].map.clone();
+        door.material[i].map.repeat.set(width - 0.04, height - 0.04);
+        door.material[i].map.offset.set(door.material[i].map.offset.x, door.material[i].map.offset.y + 0.02);
+      } else {
+        door.material[i].map = material.map.clone();
+        door.material[i].map.repeat.set(height - 0.04, width - 0.04);
+        door.material[i].map.offset.set(door.material[i].map.offset.x, door.material[i].map.offset.y - 0.02);
+      }
     }
 
-    const frameColor = material.color.clone();
-    frameColor.addScalar(-0.5);
+    const frameColor = material[0].color.clone();
+    frameColor.addScalar(-0.6);
 
     const frameMaterial = new MeshBasicMaterial({
       color: frameColor,
