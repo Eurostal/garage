@@ -31,141 +31,172 @@ export default {
     };
   },
   watch: {
-    '$store.state.msg': function(newMsg, oldMsg) {
-      if(newMsg.eventName){
-
-        switch(newMsg.eventName) {
+    "$store.state.msg": function (newMsg, oldMsg) {
+      if (newMsg.eventName) {
+        switch (newMsg.eventName) {
           case "xOffsetChange":
-            switch(newMsg.item) {
+            switch (newMsg.item) {
               case "gate1":
-                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input[value="Zamiast bramy ściana_4"]').checked){
-                  var sliderGate1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
+                if (
+                  !document
+                    .querySelector("form.cart")
+                    .querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input[value="Zamiast bramy ściana_4"]').checked
+                ) {
+                  var sliderGate1 = document
+                    .querySelector("form.cart")
+                    .querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
                   if (typeof sliderGate1 === "object") {
-                    sliderGate1.set(parseInt(newMsg.value.after * 100))
+                    sliderGate1.set(parseInt(newMsg.value.after * 100));
                     // console.log(newMsg.value.after * 100)
                   }
                 }
                 break;
               case "gate2":
-                if(!document.querySelector("form.cart").querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').checked){
-                  var sliderGate2 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffaf77735284.94935292"] .noui-target').noUiSlider;
+                if (
+                  !document
+                    .querySelector("form.cart")
+                    .querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').checked
+                ) {
+                  var sliderGate2 = document
+                    .querySelector("form.cart")
+                    .querySelector('div[data-uniqid="62ffaf77735284.94935292"] .noui-target').noUiSlider;
                   if (typeof sliderGate2 === "object") {
-                    sliderGate2.set(parseInt(newMsg.value.after * 100))
+                    sliderGate2.set(parseInt(newMsg.value.after * 100));
                   }
                 }
                 break;
               case "window1":
-                if(document.querySelector("form.cart").querySelector('div[data-uniqid="6266674e607f87.48123623"] input').checked){
-                  var window1 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e27.12468774"] .noui-target').noUiSlider;
+                if (document.querySelector("form.cart").querySelector('div[data-uniqid="6266674e607f87.48123623"] input').checked) {
+                  var window1 = document
+                    .querySelector("form.cart")
+                    .querySelector('div[data-uniqid="626666fc607e27.12468774"] .noui-target').noUiSlider;
                   if (typeof window1 === "object") {
-                    window1.set(parseInt(newMsg.value.after * 100))
+                    window1.set(parseInt(newMsg.value.after * 100));
                   }
                 }
                 break;
               case "window2":
-                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e49.00803437"] input').checked){
-                  var window2 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e72.58094923"] .noui-target').noUiSlider;
+                if (document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e49.00803437"] input').checked) {
+                  var window2 = document
+                    .querySelector("form.cart")
+                    .querySelector('div[data-uniqid="626666fc607e72.58094923"] .noui-target').noUiSlider;
                   if (typeof window2 === "object") {
-                    window2.set(parseInt(newMsg.value.after * 100))
+                    window2.set(parseInt(newMsg.value.after * 100));
                   }
                 }
                 break;
               case "window3":
-                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e94.51163204"] input').checked){
-                  var window3 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ec0.38279999"] .noui-target').noUiSlider;
+                if (document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e94.51163204"] input').checked) {
+                  var window3 = document
+                    .querySelector("form.cart")
+                    .querySelector('div[data-uniqid="626666fc607ec0.38279999"] .noui-target').noUiSlider;
                   if (typeof window3 === "object") {
-                    window3.set(parseInt(newMsg.value.after * 100))
+                    window3.set(parseInt(newMsg.value.after * 100));
                   }
                 }
                 break;
               case "window4":
-                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ee3.26554221"] input').checked){
-                  var window4 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f13.98580250"] .noui-target').noUiSlider;
+                if (document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ee3.26554221"] input').checked) {
+                  var window4 = document
+                    .querySelector("form.cart")
+                    .querySelector('div[data-uniqid="626666fc607f13.98580250"] .noui-target').noUiSlider;
                   if (typeof window4 === "object") {
-                    window4.set(parseInt(newMsg.value.after * 100))
+                    window4.set(parseInt(newMsg.value.after * 100));
                   }
                 }
                 break;
               case "window5":
-                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f38.30729408"] input').checked){
-                  var window5 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f79.78538581"] .noui-target').noUiSlider;
+                if (document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f38.30729408"] input').checked) {
+                  var window5 = document
+                    .querySelector("form.cart")
+                    .querySelector('div[data-uniqid="626666fc607f79.78538581"] .noui-target').noUiSlider;
                   if (typeof window5 === "object") {
-                    window5.set(parseInt(newMsg.value.after * 100))
+                    window5.set(parseInt(newMsg.value.after * 100));
                   }
                 }
                 break;
               case "door1":
-                if(document.querySelector("form.cart").querySelector('div[data-uniqid="62666bae882dc3.07513822"] input').checked){
+                if (document.querySelector("form.cart").querySelector('div[data-uniqid="62666bae882dc3.07513822"] input').checked) {
                   var door1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62666bae882df0.44298974"] .noui-target').noUiSlider;
                   if (typeof door1 === "object") {
-                    door1.set(parseInt(newMsg.value.after * 100))
+                    door1.set(parseInt(newMsg.value.after * 100));
                   }
                 }
                 break;
               case "door2":
-                if(document.querySelector("form.cart").querySelector('div[data-uniqid="6267a72c905212.61206813"] input').checked){
+                if (document.querySelector("form.cart").querySelector('div[data-uniqid="6267a72c905212.61206813"] input').checked) {
                   var door2 = document.querySelector("form.cart").querySelector('div[data-uniqid="6267a72c905252.02727997"] .noui-target').noUiSlider;
                   if (typeof door2 === "object") {
-                    door2.set(parseInt(newMsg.value.after * 100))
+                    door2.set(parseInt(newMsg.value.after * 100));
                   }
                 }
-                break;                
+                break;
               default:
                 console.log(newMsg.item);
             }
             break;
           case "yOffsetChange":
-            switch(newMsg.item){
+            switch (newMsg.item) {
               case "window1":
-                if(document.querySelector("form.cart").querySelector('div[data-uniqid="6266674e607f87.48123623"] input').checked){
-                  var window1 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e37.33496203"] .noui-target').noUiSlider;
+                if (document.querySelector("form.cart").querySelector('div[data-uniqid="6266674e607f87.48123623"] input').checked) {
+                  var window1 = document
+                    .querySelector("form.cart")
+                    .querySelector('div[data-uniqid="626666fc607e37.33496203"] .noui-target').noUiSlider;
                   if (typeof window1 === "object") {
-                    window1.set(parseInt(newMsg.value.after * 100))
+                    window1.set(parseInt(newMsg.value.after * 100));
                   }
                 }
                 break;
               case "window2":
-                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e84.50408653"] input').checked){
-                  var window2 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e72.58094923"] .noui-target').noUiSlider;
+                if (document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e84.50408653"] input').checked) {
+                  var window2 = document
+                    .querySelector("form.cart")
+                    .querySelector('div[data-uniqid="626666fc607e72.58094923"] .noui-target').noUiSlider;
                   if (typeof window2 === "object") {
-                    window2.set(parseInt(newMsg.value.after * 100))
+                    window2.set(parseInt(newMsg.value.after * 100));
                   }
                 }
                 break;
               case "window3":
-                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e94.51163204"] input').checked){
-                  var window3 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ed0.11804888"] .noui-target').noUiSlider;
+                if (document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e94.51163204"] input').checked) {
+                  var window3 = document
+                    .querySelector("form.cart")
+                    .querySelector('div[data-uniqid="626666fc607ed0.11804888"] .noui-target').noUiSlider;
                   if (typeof window3 === "object") {
-                    window3.set(parseInt(newMsg.value.after * 100))
+                    window3.set(parseInt(newMsg.value.after * 100));
                   }
                 }
                 break;
               case "window4":
-                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ee3.26554221"] input').checked){
-                  var window4 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f29.14038358"] .noui-target').noUiSlider;
+                if (document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ee3.26554221"] input').checked) {
+                  var window4 = document
+                    .querySelector("form.cart")
+                    .querySelector('div[data-uniqid="626666fc607f29.14038358"] .noui-target').noUiSlider;
                   if (typeof window4 === "object") {
-                    window4.set(parseInt(newMsg.value.after * 100))
+                    window4.set(parseInt(newMsg.value.after * 100));
                   }
                 }
                 break;
               case "window5":
-                if(document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f38.30729408"] input').checked){
-                  var window5 = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f67.37945639"] .noui-target').noUiSlider;
+                if (document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f38.30729408"] input').checked) {
+                  var window5 = document
+                    .querySelector("form.cart")
+                    .querySelector('div[data-uniqid="626666fc607f67.37945639"] .noui-target').noUiSlider;
                   if (typeof window5 === "object") {
-                    window5.set(parseInt(newMsg.value.after * 100))
+                    window5.set(parseInt(newMsg.value.after * 100));
                   }
                 }
                 break;
             }
           default:
-            console.log(JSON.stringify(newMsg))
+            console.log(JSON.stringify(newMsg));
         }
-      
+
         setTimeout(() => {
           this.$store.commit("clearMsg");
         }, 3000);
       }
-    }
+    },
   },
   methods: {
     changeRoof: function (name = "Dwuspadowy_0") {
@@ -193,14 +224,14 @@ export default {
       }
 
       if (width) {
-        if(!document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input[value="Zamiast bramy ściana_4"]').checked){
+        if (!document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input[value="Zamiast bramy ściana_4"]').checked) {
           var sliderGate1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
           if (typeof sliderGate1 === "object") {
             sliderGate1.updateOptions({ range: { min: 0, max: width * 100 } });
           }
         }
 
-        if(!document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').checked){
+        if (!document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').checked) {
           var sliderGate2 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffaf77735284.94935292"] .noui-target').noUiSlider;
           if (typeof sliderGate2 === "object") {
             sliderGate2.updateOptions({ range: { min: 0, max: width * 100 } });
@@ -209,7 +240,7 @@ export default {
       }
     },
     changeGarageWidthEvent: function (e) {
-      let garageWidth = parseFloat(e.target.value.split(" ")[0].replace(",", "."))
+      let garageWidth = parseFloat(e.target.value.split(" ")[0].replace(",", "."));
       this.changeGarageSize({
         width: garageWidth,
       });
@@ -219,7 +250,7 @@ export default {
         e.target.value.split("_")[0];
     },
     changeGarageLengthEvent: function (e) {
-      let garareLength = parseFloat(e.target.value.split(" ")[0].replace(",", "."))
+      let garareLength = parseFloat(e.target.value.split(" ")[0].replace(",", "."));
       this.changeGarageSize({
         length: garareLength,
       });
@@ -285,7 +316,7 @@ export default {
       }
 
       this.changeGate("gate1", object);
-      
+
       //Label update
       document.querySelector("form.cart").querySelector('div[data-uniqid="627ae6909e8ac6.12947879"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
@@ -467,38 +498,38 @@ export default {
       this.$store.commit(action ? "update" : "remove", { ...object });
     },
 
-    changeWindowsEvent: function(e){
+    changeWindowsEvent: function (e) {
       var window1el = document.querySelector("form.cart").querySelector('div[data-uniqid="62666bae882db9.11397527"] input:checked');
-      if(window1el){
-        window1el.removeAttribute('checked');
+      if (window1el) {
+        window1el.removeAttribute("checked");
         window1el.checked = false;
         window1el.dispatchEvent(new Event("change"));
       }
 
       var window2el = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e49.00803437"] input:checked');
-      if(window2el){
-        window2el.removeAttribute('checked');
+      if (window2el) {
+        window2el.removeAttribute("checked");
         window2el.checked = false;
         window2el.dispatchEvent(new Event("change"));
       }
 
       var window3el = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607e94.51163204"] input:checked');
-      if(window3el){
-        window3el.removeAttribute('checked');
+      if (window3el) {
+        window3el.removeAttribute("checked");
         window3el.checked = false;
         window3el.dispatchEvent(new Event("change"));
       }
 
       var window4el = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607ee3.26554221"] input:checked');
-      if(window4el){
-        window4el.removeAttribute('checked');
+      if (window4el) {
+        window4el.removeAttribute("checked");
         window4el.checked = false;
         window4el.dispatchEvent(new Event("change"));
       }
 
       var window5el = document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f38.30729408"] input:checked');
-      if(window5el){
-        window5el.removeAttribute('checked');
+      if (window5el) {
+        window5el.removeAttribute("checked");
         window5el.checked = false;
         window5el.dispatchEvent(new Event("change"));
       }
@@ -896,17 +927,17 @@ export default {
       this.$store.commit(action ? "update" : "remove", { ...object });
     },
 
-    changeDoorsEvent: function(e){
+    changeDoorsEvent: function (e) {
       var door1el = document.querySelector("form.cart").querySelector('div[data-uniqid="62666bae882dc3.07513822"] input:checked');
-      if(door1el){
-        door1el.removeAttribute('checked');
+      if (door1el) {
+        door1el.removeAttribute("checked");
         door1el.checked = false;
         door1el.dispatchEvent(new Event("change"));
       }
-      
+
       var door2el = document.querySelector("form.cart").querySelector('div[data-uniqid="6267a72c905212.61206813"] input:checked');
-      if(door2el){
-        door2el.removeAttribute('checked');
+      if (door2el) {
+        door2el.removeAttribute("checked");
         door2el.checked = false;
         door2el.dispatchEvent(new Event("change"));
       }
@@ -920,7 +951,7 @@ export default {
         action: e.target.checked,
       });
 
-      if(e.target.checked){
+      if (e.target.checked) {
         document
           .querySelector("form.cart")
           .querySelectorAll('div[data-uniqid="62666bae882dd8.31559354"] select')
@@ -1013,7 +1044,7 @@ export default {
         action: e.target.checked,
       });
 
-      if(e.target.checked){
+      if (e.target.checked) {
         document
           .querySelector("form.cart")
           .querySelectorAll('div[data-uniqid="6267a72c905227.37498764"] select')
@@ -1235,6 +1266,8 @@ export default {
       let object = {};
       object.material = "RAL9010";
       object.type = "walls";
+      object.defaultInside = false;
+
       if (e.target.checked) {
         document.querySelectorAll('div[data-uniqid="6267c6836c1098.51557180"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
           input.checked = false;
@@ -1244,10 +1277,17 @@ export default {
         object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
         object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
       }
+      if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value == "Konstrukcja ocynkowana_1") {
+        object.defaultInside = true;
+      }
       if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
         object.material = object.material + "_H";
       }
       this.$store.commit("updateMaterial", { ...object });
+    },
+
+    changeInnerMaterial: function (e) {
+      this.changeSheetOrientationEvent(); //Function that dispatches correct wall material events
     },
 
     changeRoofMaterial: function (e) {
@@ -1261,6 +1301,8 @@ export default {
         object.type = "roof";
         object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
         object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
+        object.defaultInside = true;
+
         this.$store.commit("updateMaterial", { ...object });
       }
     },
@@ -1401,7 +1443,7 @@ export default {
           passive: true,
         })
       );
-      
+
       form.querySelectorAll('div[data-uniqid="626666fc607e09.04638628"] select').forEach((input) =>
         input.addEventListener("change", this.changeWindow1SizeEvent, {
           passive: true,
@@ -1632,14 +1674,14 @@ export default {
         });
       });
 
-      form.querySelectorAll('div[data-uniqid="62666b39a2cd72.64951747"] input').forEach((input) => 
+      form.querySelectorAll('div[data-uniqid="62666b39a2cd72.64951747"] input').forEach((input) =>
         input.addEventListener("change", this.changeDoorsEvent, {
           passive: true,
         })
       );
 
       //door1
-      form.querySelectorAll('div[data-uniqid="62666bae882dc3.07513822"] input').forEach((input) => 
+      form.querySelectorAll('div[data-uniqid="62666bae882dc3.07513822"] input').forEach((input) =>
         input.addEventListener("change", this.changeDoor1Event, {
           passive: true,
         })
@@ -1751,6 +1793,12 @@ export default {
 
       form.querySelectorAll('div[data-uniqid="6267c6836c1098.51557180"] input').forEach((input) =>
         input.addEventListener("change", this.changeWallMaterial, {
+          passive: true,
+        })
+      );
+
+      form.querySelectorAll('div[data-uniqid="6269489cbc6a47.11299589"] input').forEach((input) =>
+        input.addEventListener("change", this.changeInnerMaterial, {
           passive: true,
         })
       );
