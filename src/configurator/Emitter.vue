@@ -311,7 +311,11 @@ export default {
       document.querySelector('div[data-uniqid="625928cfacd5f2.48728982"] select').dispatchEvent(new Event("change"));
       document.querySelector('div[data-uniqid="625928cfacd608.04744343"] select').dispatchEvent(new Event("change"));
       document.querySelector('div[data-uniqid="625929fa7219b1.06715193"] select').dispatchEvent(new Event("change"));
-      document.querySelector('div[data-uniqid="633bd32afb6935.83995440"] input').dispatchEvent(new Event("change"));
+
+      if (this.gateNameTranslation[e.target.value] === "double") {
+        let handleState = document.querySelector('div[data-uniqid="633bd32afb6935.83995440"] input').checked;
+        object.handle = handleState;
+      }
 
       //Disable gate2 if gate1 is
       if (!this.gateNameTranslation[e.target.value] != "") {
