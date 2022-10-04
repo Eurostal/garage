@@ -259,7 +259,7 @@ export default {
       document.querySelector("form.cart").querySelector('div[data-uniqid="627a9ad625d4b6.52719206"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
     },
-    changeGate: function (name, { type = false, width = false, height = false, position = false, style = "", material = "", handle = false }) {
+    changeGate: function (name, { type = false, width = false, height = false, position = false, style = "", material = "", handle }) {
       let object = {};
       object.type = "gate";
       object.name = name;
