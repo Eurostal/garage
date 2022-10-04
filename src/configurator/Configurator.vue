@@ -70,7 +70,23 @@ div.summary.entry-summary.tc-init {
   height: 100%;
 }
 
+.tm-product-id-15 .element_4.element_4 li {
+  flex-basis: 0 0 50% !important;
+  width: 0 0 50% !important;
+}
+
+@media only screen and (min-width: 420px) {
+  .tm-product-id-15 .element_4.element_4 li {
+    flex-basis: 0 0 33% !important;
+    width: 0 0 33% !important;
+  }
+}
+
 @media only screen and (min-width: 768px) {
+  .tm-product-id-15 .element_4.element_4 li {
+    flex-basis: 0 0 25% !important;
+    width: 0 0 25% !important;
+  }
   #app {
     width: 100vw;
     height: 42vh;
@@ -85,6 +101,11 @@ div.summary.entry-summary.tc-init {
 @media only screen and (min-width: 1200px) {
   div.tm-has-options.product {
     width: 50% !important;
+  }
+
+  .tm-product-id-15 .element_4.element_4 li {
+    flex-basis: 0 0 20% !important;
+    width: 0 0 20% !important;
   }
 
   #app {
