@@ -175,11 +175,6 @@ function updateG(state, data) {
       return;
     }
 
-    if (data.type === "gate") {
-      if (data.gateType == "tilted" || data.gateType == "wide") {
-        data.width = data.width - 0.2;
-      }
-    }
     const elements = [];
     Object.values(state.garageActual.walls[wallNames[data.wallId]].elements).forEach((element) => {
       if (data.name && element.name !== data.name) {
@@ -420,6 +415,10 @@ function validateGate(data, tempElement, state) {
     console.warn("Gate can be placed on front wall only");
     return;
   } else {
+    if (data.gateType == "tilted" || data.gateType == "wide") {
+      data.width = data.width - 0.2;
+    }
+
     let garageHeight = data.height + 0.13;
     Object.values(state.garageActual.walls.front.elements).forEach((element) => {
       if (element.type == "gate" && garageHeight < element.height + 0.13) {
