@@ -2,8 +2,8 @@ import WallElement from "./wallElement";
 import { MeshStandardMaterial, MeshPhysicalMaterial, ExtrudeGeometry, Mesh, Group, BoxGeometry, Shape, DoubleSide, Vector2, Path } from "three";
 
 export default class Window extends WallElement {
-  constructor(width, height, material, name) {
-    super(width, height, material, name);
+  constructor(width, height, material, defaultInside, name) {
+    super(width, height, material, defaultInside, name);
     this.object = this.createWindow();
   }
 
