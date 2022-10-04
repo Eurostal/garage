@@ -397,12 +397,6 @@ function fillData(data) {
   let filledData = {};
   let actualData = {};
 
-  if (data.type === "gate" && data.width) {
-    if (data.gateType == "tilted" || data.gateType == "wide") {
-      data.width = data.width - 0.2;
-    }
-  }
-
   if (data.name && data.wallId !== undefined) {
     actualData = {
       ...store.getters.getGarage.walls[wallNames[data.wallId]].elements[data.name],
@@ -415,6 +409,13 @@ function fillData(data) {
     ...actualData,
     ...data,
   };
+
+  if (data.type === "gate" && data.width) {
+    if (filledData.gateType == "tilted" || filledData.gateType == "wide") {
+      filledData.width = filledData.width - 0.2;
+    }
+  }
+
   console.log(filledData);
   return filledData;
 }
