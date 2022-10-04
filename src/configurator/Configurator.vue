@@ -45,15 +45,62 @@ onMounted(() => {
 </script>
 
 <style>
-#scene-container {
-  max-height: 600px;
+div.tm-has-options.product {
   width: 100%;
-  aspect-ratio: 1/1;
+}
+
+div.summary.entry-summary.tc-init {
+  margin: 0 auto;
+}
+
+#app {
+  width: 100vw;
+  height: 30vh;
+  z-index: 30;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-shadow: 0px 10px 10px 0px rgb(10 10 10 / 10%);
 }
 
 .configurator-container {
   width: 100%;
   position: relative;
+  height: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  #app {
+    width: 100vw;
+    height: 42vh;
+    z-index: 30;
+    padding: 0 20%;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    box-shadow: 0px 10px 10px 0px rgb(10 10 10 / 10%);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  div.tm-has-options.product {
+    width: 50%;
+  }
+
+  #app {
+    padding: 0;
+    height: auto;
+    width: 50%;
+    z-index: 10;
+    background: #f8f8f8;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  #scene-container {
+    height: 100%;
+    max-height: 600px;
+    width: 100%;
+    aspect-ratio: 1/1;
+  }
 }
 
 .alert {
