@@ -363,6 +363,11 @@ export default {
       document.querySelector('div[data-uniqid="627b772ac54f28.86727207"] select').dispatchEvent(new Event("change"));
       document.querySelector('div[data-uniqid="627b7732c54f35.77583366"] select').dispatchEvent(new Event("change"));
 
+      if (this.gateNameTranslation[e.target.value] === "double") {
+        let handleState = document.querySelector('div[data-uniqid="633bee3ec19b25.96850533"] input').checked;
+        object.handle = handleState;
+      }
+
       this.changeGate("gate2", object);
 
       //Label update
@@ -471,6 +476,9 @@ export default {
         style: e.target.value,
         material: material,
       });
+    },
+    changeGate2HandleEvent: function (e) {
+      this.changeGate("gate2", { handle: e.target.checked });
     },
 
     //WINDOWS
@@ -1436,6 +1444,10 @@ export default {
       );
 
       form.querySelector('div[data-uniqid="633bd32afb6935.83995440"] input').addEventListener("change", this.changeGate1HandleEvent, {
+        passive: true,
+      });
+
+      form.querySelector('div[data-uniqid="633bee3ec19b25.96850533"] input').addEventListener("change", this.changeGate2HandleEvent, {
         passive: true,
       });
 
