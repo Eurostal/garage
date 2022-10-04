@@ -311,7 +311,7 @@ function checkPlacement(item, wallElements, wallSize) {
   } else {
     let gateOffset = 0.1;
 
-    if (item.gateType == "double" || item.gateType == "wide" || item.gateType == "tilted") {
+    if (item.gateType == "double") {
       gateOffset = 0;
     }
     if (item.width + gateOffset * 2 > wallSize.x) {
@@ -409,6 +409,12 @@ function fillData(data) {
     ...actualData,
     ...data,
   };
+
+  if (data.type === "gate") {
+    if (data.width && (filledData.gateType == "tilted" || filledData.gateType == "wide")) {
+      filledData.width = filledData.width - 0.2;
+    }
+  }
 
   console.log(filledData);
   return filledData;
