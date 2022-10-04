@@ -411,9 +411,9 @@ function fillData(data) {
   };
 
   if (data.type === "gate") {
-    // if (data.gateType == "tilted" || data.gateType == "wide") {
-    //   filledData.width = filledData.width - 0.2;
-    // }
+    if (data.gateType == "tilted" || data.gateType == "wide") {
+      filledData.width = filledData.width - 0.2;
+    }
     if (data.width && (filledData.gateType == "tilted" || filledData.gateType == "wide")) {
       data.width = data.width - 0.2;
     }
