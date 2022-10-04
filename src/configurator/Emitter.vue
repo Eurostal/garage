@@ -289,7 +289,7 @@ export default {
         }
       }
 
-      if (handle) {
+      if (typeof handle === "boolean") {
         object.handle = handle;
       }
 

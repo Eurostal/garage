@@ -33,6 +33,7 @@ export const store = createStore({
           gateType: "double",
           x: 0,
           y: 0,
+          handle: false,
         },
         window: {
           wallId: 0,
