@@ -53,7 +53,7 @@ class Generator {
           break;
         case "window":
           this.removeExisting(data.name);
-          this.garage.walls[wallId].addElement(new Window(data.width, data.height, Materials[data.material], data.name), data.x, data.y);
+          this.garage.walls[wallId].addElement(new Window(data.width, data.height, Materials[data.material], false, data.name), data.x, data.y);
 
           break;
         case "door":
