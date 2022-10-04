@@ -72,20 +72,20 @@ div.summary.entry-summary.tc-init {
 
 .tm-product-id-15 .element_4.element_4 li {
   flex: 0 0 50% !important;
-  width: 0 0 50% !important;
+  max-width: 0 0 50% !important;
 }
 
 @media only screen and (min-width: 420px) {
   .tm-product-id-15 .element_4.element_4 li {
     flex: 0 0 33% !important;
-    width: 0 0 33% !important;
+    max-width: 0 0 33% !important;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .tm-product-id-15 .element_4.element_4 li {
     flex: 0 0 25% !important;
-    width: 0 0 25% !important;
+    max-width: 0 0 25% !important;
   }
   #app {
     width: 100vw;
@@ -105,7 +105,7 @@ div.summary.entry-summary.tc-init {
 
   .tm-product-id-15 .element_4.element_4 li {
     flex: 0 0 20% !important;
-    width: 0 0 20% !important;
+    max-width: 0 0 20% !important;
   }
 
   #app {
