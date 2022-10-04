@@ -89,9 +89,6 @@ export const store = createStore({
               fits = false;
             }
           } else {
-            if (element.gateType == "tilted" || element.gateType == "wide") {
-              element.width = item.width - 0.2;
-            }
             let gateOffset;
             let noDoubleGate = false;
             elements.forEach((el) => {
