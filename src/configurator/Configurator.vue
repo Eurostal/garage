@@ -46,7 +46,7 @@ onMounted(() => {
 
 <style>
 div.tm-has-options.product {
-  width: 100%;
+  width: 100% !important;
 }
 
 div.summary.entry-summary.tc-init {
@@ -60,9 +60,11 @@ div.summary.entry-summary.tc-init {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   box-shadow: 0px 10px 10px 0px rgb(10 10 10 / 10%);
+  background: #f8f8f8;
 }
 
-.configurator-container {
+.configurator-container,
+#scene-container {
   width: 100%;
   position: relative;
   height: 100%;
@@ -82,7 +84,7 @@ div.summary.entry-summary.tc-init {
 
 @media only screen and (min-width: 1200px) {
   div.tm-has-options.product {
-    width: 50%;
+    width: 50% !important;
   }
 
   #app {
@@ -90,7 +92,6 @@ div.summary.entry-summary.tc-init {
     height: auto;
     width: 50%;
     z-index: 10;
-    background: #f8f8f8;
     margin: 0;
     box-shadow: none;
   }
