@@ -89,6 +89,9 @@ export const store = createStore({
               fits = false;
             }
           } else {
+            if (element.gateType == "tilted" || element.gateType == "wide") {
+              element.width = item.width - 0.2;
+            }
             let gateOffset;
             let noDoubleGate = false;
             elements.forEach((el) => {
@@ -173,6 +176,12 @@ function updateG(state, data) {
 
     if (data.name === "gate2" && state.garageActual.width < 5.5) {
       return;
+    }
+
+    if (data.type === "gate") {
+      if (data.gateType == "tilted" || data.gateType == "wide") {
+        data.width = data.width - 0.2;
+      }
     }
     const elements = [];
     Object.values(state.garageActual.walls[wallNames[data.wallId]].elements).forEach((element) => {
