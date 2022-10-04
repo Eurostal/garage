@@ -1,3 +1,4 @@
+import { CylinderGeometry } from "three";
 import { Mesh, PlaneGeometry, BoxGeometry, Group, MeshStandardMaterial, MeshBasicMaterial, MultiplyOperation, DoubleSide, Vector2 } from "three";
 import * as Texture from "./textures";
 
@@ -17,7 +18,7 @@ handlePart2.position.x = 0.05;
 handle.add(handlePart, handlePart2);
 handle.position.x = 0.1;
 
-export const doubleDoor = function createDoubleDoor(width, height, material) {
+export const doubleDoor = function createDoubleDoor(width, height, material, handleVisible) {
   const gateGroup = new Group();
 
   const gateDoor = new Mesh(new BoxGeometry(width - 0.04, height - 0.04, 0.005), material);
@@ -63,10 +64,26 @@ export const doubleDoor = function createDoubleDoor(width, height, material) {
     })
   );
   separator.position.z = 0.005;
-  const handleClone = handle.clone();
-  handleClone.position.y = -height / 2 + 0.9;
 
-  gateGroup.add(separator, gateDoor, gateDoorFrame, handleClone);
+  gateGroup.add(separator, gateDoor, gateDoorFrame);
+  if (handleVisible) {
+    const handleClone = handle.clone();
+    handleClone.position.y = -height / 2 + 0.9;
+    gateGroup.add(handleClone);
+  } else {
+    const keyhole = new Mesh(
+      new CylinderGeometry(0.014, 0.014, 0.01, 20),
+      new MeshStandardMaterial({
+        color: 0x000000,
+      })
+    );
+    keyhole.rotateX(Math.PI / 2);
+    keyhole.position.y = -height / 2 + 0.9;
+    keyhole.position.x = 0.05;
+
+    gateGroup.add(keyhole);
+  }
+
   gateGroup.position.y = height / 2;
   gateGroup.position.z = -0.005;
 

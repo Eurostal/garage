@@ -259,7 +259,7 @@ export default {
       document.querySelector("form.cart").querySelector('div[data-uniqid="627a9ad625d4b6.52719206"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
     },
-    changeGate: function (name, { type = false, width = false, height = false, position = false, style = "", material = "" }) {
+    changeGate: function (name, { type = false, width = false, height = false, position = false, style = "", material = "", handle = false }) {
       let object = {};
       object.type = "gate";
       object.name = name;
@@ -289,6 +289,10 @@ export default {
         }
       }
 
+      if (handle) {
+        object.handle = handle;
+      }
+
       if (object.gateType === "") {
         this.$store.commit("remove", { ...object });
       } else {
@@ -307,6 +311,7 @@ export default {
       document.querySelector('div[data-uniqid="625928cfacd5f2.48728982"] select').dispatchEvent(new Event("change"));
       document.querySelector('div[data-uniqid="625928cfacd608.04744343"] select').dispatchEvent(new Event("change"));
       document.querySelector('div[data-uniqid="625929fa7219b1.06715193"] select').dispatchEvent(new Event("change"));
+      document.querySelector('div[data-uniqid="633bd32afb6935.83995440"] input').dispatchEvent(new Event("change"));
 
       //Disable gate2 if gate1 is
       if (!this.gateNameTranslation[e.target.value] != "") {
@@ -435,6 +440,9 @@ export default {
         style: e.target.value,
         material: material,
       });
+    },
+    changeGate1HandleEvent: function (e) {
+      this.changeGate("gate1", { handle: e.target.checked });
     },
     changeGate2StyleEvent: function (e) {
       let material = "RAL9010";
@@ -1422,6 +1430,10 @@ export default {
           passive: true,
         })
       );
+
+      form.querySelector('div[data-uniqid="633bd32afb6935.83995440"] input').addEventListener("change", this.changeGate1HandleEvent, {
+        passive: true,
+      });
 
       form.querySelectorAll('div[data-uniqid="62ffad9da82021.94156944"] .tmcp-range').forEach((input) => {
         var vm = this;
