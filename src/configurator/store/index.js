@@ -352,9 +352,9 @@ function checkPlacement(item, wallElements, wallSize) {
     if (element.name !== item.name) {
       elementPoints = [
         { x: element.x, y: element.y },
-        { x: element.x + element.width, y: element.y },
-        { x: element.x, y: element.y + element.height },
-        { x: element.x + element.width, y: element.y + element.height },
+        { x: roundTwoDec(element.x + element.width), y: element.y },
+        { x: element.x, y: roundTwoDec(element.y + element.height) },
+        { x: roundTwoDec(element.x + element.width), y: roundTwoDec(element.y + element.height) },
       ];
     }
     if (element.name !== item.name) {
