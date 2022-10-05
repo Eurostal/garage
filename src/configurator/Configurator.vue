@@ -41,10 +41,28 @@ onMounted(() => {
     renderer.render(scene, camera);
     controls.update();
   });
+
+  const resetBtn = document.querySelector(".reset-btn-div span");
+  if (resetBtn) resetBtn.addEventListener("click", () => location.reload());
 });
 </script>
 
 <style>
+.reset-btn-div span {
+  background: #cc0d27;
+  color: #fff;
+  box-shadow: 0 0.25rem 1.25rem rgb(0 0 0 / 25%);
+  margin-bottom: 1.125rem;
+  transition: 0.2s ease-in;
+  width: min-content;
+  margin-left: auto;
+}
+
+.reset-btn-div span {
+  background: #000;
+  color: #fff;
+}
+
 div.tm-has-options.product {
   width: 100% !important;
 }
