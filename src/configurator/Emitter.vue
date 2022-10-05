@@ -46,7 +46,7 @@ export default {
                     .querySelector("form.cart")
                     .querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
                   if (typeof sliderGate1 === "object") {
-                    sliderGate1.set(parseInt(newMsg.value.after * 100));
+                    sliderGate1.set(Math.round(newMsg.value.after * 100));
                     // console.log(newMsg.value.after * 100)
                   }
                 }
@@ -61,7 +61,7 @@ export default {
                     .querySelector("form.cart")
                     .querySelector('div[data-uniqid="62ffaf77735284.94935292"] .noui-target').noUiSlider;
                   if (typeof sliderGate2 === "object") {
-                    sliderGate2.set(parseInt(newMsg.value.after * 100));
+                    sliderGate2.set(Math.round(newMsg.value.after * 100));
                   }
                 }
                 break;
@@ -71,7 +71,7 @@ export default {
                     .querySelector("form.cart")
                     .querySelector('div[data-uniqid="626666fc607e27.12468774"] .noui-target').noUiSlider;
                   if (typeof window1 === "object") {
-                    window1.set(parseInt(newMsg.value.after * 100));
+                    window1.set(Math.round(newMsg.value.after * 100));
                   }
                 }
                 break;
@@ -81,7 +81,7 @@ export default {
                     .querySelector("form.cart")
                     .querySelector('div[data-uniqid="626666fc607e72.58094923"] .noui-target').noUiSlider;
                   if (typeof window2 === "object") {
-                    window2.set(parseInt(newMsg.value.after * 100));
+                    window2.set(Math.round(newMsg.value.after * 100));
                   }
                 }
                 break;
@@ -91,7 +91,7 @@ export default {
                     .querySelector("form.cart")
                     .querySelector('div[data-uniqid="626666fc607ec0.38279999"] .noui-target').noUiSlider;
                   if (typeof window3 === "object") {
-                    window3.set(parseInt(newMsg.value.after * 100));
+                    window3.set(Math.round(newMsg.value.after * 100));
                   }
                 }
                 break;
@@ -101,7 +101,7 @@ export default {
                     .querySelector("form.cart")
                     .querySelector('div[data-uniqid="626666fc607f13.98580250"] .noui-target').noUiSlider;
                   if (typeof window4 === "object") {
-                    window4.set(parseInt(newMsg.value.after * 100));
+                    window4.set(Math.round(newMsg.value.after * 100));
                   }
                 }
                 break;
@@ -111,7 +111,7 @@ export default {
                     .querySelector("form.cart")
                     .querySelector('div[data-uniqid="626666fc607f67.37945639"] .noui-target').noUiSlider;
                   if (typeof window5 === "object") {
-                    window5.set(parseInt(newMsg.value.after * 100));
+                    window5.set(Math.round(newMsg.value.after * 100));
                   }
                 }
                 break;
@@ -119,7 +119,7 @@ export default {
                 if (document.querySelector("form.cart").querySelector('div[data-uniqid="62666bae882dc3.07513822"] input').checked) {
                   var door1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62666bae882df0.44298974"] .noui-target').noUiSlider;
                   if (typeof door1 === "object") {
-                    door1.set(parseInt(newMsg.value.after * 100));
+                    door1.set(Math.round(newMsg.value.after * 100));
                   }
                 }
                 break;
@@ -127,7 +127,7 @@ export default {
                 if (document.querySelector("form.cart").querySelector('div[data-uniqid="6267a72c905212.61206813"] input').checked) {
                   var door2 = document.querySelector("form.cart").querySelector('div[data-uniqid="6267a72c905252.02727997"] .noui-target').noUiSlider;
                   if (typeof door2 === "object") {
-                    door2.set(parseInt(newMsg.value.after * 100));
+                    door2.set(Math.round(newMsg.value.after * 100));
                   }
                 }
                 break;
@@ -143,7 +143,7 @@ export default {
                     .querySelector("form.cart")
                     .querySelector('div[data-uniqid="626666fc607e37.33496203"] .noui-target').noUiSlider;
                   if (typeof window1 === "object") {
-                    window1.set(parseInt(newMsg.value.after * 100));
+                    window1.set(Math.round(newMsg.value.after * 100));
                   }
                 }
                 break;
@@ -153,7 +153,7 @@ export default {
                     .querySelector("form.cart")
                     .querySelector('div[data-uniqid="626666fc607e72.58094923"] .noui-target').noUiSlider;
                   if (typeof window2 === "object") {
-                    window2.set(parseInt(newMsg.value.after * 100));
+                    window2.set(Math.round(newMsg.value.after * 100));
                   }
                 }
                 break;
@@ -163,7 +163,7 @@ export default {
                     .querySelector("form.cart")
                     .querySelector('div[data-uniqid="626666fc607ed0.11804888"] .noui-target').noUiSlider;
                   if (typeof window3 === "object") {
-                    window3.set(parseInt(newMsg.value.after * 100));
+                    window3.set(Math.round(newMsg.value.after * 100));
                   }
                 }
                 break;
@@ -173,7 +173,7 @@ export default {
                     .querySelector("form.cart")
                     .querySelector('div[data-uniqid="626666fc607f29.14038358"] .noui-target').noUiSlider;
                   if (typeof window4 === "object") {
-                    window4.set(parseInt(newMsg.value.after * 100));
+                    window4.set(Math.round(newMsg.value.after * 100));
                   }
                 }
                 break;
@@ -183,7 +183,7 @@ export default {
                     .querySelector("form.cart")
                     .querySelector('div[data-uniqid="626666fc607f79.78538581"] .noui-target').noUiSlider;
                   if (typeof window5 === "object") {
-                    window5.set(parseInt(newMsg.value.after * 100));
+                    window5.set(Math.round(newMsg.value.after * 100));
                   }
                 }
                 break;
