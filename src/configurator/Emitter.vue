@@ -109,7 +109,7 @@ export default {
                 if (document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f38.30729408"] input').checked) {
                   var window5 = document
                     .querySelector("form.cart")
-                    .querySelector('div[data-uniqid="626666fc607f79.78538581"] .noui-target').noUiSlider;
+                    .querySelector('div[data-uniqid="626666fc607f67.37945639"] .noui-target').noUiSlider;
                   if (typeof window5 === "object") {
                     window5.set(parseInt(newMsg.value.after * 100));
                   }
@@ -181,7 +181,7 @@ export default {
                 if (document.querySelector("form.cart").querySelector('div[data-uniqid="626666fc607f38.30729408"] input').checked) {
                   var window5 = document
                     .querySelector("form.cart")
-                    .querySelector('div[data-uniqid="626666fc607f67.37945639"] .noui-target').noUiSlider;
+                    .querySelector('div[data-uniqid="626666fc607f79.78538581"] .noui-target').noUiSlider;
                   if (typeof window5 === "object") {
                     window5.set(parseInt(newMsg.value.after * 100));
                   }
