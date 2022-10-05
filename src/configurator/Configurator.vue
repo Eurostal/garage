@@ -70,20 +70,25 @@ div.summary.entry-summary.tc-init {
   height: 100%;
 }
 
-.tc-cell.cpf-type-radio ul li {
+.tc-cell {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+}
+
+.tc-cell.cpf-type-radio ul li.tc-mode-images {
   flex: 0 0 50% !important;
   max-width: 50% !important;
 }
 
 @media only screen and (min-width: 420px) {
-  .tc-cell.cpf-type-radio ul li {
+  .tc-cell.cpf-type-radio ul li.tc-mode-images {
     flex: 0 0 33% !important;
     max-width: 33% !important;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  .tc-cell.cpf-type-radio ul li {
+  .tc-cell.cpf-type-radio ul li.tc-mode-images {
     flex: 0 0 25% !important;
     max-width: 25% !important;
   }
@@ -103,7 +108,7 @@ div.summary.entry-summary.tc-init {
     width: 50% !important;
   }
 
-  .tc-cell.cpf-type-radio ul li {
+  .tc-cell.cpf-type-radio ul li.tc-mode-images {
     flex: 0 0 20% !important;
     max-width: 20% !important;
   }
