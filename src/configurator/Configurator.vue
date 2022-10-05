@@ -53,6 +53,11 @@ div.summary.entry-summary.tc-init {
   margin: 0 auto;
 }
 
+.tcwidth-21, .tcwidth-20{
+  flex: 0 0 50% !important;
+  max-width: 50% !important
+}
+
 #app {
   width: 100vw;
   height: 35vh;
@@ -83,10 +88,13 @@ div.summary.entry-summary.tc-init {
 }
 
 @media only screen and (min-width: 768px) {
-  .tc-cell.cpf-type-radio ul li.tc-mode-images {
+  .tc-cell.cpf-type-radio ul li.tc-mode-images,.tcwidth-21, .tcwidth-20 {
     flex: 0 0 25% !important;
     max-width: 25% !important;
   }
+
+}
+
   #app {
     width: 100vw;
     height: 45vh;
