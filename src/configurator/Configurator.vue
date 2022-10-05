@@ -55,7 +55,7 @@ div.summary.entry-summary.tc-init {
 
 #app {
   width: 100vw;
-  height: 30vh;
+  height: 35vh;
   z-index: 30;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
@@ -70,26 +70,26 @@ div.summary.entry-summary.tc-init {
   height: 100%;
 }
 
-.tm-product-id-15 .element_4.element_4 li {
+.tc-cell.cpf-type-radio ul li {
   flex: 0 0 50% !important;
   max-width: 50% !important;
 }
 
 @media only screen and (min-width: 420px) {
-  .tm-product-id-15 .element_4.element_4 li {
+  .tc-cell.cpf-type-radio ul li {
     flex: 0 0 33% !important;
     max-width: 33% !important;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  .tm-product-id-15 .element_4.element_4 li {
+  .tc-cell.cpf-type-radio ul li {
     flex: 0 0 25% !important;
     max-width: 25% !important;
   }
   #app {
     width: 100vw;
-    height: 42vh;
+    height: 45vh;
     z-index: 30;
     padding: 0 20%;
     margin-left: calc(50% - 50vw);
@@ -103,7 +103,7 @@ div.summary.entry-summary.tc-init {
     width: 50% !important;
   }
 
-  .tm-product-id-15 .element_4.element_4 li {
+  .tc-cell.cpf-type-radio ul li {
     flex: 0 0 20% !important;
     max-width: 20% !important;
   }
