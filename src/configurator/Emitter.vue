@@ -199,6 +199,10 @@ export default {
     },
   },
   methods: {
+    closeMaterialPopup: function () {
+      let closeBtn = document.querySelector(".button.floatbox-cancel");
+      if (closeBtn) closeBtn.click();
+    },
     changeRoof: function (name = "Dwuspadowy_0") {
       let object = {
         type: "roof",
@@ -1032,6 +1036,8 @@ export default {
         wallId: wallId,
         material: value,
       });
+
+      this.closeMaterialPopup();
     },
 
     changeDoor1SheetOrientation: function (e) {
@@ -1125,6 +1131,8 @@ export default {
         wallId: wallId,
         material: value,
       });
+
+      this.closeMaterialPopup();
     },
 
     changeDoor2SheetOrientation: function (e) {
@@ -1250,6 +1258,8 @@ export default {
           material: value,
         });
       }
+
+      this.closeMaterialPopup();
     },
 
     // Materials
@@ -1290,6 +1300,8 @@ export default {
       this.changeWallMaterial(e);
       this.changeRoofMaterial(e);
       this.changeGatesMaterial(e);
+
+      this.closeMaterialPopup();
     },
 
     changeWallMaterial: function (e) {
@@ -1317,11 +1329,11 @@ export default {
     },
 
     changeInnerMaterial: function (e) {
-      this.dispatchMaterialsEvents();
-
       // doors
       document.querySelectorAll('div[data-uniqid="62666bae882dc3.07513822"] input').forEach((input) => input.dispatchEvent(new Event("change")));
       document.querySelectorAll('div[data-uniqid="6267a72c905212.61206813"] input').forEach((input) => input.dispatchEvent(new Event("change")));
+
+      this.dispatchMaterialsEvents();
     },
 
     changeRoofMaterial: function (e) {
@@ -1343,6 +1355,8 @@ export default {
 
         this.$store.commit("updateMaterial", { ...object });
       }
+
+      this.closeMaterialPopup();
     },
 
     changeGatesMaterial: function (e) {
@@ -1369,6 +1383,8 @@ export default {
           });
         }
       }
+
+      this.closeMaterialPopup();
     },
   },
 
