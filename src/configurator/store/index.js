@@ -306,7 +306,7 @@ function checkPlacement(item, wallElements, wallSize) {
       yBefore = item.y;
       item.y = roundTwoDec(wallSize.y - 0.05 - item.height);
       console.warn(item.name + " exceeds wall boundary, yOffset changed to " + item.y);
-      store.commit("setMsg", { item: item.name, eventName: "yOffsetChange", value: { before: yBefore, after: parseFloat(item.x.toFixed(2)) } });
+      store.commit("setMsg", { item: item.name, eventName: "yOffsetChange", value: { before: yBefore, after: parseFloat(item.y.toFixed(2)) } });
     }
   } else {
     let gateOffset = 0.1;
@@ -341,9 +341,9 @@ function checkPlacement(item, wallElements, wallSize) {
   }
   const itemPoints = [
     { x: item.x, y: item.y },
-    { x: item.x + item.width, y: item.y },
-    { x: item.x, y: item.y + item.height },
-    { x: item.x + item.width, y: item.y + item.height },
+    { x: roundTwoDec(item.x + item.width), y: item.y },
+    { x: item.x, y: roundTwoDec(item.y + item.height) },
+    { x: roundTwoDec(item.x + item.width), y: roundTwoDec(item.y + item.height) },
   ];
   let elementPoints = [];
   for (let i = 0; i < wallElements.length; i++) {
