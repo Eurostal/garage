@@ -20,6 +20,7 @@ handle.add(handlePart, handlePart2);
 handle.position.x = 0.1;
 
 const frameWidth = 0.08;
+const frameColor = new Color(0x3d2105);
 
 export const doubleDoor = function createDoubleDoor(width, height, material, handleVisible) {
   const gateGroup = new Group();
@@ -44,8 +45,6 @@ export const doubleDoor = function createDoubleDoor(width, height, material, han
     gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y - frameWidth / 2);
   }
 
-  const frameColor = new Color(0x241302);
-
   const frameMaterial = new MeshBasicMaterial({
     color: frameColor,
     combine: MultiplyOperation,
@@ -58,7 +57,7 @@ export const doubleDoor = function createDoubleDoor(width, height, material, han
   gateDoorFrame.receiveShadow = true;
 
   const separator = new Mesh(
-    new PlaneGeometry(frameWidth / 2, height),
+    new PlaneGeometry(frameWidth / 4, height),
     new MeshStandardMaterial({
       color: 0x000000,
       transparent: true,
@@ -117,8 +116,6 @@ export const tiltedWidepanelDoor = function createTiltedWidepanelDoor(width, hei
   gateDoor.castShadow = true;
   gateDoor.receiveShadow = true;
 
-  const frameColor = new Color(0x241302);
-
   const frameMaterial = new MeshBasicMaterial({
     color: frameColor,
     combine: MultiplyOperation,
@@ -157,8 +154,6 @@ export const tiltedDoor = function createTiltedDoor(width, height, material) {
     gateDoor.material.map.repeat.set(height - frameWidth, width - frameWidth);
     gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y - frameWidth / 2);
   }
-
-  const frameColor = new Color(0x241302);
 
   const frameMaterial = new MeshBasicMaterial({
     color: frameColor,
