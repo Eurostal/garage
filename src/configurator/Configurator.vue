@@ -70,11 +70,6 @@ div.summary.entry-summary.tc-init {
   height: 100%;
 }
 
-.tc-cell {
-  flex: 0 0 100% !important;
-  max-width: 100% !important;
-}
-
 .tc-cell.cpf-type-radio ul li.tc-mode-images {
   flex: 0 0 50% !important;
   max-width: 50% !important;

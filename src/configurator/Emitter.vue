@@ -1326,6 +1326,8 @@ export default {
         object.material = object.material + "_H";
       }
       this.$store.commit("updateMaterial", { ...object });
+
+      this.closeMaterialPopup();
     },
 
     changeInnerMaterial: function (e) {
