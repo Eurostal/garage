@@ -5,21 +5,21 @@ import * as Texture from "./textures";
 
 const handle = new Group();
 const handlePart = new Mesh(
-  new BoxGeometry(frameWidth / 2, 0.1, 0.01),
+  new BoxGeometry(0.04, 0.1, 0.01),
   new MeshStandardMaterial({
     color: 0x000000,
   })
 );
 handlePart.position.z = 0.01;
 
-const frameWidth = 0.08;
-
 const handlePart2 = handlePart.clone();
 handlePart2.rotateZ(Math.PI / 2);
-handlePart2.position.z = frameWidth / 2;
+handlePart2.position.z = 0.04;
 handlePart2.position.x = 0.05;
 handle.add(handlePart, handlePart2);
 handle.position.x = 0.1;
+
+const frameWidth = 0.08;
 
 export const doubleDoor = function createDoubleDoor(width, height, material, handleVisible) {
   const gateGroup = new Group();

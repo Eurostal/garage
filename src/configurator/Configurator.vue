@@ -49,18 +49,21 @@ onMounted(() => {
 
 <style>
 .reset-btn-div span {
-  background: #cc0d27;
-  color: #fff;
+  background: #cc0d27 !important;
+  color: #fff !important;
   box-shadow: 0 0.25rem 1.25rem rgb(0 0 0 / 25%);
-  margin-bottom: 1.125rem;
+  margin-top: 1.125rem !important;
   transition: 0.2s ease-in;
-  width: min-content;
+  width: min-content !important;
   margin-left: auto;
+  flex: 0 0 auto !important;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
-.reset-btn-div span {
-  background: #000;
-  color: #fff;
+.reset-btn-div span:hover {
+  background: #000 !important;
+  color: #fff !important;
 }
 
 div.tm-has-options.product {
