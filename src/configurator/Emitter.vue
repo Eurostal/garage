@@ -111,7 +111,7 @@ export default {
                     .querySelector("form.cart")
                     .querySelector('div[data-uniqid="626666fc607f67.37945639"] .noui-target').noUiSlider;
                   if (typeof window5 === "object") {
-                    window5.set(parseInt(newMsg.value.after * 100));
+                    // window5.set(parseInt(newMsg.value.after * 100));
                   }
                 }
                 break;
