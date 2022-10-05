@@ -307,15 +307,16 @@ export default {
         object.position = parseFloat(position) < 1 ? 0 : parseFloat(position) / 100;
       }
 
-      //Update gate by other properties in form after enabling it
-      document.querySelector('div[data-uniqid="625928cfacd5f2.48728982"] select').dispatchEvent(new Event("change"));
-      document.querySelector('div[data-uniqid="625928cfacd608.04744343"] select').dispatchEvent(new Event("change"));
-      document.querySelector('div[data-uniqid="625929fa7219b1.06715193"] select').dispatchEvent(new Event("change"));
-
       if (this.gateNameTranslation[e.target.value] === "double") {
         let handleState = document.querySelector('div[data-uniqid="633bd32afb6935.83995440"] input').checked;
         object.handle = handleState;
       }
+      this.changeGate("gate1", object);
+
+      //Update gate by other properties in form after enabling it
+      document.querySelector('div[data-uniqid="625928cfacd5f2.48728982"] select').dispatchEvent(new Event("change"));
+      document.querySelector('div[data-uniqid="625928cfacd608.04744343"] select').dispatchEvent(new Event("change"));
+      document.querySelector('div[data-uniqid="625929fa7219b1.06715193"] select').dispatchEvent(new Event("change"));
 
       //Disable gate2 if gate1 is
       if (!this.gateNameTranslation[e.target.value] != "") {
@@ -323,8 +324,6 @@ export default {
         document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').dispatchEvent(new Event("change"));
         this.changeGate("gate2", object);
       }
-
-      this.changeGate("gate1", object);
 
       //Label update
       document.querySelector("form.cart").querySelector('div[data-uniqid="627ae6909e8ac6.12947879"] .tc-epo-label').textContent =

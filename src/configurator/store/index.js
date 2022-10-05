@@ -410,6 +410,12 @@ function fillData(data) {
     ...data,
   };
 
+  if (data.width && data.type == "gate") {
+    if (filledData.gateType == "tilted" || filledData.gateType == "wide") {
+      filledData.width = filledData.width - 0.2;
+    }
+  }
+
   console.log(filledData);
   return filledData;
 }
