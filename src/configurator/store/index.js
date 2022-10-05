@@ -213,7 +213,7 @@ function updateG(state, data) {
         elements.forEach((element, index) => {
           if (!fits) {
             xBefore = data.x;
-            data.x = element.x + element.width + 0.2;
+            data.x = roundTwoDec(element.x + element.width + 0.2);
             if (checkPlacement(data, elements, wallSize)) {
               fits = true;
             }
