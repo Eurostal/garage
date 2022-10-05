@@ -56,8 +56,9 @@ onMounted(() => {
   transition: 0.2s ease-in;
   width: min-content !important;
   margin-left: auto;
+  margin-right: 15px;
   flex: 0 0 auto !important;
-  padding: 10px 20px;
+  padding: 10px 20px !important;
   cursor: pointer;
 }
 
