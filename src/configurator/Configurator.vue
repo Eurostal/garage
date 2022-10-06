@@ -1,5 +1,6 @@
 <template>
   <div class="configurator-container">
+    <button @click="moveCamera()">z boku</button>
     <Emitter />
     <div id="scene-container"></div>
     <div class="alert" :class="{ active: message.length > 0 }">
@@ -17,16 +18,40 @@ import { useStore } from "vuex";
 import createRenderer from "./createRenderer";
 import createCamera from "./createCamera";
 
-import { MathUtils } from "three";
+import { MathUtils, Spherical, Vector3 } from "three";
 
 const store = useStore();
 const message = computed(() => store.getters.getMessage);
+let camera;
+let controls;
+function moveCamera() {
+  let sphericalStart = new Spherical();
+  let sphericalEnd = new Spherical();
+  let vectorStart = new Vector3();
+
+  let actualPosition = camera.position;
+  let destination = new Vector3(-7, 0, 0);
+  sphericalStart.setFromCartesianCoords(actualPosition.x, actualPosition.y, actualPosition.z);
+  sphericalEnd.setFromCartesianCoords(destination.x, destination.y, destination.z);
+  if (sphericalStart.theta < -sphericalEnd.theta) {
+    sphericalStart.theta = sphericalStart.theta + 0.1;
+  }
+
+  vectorStart.setFromSpherical(sphericalStart);
+
+  // console.log(vectorStart);
+  camera.position.set(vectorStart.x, vectorStart.y, vectorStart.z);
+  controls.target.set(0, 1, 0);
+  controls.update();
+}
 
 onMounted(() => {
   const container = document.getElementById("scene-container");
   const scene = generator.getScene();
   const renderer = createRenderer(container);
-  const { camera, controls } = createCamera(container, renderer);
+  const cameraCreator = createCamera(container, renderer);
+  camera = cameraCreator.camera;
+  controls = cameraCreator.controls;
 
   scene.add(camera);
 
