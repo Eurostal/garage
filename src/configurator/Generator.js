@@ -7,6 +7,8 @@ import Window from "./window.js";
 import Door from "./door.js";
 
 import { Materials } from "./materials";
+import { AnimationMixer } from "three";
+import CameraAnimator from "./CameraAnimator";
 
 class Generator {
   constructor() {
@@ -14,6 +16,10 @@ class Generator {
     const lights = createLight();
     this.scene.add(lights);
     this.garage = {};
+    this.controls = null;
+    this.camera = null;
+    this.mixer = null;
+    this.cameraAnimator = null;
   }
 
   initialize(garage, reset) {
@@ -54,6 +60,9 @@ class Generator {
         case "window":
           this.removeExisting(data.name);
           this.garage.walls[wallId].addElement(new Window(data.width, data.height, Materials[data.material], false, data.name), data.x, data.y);
+          if (this.cameraAnimator) {
+            this.cameraAnimator.moveCamera(wallId);
+          }
 
           break;
         case "door":
@@ -123,6 +132,22 @@ class Generator {
     if (exists) {
       this.garage.walls[elementWallId].removeElement(name);
     }
+  }
+
+  setControls(controls) {
+    this.controls = controls;
+  }
+
+  setCamera(camera) {
+    this.camera = camera;
+
+    //create camera animator
+    this.mixer = new AnimationMixer(camera);
+    this.cameraAnimator = new CameraAnimator(this.camera, this.controls, this.mixer);
+  }
+
+  setMixer(mixer) {
+    this.mixer = mixer;
   }
 
   getScene() {
