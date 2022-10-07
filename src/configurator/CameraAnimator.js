@@ -1,5 +1,12 @@
 import { Vector3, VectorKeyframeTrack, AnimationClip, AnimationMixer, InterpolateSmooth, LoopOnce } from "three";
 
+const againstWallPosition = {
+  0: new Vector3(0, 2, 8),
+  1: new Vector3(0, 2, -8),
+  2: new Vector3(8, 2, 0),
+  3: new Vector3(-8, 2, 0),
+};
+
 export default class CameraAnimator {
   constructor(camera, controls, mixer) {
     this.camera = camera;
@@ -9,7 +16,7 @@ export default class CameraAnimator {
 
   moveCamera(wallId) {
     const actualPosition = this.camera.position;
-    const destination = this._againstWallPosition(wallId);
+    const destination = againstWallPosition[wallId];
     this.controls.minDistance = Math.sqrt(actualPosition.x ** 2 + (actualPosition.y - 1) ** 2 + actualPosition.z ** 2);
     this.controls.update();
 
@@ -35,18 +42,7 @@ export default class CameraAnimator {
     clipAction.play();
   }
 
-  _againstWallPosition(wallId) {
-    switch (wallId) {
-      case 0:
-        return new Vector3(0, 2, 8);
-      case 1:
-        return new Vector3(0, 2, -8);
-      case 2:
-        return new Vector3(8, 2, 0);
-      case 3:
-        return new Vector3(-8, 2, 0);
-      default:
-        return new Vector3(-8, 4, 10);
-    }
+  getMixer() {
+    return this.mixer;
   }
 }

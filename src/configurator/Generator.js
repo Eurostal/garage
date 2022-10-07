@@ -136,23 +136,8 @@ class Generator {
     }
   }
 
-  setControls(controls) {
-    this.controls = controls;
-  }
-
-  setCamera(camera) {
-    this.camera = camera;
-
-    //create camera animator
-    this.cameraAnimator = new CameraAnimator(this.camera, this.controls);
-  }
-
-  setMixer(mixer) {
-    this.mixer = mixer;
-  }
-
-  getMixer() {
-    return this.cameraAnimator.mixer;
+  createAnimator(camera, controls) {
+    this.cameraAnimator = new CameraAnimator(camera, controls);
   }
 
   getScene() {

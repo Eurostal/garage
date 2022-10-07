@@ -31,11 +31,9 @@ onMounted(() => {
 
   const camera = cameraCreator.camera;
   const controls = cameraCreator.controls;
-
-  generator.setControls(controls);
-  generator.setCamera(camera);
-
   scene.add(camera);
+
+  generator.createAnimator(camera, controls);
 
   window.addEventListener("resize", function () {
     camera.aspect = container.clientWidth / container.clientHeight;
@@ -46,7 +44,7 @@ onMounted(() => {
 
   renderer.setAnimationLoop(function () {
     const delta = clock.getDelta();
-    const mixer = generator.getMixer();
+    const mixer = generator.cameraAnimator.getMixer();
     if (mixer) {
       mixer.update(delta);
     }
