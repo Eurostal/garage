@@ -54,6 +54,9 @@ class Generator {
             data.x,
             0
           );
+          if (this.cameraAnimator) {
+            this.cameraAnimator.moveCamera(wallId);
+          }
 
           break;
         case "window":
@@ -72,6 +75,9 @@ class Generator {
             data.x,
             data.y
           );
+          if (this.cameraAnimator) {
+            this.cameraAnimator.moveCamera(wallId);
+          }
 
           break;
         case "fittings":
