@@ -19,7 +19,7 @@ handlePart2.position.x = 0.05;
 handle.add(handlePart, handlePart2);
 handle.position.x = 0.1;
 
-const frameWidth = 0.04;
+const frameWidth = 0.05;
 const frameColor = new Color(0x3d2105);
 
 export const doubleDoor = function createDoubleDoor(width, height, material, handleVisible) {
