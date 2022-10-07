@@ -90,14 +90,14 @@ export const store = createStore({
             }
           } else {
             let gateOffset;
-            let noDoubleGate = false;
+            let noTiltedGate = false;
             elements.forEach((el) => {
-              if (el.gateType !== "double") {
-                noDoubleGate = true;
+              if (el.gateType !== "tilted" || el.gateType !== "wide") {
+                noTiltedGate = true;
               }
             });
             gateOffset = noDoubleGate ? 0.1 : 0.0;
-            state.garageUpdated.fittings.fittingWidth = noDoubleGate ? 0.1 : 0.02;
+            state.garageUpdated.fittings.fittingWidth = noTiltedGate ? 0.1 : 0.02;
             if (element.x + element.width + gateOffset > wallSize.x || element.y + element.height > wallSize.y) {
               fits = false;
             }
