@@ -30,7 +30,6 @@ export default class CameraAnimator {
 
     this.mixer = new AnimationMixer(this.camera);
     this.mixer.addEventListener("finished", () => {
-      console.log("finished");
       this.controls.minDistance = 5;
       this.controls.update();
       this.camera.position.set(destination.x, destination.y, destination.z);
