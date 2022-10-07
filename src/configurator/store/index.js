@@ -309,10 +309,10 @@ function checkPlacement(item, wallElements, wallSize) {
       store.commit("setMsg", { item: item.name, eventName: "yOffsetChange", value: { before: yBefore, after: parseFloat(item.y.toFixed(2)) } });
     }
   } else {
-    let gateOffset = 0.1;
+    let gateOffset = 0;
 
-    if (item.gateType == "double") {
-      gateOffset = 0;
+    if (item.gateType == "empty") {
+      gateOffset = 0.1;
     }
     if (item.width + gateOffset * 2 > wallSize.x) {
       console.warn(item.name + "is too big to fit in the wall");
