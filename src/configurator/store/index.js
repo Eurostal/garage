@@ -428,6 +428,21 @@ function validateGate(data, tempElement, state) {
 
     if (tempElement?.height != undefined && data.height == tempElement.height) {
       state.garageActual.walls.front.elements[data.name] = data;
+
+      if (state.garageUpdated.fittings.visible) {
+        let wallElements = state.garageActual.walls.front.elements;
+        let gateOffset;
+        let noTiltedGate = true;
+        wallElements.forEach((el) => {
+          if (el.gateType === "tilted" || el.gateType === "wide") {
+            noTiltedGate = false;
+          }
+        });
+        gateOffset = noTiltedGate ? 0.0 : 0.1;
+        state.garageUpdated.fittings.fittingWidth = noTiltedGate ? 0.02 : 0.1;
+        generator.updateGarage("update", { type: "fittings", ...state.garageUpdated.fittings }, 0);
+      }
+
       generator.updateGarage(data.eventType, data, 0);
     } else {
       state.garageActual.walls.front.elements[data.name] = data;
