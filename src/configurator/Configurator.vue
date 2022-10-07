@@ -31,10 +31,10 @@ onMounted(() => {
 
   const camera = cameraCreator.camera;
   const controls = cameraCreator.controls;
-  const mixer = generator.mixer;
 
   generator.setControls(controls);
   generator.setCamera(camera);
+  const mixer = generator.getMixer();
 
   scene.add(camera);
 

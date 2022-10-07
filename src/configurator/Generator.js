@@ -150,6 +150,10 @@ class Generator {
     this.mixer = mixer;
   }
 
+  getMixer() {
+    return this.mixer;
+  }
+
   getScene() {
     return this.scene;
   }
