@@ -410,10 +410,6 @@ function fillData(data) {
     ...data,
   };
 
-  if (filledData.type == "gate" && !data.x) {
-    filledData.x = store.getters.getGarage.width / 2 - filledData.width / 2;
-  }
-
   console.log(filledData);
   return filledData;
 }
