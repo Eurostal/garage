@@ -38,11 +38,11 @@ export default class CameraAnimator {
       case 0:
         return new Vector3(0, 2, 7);
       case 1:
-        return new Vector3(-7, 2, 0);
-      case 2:
-        return new Vector3(7, 2, 0);
-      case 3:
         return new Vector3(0, 2, -7);
+      case 2:
+        return new Vector3(-7, 2, 0);
+      case 3:
+        return new Vector3(7, 2, 0);
       default:
         return new Vector3(-7, 4, 10);
     }
