@@ -430,7 +430,7 @@ function validateGate(data, tempElement, state) {
       state.garageActual.walls.front.elements[data.name] = data;
 
       if (state.garageUpdated.fittings.visible) {
-        let wallElements = state.garageActual.walls.front.elements;
+        let wallElements = Object.values(state.garageActual.walls.front.elements);
         let gateOffset;
         let noTiltedGate = true;
         wallElements.forEach((el) => {
