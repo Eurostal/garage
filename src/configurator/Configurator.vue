@@ -1,6 +1,5 @@
 <template>
   <div class="configurator-container">
-    <button @click="move()">MOVE</button>
     <Emitter />
     <div id="scene-container"></div>
     <div class="alert" :class="{ active: message.length > 0 }">
@@ -24,22 +23,17 @@ const store = useStore();
 const message = computed(() => store.getters.getMessage);
 const clock = new Clock();
 
-function move() {
-  generator.cameraAnimator.moveCamera(2);
-}
-let camera;
 onMounted(() => {
   const container = document.getElementById("scene-container");
   const scene = generator.getScene();
   const renderer = createRenderer(container);
   const cameraCreator = createCamera(container, renderer);
 
-  camera = cameraCreator.camera;
+  const camera = cameraCreator.camera;
   const controls = cameraCreator.controls;
 
   generator.setControls(controls);
   generator.setCamera(camera);
-  const mixer = generator.getMixer();
 
   scene.add(camera);
 
@@ -52,6 +46,7 @@ onMounted(() => {
 
   renderer.setAnimationLoop(function () {
     const delta = clock.getDelta();
+    const mixer = generator.getMixer();
     if (mixer) {
       mixer.update(delta);
     }

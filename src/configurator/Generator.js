@@ -18,7 +18,6 @@ class Generator {
     this.garage = {};
     this.controls = null;
     this.camera = null;
-    this.mixer = null;
     this.cameraAnimator = null;
   }
 
@@ -142,8 +141,7 @@ class Generator {
     this.camera = camera;
 
     //create camera animator
-    this.mixer = new AnimationMixer(this.camera);
-    this.cameraAnimator = new CameraAnimator(this.camera, this.controls, this.mixer);
+    this.cameraAnimator = new CameraAnimator(this.camera, this.controls);
   }
 
   setMixer(mixer) {
@@ -151,7 +149,7 @@ class Generator {
   }
 
   getMixer() {
-    return this.mixer;
+    return this.cameraAnimator.mixer;
   }
 
   getScene() {
