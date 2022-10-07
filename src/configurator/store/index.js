@@ -90,10 +90,10 @@ export const store = createStore({
             }
           } else {
             let gateOffset;
-            let noTiltedGate = false;
+            let noTiltedGate = true;
             elements.forEach((el) => {
-              if (el.gateType !== "tilted" || el.gateType !== "wide") {
-                noTiltedGate = true;
+              if (el.gateType === "tilted" || el.gateType === "wide") {
+                noTiltedGate = false;
               }
             });
             gateOffset = noTiltedGate ? 0.0 : 0.1;
