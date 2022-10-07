@@ -29,7 +29,7 @@ class Generator {
     this.scene.add(this.garage.garageObject);
     Object.values(garage.walls).forEach((walls, wallIndex) => {
       Object.values(walls.elements).forEach((element) => {
-        this.updateGarage("update", element, wallIndex);
+        this.updateGarage("update", element, wallIndex, false);
       });
     });
 
@@ -44,7 +44,7 @@ class Generator {
     }
   }
 
-  updateGarage(action, data, wallId) {
+  updateGarage(action, data, wallId, isAnimated = true) {
     if (action === "update") {
       switch (data.type) {
         case "gate":
@@ -54,15 +54,12 @@ class Generator {
             data.x,
             0
           );
-          if (this.cameraAnimator) {
-            this.cameraAnimator.moveCamera(wallId);
-          }
 
           break;
         case "window":
           this.removeExisting(data.name);
           this.garage.walls[wallId].addElement(new Window(data.width, data.height, Materials[data.material], false, data.name), data.x, data.y);
-          if (this.cameraAnimator) {
+          if (isAnimated && this.cameraAnimator) {
             this.cameraAnimator.moveCamera(wallId);
           }
 
@@ -75,7 +72,7 @@ class Generator {
             data.x,
             data.y
           );
-          if (this.cameraAnimator) {
+          if (isAnimated && this.cameraAnimator) {
             this.cameraAnimator.moveCamera(wallId);
           }
 
