@@ -42,9 +42,9 @@ export default class CameraAnimator {
       case 1:
         return new Vector3(0, 2, -8);
       case 2:
-        return new Vector3(-8, 2, 0);
-      case 3:
         return new Vector3(8, 2, 0);
+      case 3:
+        return new Vector3(-8, 2, 0);
       default:
         return new Vector3(-8, 4, 10);
     }
