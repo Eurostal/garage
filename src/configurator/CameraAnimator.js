@@ -5,32 +5,36 @@ export default class CameraAnimator {
     this.camera = camera;
     this.controls = controls;
     this.mixer = mixer;
+    this.destination;
+
+    this.mixer.addEventListener("finished", () => {
+      console.log("finished");
+      this.controls.minDistance = 5;
+      this.controls.update();
+      this.mixer.stopAllAction();
+      this.camera.position.set(this.destination.x, this.destination.y, this.destination.z);
+    });
   }
 
   moveCamera(wallId) {
     let actualPosition = this.camera.position;
     let destination = this._againstWallPosition(wallId);
-
+    this.destination = destination;
     this.controls.minDistance = Math.sqrt(actualPosition.x ** 2 + (actualPosition.y - 1) ** 2 + actualPosition.z ** 2);
     this.controls.update();
 
     var positionKF = new VectorKeyframeTrack(
       ".position",
-      [0, 1],
+      [0, 2],
       [actualPosition.x, actualPosition.y, actualPosition.z, destination.x, destination.y, destination.z],
       InterpolateSmooth
     );
-    var clip = new AnimationClip("Action", 3, [positionKF]);
+    var clip = new AnimationClip("Action", 2, [positionKF]);
 
     var clipAction = this.mixer.clipAction(clip);
     clipAction.clampWhenFinished = true;
     clipAction.setLoop(LoopOnce);
     clipAction.play();
-
-    this.mixer.addEventListener("finished", () => {
-      this.controls.minDistance = 5;
-      this.controls.update();
-    });
   }
 
   _againstWallPosition(wallId) {

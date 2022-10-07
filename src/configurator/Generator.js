@@ -142,7 +142,7 @@ class Generator {
     this.camera = camera;
 
     //create camera animator
-    this.mixer = new AnimationMixer(camera);
+    this.mixer = new AnimationMixer(this.camera);
     this.cameraAnimator = new CameraAnimator(this.camera, this.controls, this.mixer);
   }
 
