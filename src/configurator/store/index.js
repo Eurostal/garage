@@ -211,7 +211,7 @@ function updateG(state, data) {
         elements.forEach((element, index) => {
           if (!fits) {
             xBefore = data.x;
-            data.x = roundTwoDec(element.x + element.width + 0.2);
+            data.x = roundTwoDec(element.x + element.width + 0.01);
             if (checkPlacement(data, elements, wallSize)) {
               fits = true;
             }
@@ -384,10 +384,10 @@ function contains(element, { x, y }) {
   };
   const margin = element.type == "gate" ? 0 : 0.2;
   return (
-    roundTwoDec(rect.x - margin) <= x &&
-    x <= roundTwoDec(rect.x + rect.width + margin) &&
-    roundTwoDec(rect.y - margin) <= y &&
-    y <= roundTwoDec(rect.y + rect.height + margin)
+    roundTwoDec(rect.x - margin) < x &&
+    x < roundTwoDec(rect.x + rect.width + margin) &&
+    roundTwoDec(rect.y - margin) < y &&
+    y < roundTwoDec(rect.y + rect.height + margin)
   );
 }
 
