@@ -390,7 +390,7 @@ function contains(element, { x, y }) {
     height: element.height,
   };
   if (element.type == "gate") {
-    return roundTwoDec(rect.x) < x && x < roundTwoDec(rect.x + rect.width) && roundTwoDec(rect.y) < y && y < roundTwoDec(rect.y + rect.height);
+    return roundTwoDec(rect.x) < x && x < roundTwoDec(rect.x + rect.width) && roundTwoDec(rect.y) <= y && y <= roundTwoDec(rect.y + rect.height);
   } else {
     return (
       roundTwoDec(rect.x - 0.2) < x &&
