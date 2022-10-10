@@ -382,7 +382,7 @@ function contains(element, { x, y }) {
     width: element.width,
     height: element.height,
   };
-  const margin = element.type == "gate" ? 0 : 0.2;
+  const margin = element.type == "gate" ? 0.001 : 0.2;
   return (
     roundTwoDec(rect.x - margin) < x &&
     x < roundTwoDec(rect.x + rect.width + margin) &&
