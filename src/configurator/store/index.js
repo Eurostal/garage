@@ -211,7 +211,13 @@ function updateG(state, data) {
         elements.forEach((element, index) => {
           if (!fits) {
             xBefore = data.x;
-            let shift = element.type === "gate" && element.gateType === "empty" ? 0 : 0.2;
+            let shift = 0.2;
+            if (element.type === "gate") {
+              shift = 0;
+              if (element.gateType === "empty") {
+                shift = 0.2;
+              }
+            }
             data.x = roundTwoDec(element.x + element.width + shift);
             if (checkPlacement(data, elements, wallSize)) {
               fits = true;
