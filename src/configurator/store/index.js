@@ -355,14 +355,16 @@ function checkPlacement(item, wallElements, wallSize) {
     let element = wallElements[i];
 
     if (element.name !== item.name) {
+      if (element.width == item.width && element.x == item.x) {
+        console.warn("error, elements lay on each other, checking: " + element.name);
+        return false;
+      }
       elementPoints = [
         { x: element.x, y: element.y },
         { x: roundTwoDec(element.x + element.width), y: element.y },
         { x: element.x, y: roundTwoDec(element.y + element.height) },
         { x: roundTwoDec(element.x + element.width), y: roundTwoDec(element.y + element.height) },
       ];
-    }
-    if (element.name !== item.name) {
       for (let j = 0; j < itemPoints.length; j++) {
         let point = itemPoints[j];
         if (contains(element, point)) {
@@ -390,7 +392,7 @@ function contains(element, { x, y }) {
     height: element.height,
   };
   if (element.type == "gate") {
-    return roundTwoDec(rect.x) <= x && x < roundTwoDec(rect.x + rect.width);
+    return roundTwoDec(rect.x) < x && x < roundTwoDec(rect.x + rect.width);
   } else {
     return (
       roundTwoDec(rect.x - 0.2) < x &&
