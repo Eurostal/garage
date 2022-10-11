@@ -212,7 +212,7 @@ function updateG(state, data) {
           if (!fits) {
             xBefore = data.x;
             let shift = 0.2;
-            if (data.type === "gate" || element.type === "gate") {
+            if (data.type === "gate" && element.type === "gate") {
               shift = 0;
             }
             data.x = roundTwoDec(element.x + element.width + shift);
