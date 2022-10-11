@@ -1,7 +1,30 @@
-import { CylinderGeometry } from "three";
-import { Color } from "three";
-import { Mesh, PlaneGeometry, BoxGeometry, Group, MeshStandardMaterial, MeshBasicMaterial, MultiplyOperation, DoubleSide, Vector2 } from "three";
+import {
+  Mesh,
+  PlaneGeometry,
+  BoxGeometry,
+  Group,
+  MeshStandardMaterial,
+  MeshBasicMaterial,
+  MultiplyOperation,
+  DoubleSide,
+  Vector2,
+  Shape,
+  Path,
+  Color,
+  CylinderGeometry,
+  ExtrudeGeometry,
+} from "three";
+import { Materials } from "./materials";
 import * as Texture from "./textures";
+
+const frameColor = new Color(0x3d2105);
+const frameMaterial = new MeshBasicMaterial({
+  color: frameColor,
+  combine: MultiplyOperation,
+  reflectivity: 0.5,
+  map: Materials.RAL9010.map.clone(),
+  side: DoubleSide,
+});
 
 const handle = new Group();
 const handlePart = new Mesh(
@@ -21,7 +44,6 @@ handle.position.x = 0.1;
 
 const frameWidth = 0.05;
 const frameWidthWide = 0.1;
-const frameColor = new Color(0x3d2105);
 
 export const doubleDoor = function createDoubleDoor(width, height, material, handleVisible) {
   const gateGroup = new Group();
@@ -46,13 +68,6 @@ export const doubleDoor = function createDoubleDoor(width, height, material, han
     gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y - frameWidth);
   }
 
-  const frameMaterial = new MeshBasicMaterial({
-    color: frameColor,
-    combine: MultiplyOperation,
-    reflectivity: 0.5,
-    map: material.map,
-    side: DoubleSide,
-  });
   const gateDoorFrame = new Mesh(new PlaneGeometry(width, height), frameMaterial);
   gateDoorFrame.castShadow = true;
   gateDoorFrame.receiveShadow = true;
@@ -117,13 +132,6 @@ export const tiltedWidepanelDoor = function createTiltedWidepanelDoor(width, hei
   gateDoor.castShadow = true;
   gateDoor.receiveShadow = true;
 
-  const frameMaterial = new MeshBasicMaterial({
-    color: frameColor,
-    combine: MultiplyOperation,
-    reflectivity: 0.5,
-    map: material.map,
-    side: DoubleSide,
-  });
   const gateDoorFrame = new Mesh(new PlaneGeometry(width, height), frameMaterial);
   gateDoorFrame.castShadow = true;
   gateDoorFrame.receiveShadow = true;
@@ -157,13 +165,6 @@ export const tiltedDoor = function createTiltedDoor(width, height, material) {
     gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y - frameWidthWide);
   }
 
-  const frameMaterial = new MeshBasicMaterial({
-    color: frameColor,
-    combine: MultiplyOperation,
-    reflectivity: 0.5,
-    map: material.map,
-    side: DoubleSide,
-  });
   const gateDoorFrame = new Mesh(new PlaneGeometry(width, height), frameMaterial);
   gateDoorFrame.castShadow = true;
   gateDoorFrame.receiveShadow = true;
@@ -180,9 +181,35 @@ export const tiltedDoor = function createTiltedDoor(width, height, material) {
   return gateGroup;
 };
 
-export const empty = function createEmpty(width, height, material) {
-  const noGate = new Mesh(new PlaneGeometry(0, 0), material);
-  noGate.visible = false;
+export const emptyDoor = function createEmpty(width, height, material) {
+  // const emptyGate = new Mesh(new PlaneGeometry(0, 0), material);
+  // noGate.visible = false;
 
-  return noGate;
+  let offsetY = 0.1;
+
+  const frameShape = new Shape();
+  frameShape.moveTo(-width / 2, 0);
+  frameShape.lineTo(-width / 2, height + offsetY);
+  frameShape.lineTo(width / 2, height + offsetY);
+  frameShape.lineTo(width / 2, 0);
+
+  const frameInnerPath = new Path();
+  frameInnerPath.moveTo(-width / 2 + 0.05, 0);
+  frameInnerPath.lineTo(-width / 2 + 0.05, height - 0.05 + offsetY);
+  frameInnerPath.lineTo(width / 2 - 0.05, height - 0.05 + offsetY);
+  frameInnerPath.lineTo(width / 2 - 0.05, 0);
+
+  frameShape.holes = [frameInnerPath];
+
+  const frameGeometry = new ExtrudeGeometry(frameShape, {
+    depth: 0,
+    bevelEnabled: false,
+  });
+
+  const frameMesh = new Mesh(frameGeometry, frameMaterial);
+  frameMesh.receiveShadow = true;
+  frameMesh.castShadow = true;
+  frameMesh.translateY(-offsetY);
+
+  return frameMesh;
 };

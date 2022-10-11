@@ -311,26 +311,21 @@ function checkPlacement(item, wallElements, wallSize) {
       store.commit("setMsg", { item: item.name, eventName: "yOffsetChange", value: { before: yBefore, after: parseFloat(item.y.toFixed(2)) } });
     }
   } else {
-    let gateOffset = 0;
-
-    if (item.gateType == "empty") {
-      gateOffset = 0.1;
-    }
-    if (item.width + gateOffset * 2 > wallSize.x) {
+    if (item.width > wallSize.x) {
       console.warn(item.name + "is too big to fit in the wall");
       store.commit("setMsg", { item: item.name, eventName: "OversizeY" });
 
       return false;
     }
-    if (item.x + item.width + gateOffset > wallSize.x) {
+    if (item.x + item.width > wallSize.x) {
       xBefore = item.x;
-      item.x = wallSize.x - gateOffset - item.width;
+      item.x = wallSize.x - item.width;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
       store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: parseFloat(item.x.toFixed(2)) } });
     }
-    if (item.x < gateOffset) {
+    if (item.x < 0) {
       xBefore = item.x;
-      item.x = gateOffset;
+      item.x = 0;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
       store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: parseFloat(item.x.toFixed(2)) } });
     }
@@ -438,14 +433,12 @@ function validateGate(data, tempElement, state) {
       state.garageActual.walls.front.elements[data.name] = data;
 
       let wallElements = Object.values(state.garageActual.walls.front.elements);
-      let gateOffset;
       let noTiltedGate = true;
       wallElements.forEach((el) => {
         if (el.gateType === "tilted" || el.gateType === "wide") {
           noTiltedGate = false;
         }
       });
-      gateOffset = noTiltedGate ? 0.0 : 0.1;
       let newWidth = noTiltedGate ? 0.02 : 0.1;
       state.garageUpdated.fittings.fittingWidth = newWidth;
       if (state.garageUpdated.fittings.visible) {
