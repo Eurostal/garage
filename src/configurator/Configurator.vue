@@ -73,7 +73,6 @@ onMounted(() => {
   color: #cc0d27 !important;
   margin-top: 1.125rem !important;
   transition: 0.2s ease-in;
-  width: min-content !important;
   margin-left: 15px;
   margin-right: 15px;
   padding: 10px 20px !important;
