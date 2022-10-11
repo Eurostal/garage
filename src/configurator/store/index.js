@@ -212,9 +212,9 @@ function updateG(state, data) {
           if (!fits) {
             xBefore = data.x;
             let shift = 0.2;
-            if (element.type === "gate") {
+            if (data.type === "gate") {
               shift = 0;
-              if (element.gateType === "empty") {
+              if (data.gateType === "empty") {
                 shift = 0.2;
               }
             }
@@ -391,10 +391,10 @@ function contains(element, { x, y }) {
   };
   if (element.type == "gate") {
     return (
-      roundTwoDec(rect.x) + 0.001 < x &&
-      x < roundTwoDec(rect.x + rect.width) - 0.001 &&
-      roundTwoDec(rect.y) + 0.001 < y &&
-      y < roundTwoDec(rect.y + rect.height) - 0.001
+      roundTwoDec(rect.x + 0.01) < x &&
+      x < roundTwoDec(rect.x + rect.width) - 0.01 &&
+      roundTwoDec(rect.y + 0.01) < y &&
+      y < roundTwoDec(rect.y + rect.height) - 0.01
     );
   } else {
     return (
