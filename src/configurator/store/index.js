@@ -391,10 +391,11 @@ function contains(element, { x, y }) {
   };
   if (element.type == "gate") {
     return (
-      roundTwoDec(rect.x + 0.01) < x &&
-      x < roundTwoDec(rect.x + rect.width) - 0.01 &&
-      roundTwoDec(rect.y + 0.01) < y &&
-      y < roundTwoDec(rect.y + rect.height) - 0.01
+      roundTwoDec(rect.x) < x &&
+      x < roundTwoDec(rect.x + rect.width) &&
+      roundTwoDec(rect.y) < y &&
+      y < roundTwoDec(rect.y + rect.height) &&
+      roundTwoDec(rect.x + rect.width) != x
     );
   } else {
     return (
