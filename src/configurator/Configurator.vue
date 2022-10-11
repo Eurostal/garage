@@ -59,22 +59,29 @@ onMounted(() => {
 </script>
 
 <style>
+.tm-extra-product-options ul.tmcp-elements li.tmcp-field-wrap.tc-mode-startimages .checkbox-image.checkbox-image,
+.tm-extra-product-options ul.tmcp-elements li.tmcp-field-wrap.tc-mode-startimages .radio-image {
+  max-height: 80px !important;
+  width: 80px !important;
+  object-fit: contain;
+  margin-left: 20px;
+  padding: 0px;
+}
+
 .reset-btn-div span {
-  background: #cc0d27 !important;
-  color: #fff !important;
-  box-shadow: 0 0.25rem 1.25rem rgb(0 0 0 / 25%);
+  border: 1px solid #cc0d27;
+  color: #cc0d27 !important;
   margin-top: 1.125rem !important;
   transition: 0.2s ease-in;
   width: min-content !important;
-  margin-left: auto;
+  margin-left: 15px;
   margin-right: 15px;
-  flex: 0 0 auto !important;
   padding: 10px 20px !important;
   cursor: pointer;
 }
 
 .reset-btn-div span:hover {
-  background: #000 !important;
+  background: #cc0d27 !important;
   color: #fff !important;
 }
 
@@ -122,6 +129,11 @@ div.summary.entry-summary.tc-init {
 }
 
 @media only screen and (min-width: 768px) {
+  .tm-extra-product-options ul.tmcp-elements li.tmcp-field-wrap.tc-mode-startimages .checkbox-image.checkbox-image,
+  .tm-extra-product-options ul.tmcp-elements li.tmcp-field-wrap.tc-mode-startimages .radio-image {
+    width: 100px !important;
+  }
+
   .tc-cell.cpf-type-radio ul li.tc-mode-images,
   .tcwidth-21,
   .tcwidth-20 {
