@@ -214,9 +214,6 @@ function updateG(state, data) {
             let shift = 0.2;
             if (data.type === "gate") {
               shift = 0;
-              if (data.gateType === "empty") {
-                shift = 0.2;
-              }
             }
             data.x = roundTwoDec(element.x + element.width + shift);
             if (checkPlacement(data, elements, wallSize)) {
