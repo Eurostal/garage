@@ -949,7 +949,7 @@ export default {
         object.handleSide = this.handleNameTranslations[handle];
       }
 
-      if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value == "Z profila zamkniętgo_0") {
+      if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value != "Konstrukcja ocynkowana_2") {
         object.defaultInside = true;
       }
 
@@ -1319,7 +1319,7 @@ export default {
         object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
         object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
       }
-      if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value == "Z profila zamkniętgo_0") {
+      if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value != "Konstrukcja ocynkowana_2") {
         object.defaultInside = true;
       }
       if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
@@ -1351,7 +1351,7 @@ export default {
         object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
         object.defaultInside = false;
 
-        if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value == "Z profila zamkniętgo_0") {
+        if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value != "Konstrukcja ocynkowana_2") {
           object.defaultInside = true;
         }
 
