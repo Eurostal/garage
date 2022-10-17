@@ -10,7 +10,7 @@ export const store = createStore({
         garage: {
           width: 3,
           length: 5,
-          height: 2 + 0.13,
+          height: 2,
           walls: {
             front: {
               elements: {},
@@ -83,7 +83,7 @@ export const store = createStore({
           validateDoor(element, state.garageUpdated);
           if (element.type !== "gate") {
             if (index != 0 && state.garageUpdated.roof.roofType === "back") {
-              wallSize.y = wallSize.y - 0.23;
+              wallSize.y = wallSize.y - 0.1;
             }
             if (roundTwoDec(element.x + element.width + 0.1) > wallSize.x || roundTwoDec(element.y + element.height + 0.05) > wallSize.y) {
               fits = false;
@@ -184,7 +184,7 @@ function updateG(state, data) {
         ? { x: state.garageActual.width, y: state.garageActual.height }
         : { x: state.garageActual.length, y: state.garageActual.height };
     if (data.wallId != 0 && state.garageActual.roof.roofType === "back") {
-      wallSize.y = wallSize.y - 0.23;
+      wallSize.y = wallSize.y - 0.1;
     }
 
     if (checkPlacement(data, elements, wallSize)) {
@@ -422,10 +422,10 @@ function validateGate(data, tempElement, state) {
     console.warn("Gate can be placed on front wall only");
     return;
   } else {
-    let garageHeight = data.height + 0.13;
+    let garageHeight = data.height;
     Object.values(state.garageActual.walls.front.elements).forEach((element) => {
-      if (element.type == "gate" && garageHeight < element.height + 0.13) {
-        garageHeight = element.height + 0.13;
+      if (element.type == "gate" && garageHeight < element.height) {
+        garageHeight = element.height;
       }
     });
 
@@ -455,10 +455,12 @@ function validateGate(data, tempElement, state) {
 }
 
 function validateDoor(data, garage) {
-  if (data.type == "door" && garage.height >= 2.13 && garage.roof.roofType !== "back") {
+  if (data.type == "door" && garage.height >= 2.15 && garage.roof.roofType !== "back") {
     data.height = 2;
-  } else if (data.type == "door") {
+  } else if (data.type == "door" && garage.roof.roofType !== "back") {
     data.height = 1.85;
+  } else if (data.type == "door") {
+    data.height = 2;
   }
 }
 
