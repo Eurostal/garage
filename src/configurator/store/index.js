@@ -56,6 +56,7 @@ export const store = createStore({
         fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
       },
       msg: { eventName: false },
+      alerts: {},
     };
   },
   mutations: {
@@ -102,6 +103,11 @@ export const store = createStore({
           }
           if (!fits) {
             this.commit("setMsg", { eventName: "reInitFailed", value: { before: state.garageUpdated, after: state.garageActual } });
+            if (data.roof) {
+              this.commit("setAlert",'Nie można zmienić rodzaju dachu, obniż lub usuń dodatki na ścianach.')
+            }else{
+              this.commit("setAlert",'Nie można zmienić rozmiarów garażu, przesuń lub usuń dodatki na ścianach.')
+            }
           }
         });
       });
@@ -134,8 +140,13 @@ export const store = createStore({
       state.msg = data;
     },
 
-    clearMsg(state) {
-      state.msg = { eventName: false };
+    setAlert(state, data) {
+      let id = Object.keys(state.alerts).length
+      state.alerts[id]=data;
+    },
+
+    clearAlert(state,index) {
+      delete state.alerts[index]
     },
   },
   actions: {
@@ -151,8 +162,8 @@ export const store = createStore({
     getGarage(state) {
       return state.garageActual;
     },
-    getMessage(state) {
-      return state.msg;
+    getAlerts(state) {
+      return state.alerts;
     },
     getDefaults(state) {
       return state.defaults;

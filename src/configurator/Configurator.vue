@@ -2,9 +2,14 @@
   <div class="configurator-container">
     <Emitter />
     <div id="scene-container"></div>
-    <div class="alert" :class="{ active: message.length > 0 }">
-      <p>{{ message }}</p>
-    </div>
+    <ul class="alert-container">
+      <li v-for="(item,index) in alerts" :key="index" class="alert active">
+        <div class="alert-close-btn" @click="store.commit['clearAlert',index]">
+          x
+        </div>
+        <p>{{ item }}</p>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -20,7 +25,7 @@ import createCamera from "./createCamera";
 import { MathUtils, Clock } from "three";
 
 const store = useStore();
-const message = computed(() => store.getters.getMessage);
+const alerts = computed(() => store.getters.getAlerts);
 const clock = new Clock();
 
 onMounted(() => {
@@ -56,6 +61,9 @@ onMounted(() => {
   const resetBtn = document.querySelector(".reset-btn-div span");
   if (resetBtn) resetBtn.addEventListener("click", () => location.reload());
 });
+
+return alerts
+
 </script>
 
 <style>
@@ -178,6 +186,11 @@ div.summary.entry-summary.tc-init {
   }
 }
 
+.alert-container{
+  display: flex;
+  flex-direction: column;
+}
+
 .alert {
   display: flex;
   position: absolute;
@@ -190,6 +203,13 @@ div.summary.entry-summary.tc-init {
   border-radius: 10px;
   opacity: 0;
   transition: all 0.2s;
+}
+
+.alert-close-btn{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
 }
 
 .alert.active {
