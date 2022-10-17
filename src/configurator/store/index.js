@@ -455,7 +455,10 @@ function validateGate(data, tempElement, state) {
 }
 
 function validateDoor(data, garage) {
-  if (data.type == "door" && garage.height >= 2.15) {
+  if (data.type == "door" && garage.height >= 2.25 && garage.roof.roofType == "back") {
+    data.height = 2;
+  }
+  else if (data.type == "door" && garage.height >= 2.15 && garage.roof.roofType !== "back") {
     data.height = 2;
   } else if (data.type == "door") {
     data.height = 1.85;
