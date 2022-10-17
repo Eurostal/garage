@@ -56,6 +56,7 @@ export const store = createStore({
         fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
       },
       msg: { eventName: false },
+      alertsCnt:0,
       alerts: {},
     };
   },
@@ -141,8 +142,9 @@ export const store = createStore({
     },
 
     setAlert(state, data) {
-      let id = Object.keys(state.alerts).length
-      state.alerts[id]=data;
+      let id = state.alertsCnt 
+      state.alerts[id] = {text:data,id:id};
+      state.alertsCnt += 1;
     },
 
     clearAlert(state,index) {

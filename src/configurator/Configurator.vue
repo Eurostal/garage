@@ -2,14 +2,15 @@
   <div class="configurator-container">
     <Emitter />
     <div id="scene-container"></div>
-    <ul class="alert-container">
-      <li v-for="(item,index) in alerts" :key="index" class="alert active">
-        <div class="alert-close-btn" @click="store.commit['clearAlert',index]">
-          x
-        </div>
-        <p>{{ item }}</p>
-      </li>
-    </ul>
+    <div class="alert-container">
+      <TransitionGroup name="list" tag="ul">
+        <li v-for="item in alerts" :key="item.id" class="alert">
+          <div class="alert-close-btn" @click="store.commit('clearAlert',item.id)">
+          </div>
+          <p>{{ item.text }}</p>
+        </li>
+</TransitionGroup>
+</div>
   </div>
 </template>
 
@@ -184,38 +185,65 @@ div.summary.entry-summary.tc-init {
   }
 }
 
+
+
 .alert-container{
-  display: flex;
-  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .alert {
   display: flex;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 0, 0, 0.5);
-  max-width: 200px;
+  position: relative;
+  background: rgba(255, 0, 0, 0.75);
+  width: 200px;
   padding: 0px 15px;
+  margin-top: 15px;
   border: 1px solid red;
   border-radius: 10px;
-  opacity: 0;
   transition: all 0.2s;
 }
 
 .alert-close-btn{
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 5px;
+  right: 5px;
+  width:15px;
+  height:15px;
 }
 
-.alert.active {
-  opacity: 100%;
+.alert-close-btn::after{
+  color:white;
+  font-size: 13px;
+  content: "\2716";
+  transition:all 0.2s ease-in-out
+}
+
+.alert-close-btn:hover::after{
+  opacity: 0.70;
 }
 
 .alert p {
   font-family: sans-serif;
   font-size: 16px;
+  color:white
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.list-leave-active {
+  position: absolute;
 }
 </style>
