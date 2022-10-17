@@ -189,7 +189,7 @@ div.summary.entry-summary.tc-init {
 
 .alert-container{
   position: absolute;
-  top: 0;
+  top: 80%;
   right: 0;
 }
 
