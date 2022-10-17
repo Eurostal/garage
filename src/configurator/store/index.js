@@ -292,7 +292,7 @@ function checkPlacement(item, wallElements, wallSize) {
       store.commit("setMsg", { item: item.name, eventName: "OversizeX" });
       return false;
     }
-    if (item.x + roundTwoDec(item.width + 0.1) > wallSize.x) {
+    if (roundTwoDec(item.x + item.width + 0.1) > wallSize.x) {
       xBefore = item.x;
       item.x = roundTwoDec(wallSize.x - 0.1 - item.width);
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
@@ -304,7 +304,7 @@ function checkPlacement(item, wallElements, wallSize) {
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
       store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: parseFloat(item.x.toFixed(2)) } });
     }
-    if (item.y + roundTwoDec(item.height + 0.05) > wallSize.y) {
+    if (roundTwoDec(item.y + item.height + 0.05) > wallSize.y) {
       yBefore = item.y;
       item.y = roundTwoDec(wallSize.y - 0.05 - item.height);
       console.warn(item.name + " exceeds wall boundary, yOffset changed to " + item.y);
