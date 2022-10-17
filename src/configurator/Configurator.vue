@@ -62,8 +62,6 @@ onMounted(() => {
   if (resetBtn) resetBtn.addEventListener("click", () => location.reload());
 });
 
-return alerts
-
 </script>
 
 <style>
