@@ -16,7 +16,7 @@
 
 <script setup>
 import Emitter from "./Emitter.vue";
-import { onMounted, computed } from "@vue/runtime-core";
+import { onMounted, computed,watch } from "@vue/runtime-core";
 import { generator } from "./Generator";
 import { useStore } from "vuex";
 
@@ -40,6 +40,22 @@ onMounted(() => {
   scene.add(camera);
 
   generator.createAnimator(camera, controls);
+
+  watch(store.getters.getGarage,(garage)=>{
+    let hasEnternance = false
+    for (const wall in garage) {
+      let elements = Object.values(garage[wall].elements)
+      for (let i = 0; i < elements.length; i++) {
+        const element = elements[i];
+        if (element.type == 'gate' || element.type == 'door') {
+          hasEnternance = true
+        }
+      }
+    }
+    if (!hasEnternance) {
+      store.commit('setAlert','Brak wejścia do garażu, dodaj bramę lub drzwi.')
+    }
+  })
 
   window.addEventListener("resize", function () {
     camera.aspect = container.clientWidth / container.clientHeight;
