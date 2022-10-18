@@ -282,6 +282,23 @@ function updateG(state, data) {
     }
     generator.updateGarage(data.eventType, data, data.wallId);
   }
+
+  if (data.eventType === "remove") {
+    let garageWalls = state.garageActual.walls;
+    let hasEnternance = false;
+    for (const wall in garageWalls) {
+      let elements = Object.values(garageWalls[wall].elements);
+      for (let i = 0; i < elements.length; i++) {
+        const element = elements[i];
+        if (element.type == "gate" || element.type == "door") {
+          hasEnternance = true;
+        }
+      }
+    }
+    if (!hasEnternance) {
+      store.commit("setAlert", "Brak wejścia do garażu, dodaj bramę lub drzwi.");
+    }
+  }
 }
 
 function checkPlacement(item, wallElements, wallSize) {
