@@ -28,22 +28,6 @@ const store = useStore();
 const alerts = computed(() => store.getters.getAlerts);
 const clock = new Clock();
 
-watch(store.getters.getGarage.walls, (garageWalls) => {
-  let hasEnternance = false;
-  for (const wall in garageWalls) {
-    let elements = Object.values(garageWalls[wall].elements);
-    for (let i = 0; i < elements.length; i++) {
-      const element = elements[i];
-      if (element.type == "gate" || element.type == "door") {
-        hasEnternance = true;
-      }
-    }
-  }
-  if (!hasEnternance) {
-    store.commit("setAlert", "Brak wejścia do garażu, dodaj bramę lub drzwi.");
-  }
-});
-
 onMounted(() => {
   const container = document.getElementById("scene-container");
   const scene = generator.getScene();
