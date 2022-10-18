@@ -56,7 +56,7 @@ export const store = createStore({
         fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
       },
       msg: { eventName: false },
-      alertsCnt:0,
+      alertsCnt: 0,
       alerts: {},
     };
   },
@@ -105,9 +105,9 @@ export const store = createStore({
           if (!fits) {
             this.commit("setMsg", { eventName: "reInitFailed", value: { before: state.garageUpdated, after: state.garageActual } });
             if (data.roof) {
-              this.commit("setAlert",'Nie można zmienić rodzaju dachu, obniż lub usuń dodatki na ścianach.')
-            }else{
-              this.commit("setAlert",'Nie można zmienić rozmiarów garażu, przesuń lub usuń dodatki na ścianach.')
+              this.commit("setAlert", "Nie można zmienić rodzaju dachu, obniż lub usuń dodatki na ścianach.");
+            } else {
+              this.commit("setAlert", "Nie można zmienić rozmiarów garażu, przesuń lub usuń dodatki na ścianach.");
             }
           }
         });
@@ -142,13 +142,13 @@ export const store = createStore({
     },
 
     setAlert(state, data) {
-      let id = state.alertsCnt 
-      state.alerts[id] = {text:data,id:id};
+      let id = state.alertsCnt;
+      state.alerts[id] = { text: data, id: id };
       state.alertsCnt += 1;
     },
 
-    clearAlert(state,index) {
-      delete state.alerts[index]
+    clearAlert(state, index) {
+      delete state.alerts[index];
     },
   },
   actions: {
@@ -280,6 +280,21 @@ function updateG(state, data) {
       }
     }
     generator.updateGarage(data.eventType, data, data.wallId);
+  }
+
+  let garageWalls = state.garageActual.walls;
+  let hasEnternance = false;
+  for (const wall in garageWalls) {
+    let elements = Object.values(garageWalls[wall].elements);
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+      if (element.type == "gate" || element.type == "door") {
+        hasEnternance = true;
+      }
+    }
+  }
+  if (!hasEnternance) {
+    store.commit("setAlert", "Brak wejścia do garażu, dodaj bramę lub drzwi.");
   }
 }
 
@@ -470,8 +485,7 @@ function validateGate(data, tempElement, state) {
 function validateDoor(data, garage) {
   if (data.type == "door" && garage.height >= 2.25 && garage.roof.roofType == "back") {
     data.height = 2;
-  }
-  else if (data.type == "door" && garage.height >= 2.15 && garage.roof.roofType !== "back") {
+  } else if (data.type == "door" && garage.height >= 2.15 && garage.roof.roofType !== "back") {
     data.height = 2;
   } else if (data.type == "door") {
     data.height = 1.85;
