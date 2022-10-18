@@ -5,18 +5,17 @@
     <div class="alert-container">
       <TransitionGroup name="list" tag="ul">
         <li v-for="item in alerts" :key="item.id" class="alert">
-          <div class="alert-close-btn" @click="store.commit('clearAlert',item.id)">
-          </div>
+          <div class="alert-close-btn" @click="store.commit('clearAlert', item.id)"></div>
           <p>{{ item.text }}</p>
         </li>
-</TransitionGroup>
-</div>
+      </TransitionGroup>
+    </div>
   </div>
 </template>
 
 <script setup>
 import Emitter from "./Emitter.vue";
-import { onMounted, computed,watch } from "@vue/runtime-core";
+import { onMounted, computed, watch } from "@vue/runtime-core";
 import { generator } from "./Generator";
 import { useStore } from "vuex";
 
@@ -29,21 +28,21 @@ const store = useStore();
 const alerts = computed(() => store.getters.getAlerts);
 const clock = new Clock();
 
-watch(store.getters.getGarage.walls,(garageWalls)=>{
-    let hasEnternance = false
-    for (const wall in garageWalls) {
-      let elements = Object.values(garageWalls[wall].elements)
-      for (let i = 0; i < elements.length; i++) {
-        const element = elements[i];
-        if (element.type == 'gate' || element.type == 'door') {
-          hasEnternance = true
-        }
+watch(store.getters.getGarage.walls, (garageWalls) => {
+  let hasEnternance = false;
+  for (const wall in garageWalls) {
+    let elements = Object.values(garageWalls[wall].elements);
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+      if (element.type == "gate" || element.type == "door") {
+        hasEnternance = true;
       }
     }
-    if (!hasEnternance) {
-      store.commit('setAlert','Brak wejścia do garażu, dodaj bramę lub drzwi.')
-    }
-  })
+  }
+  if (!hasEnternance) {
+    store.commit("setAlert", "Brak wejścia do garażu, dodaj bramę lub drzwi.");
+  }
+});
 
 onMounted(() => {
   const container = document.getElementById("scene-container");
@@ -78,10 +77,56 @@ onMounted(() => {
   const resetBtn = document.querySelector(".reset-btn-div span");
   if (resetBtn) resetBtn.addEventListener("click", () => location.reload());
 });
-
 </script>
 
 <style>
+.alert-container {
+  position: absolute;
+  top: 15px;
+  right: 0;
+}
+
+.alert {
+  display: flex;
+  position: relative;
+  background: rgba(255, 0, 0, 0.75);
+  width: 200px;
+  padding: 0px 15px;
+  margin-top: 15px;
+  border: 1px solid red;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.alert-close-btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 5px;
+  right: 5px;
+  width: 15px;
+  height: 15px;
+}
+
+.alert-close-btn::after {
+  color: white;
+  font-size: 13px;
+  content: "\2716";
+  transition: all 0.2s ease-in-out;
+}
+
+.alert-close-btn:hover::after {
+  opacity: 0.7;
+}
+
+.alert p {
+  font-family: sans-serif;
+  font-size: 16px;
+  color: white;
+  margin: 10px 0;
+}
+
 .tm-extra-product-options ul.tmcp-elements li.tmcp-field-wrap.tc-mode-startimages .checkbox-image.checkbox-image,
 .tm-extra-product-options ul.tmcp-elements li.tmcp-field-wrap.tc-mode-startimages .radio-image {
   max-height: 80px !important;
@@ -175,6 +220,10 @@ div.summary.entry-summary.tc-init {
 }
 
 @media only screen and (min-width: 1200px) {
+  .alert-container {
+    top: 80%;
+  }
+
   div.tm-has-options.product {
     width: 50% !important;
   }
@@ -199,54 +248,6 @@ div.summary.entry-summary.tc-init {
     width: 100%;
     aspect-ratio: 1/1;
   }
-}
-
-
-
-.alert-container{
-  position: absolute;
-  top: 80%;
-  right: 0;
-}
-
-.alert {
-  display: flex;
-  position: relative;
-  background: rgba(255, 0, 0, 0.75);
-  width: 200px;
-  padding: 0px 15px;
-  margin-top: 15px;
-  border: 1px solid red;
-  border-radius: 10px;
-  transition: all 0.2s;
-}
-
-.alert-close-btn{
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 5px;
-  right: 5px;
-  width:15px;
-  height:15px;
-}
-
-.alert-close-btn::after{
-  color:white;
-  font-size: 13px;
-  content: "\2716";
-  transition:all 0.2s ease-in-out
-}
-
-.alert-close-btn:hover::after{
-  opacity: 0.70;
-}
-
-.alert p {
-  font-family: sans-serif;
-  font-size: 16px;
-  color:white
 }
 
 .list-enter-active,
