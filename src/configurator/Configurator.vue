@@ -29,22 +29,10 @@ const store = useStore();
 const alerts = computed(() => store.getters.getAlerts);
 const clock = new Clock();
 
-onMounted(() => {
-  const container = document.getElementById("scene-container");
-  const scene = generator.getScene();
-  const renderer = createRenderer(container);
-  const cameraCreator = createCamera(container, renderer);
-
-  const camera = cameraCreator.camera;
-  const controls = cameraCreator.controls;
-  scene.add(camera);
-
-  generator.createAnimator(camera, controls);
-
-  watch(store.getters.getGarage,(garage)=>{
+watch(store.getters.getGarage.walls,(garageWalls)=>{
     let hasEnternance = false
-    for (const wall in garage) {
-      let elements = Object.values(garage[wall].elements)
+    for (const wall in garageWalls) {
+      let elements = Object.values(garageWalls[wall].elements)
       for (let i = 0; i < elements.length; i++) {
         const element = elements[i];
         if (element.type == 'gate' || element.type == 'door') {
@@ -56,6 +44,18 @@ onMounted(() => {
       store.commit('setAlert','Brak wejścia do garażu, dodaj bramę lub drzwi.')
     }
   })
+
+onMounted(() => {
+  const container = document.getElementById("scene-container");
+  const scene = generator.getScene();
+  const renderer = createRenderer(container);
+  const cameraCreator = createCamera(container, renderer);
+
+  const camera = cameraCreator.camera;
+  const controls = cameraCreator.controls;
+  scene.add(camera);
+
+  generator.createAnimator(camera, controls);
 
   window.addEventListener("resize", function () {
     camera.aspect = container.clientWidth / container.clientHeight;
