@@ -255,6 +255,7 @@ function updateG(state, data) {
         }
       } else {
         store.commit("setMsg", { item: data.name, eventName: "noSpaceWall" + data.wallId });
+        store.commit("setAlert", "Brak miejsca na wybranej ścianie.");
       }
     }
   } else if (data.eventType === "remove") {
