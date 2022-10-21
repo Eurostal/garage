@@ -15,10 +15,6 @@ import Configurator from "./configurator/Configurator.vue";
   width: 90%;
 }
 
-.single-product.postid-15 #tc-epo-form-15-0 > * {
-  padding: 0 20px !important;
-}
-
 #tc-epo-form-15-0 .tc-row.tc-row {
   padding: 0px;
 }
