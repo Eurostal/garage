@@ -41,7 +41,7 @@ export const store = createStore({
           height: 0.4,
           material: "WHITE",
           x: 0,
-          y: 1,
+          y: 1.2,
         },
         door: {
           wallId: 0,
