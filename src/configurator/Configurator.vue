@@ -72,8 +72,11 @@ onMounted(() => {
         if (/^\d+$/.test(pair[1]) && pair[0] != "tcaddtocart" && pair[0] != "tm-epo-counter") {
           pair[1] += " cm";
         }
+        pair[1] = pair[1].split("_")[0];
+
         let label = document.querySelector(`[name=${pair[0]}]`).closest("[data-uniqid]")?.querySelector(".tm-epo-element-label").innerText;
-        formDataText += `${label ? label : pair[0]}: ${pair[1]} \r\n`;
+        label = label ? label.replaceAll(":", "") : pair[0];
+        formDataText += `${label}: ${pair[1]} \r\n`;
       }
 
       let joinedStrings = `formatted: ${formDataText} \r\n  raw: \r\n ${JSON.stringify(actualGarage)}`;
