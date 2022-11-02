@@ -137,8 +137,8 @@ onMounted(() => {
 }
 
 .save-btn-div span {
-  width: calc(100% - 30px);
-  max-width: 200px;
+  width: calc(100% - 30px) !important;
+  max-width: 200px !important;
   text-align: center;
   background: #cc0d27;
   color: #fff;
