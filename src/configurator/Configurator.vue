@@ -60,22 +60,23 @@ onMounted(() => {
 
   const saveBtn = document.querySelector(".save-btn-div span");
   const textarea = document.querySelector('textarea[name="product-data"]');
-  const formData = new FormData(document.querySelector("form.cart"));
-  let formDataText = "\r\n ";
-
-  for (const pair of formData.entries()) {
-    if (/^\d+$/.test(pair[1])) {
-      pair[1] += "cm";
-    }
-    pair[0].replace("_", " ");
-    console.log(`${pair[0]}, ${pair[1]}`);
-    formDataText += `${pair[0]}, ${pair[1]} \r\n`;
-  }
 
   if (saveBtn && textarea)
     saveBtn.addEventListener("click", () => {
       const actualGarage = store.getters.getGarage;
-      textarea.value = `formatted: ${formDataText} \r\n  raw: ${JSON.stringify(actualGarage)}`;
+
+      const formData = new FormData(document.querySelector("form.cart"));
+      let formDataText = "\r\n ";
+
+      for (const pair of formData.entries()) {
+        if (/^\d+$/.test(pair[1])) {
+          pair[1] += "cm";
+        }
+        pair[0] = pair[0].replaceAll("_", " ");
+        formDataText += `${pair[0]}: ${pair[1]} \r\n`;
+      }
+
+      textarea.value = `formatted: ${formDataText} \r\n  raw: \r\n ${JSON.stringify(actualGarage)}`;
     });
 
   const resetBtn = document.querySelector(".reset-btn-div span");
