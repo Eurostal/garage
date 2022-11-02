@@ -74,17 +74,14 @@ onMounted(() => {
           if (/^\d+$/.test(pair[1])) {
             pair[1] += " cm";
           }
-          pair[1] = pair[1].split("_")[0];
+          pair[1] = pair[1].split("_")[0].replaceAll("_", " ");
 
           let label = document.querySelector(`[name=${pair[0]}]`).closest("[data-uniqid]")?.querySelector(".tm-epo-element-label")?.innerText;
           label = label ? label.replaceAll(":", "") : pair[0];
           formDataText += `${label}: ${pair[1]} \r\n`;
         }
       }
-
-      let joinedStrings = `formatted: ${formDataText} \r\n  raw: \r\n ${JSON.stringify(actualGarage)}`;
-      joinedStrings = joinedStrings.replaceAll("_", " ");
-      textarea.value = joinedStrings;
+      textarea.value = `formatted: ${formDataText} \r\n  raw: \r\n ${JSON.stringify(actualGarage)}`;
     });
 
   const resetBtn = document.querySelector(".reset-btn-div span");
