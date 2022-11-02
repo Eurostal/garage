@@ -58,6 +58,14 @@ onMounted(() => {
     renderer.render(scene, camera);
   });
 
+  const saveBtn = document.querySelector(".save-btn-div span");
+  const textarea = document.querySelector('textarea[name="product-data"]');
+  if (saveBtn && textarea)
+    saveBtn.addEventListener("click", () => {
+      const actualGarage = store.getters.getGarage;
+      textarea.value = JSON.stringify(actualGarage);
+    });
+
   const resetBtn = document.querySelector(".reset-btn-div span");
   if (resetBtn) resetBtn.addEventListener("click", () => location.reload());
 });
