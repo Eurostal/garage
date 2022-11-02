@@ -3,7 +3,7 @@ import { Mesh, BoxGeometry, MeshStandardMaterial, Group, Vector3 } from "three";
 import { CSG } from "@enable3d/three-graphics/jsm/csg";
 
 export default class WallCustom extends Wall {
-  constructor(width, height, offset = 0, rotation = 0, clippingPlane, material, defaultInside, roofHeight) {
+  constructor(width, height, offset = 0, rotation = 0, clippingPlane, material, defaultInside, roofHeight, wallId) {
     super(width, height, offset, rotation, clippingPlane, material, defaultInside, roofHeight, wallId);
     const initCustomWall = this.createWall();
     initCustomWall.name = "wall";
