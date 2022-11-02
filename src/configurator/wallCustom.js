@@ -20,7 +20,7 @@ export default class WallCustom extends Wall {
       height: element.height,
     };
     if (this.wallId == 3) {
-      xOffset = this.width - xOffset;
+      xOffset = this.width - xOffset - element.width;
     }
     let elementObject = element.object;
     if (element.object !== null) {
