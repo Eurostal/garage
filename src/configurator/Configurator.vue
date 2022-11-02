@@ -70,7 +70,7 @@ onMounted(() => {
       let formDataText = "\r\n ";
 
       for (const pair of formData.entries()) {
-        if (hiddenKeys.insludes(pair[0])) {
+        if (hiddenKeys.includes(pair[0])) {
           if (/^\d+$/.test(pair[1])) {
             pair[1] += " cm";
           }
