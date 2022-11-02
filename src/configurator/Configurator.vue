@@ -76,7 +76,7 @@ onMounted(() => {
           }
           pair[1] = pair[1].split("_")[0];
 
-          let label = document.querySelector(`[name=${pair[0]}]`).closest("[data-uniqid]")?.querySelector(".tm-epo-element-label").innerText;
+          let label = document.querySelector(`[name=${pair[0]}]`).closest("[data-uniqid]")?.querySelector(".tm-epo-element-label")?.innerText;
           label = label ? label.replaceAll(":", "") : pair[0];
           formDataText += `${label}: ${pair[1]} \r\n`;
         }
