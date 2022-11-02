@@ -69,14 +69,16 @@ onMounted(() => {
       let formDataText = "\r\n ";
 
       for (const pair of formData.entries()) {
-        if (/^\d+$/.test(pair[1])) {
-          pair[1] += "cm";
+        if (/^\d+$/.test(pair[1]) && pair[0] != "tcaddtocart" && pair[0] != "tm-epo-counter") {
+          pair[1] += " cm";
         }
-        pair[0] = pair[0].replaceAll("_", " ");
+        pair[1] = pair[1].split("_")[0];
         formDataText += `${pair[0]}: ${pair[1]} \r\n`;
       }
 
-      textarea.value = `formatted: ${formDataText} \r\n  raw: \r\n ${JSON.stringify(actualGarage)}`;
+      let joinedStrings = `formatted: ${formDataText} \r\n  raw: \r\n ${JSON.stringify(actualGarage)}`;
+      joinedStrings = joinedStrings.replaceAll("_", " ");
+      textarea.value = joinedStrings;
     });
 
   const resetBtn = document.querySelector(".reset-btn-div span");
