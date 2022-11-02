@@ -123,8 +123,8 @@ onMounted(() => {
 .reset-btn-div span {
   border: 1px solid #cc0d27;
   color: #cc0d27 !important;
-  margin-top: 1.125rem !important;
   transition: 0.2s ease-in;
+  margin-top: 1.125rem !important;
   margin-left: 15px;
   margin-right: 15px;
   padding: 10px 20px !important;
@@ -134,6 +134,26 @@ onMounted(() => {
 .reset-btn-div span:hover {
   background: #cc0d27 !important;
   color: #fff !important;
+}
+
+.save-btn-div span {
+  width: calc(100% - 30px);
+  max-width: 200px;
+  text-align: center;
+  background: #cc0d27;
+  color: #fff;
+  box-shadow: 0 0.25rem 1.25rem rgb(0 0 0 / 25%);
+  margin-bottom: 1.5rem;
+  transition: 0.2s ease-in;
+  margin-top: 1.125rem !important;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 10px 20px !important;
+  cursor: pointer;
+}
+
+.save-btn-div span:hover {
+  background: #000;
 }
 
 div.tm-has-options.product {
