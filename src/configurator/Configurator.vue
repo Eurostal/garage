@@ -68,7 +68,7 @@ onMounted(() => {
 
       const formData = new FormData(document.querySelector("form.cart"));
       const hiddenKeys = ["tcaddtocart", "tm-epo-counter", "quantity", "cpf_product_price", "tc_form_prefix"];
-      let formDataText = "\r\n ";
+      let formDataText = "";
 
       for (const pair of formData.entries()) {
         if (!hiddenKeys.includes(pair[0])) {
