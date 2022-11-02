@@ -60,7 +60,7 @@ onMounted(() => {
 
   const saveBtn = document.querySelector(".save-btn-div span");
   const textareaFormatted = document.querySelector('textarea[name="product-data"]');
-  const textareaRaw = document.querySelector('textarea[name="raw-garage-config"]');
+  const textareaRaw = document.querySelector('input[name="raw-garage-config"]');
 
   if (saveBtn)
     saveBtn.addEventListener("click", () => {
