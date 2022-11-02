@@ -2,7 +2,8 @@ import { Mesh, Group, BoxGeometry } from "three";
 import * as Material from "./materials";
 
 export default class Wall {
-  constructor(width, height, offset = 0, rotation = 0, clippingPlane, material, defaultInside, roofHeight) {
+  constructor(width, height, offset = 0, rotation = 0, clippingPlane, material, defaultInside, roofHeight, wallId) {
+    this.wallId = wallId;
     this.roofHeight = roofHeight;
     this.width = width;
     this.height = height;

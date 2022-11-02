@@ -30,7 +30,8 @@ export default class Garage {
           this.roof.clippingPlane,
           this.material,
           this.defaultInside,
-          this.roof.roofHeight
+          this.roof.roofHeight,
+          i
         );
         this.walls.push(wall);
       } else {
@@ -42,7 +43,8 @@ export default class Garage {
           this.roof.clippingPlane,
           this.material,
           this.defaultInside,
-          this.roof.roofHeight
+          this.roof.roofHeight,
+          i
         );
         this.walls.push(wall);
       }
