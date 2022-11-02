@@ -228,7 +228,11 @@ function updateG(state, data) {
             if (data.type === "gate" && element.type === "gate") {
               shift = 0;
             }
-            data.x = roundTwoDec(element.x + element.width + shift);
+            if (data.wallId == 2) {
+              data.x = roundTwoDec(wallSize - (element.x + element.width + shift));
+            } else {
+              data.x = roundTwoDec(element.x + element.width + shift);
+            }
             if (checkPlacement(data, elements, wallSize)) {
               fits = true;
             }
