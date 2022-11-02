@@ -59,9 +59,10 @@ onMounted(() => {
   });
 
   const saveBtn = document.querySelector(".save-btn-div span");
-  const textarea = document.querySelector('textarea[name="product-data"]');
+  const textareaFormatted = document.querySelector('textarea[name="product-data"]');
+  const textareaRaw = document.querySelector('textarea[name="raw-garage-config"]');
 
-  if (saveBtn && textarea)
+  if (saveBtn)
     saveBtn.addEventListener("click", () => {
       const actualGarage = store.getters.getGarage;
 
@@ -81,7 +82,12 @@ onMounted(() => {
           formDataText += `${label}: ${pair[1]} \r\n`;
         }
       }
-      textarea.value = `formatted: ${formDataText} \r\n  raw: \r\n ${JSON.stringify(actualGarage)}`;
+      if (textareaFormatted) {
+        textareaFormatted.value = formDataText;
+      }
+      if (textareaRaw) {
+        textareaRaw.value = JSON.stringify(actualGarage);
+      }
     });
 
   const resetBtn = document.querySelector(".reset-btn-div span");
