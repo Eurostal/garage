@@ -81,9 +81,10 @@ onMounted(() => {
           let val = "";
 
           if (label) {
-            label = label.replaceAll(":", "").replaceAll("*", "") + ": ";
-            val = pair[1];
+            label = label.replaceAll(":", "").replaceAll("*", "");
+            val = ": " + pair[1];
           } else {
+            val = ": TAK";
             label = pair[1];
           }
           formDataText += `${label}${val} \r\n`;
