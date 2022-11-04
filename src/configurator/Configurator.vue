@@ -80,8 +80,8 @@ onMounted(() => {
           let label = document.querySelector(`[name=${pair[0]}]`).closest("[data-uniqid]")?.querySelector(".tm-epo-element-label")?.innerText;
           let val = "";
 
-          if (label && !label.includes("*")) {
-            label = label.replaceAll(":", "") + ": ";
+          if (label) {
+            label = label.replaceAll(":", "").replaceAll("*", "") + ": ";
             val = pair[1];
           } else {
             label = pair[1];
