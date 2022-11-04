@@ -78,14 +78,15 @@ onMounted(() => {
           pair[1] = pair[1].split("_")[0].replaceAll("_", " ");
 
           let label = document.querySelector(`[name=${pair[0]}]`).closest("[data-uniqid]")?.querySelector(".tm-epo-element-label")?.innerText;
-          label = label ? label.replaceAll(":", "") : pair[1];
+          let val = "";
+
           if (label) {
             label = label.replaceAll(":", "") + ": ";
+            val = pair[1];
           } else {
             label = pair[1];
-            pair[1] = "";
           }
-          formDataText += `${label}${pair[1]} \r\n`;
+          formDataText += `${label}${val} \r\n`;
         }
       }
       if (textareaFormatted) {
