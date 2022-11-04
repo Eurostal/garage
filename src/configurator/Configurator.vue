@@ -159,6 +159,10 @@ onMounted(() => {
   padding: 0px;
 }
 
+.label-hidden-div .tm-epo-element-label {
+  display: none;
+}
+
 .reset-btn-div span {
   border: 1px solid #cc0d27;
   color: #cc0d27 !important;
