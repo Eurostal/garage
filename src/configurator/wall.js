@@ -1,12 +1,10 @@
-import { parse } from "@babel/parser";
 import { Mesh, Group, BoxGeometry } from "three";
 import * as Material from "./materials";
 
 export default class Wall {
-  constructor(width, height, offset = 0, rotation = 0, clippingPlane, material, roofHeight) {
+  constructor(width, height, offset = 0, rotation = 0, clippingPlane, material, defaultInside, roofHeight, wallId) {
+    this.wallId = wallId;
     this.roofHeight = roofHeight;
-    console.log(this.roofHeight);
-    // debugger;
     this.width = width;
     this.height = height;
     this.offset = offset;
@@ -15,11 +13,20 @@ export default class Wall {
     this.materialTemp = material;
     this.clippingPlane = clippingPlane;
     this.object.add(this.createWall());
-    this.material = this.updateMaterial(material, clippingPlane);
+    this.defaultInside = defaultInside;
+    this.material = this.updateMaterial(material, clippingPlane, defaultInside);
   }
+
   createWall() {
     const overflowHeight = this.roofHeight;
-    let wall = new Mesh(new BoxGeometry(this.width, this.height + overflowHeight, 0.01), this.material);
+    let geometry = new BoxGeometry(this.width, this.height + overflowHeight, 0.01);
+    geometry.groups.forEach(function (face, i) {
+      face.materialIndex = 0;
+      if (i === 5) {
+        face.materialIndex = 1;
+      }
+    });
+    let wall = new Mesh(geometry, this.material);
     wall.name = "wall";
     wall.position.y = (this.height + overflowHeight) / 2;
     wall.rotateY(this.rotation);
@@ -29,14 +36,33 @@ export default class Wall {
     return wall;
   }
 
-  updateMaterial(material, clippingPlane) {
-    console.log(this.roofHeight);
-
+  updateMaterial(material, clippingPlane, defaultInside) {
     if (material !== undefined) {
       const wall = this.object.getObjectByName("wall");
+      const wallBack = this.object.getObjectByName("wallBack");
       const wallMaterial = material.clone();
+      const materials = [wallMaterial];
+
+      if (defaultInside) {
+        const innerWallMaterial = Material.RAL9010.clone();
+        materials.push(innerWallMaterial);
+        innerWallMaterial.map = innerWallMaterial.map.clone();
+        innerWallMaterial.normalMap = innerWallMaterial.normalMap.clone();
+        innerWallMaterial.roughnessMap = innerWallMaterial.roughnessMap.clone();
+
+        let rotation = wallMaterial.map.clone().rotation;
+        innerWallMaterial.map.repeat.set(this.height, this.width);
+        innerWallMaterial.map.rotation = rotation;
+        innerWallMaterial.normalMap.repeat.set(this.height, this.width);
+        innerWallMaterial.normalMap.rotation = rotation;
+        innerWallMaterial.roughnessMap.repeat.set(this.height, this.width);
+        innerWallMaterial.roughnessMap.rotation = rotation;
+      }
+
       if (clippingPlane !== undefined) {
-        wallMaterial.clippingPlanes = clippingPlane;
+        for (const materialPart of materials) {
+          materialPart.clippingPlanes = clippingPlane;
+        }
         this.clippingPlane = clippingPlane;
       }
       wallMaterial.map ? (wallMaterial.map = material.map.clone()) : null;
@@ -47,15 +73,21 @@ export default class Wall {
         wallMaterial.map.repeat.set(this.width, this.height + this.roofHeight);
         wallMaterial.normalMap ? wallMaterial.normalMap.repeat.set(this.width, this.height + this.roofHeight) : null;
         wallMaterial.roughnessMap ? wallMaterial.roughnessMap.repeat.set(this.width, this.height + this.roofHeight) : null;
-        wallMaterial.bumpMap ? wallMaterial.bumpMap.repeat.set(this.width, this.heigh + this.roofHeight) : null;
+        wallMaterial.bumpMap ? wallMaterial.bumpMap.repeat.set(this.width, this.height + this.roofHeight) : null;
       } else {
         wallMaterial.map ? wallMaterial.map.repeat.set(this.height, this.width) : null;
         wallMaterial.normalMap ? wallMaterial.normalMap.repeat.set(this.height, this.width) : null;
         wallMaterial.roughnessMap ? wallMaterial.roughnessMap.repeat.set(this.height, this.width) : null;
         wallMaterial.bumpMap ? wallMaterial.bumpMap.repeat.set(this.height, this.width) : null;
       }
-      wall.material = wallMaterial;
-      this.material = wallMaterial;
+
+      wall.material = materials;
+      if (wallBack) {
+        wallBack.material = materials;
+      }
+      this.material = materials;
+      this.defaultInside = defaultInside;
+      return materials;
     }
   }
 }

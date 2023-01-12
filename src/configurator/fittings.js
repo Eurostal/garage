@@ -16,11 +16,11 @@ export default class Fittings {
     this.isVisible = false;
   }
 
-  create() {
+  create(fittingWidth = 0.1) {
     if (this.object.children.length == 0) {
       this.material.clippingPlanes = this.clippingPlane;
       for (let i = 0; i < 5; i++) {
-        let fitting = new Mesh(new BoxGeometry(0.1, this.height + 0.5, 0.1), this.material);
+        let fitting = new Mesh(new BoxGeometry(fittingWidth, this.height + 0.5, 0.1), this.material);
         if (i < 2) {
           fitting.geometry.translate(this.width / 2 - 0.03, (this.height + 0.5) / 2, this.length / 2 - 0.03);
           fitting.rotateY(i * Math.PI);

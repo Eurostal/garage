@@ -17,7 +17,6 @@ export const roofGable = function (width, length, yOffset, material, peakHeight)
     newPoint.y += 0.015;
     roofPoints.push(newPoint);
   }
-
   const roofMaterial = material.clone();
   roofMaterial.map = material.map.clone();
   roofMaterial.map.repeat.set(1, 1);
@@ -44,6 +43,9 @@ export const roofGable = function (width, length, yOffset, material, peakHeight)
     bevelEnabled: false,
   };
   const geometryRoof = new ExtrudeGeometry(roofShape, extrudeSettings);
+  geometryRoof.groups.forEach((face) => {
+    face.materialIndex = 0;
+  });
   const roof = new Mesh(geometryRoof, roofMaterial);
   roof.castShadow = true;
   roof.scale.set(1.05, 1.05, 1.05);
@@ -52,6 +54,15 @@ export const roofGable = function (width, length, yOffset, material, peakHeight)
 
   roofObject.add(roof);
   roofObject.position.y = yOffset;
+
+  const roofInside = roof.clone();
+  roofInside.scale.set(1.0495, 1.0495, 1.0495);
+  roofInside.geometry = roofInside.geometry.clone();
+  roofInside.geometry.groups.forEach((face) => {
+    face.materialIndex = 1;
+  });
+  roofInside.position.y = roofInside.position.y - 0.001;
+  roofObject.add(roofInside);
 
   const normalRight = new Vector3(-length * peakHeight * 2, -width * length, 0);
   normalRight.normalize();
@@ -120,6 +131,10 @@ export const roofSloping = function (width, length, yOffset, material, peakHeigh
     bevelEnabled: false,
   };
   const geometryRoofTop = new ExtrudeGeometry(roofTopShape, extrudeSettings);
+  geometryRoofTop.groups.forEach((face) => {
+    face.materialIndex = 0;
+  });
+
   const roof = new Mesh(geometryRoofTop, roofMaterial);
   roof.castShadow = true;
   roof.scale.set(1.05, 1.05, 1.05);
@@ -128,6 +143,17 @@ export const roofSloping = function (width, length, yOffset, material, peakHeigh
 
   roofObject.add(roof);
   roofObject.position.y = yOffset;
+
+  const roofInside = roof.clone();
+  roofInside.scale.set(1.0495, 1.0495, 1.0495);
+  roofInside.geometry = roofInside.geometry.clone();
+  roofInside.geometry.groups.forEach((face) => {
+    face.materialIndex = 1;
+  });
+  roofInside.position.y = roofInside.position.y - 0.001;
+  roofInside.position.z = (-length * 1.0495) / 2;
+
+  roofObject.add(roofInside);
 
   const normal = new Vector3(-length * peakHeight, -width * length, 0);
   normal.normalize();

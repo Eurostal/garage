@@ -1,50 +1,61 @@
+import { Materials } from "./materials";
 import { createRoof } from "./roofFactory";
 
 export default class Roof {
-  constructor(roofType, width, length, yOffset, material) {
+  constructor(roofType, width, length, yOffset, material, defaultInside) {
     this.width = width;
     this.length = length;
     this.roofType = roofType;
-    this.material = material;
     this.roofHeight = this.setRoofHeight();
     this.roofCombined = createRoof(roofType, width, length, yOffset, material, this.roofHeight);
+    this.defaultInside = defaultInside;
+    this.material = this.updateMaterial(material, defaultInside);
     this.roofCombined.roofObject.name = "roof";
   }
 
-  updateMaterial(material) {
+  updateMaterial(material, defaultInside) {
     if (material) {
-      this.material = material;
       this.roofCombined.roofObject.children.forEach((roofPart) => {
+        if (Array.isArray(roofPart.material)) {
+          roofPart.material = roofPart.material[0];
+        }
         const partOldRepeat = roofPart.material.map.repeat;
         const partOldRotation = roofPart.material.map.rotation;
-        roofPart.material = material.clone();
-        roofPart.material.map = material.map.clone();
-        roofPart.material.map.rotation = partOldRotation;
-        material.horizontal ? roofPart.material.map.repeat.set(1, 1) : roofPart.material.map.repeat.set(partOldRepeat.x, partOldRepeat.y);
+        this.material = material.clone();
+        this.material.map = material.map.clone();
+        this.material.map.rotation = partOldRotation;
+        material.horizontal ? this.material.map.repeat.set(1, 1) : this.material.map.repeat.set(partOldRepeat.x, partOldRepeat.y);
 
         if (material.bumpMap) {
-          roofPart.material.bumpMap = material.bumpMap.clone();
-          material.horizontal ? roofPart.material.bumpMap.repeat.set(1.1) : roofPart.material.bumpMap.repeat.set(partOldRepeat.x, partOldRepeat.y);
-          roofPart.material.bumpScale = material.bumpScale;
+          this.material.bumpMap = material.bumpMap.clone();
+          material.horizontal ? this.material.bumpMap.repeat.set(1.1) : this.material.bumpMap.repeat.set(partOldRepeat.x, partOldRepeat.y);
+          this.material.bumpScale = material.bumpScale;
         }
         if (material.roughnessMap) {
-          roofPart.material.roughnessMap = material.roughnessMap.clone();
-          material.horizontal
-            ? roofPart.material.roughnessMap.repeat.set(1, 1)
-            : roofPart.material.roughnessMap.repeat.set(partOldRepeat.x, partOldRepeat.y);
+          this.material.roughnessMap = material.roughnessMap.clone();
+          material.horizontal ? this.material.roughnessMap.repeat.set(1, 1) : this.material.roughnessMap.repeat.set(partOldRepeat.x, partOldRepeat.y);
         }
         if (material.normalMap) {
-          roofPart.material.normalMap = material.normalMap.clone();
-          material.horizontal
-            ? roofPart.material.normalMap.repeat.set(1, 1)
-            : roofPart.material.normalMap.repeat.set(partOldRepeat.x, partOldRepeat.y);
-          roofPart.material.normalScale = material.normalScale;
+          this.material.normalMap = material.normalMap.clone();
+          material.horizontal ? this.material.normalMap.repeat.set(1, 1) : this.material.normalMap.repeat.set(partOldRepeat.x, partOldRepeat.y);
+          this.material.normalScale = material.normalScale;
         }
 
-        roofPart.material.roughness = material.roughness;
-        roofPart.material.metalness = material.metalness;
-        roofPart.material.color = material.color;
+        this.material.roughness = material.roughness;
+        this.material.metalness = material.metalness;
+        this.material.color = material.color;
+
+        this.material = [this.material];
+        if (defaultInside) {
+          const innerRoofMaterial = Materials.RAL9010.clone();
+          innerRoofMaterial.map = roofPart.material.map.clone();
+          innerRoofMaterial.map.rotation = partOldRotation;
+          this.material.push(innerRoofMaterial);
+        }
+        roofPart.material = this.material;
       });
+
+      return material;
     }
   }
 
