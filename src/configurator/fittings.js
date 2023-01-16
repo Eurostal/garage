@@ -19,13 +19,14 @@ export default class Fittings {
   create(fittingWidth = 0.1) {
     if (this.object.children.length == 0) {
       this.material.clippingPlanes = this.clippingPlane;
+      let offset = fittingWidth/2 - 0.015
       for (let i = 0; i < 5; i++) {
-        let fitting = new Mesh(new BoxGeometry(fittingWidth, this.height + 0.5, 0.1), this.material);
+        let fitting = new Mesh(new BoxGeometry(fittingWidth, this.height + 0.5, fittingWidth), this.material);
         if (i < 2) {
-          fitting.geometry.translate(this.width / 2 - 0.03, (this.height + 0.5) / 2, this.length / 2 - 0.03);
+          fitting.geometry.translate(this.width / 2 - offset, (this.height + 0.5) / 2, this.length / 2 - offset );
           fitting.rotateY(i * Math.PI);
         } else {
-          fitting.geometry.translate(this.length / 2 - 0.03, (this.height + 0.5) / 2, this.width / 2 - 0.03);
+          fitting.geometry.translate(this.length / 2 - offset, (this.height + 0.5) / 2, this.width / 2 - offset);
           fitting.rotateY(i * Math.PI + Math.PI / 2);
         }
         this.object.add(fitting);
