@@ -99,7 +99,14 @@ onMounted(() => {
     });
 
   const resetBtn = document.querySelector(".reset-btn-div span");
-  if (resetBtn) resetBtn.addEventListener("click", () => location.reload());
+  if (resetBtn){
+    resetBtn.addEventListener("click", () => {
+      window.onbeforeunload = function () {
+        window.scrollTo(0,0);
+      };
+      location.reload()
+    });
+  } 
 });
 </script>
 
