@@ -321,6 +321,7 @@ export default {
       document.querySelector('div[data-uniqid="625928cfacd5f2.48728982"] select').dispatchEvent(new Event("change"));
       document.querySelector('div[data-uniqid="625928cfacd608.04744343"] select').dispatchEvent(new Event("change"));
       document.querySelector('div[data-uniqid="625929fa7219b1.06715193"] select').dispatchEvent(new Event("change"));
+      document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input').dispatchEvent(new Event("change"));
 
       if (this.gateNameTranslation[e.target.value] === "double") {
         let handleState = document.querySelector('div[data-uniqid="633bd32afb6935.83995440"] input').checked;
@@ -372,6 +373,8 @@ export default {
       document.querySelector('div[data-uniqid="627b7720c54f10.62015977"] select').dispatchEvent(new Event("change"));
       document.querySelector('div[data-uniqid="627b772ac54f28.86727207"] select').dispatchEvent(new Event("change"));
       document.querySelector('div[data-uniqid="627b7732c54f35.77583366"] select').dispatchEvent(new Event("change"));
+      document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input').dispatchEvent(new Event("change"));
+
 
       if (this.gateNameTranslation[e.target.value] === "double") {
         let handleState = document.querySelector('div[data-uniqid="633bee3ec19b25.96850533"] input').checked;
