@@ -928,7 +928,7 @@ export default {
       let object = {
         type: "door",
         name: name,
-        defaultInside: false,
+        defaultInside: true,
       };
 
       if (typeof wallId === "number") {
@@ -947,10 +947,6 @@ export default {
 
       if (handle) {
         object.handleSide = this.handleNameTranslations[handle];
-      }
-
-      if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value != "Konstrukcja ocynkowana_2") {
-        object.defaultInside = true;
       }
 
       this.$store.commit(action ? "update" : "remove", { ...object });
@@ -1308,7 +1304,7 @@ export default {
       let object = {};
       object.material = "RAL9010";
       object.type = "walls";
-      object.defaultInside = false;
+      object.defaultInside = true;
 
       if (e.target.checked) {
         document.querySelectorAll('div[data-uniqid="6267c6836c1098.51557180"] input:checked:not(#' + e.target.id + ")").forEach((input) => {
@@ -1319,9 +1315,7 @@ export default {
         object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
         object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
       }
-      if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value != "Konstrukcja ocynkowana_2") {
-        object.defaultInside = true;
-      }
+
       if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
         object.material = object.material + "_H";
       }
@@ -1349,11 +1343,7 @@ export default {
         object.type = "roof";
         object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
         object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
-        object.defaultInside = false;
-
-        if (document.querySelector('div[data-uniqid="6269489cbc6a47.11299589"] input:checked').value != "Konstrukcja ocynkowana_2") {
-          object.defaultInside = true;
-        }
+        object.defaultInside = true;
 
         this.$store.commit("updateMaterial", { ...object });
       }
