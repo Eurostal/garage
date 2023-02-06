@@ -263,7 +263,7 @@ export default {
       document.querySelector("form.cart").querySelector('div[data-uniqid="627a9ad625d4b6.52719206"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
     },
-    changeGate: function (name, { type = false, width = false, height = false, position = false, style = "", material = "", handle }) {
+    changeGate: function (name, { type = false, width = false, height = false, position = false, style = "", material = "", handle ,frameReflective=false}) {
       let object = {};
       object.type = "gate";
       object.name = name;
@@ -297,11 +297,17 @@ export default {
         object.handle = handle;
       }
 
+      if (typeof frameReflective === "boolean") {
+        object.frameReflective = frameReflective;
+      }
+
       if (object.gateType === "") {
         this.$store.commit("remove", { ...object });
       } else {
         this.$store.commit("update", { ...object });
       }
+
+      object
     },
     changeGate1Event: function (e) {
       let object = {};
@@ -1324,12 +1330,15 @@ export default {
       this.closeMaterialPopup();
     },
 
-    changeInnerMaterial: function (e) {
-      // doors
-      document.querySelectorAll('div[data-uniqid="62666bae882dc3.07513822"] input').forEach((input) => input.dispatchEvent(new Event("change")));
-      document.querySelectorAll('div[data-uniqid="6267a72c905212.61206813"] input').forEach((input) => input.dispatchEvent(new Event("change")));
+    changeGatesFrame: function (e) {
+      console.log('changing gate frame!',e);
+      let isReflective = false
+      if (e.target.checked.value == "Konstrukcja ocynkowana_2") {
+        isReflective = true;
+      }
+      this.changeGate("gate1", { frameReflective: isReflective });
+      this.changeGate("gate2", { frameReflective: isReflective });
 
-      this.dispatchMaterialsEvents();
     },
 
     changeRoofMaterial: function (e) {
@@ -1852,7 +1861,7 @@ export default {
       );
 
       form.querySelectorAll('div[data-uniqid="6269489cbc6a47.11299589"] input').forEach((input) =>
-        input.addEventListener("change", this.changeInnerMaterial, {
+        input.addEventListener("change", this.changeGatesFrame, {
           passive: true,
         })
       );

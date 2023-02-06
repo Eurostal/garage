@@ -50,7 +50,7 @@ class Generator {
         case "gate":
           this.removeExisting(data.name);
           this.garage.walls[wallId].addElement(
-            new Gate(data.width, data.height, Materials[data.material], data.defaultInside, data.name, data.gateType, data.handle),
+            new Gate(data.width, data.height, Materials[data.material], data.defaultInside, data.name, data.gateType, data.handle, data.frameReflective),
             data.x,
             0
           );
