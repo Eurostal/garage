@@ -1334,9 +1334,8 @@ export default {
     },
 
     changeGatesFrame: function (e) {
-      console.log('changing gate frame!',e);
       let isReflective = false
-      if (e.target.checked.value == "Konstrukcja ocynkowana_2") {
+      if (e.target.value == "Konstrukcja ocynkowana_2") {
         isReflective = true;
       }
       this.changeGate("gate1", { frameReflective: isReflective });
