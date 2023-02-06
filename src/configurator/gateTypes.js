@@ -13,12 +13,14 @@ import {
   Color,
   CylinderGeometry,
   ExtrudeGeometry,
+  MeshPhongMaterial,
+  MixOperation
 } from "three";
 import { Materials } from "./materials";
 import * as Texture from "./textures";
 
+
 const frameColorNormal = new Color(0x3d2105);
-const frameColorLight = new Color(0x573514);
 
 const frameMaterialNormal = new MeshBasicMaterial({
   color: frameColorNormal,
@@ -28,13 +30,14 @@ const frameMaterialNormal = new MeshBasicMaterial({
   side: DoubleSide,
 });
 
-const frameMaterialLight = new MeshStandardMaterial({
-  color: frameColorLight,
-  combine: MultiplyOperation,
-  roughness: 0.4,
-  metalness: 0.2,
-  map: Materials.RAL9010.map.clone(),
-  side: DoubleSide,
+const frameMaterialLight = new MeshPhongMaterial({
+  color: new Color(0x8f8f8f),
+  emissive: new Color(0x000000),
+  reflectivity: 0.15,
+  shininess: 100,
+  flatShading: true,
+  envMap: Texture.reflectionCube,
+  combine: MixOperation,
 });
 
 

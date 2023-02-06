@@ -1,4 +1,4 @@
-import { TextureLoader, RepeatWrapping } from 'three'
+import { TextureLoader, RepeatWrapping, CubeTextureLoader } from 'three'
 import imgUrlmetalTexture from '/src/assets/metal/metal.png'
 import imgUrlmetalTextureMap from '/src/assets/metal/metal-normal.png'
 import imgUrlmetalTextureRoughness from '/src/assets/metal/metal-roughness.png'
@@ -85,6 +85,10 @@ concreteTexture.wrapS = RepeatWrapping
 concreteTexture.wrapT = RepeatWrapping
 concreteTexture.repeat.set(3, 3)
 concreteTexture.matrixAutoUpdate = true
+
+const  cubeMapUrls = [
+  '/src/assets/cubemap/side.png','/src/assets/cubemap/side.png','/src/assets/cubemap/top.png','/src/assets/cubemap/btm.png','/src/assets/cubemap/side.png','/src/assets/cubemap/side.png'];
+export const reflectionCube = new CubeTextureLoader().load(cubeMapUrls)
 
 function loadTexture(url) {
   let texture = loader.load(
