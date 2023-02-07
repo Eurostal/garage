@@ -31,13 +31,14 @@ const frameMaterialNormal = new MeshBasicMaterial({
 });
 
 const frameMaterialLight = new MeshPhongMaterial({
-  color: new Color(0x8f8f8f),
+  color: new Color(0xa2a2a2),
   emissive: new Color(0x000000),
   reflectivity: 0.15,
   shininess: 100,
   flatShading: true,
   envMap: Texture.reflectionCube,
   combine: MixOperation,
+  side: DoubleSide,
 });
 
 
@@ -217,7 +218,7 @@ export const emptyDoor = function createEmpty(width, height, material, frameRefl
   frameShape.holes = [frameInnerPath];
 
   const frameGeometry = new ExtrudeGeometry(frameShape, {
-    depth: 0,
+    depth: 0.005,
     bevelEnabled: false,
   });
 
@@ -225,6 +226,7 @@ export const emptyDoor = function createEmpty(width, height, material, frameRefl
   frameMesh.receiveShadow = true;
   frameMesh.castShadow = true;
   frameMesh.translateY(-offsetY);
+  frameMesh.translateZ(-0.005);
 
   return frameMesh;
 };

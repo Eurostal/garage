@@ -11,6 +11,9 @@ import imgUrlwoodTextureMap from '/src/assets/wood/wood-normal.png'
 import imgUrlwoodTextureWideMap from '/src/assets/wood/wood-wide-normal.png'
 import imgUrlgrassTexture from '/src/assets/grass.jpg'
 import imgUrlconcreteTexture from '/src/assets/concrete.jpg'
+import imgCubemapBtm from '/src/assets/cubemap/btm.png'
+import imgCubemapSide from '/src/assets/cubemap/side.png'
+import imgCubemapTop from '/src/assets/cubemap/top.png'
 
 const loader = new TextureLoader()
 
@@ -87,7 +90,10 @@ concreteTexture.repeat.set(3, 3)
 concreteTexture.matrixAutoUpdate = true
 
 const  cubeMapUrls = [
-  '/src/assets/cubemap/side.png','/src/assets/cubemap/side.png','/src/assets/cubemap/top.png','/src/assets/cubemap/btm.png','/src/assets/cubemap/side.png','/src/assets/cubemap/side.png'];
+  imgCubemapSide,imgCubemapSide,
+  imgCubemapTop,imgCubemapBtm,
+  imgCubemapSide,imgCubemapSide
+];
 export const reflectionCube = new CubeTextureLoader().load(cubeMapUrls)
 
 function loadTexture(url) {
