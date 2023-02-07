@@ -8,43 +8,12 @@ export const store = createStore({
       garageUpdated: {},
       defaults: {
         garage: {
-          width: 7,
+          width: 3,
           length: 5,
           height: 2,
           walls: {
             front: {
-              elements: {
-                gate1:{
-                  "wallId": 0,
-                  "width": 3,
-                  "height": 2,
-                  "material": "RAL6029",
-                  "defaultInside": true,
-                  "gateType": "wide",
-                  "x": 0,
-                  "y": 0,
-                  "handle": false,
-                  "type": "gate",
-                  "name": "gate1",
-                  "eventType": "update",
-                  "frameReflective": true
-              },
-              gate2:{
-                "wallId": 0,
-                "width": 3,
-                "height": 2,
-                "material": "RAL6029",
-                "defaultInside": true,
-                "gateType": "empty",
-                "x": 3,
-                "y": 0,
-                "handle": false,
-                "type": "gate",
-                "name": "gate2",
-                "eventType": "update",
-                "frameReflective": true
-            }
-              },
+              elements: {},
               material: "RAL9010",
               defaultInside: true,
             },
