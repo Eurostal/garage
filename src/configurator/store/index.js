@@ -68,7 +68,7 @@ export const store = createStore({
     },
     reInit(state, data) {
       state.garageUpdated = { ...state.garageActual, ...data };
-      if (state.garageActual.walls.front.elements["gate2"] && state.garageUpdated.width < 5.5) {
+      if (state.garageActual.walls.front.elements["gate2"] && state.garageUpdated.width < 6) {
         this.commit("remove", { type: "gate", name: "gate2", wallId: 0 });
         delete state.garageUpdated.walls.front.elements["gate2"];
       }
@@ -182,7 +182,7 @@ function updateG(state, data) {
   if (data.wallId !== undefined && data.eventType == "update") {
     validateDoor(data, state.garageActual);
 
-    if (data.name === "gate2" && state.garageActual.width < 5.5) {
+    if (data.name === "gate2" && state.garageActual.width < 6) {
       return;
     }
 
