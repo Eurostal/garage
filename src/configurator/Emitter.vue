@@ -1225,20 +1225,24 @@ export default {
        }
       }
 
-
-      switch (input.id){
-        case "tmcp_choice_27_0_7163f478349c82d":
-          material = "WOOD_LIGHT";
-          break;
-        case "tmcp_choice_27_1_7263f47834a033e":
-          material = "WOOD_LIGHT_SHINE";
-          break;
-        case "tmcp_choice_27_2_7363f47834a3e5e":
-          material = "WOOD_DARK";
-          break;
-        case "tmcp_choice_27_3_7463f47834a79a9":
-          material = "WOOD_DARK_SHINE";
-          break;
+      if(input.closest('[data-uniqid="6261760bba5f22.33686069"]') ||
+        input.closest('[data-uniqid="6267c6936c1164.00546693"]') ||
+        input.closest('[data-uniqid="6267c6616c1085.91375841"]') ||
+        input.closest('[data-uniqid="6267c6836c10f8.36577405"]')){
+        switch (input_format){
+          case "0":
+            material = "WOOD_LIGHT";
+            break;
+          case "1":
+            material = "WOOD_LIGHT_SHINE";
+            break;
+          case "2":
+            material = "WOOD_DARK";
+            break;
+          case "3":
+            material = "WOOD_DARK_SHINE";
+            break;
+        }
       }
 console.log('----' + material + '-------');
       return material;
