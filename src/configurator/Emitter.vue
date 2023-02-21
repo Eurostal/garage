@@ -968,7 +968,7 @@ export default {
       }
 
       if (handle) {
-        object.handleSide = this.handleNameTranslations[handle];
+        object.handleSide = this.handleNameTranslations[handle.split('_').reverse()[0]];
       }
 
       this.$store.commit(action ? "update" : "remove", { ...object });
