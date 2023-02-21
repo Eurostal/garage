@@ -1046,7 +1046,7 @@ export default {
         value = Materials[value] != undefined ? value : "RAL9010";
       }
 
-      if (document.querySelector('div[data-uniqid="62666ca2882f55.58904320"] select').value == "W poziomie_1") {
+      if (document.querySelector('div[data-uniqid="62666ca2882f55.58904320"] select').value.split('_').reverse()[0] == '1') {
         value = value + "_H";
       }
 
@@ -1141,7 +1141,7 @@ export default {
         value = Materials[value] != undefined ? value : "RAL9010";
       }
 
-      if (document.querySelector('div[data-uniqid="6267a72c905239.21013961"] select').value == "W poziomie_1") {
+      if (document.querySelector('div[data-uniqid="6267a72c905239.21013961"] select').value.split('_').reverse()[0] == '1') {
         value = value + "_H";
       }
 
@@ -1344,7 +1344,7 @@ console.log('----' + material + '-------');
         object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
       }
 
-      if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
+      if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value.split('_').reverse()[0] == '1') {
         object.material = object.material + "_H";
       }
       this.$store.commit("updateMaterial", { ...object });
