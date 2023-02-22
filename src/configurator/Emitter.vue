@@ -1182,17 +1182,19 @@ export default {
 
     selectWall(input) {
       let wallId = 0;
-      switch (input) {
-        case "Przednia ściana_3":
+      let inputId = input.split('_').reverse()[0]
+      
+      switch (inputId) {
+        case "3":
           wallId = 0;
           break;
-        case "Tylna ściana_2":
+        case "2":
           wallId = 1;
           break;
-        case "Prawa ściana_0":
+        case "0":
           wallId = 2;
           break;
-        case "Lewa ściana_1":
+        case "1":
           wallId = 3;
           break;
         default:
