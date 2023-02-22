@@ -328,7 +328,7 @@ export default {
       }
 
       document.querySelectorAll('div[data-uniqid="6269489cbc6a47.11299589"] input').forEach((input) => {
-          if(input.checked && input.value == "Konstrukcja ocynkowana_2"){
+          if(input.checked && input.value.split('_').reverse()[0] == "2"){
             object.frameReflective = true;
           }
         }
@@ -387,7 +387,7 @@ export default {
       }
 
       document.querySelectorAll('div[data-uniqid="6269489cbc6a47.11299589"] input').forEach((input) => {
-          if(input.checked && input.value == "Konstrukcja ocynkowana_2"){
+          if(input.checked && input.value.split('_').reverse()[0] == "2"){
             object.frameReflective = true;
           }
         }
@@ -1360,7 +1360,7 @@ console.log('----' + material + '-------');
 
     changeGatesFrame: function (e) {
       let isReflective = false
-      if (e.target.value == "Konstrukcja ocynkowana_2") {
+      if (e.target.value.split('_').reverse()[0] == "2") {
         isReflective = true;
       }
       this.changeGate("gate1", { frameReflective: isReflective });
