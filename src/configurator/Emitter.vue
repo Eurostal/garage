@@ -1229,7 +1229,7 @@ export default {
         input.closest('[data-uniqid="6267c6936c1164.00546693"]') ||
         input.closest('[data-uniqid="6267c6616c1085.91375841"]') ||
         input.closest('[data-uniqid="6267c6836c10f8.36577405"]')){
-        switch (input_format){
+        switch (input.value.split("_").reverse()[0].replace(" ", "")){
           case "0":
             material = "WOOD_LIGHT";
             break;
