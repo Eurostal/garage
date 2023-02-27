@@ -57,56 +57,6 @@ onMounted(() => {
     controls.update();
     renderer.render(scene, camera);
   });
-
-  const saveBtn = document.querySelector(".save-btn-div span");
-  const textareaFormatted = document.querySelector('textarea[name="product-data"]');
-  const textareaRaw = document.querySelector('input[name="raw-garage-config"]');
-
-  if (saveBtn)
-    saveBtn.addEventListener("click", () => {
-      const actualGarage = store.getters.getGarage;
-
-      const formData = new FormData(document.querySelector("form.cart"));
-      const hiddenKeys = ["tcaddtocart", "tm-epo-counter", "quantity", "cpf_product_price", "tc_form_prefix"];
-      let formDataText = "";
-
-      for (const pair of formData.entries()) {
-        if (!hiddenKeys.includes(pair[0])) {
-          if (/^\d+$/.test(pair[1])) {
-            pair[1] += " cm";
-          }
-          pair[1] = pair[1].split("_")[0].replaceAll("_", " ");
-
-          let label = document.querySelector(`[name=${pair[0]}]`).closest("[data-uniqid]")?.querySelector(".tm-epo-element-label")?.innerText;
-          let val = "";
-
-          if (label) {
-            label = label.replaceAll(":", "").replaceAll("*", "");
-            val = ": " + pair[1];
-          } else {
-            val = ": TAK";
-            label = pair[1];
-          }
-          formDataText += `${label}${val} \r\n`;
-        }
-      }
-      if (textareaFormatted) {
-        textareaFormatted.value = formDataText;
-      }
-      if (textareaRaw) {
-        textareaRaw.value = JSON.stringify(actualGarage);
-      }
-    });
-
-  const resetBtn = document.querySelector(".reset-btn-div span");
-  if (resetBtn){
-    resetBtn.addEventListener("click", () => {
-      window.onbeforeunload = function () {
-        window.scrollTo(0,0);
-      };
-      location.reload()
-    });
-  } 
 });
 </script>
 
