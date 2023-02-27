@@ -1537,6 +1537,7 @@ console.log('----' + material + '-------');
           set: function (t) {
             vm.changeGate1PositionEvent(t);
             input.setAttribute("value", t);
+            form.dispatchEvent(new Event("change"))
           },
           get: function () {
             return input.getAttribute("value");
