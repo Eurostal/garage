@@ -307,7 +307,7 @@ export default {
         this.$store.commit("update", { ...object });
       }
 
-      object
+      this.rawConfigSave()
     },
     changeGate1Event: function (e) {
       let object = {};
@@ -542,6 +542,8 @@ export default {
       }
 
       this.$store.commit(action ? "update" : "remove", { ...object });
+      this.rawConfigSave()
+
     },
 
     changeWindowsEvent: function (e) {
@@ -972,6 +974,8 @@ export default {
       }
 
       this.$store.commit(action ? "update" : "remove", { ...object });
+      this.rawConfigSave()
+
     },
 
     changeDoorsEvent: function (e) {
