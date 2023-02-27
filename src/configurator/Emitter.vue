@@ -1406,7 +1406,7 @@ export default {
     rawConfigSave: function(){
       const textareaFormatted = document.querySelector('textarea[name="product-data"]');
       const textareaRaw = document.querySelector('input[name="raw-garage-config"]');
-      const actualGarage = store.getters.getGarage;
+      const actualGarage = this.$store.getters.getGarage;
       const formData = new FormData(document.querySelector("form.cart"));
       const hiddenKeys = ["tcaddtocart", "tm-epo-counter", "quantity", "cpf_product_price", "tc_form_prefix"];
       let formDataText = "";
@@ -1929,11 +1929,11 @@ export default {
         })
       );
 
-      form.addEventListener('change',this.rawConfigSave())
+      form.addEventListener('change',this.rawConfigSave)
 
       const saveBtn = document.querySelector(".save-btn-div span");
       if (saveBtn){
-        saveBtn.addEventListener("click", this.rawConfigSave());
+        saveBtn.addEventListener("click", this.rawConfigSave);
       }
 
       const resetBtn = document.querySelector(".reset-btn-div span");
