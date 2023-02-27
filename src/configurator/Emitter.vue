@@ -1550,6 +1550,7 @@ console.log('----' + material + '-------');
           set: function (t) {
             vm.changeGate2PositionEvent(t);
             input.setAttribute("value", t);
+            form.dispatchEvent(new Event("change"))
           },
           get: function () {
             return input.getAttribute("value");
@@ -1592,6 +1593,7 @@ console.log('----' + material + '-------');
           set: function (t) {
             vm.changeWindow1PositionXEvent(t);
             input.setAttribute("value", t);
+            form.dispatchEvent(new Event("change"))
           },
           get: function () {
             return input.getAttribute("value");
@@ -1604,6 +1606,7 @@ console.log('----' + material + '-------');
           set: function (t) {
             vm.changeWindow1PositionYEvent(t);
             input.setAttribute("value", t);
+            form.dispatchEvent(new Event("change"))
           },
           get: function () {
             return input.getAttribute("value");
@@ -1640,6 +1643,7 @@ console.log('----' + material + '-------');
           set: function (t) {
             vm.changeWindow2PositionXEvent(t);
             input.setAttribute("value", t);
+            form.dispatchEvent(new Event("change"))
           },
           get: function () {
             return input.getAttribute("value");
@@ -1652,6 +1656,7 @@ console.log('----' + material + '-------');
           set: function (t) {
             vm.changeWindow2PositionYEvent(t);
             input.setAttribute("value", t);
+            form.dispatchEvent(new Event("change"))
           },
           get: function () {
             return input.getAttribute("value");
@@ -1687,6 +1692,7 @@ console.log('----' + material + '-------');
           set: function (t) {
             vm.changeWindow3PositionXEvent(t);
             input.setAttribute("value", t);
+            form.dispatchEvent(new Event("change"))
           },
           get: function () {
             return input.getAttribute("value");
@@ -1699,6 +1705,7 @@ console.log('----' + material + '-------');
           set: function (t) {
             vm.changeWindow3PositionYEvent(t);
             input.setAttribute("value", t);
+            form.dispatchEvent(new Event("change"))
           },
           get: function () {
             return input.getAttribute("value");
@@ -1734,6 +1741,7 @@ console.log('----' + material + '-------');
           set: function (t) {
             vm.changeWindow4PositionXEvent(t);
             input.setAttribute("value", t);
+            form.dispatchEvent(new Event("change"))
           },
           get: function () {
             return input.getAttribute("value");
@@ -1746,6 +1754,7 @@ console.log('----' + material + '-------');
           set: function (t) {
             vm.changeWindow4PositionYEvent(t);
             input.setAttribute("value", t);
+            form.dispatchEvent(new Event("change"))
           },
           get: function () {
             return input.getAttribute("value");
@@ -1781,6 +1790,7 @@ console.log('----' + material + '-------');
           set: function (t) {
             vm.changeWindow5PositionXEvent(t);
             input.setAttribute("value", t);
+            form.dispatchEvent(new Event("change"))
           },
           get: function () {
             return input.getAttribute("value");
@@ -1793,6 +1803,7 @@ console.log('----' + material + '-------');
           set: function (t) {
             vm.changeWindow5PositionYEvent(t);
             input.setAttribute("value", t);
+            form.dispatchEvent(new Event("change"))
           },
           get: function () {
             return input.getAttribute("value");
@@ -1839,6 +1850,7 @@ console.log('----' + material + '-------');
           set: function (t) {
             vm.changeDoor1PositionXEvent(t);
             input.setAttribute("value", t);
+            form.dispatchEvent(new Event("change"))
           },
           get: function () {
             return input.getAttribute("value");
@@ -1880,6 +1892,7 @@ console.log('----' + material + '-------');
           set: function (t) {
             vm.changeDoor2PositionXEvent(t);
             input.setAttribute("value", t);
+            form.dispatchEvent(new Event("change"))
           },
           get: function () {
             return input.getAttribute("value");
