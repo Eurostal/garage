@@ -1534,6 +1534,7 @@ export default {
             return input.getAttribute("value");
           },
         });
+        this.rawConfigSave()
       });
 
       form.querySelectorAll('div[data-uniqid="62ffaf77735284.94935292"] .tmcp-range').forEach((input) => {
@@ -1547,6 +1548,7 @@ export default {
             return input.getAttribute("value");
           },
         });
+        this.rawConfigSave()
       });
 
       form.querySelectorAll('div[data-uniqid="626666fc607df3.98247608"] input').forEach((input) =>
@@ -1589,6 +1591,7 @@ export default {
             return input.getAttribute("value");
           },
         });
+        this.rawConfigSave()
       });
       form.querySelectorAll('div[data-uniqid="626666fc607e37.33496203"] .tmcp-range').forEach((input) => {
         var vm = this;
@@ -1601,6 +1604,7 @@ export default {
             return input.getAttribute("value");
           },
         });
+        this.rawConfigSave()
       });
 
       //window2
@@ -1637,6 +1641,7 @@ export default {
             return input.getAttribute("value");
           },
         });
+        this.rawConfigSave()
       });
       form.querySelectorAll('div[data-uniqid="626666fc607e84.50408653"] .tmcp-range').forEach((input) => {
         var vm = this;
@@ -1649,6 +1654,7 @@ export default {
             return input.getAttribute("value");
           },
         });
+        this.rawConfigSave()
       });
 
       //window3
@@ -1684,6 +1690,7 @@ export default {
             return input.getAttribute("value");
           },
         });
+        this.rawConfigSave()
       });
       form.querySelectorAll('div[data-uniqid="626666fc607ed0.11804888"] .tmcp-range').forEach((input) => {
         var vm = this;
@@ -1696,6 +1703,7 @@ export default {
             return input.getAttribute("value");
           },
         });
+        this.rawConfigSave()
       });
 
       //window4
@@ -1731,6 +1739,7 @@ export default {
             return input.getAttribute("value");
           },
         });
+        this.rawConfigSave()
       });
       form.querySelectorAll('div[data-uniqid="626666fc607f29.14038358"] .tmcp-range').forEach((input) => {
         var vm = this;
@@ -1743,6 +1752,7 @@ export default {
             return input.getAttribute("value");
           },
         });
+        this.rawConfigSave()
       });
 
       //window5
@@ -1778,6 +1788,7 @@ export default {
             return input.getAttribute("value");
           },
         });
+        this.rawConfigSave()
       });
       form.querySelectorAll('div[data-uniqid="626666fc607f79.78538581"] .tmcp-range').forEach((input) => {
         var vm = this;
@@ -1790,6 +1801,7 @@ export default {
             return input.getAttribute("value");
           },
         });
+        this.rawConfigSave()
       });
 
       form.querySelectorAll('div[data-uniqid="62666b39a2cd72.64951747"] input').forEach((input) =>
@@ -1836,6 +1848,7 @@ export default {
             return input.getAttribute("value");
           },
         });
+        this.rawConfigSave()
       });
 
       //door2
@@ -1877,6 +1890,7 @@ export default {
             return input.getAttribute("value");
           },
         });
+        this.rawConfigSave()
       });
 
       form.querySelectorAll('div[data-uniqid="626930c9de35d5.89950433"] input').forEach((input) =>
