@@ -961,7 +961,7 @@ background: #fff;
 .tc-totals-form.tm-product-id-2571 ~ .quantity,
 .post-2571 .single_add_to_cart_button.wp-element-button,
 .post-2571 > p.price{
-	display: none;
+	display: none !important;
 }
 
 .post-2571 .wpcf7-form label,
