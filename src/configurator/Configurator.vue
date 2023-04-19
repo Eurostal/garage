@@ -953,21 +953,25 @@ background: #fff;
 	display: none;
 }
 
-.tm-epo-field.tmcp-select{
+.post-2571 .tm-epo-field.tmcp-select{
     text-align: left;
 }
 
 .tc-totals-form.tm-product-id-2571,
 .tc-totals-form.tm-product-id-2571 ~ .quantity,
-.single_add_to_cart_button.wp-element-button,
+.post-2571 .single_add_to_cart_button.wp-element-button,
 .post-2571 > p.price{
 	display: none;
 }
 
-.wpcf7-form label,
-.wpcf7-form .wpcf7-text,
-.wpcf7-form .wpcf7-textarea{
+.post-2571 .wpcf7-form label,
+.post-2571 .wpcf7-form .wpcf7-text,
+.post-2571 .wpcf7-form .wpcf7-textarea{
 	width: 100%;
+}
+
+.post-2571 .product_title.entry-title{
+    padding-top: 30px
 }
 
 </style>
