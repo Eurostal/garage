@@ -8,8 +8,8 @@ export const store = createStore({
       garageUpdated: {},
       defaults: {
         garage: {
-          width: 3,
-          length: 5,
+          width: 8,
+          length: 8,
           height: 2,
           walls: {
             front: {
