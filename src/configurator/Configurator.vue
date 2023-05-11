@@ -10,6 +10,14 @@
         </li>
       </TransitionGroup>
     </div>
+    <ul class="sides">
+        <li v-for="item in 4" :key="item">
+            Side {{ item }}
+            <canvas>
+
+            </canvas>
+        </li>
+    </ul>
   </div>
 </template>
 
@@ -61,6 +69,16 @@ onMounted(() => {
 </script>
 
 <style>
+ul.sides{
+    display: flex;
+    list-style: none;
+}
+.sides canvas{
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+
 .alert-container {
   position: absolute;
   top: 15px;
@@ -173,8 +191,8 @@ div.summary.entry-summary.tc-init {
 
 #app {
   width: 100vw;
-  height: 35vh;
-  z-index: 30;
+  height: 80vh;
+  z-index: 0;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   box-shadow: 0px 10px 10px 0px rgb(10 10 10 / 10%);
