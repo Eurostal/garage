@@ -1465,10 +1465,13 @@ console.log('----' + material + '-------');
 
     snapGarageSides: function(){
       this.$store.commit('setSnapsLoading',true);
-      setTimeout(() => {
-        snapSides(generator);
-        this.$store.commit('setSnapsLoading',false);
-      }, 25);
+      return new Promise((resolve)=>{
+        setTimeout(async () => {
+          snapSides(generator);
+          this.$store.commit('setSnapsLoading',false);
+          resolve()
+        }, 25);
+      })
     }
 
   },
@@ -1997,8 +2000,8 @@ console.log('----' + material + '-------');
       }
 
       let contactForm = document.querySelector('.wpcf7-form')
-      contactForm.addEventListener('submit', (e) => {
-          this.snapGarageSides()
+      contactForm.addEventListener('submit', async (e) => {
+          await this.snapGarageSides()
       }, { capture: true });
 
     }
