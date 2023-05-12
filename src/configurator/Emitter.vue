@@ -2,15 +2,9 @@
 import { Materials } from "./materials";
 import snapSides from "./snapSides";
 import { generator } from "./Generator";
-import { useStore } from "vuex";
 
 export default {
   name: "Emitter",
-  setup(){
-    const store = useStore();
-    
-    return {store}
-  },
   data() {
     return {
       roofNameTranslation: {
@@ -1462,10 +1456,10 @@ console.log('----' + material + '-------');
     },
 
     snapGarageSides: function(){
-      store.commit('setSnapsLoading',true);
+      this.$store.commit('setSnapsLoading',true);
       setTimeout(() => {
         snapSides(generator);
-        store.commit('setSnapsLoading',false);
+        this.$store.commit('setSnapsLoading',false);
       }, 25);
     }
 
