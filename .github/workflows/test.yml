@@ -25,16 +25,14 @@ jobs:
       - name: Generate website
         run: npm run deploy --if-present
 
-      - name: Remove node
-        run: sudo rm -rf node_modules
-
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v4.1.8
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           ARGS: "-rlgoDzvc --delete"
+          SOURCE: 'dist/'
           TARGET: ${{ secrets.REMOTE_PATH }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          EXCLUDE: "/dist/, /node_modules/, /cache/, /.git/, /.github/"
+          EXCLUDE: "/node_modules/, /cache/, /.git/, /.github/"
