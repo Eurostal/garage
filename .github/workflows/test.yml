@@ -27,12 +27,13 @@ jobs:
       - name: Remove node
         run: sudo rm -rf node_modules
 
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
-        with:
-          server: 193.107.88.86
-          protocol: ftps
-          username: eurostall
-          password: ${{ secrets.REMOTE_PASSWORD }}
-          local-dir: './dist/'
-          server-dir: /public_html/wp-content/plugins/garage-configurator/template/
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@v4.1.8
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc --delete"
+          TARGET: ${{ secrets.REMOTE_PATH }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          EXCLUDE: "/dist/, /node_modules/, /cache/, /.git/, /.github/"
