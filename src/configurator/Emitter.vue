@@ -1990,7 +1990,7 @@ console.log('----' + material + '-------');
         });
       }
 
-      let contactForm = document.getElementsByClassName('wpcf7-form')
+      let contactForm = document.querySelector('.wpcf7-form')
       contactForm.addEventListener('submit', function(e) {
           this.snapGarageSides()
       }, { capture: true });
