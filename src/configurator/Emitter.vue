@@ -1,5 +1,7 @@
 <script>
 import { Materials } from "./materials";
+import snapSides from "./snapSides";
+import { generator } from "./Generator";
 
 export default {
   name: "Emitter",
@@ -1451,7 +1453,16 @@ console.log('----' + material + '-------');
       if (textareaRaw) {
         textareaRaw.value = JSON.stringify(actualGarage);
       }
+    },
+
+    snapGarageSides: function(){
+      store.commit('setSnapsLoading',true);
+      setTimeout(() => {
+        snapSides(generator);
+        store.commit('setSnapsLoading',false);
+      }, 25);
     }
+
   },
 
   mounted: function () {
@@ -1961,7 +1972,10 @@ console.log('----' + material + '-------');
 
       const saveBtn = document.querySelector(".save-btn-div span");
       if (saveBtn){
-        saveBtn.addEventListener("click", this.rawConfigSave);
+        saveBtn.addEventListener("click", ()=>{
+          this.rawConfigSave()
+          this.snapGarageSides()
+        });
       }
 
       const resetBtn = document.querySelector(".reset-btn-div span");
@@ -1972,7 +1986,12 @@ console.log('----' + material + '-------');
           };
           location.reload()
         });
-      } 
+      }
+
+      form.addEventListener('submit', function(e) {
+          this.snapGarageSides()
+      }, { capture: true });
+
     }
   },
 };
