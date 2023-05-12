@@ -2,9 +2,15 @@
 import { Materials } from "./materials";
 import snapSides from "./snapSides";
 import { generator } from "./Generator";
+import { useStore } from "vuex";
 
 export default {
   name: "Emitter",
+  setup(){
+    const store = useStore();
+    
+    return {store}
+  },
   data() {
     return {
       roofNameTranslation: {
