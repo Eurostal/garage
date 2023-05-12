@@ -57,7 +57,6 @@ export const store = createStore({
       },      msg: { eventName: false },
       alertsCnt: 0,
       alerts: {},
-      snapsLoading: false, 
     };
   },
   mutations: {
@@ -151,10 +150,6 @@ export const store = createStore({
       delete state.alerts[index];
     },
 
-    setSnapsLoading(state,value){
-      state.snapsLoading = value
-    }
-
   },
   actions: {
     init(context, data) {
@@ -175,9 +170,6 @@ export const store = createStore({
     getDefaults(state) {
       return state.defaults;
     },
-    getSnapsLoading(state){
-      return state.snapsLoading
-    }
   },
 });
 
