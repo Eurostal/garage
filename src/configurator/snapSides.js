@@ -59,6 +59,7 @@ function createTempContainer(width,height){
 function setImgFile(renderer,index) {
       const fileNames = ['front','right','back','left']
       let base64Image = renderer.domElement.toDataURL("image/jpeg");
+      base64Image = base64Image.replace('data:image/jpeg;base64,','')
       let encoder = new TextEncoder();
       let base64Bytes = encoder.encode(base64Image);
       
