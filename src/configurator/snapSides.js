@@ -61,11 +61,12 @@ function setImgFile(renderer,index) {
       let base64Image = renderer.domElement.toDataURL("image/jpeg");
       base64Image = base64Image.split(',')[1];
       
-      let byteString = atob(base64Image);
-      let byteArray = new Uint8Array(byteString.length);
+      let encoder = new TextEncoder();
+      let base64Bytes = encoder.encode(base64Image);
+      let byteArray = new Uint8Array(base64Bytes.length);
       
-      for (let i = 0; i < byteString.length; i++) {
-        byteArray[i] = byteString.charCodeAt(i);
+      for (let i = 0; i < base64Bytes.length; i++) {
+        byteArray[i] = base64Bytes.charCodeAt(i);
       }
 
       let blob = new Blob([byteArray], { type: "image/jpeg" });
