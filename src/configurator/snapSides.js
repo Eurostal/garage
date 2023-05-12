@@ -33,8 +33,7 @@ export default function snapSides(generator) {
     renderer.render(scene, camera);
     setImgFile(renderer,i)
     i++;
-    // if (i < CAMERA_POSITIONS.length) {
-      if (i < 1) {
+    if (i < CAMERA_POSITIONS.length) {
         // centerPivot.rotateY((Math.PI / 2))
       moveCamera();
     }else{
