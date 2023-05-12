@@ -8,21 +8,70 @@ export const store = createStore({
       garageUpdated: {},
       defaults: {
         garage: {
-          width: 3,
-          length: 5,
+          width: 8,
+          length: 8,
           height: 2,
           walls: {
             front: {
-              elements: {},
+              elements: {
+                gate1: {
+                  wallId: 0,
+                  width: 3,
+                  height: 2,
+                  material: "RAL9010",
+                  defaultInside: true,
+                  gateType: "double",
+                  x: 0,
+                  y: 0,
+                  handle: false,
+                  type: "gate",
+                  name: "gate1",
+                  eventType: "update",
+                },
+              },
               material: "RAL9010",
               defaultInside: true,
             },
             back: { elements: {}, material: "RAL9010", defaultInside: true },
-            left: { elements: {}, material: "RAL9010", defaultInside: true },
-            right: { elements: {}, material: "RAL9010", defaultInside: true },
+            left: {
+              elements: {
+                window1: {
+                  wallId: 2,
+                  width: 0.8,
+                  height: 0.5,
+                  material: "BROWN",
+                  x: 0.1,
+                  y: 1.2,
+                  type: "window",
+                  name: "window1",
+                  eventType: "update",
+                },
+              },
+              material: "RAL9010",
+              defaultInside: true,
+            },
+            right: {
+              elements: {
+                door1: {
+                  wallId: 3,
+                  width: 0.9,
+                  height: 1.85,
+                  material: "RAL9010",
+                  defaultInside: true,
+                  handleSide: "left",
+                  x: 0.57,
+                  y: 0,
+                  type: "door",
+                  name: "door1",
+                  eventType: "update",
+                },
+              },
+              material: "RAL9010",
+              defaultInside: true,
+            },
           },
           roof: { roofType: "gable", material: "RAL9010", defaultInside: true },
-          fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
+          fittings: { visible: false, material: "RAL9010", fittingWidth: 0.02 },
         },
         gate: {
           wallId: 0,
@@ -58,6 +107,7 @@ export const store = createStore({
       msg: { eventName: false },
       alertsCnt: 0,
       alerts: {},
+      snapsLoading: false, 
     };
   },
   mutations: {
@@ -105,9 +155,9 @@ export const store = createStore({
           if (!fits) {
             this.commit("setMsg", { eventName: "reInitFailed", value: { before: state.garageUpdated, after: state.garageActual } });
             if (data.roof) {
-              this.commit("setAlert", "Nie można zmienić rodzaju dachu, obniż lub usuń dodatki na ścianach.");
+              this.commit("setAlert", "Nemôžete zmeniť typ strechy, znížiť alebo odstrániť doplnky na stenách.");
             } else {
-              this.commit("setAlert", "Nie można zmienić rozmiarów garażu, przesuń lub usuń dodatki na ścianach.");
+              this.commit("setAlert", "Garáž nemožno meniť, presúvať ani odstraňovať príslušenstvo na stenách.");
             }
           }
         });
@@ -150,6 +200,11 @@ export const store = createStore({
     clearAlert(state, index) {
       delete state.alerts[index];
     },
+
+    setSnapsLoading(state,value){
+      state.snapsLoading = value
+    }
+
   },
   actions: {
     init(context, data) {
@@ -170,6 +225,9 @@ export const store = createStore({
     getDefaults(state) {
       return state.defaults;
     },
+    getSnapsLoading(state){
+      return state.snapsLoading
+    }
   },
 });
 
@@ -255,7 +313,7 @@ function updateG(state, data) {
         }
       } else {
         store.commit("setMsg", { item: data.name, eventName: "noSpaceWall" + data.wallId });
-        store.commit("setAlert", "Brak miejsca na wybranej ścianie.");
+        store.commit("setAlert", "Na vybranej stene nie je miesto.");
       }
     }
   } else if (data.eventType === "remove") {
@@ -296,7 +354,7 @@ function updateG(state, data) {
       }
     }
     if (!hasEnternance) {
-      store.commit("setAlert", "Brak wejścia do garażu, dodaj bramę lub drzwi.");
+      store.commit("setAlert", "Žiadny vjazd do garáže, pridajte bránu alebo dvere.");
     }
   }
 }

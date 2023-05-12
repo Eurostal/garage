@@ -1,32 +1,34 @@
 <script>
 import { Materials } from "./materials";
+import snapSides from "./snapSides";
+import { generator } from "./Generator";
 
 export default {
   name: "Emitter",
   data() {
     return {
       roofNameTranslation: {
-        "Spad w tył_1": "back",
-        "Spad w przód_2": "front",
-        "Spad w prawo_3": "right",
-        "Spad w lewo_4": "left",
-        Dwuspadowy_0: "gable",
+        "1": "back",
+        "2": "front",
+        "3": "right",
+        "4": "left",
+        "0": "gable",
       },
       gateNameTranslation: {
-        Dwuskrzydłowa_0: "double",
-        Uchylna_1: "tilted",
-        "Uchylna - szeroki panel_2": "wide",
-        "Bez bramy - otwarty przód_3": "empty",
-        "Zamiast bramy ściana_4": "",
-        "Zamiast bramy ściana": "",
+        "0": "double",
+        "1": "tilted",
+        "2": "wide",
+        "3": "empty",
+        "4": "",
+        "": "",
       },
       gateStyleTranslation: {
-        Pionowe_0: "",
-        Poziome_1: "_H",
+        "0": "",
+        "1": "_H",
       },
       handleNameTranslations: {
-        "Z lewej_0": "left",
-        "Z prawej_1": "right",
+        "0": "left",
+        "1": "right",
       },
     };
   },
@@ -40,7 +42,7 @@ export default {
                 if (
                   !document
                     .querySelector("form.cart")
-                    .querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input[value="Zamiast bramy ściana_4"]').checked
+                    .querySelector('div[data-uniqid="625928cfacd5e1.56204472"]').querySelector('.tmcp-field-wrap:last-child input').checked
                 ) {
                   var sliderGate1 = document
                     .querySelector("form.cart")
@@ -55,7 +57,7 @@ export default {
                 if (
                   !document
                     .querySelector("form.cart")
-                    .querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').checked
+                    .querySelector('div[data-uniqid="627b7715c54f09.72204841"]').querySelector('.tmcp-field-wrap:last-child input').checked
                 ) {
                   var sliderGate2 = document
                     .querySelector("form.cart")
@@ -206,7 +208,7 @@ export default {
     changeRoof: function (name = "Dwuspadowy_0") {
       let object = {
         type: "roof",
-        roofType: this.roofNameTranslation[name],
+        roofType: this.roofNameTranslation[name.split('_').reverse()[0]],
       };
       this.$store.commit("update", { ...object });
     },
@@ -228,14 +230,14 @@ export default {
       }
 
       if (width) {
-        if (!document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input[value="Zamiast bramy ściana_4"]').checked) {
+        if (!document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"]').querySelector('.tmcp-field-wrap:last-child input').checked) {
           var sliderGate1 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffad9da82021.94156944"] .noui-target').noUiSlider;
           if (typeof sliderGate1 === "object") {
             sliderGate1.updateOptions({ range: { min: 0, max: width * 100 } });
           }
         }
 
-        if (!document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').checked) {
+        if (!document.querySelector('div[data-uniqid="627b7715c54f09.72204841"]').querySelector('.tmcp-field-wrap:last-child input').checked) {
           var sliderGate2 = document.querySelector("form.cart").querySelector('div[data-uniqid="62ffaf77735284.94935292"] .noui-target').noUiSlider;
           if (typeof sliderGate2 === "object") {
             sliderGate2.updateOptions({ range: { min: 0, max: width * 100 } });
@@ -270,7 +272,7 @@ export default {
       object.wallId = 0;
 
       if (type) {
-        object.gateType = this.gateNameTranslation[type];
+        object.gateType = this.gateNameTranslation[type.split('_').reverse()[0]];
       }
 
       if (typeof width === "number") {
@@ -289,7 +291,7 @@ export default {
         object.material = material;
 
         if (style) {
-          object.material = material + this.gateStyleTranslation[style];
+          object.material = material + this.gateStyleTranslation[style.split('_').reverse()[0]];
         }
       }
 
@@ -312,7 +314,7 @@ export default {
     changeGate1Event: function (e) {
       let object = {};
       object.type = e.target.value;
-      if (this.gateNameTranslation[e.target.value] != "") {
+      if (this.gateNameTranslation[e.target.value.split('_').reverse()[0]] != "") {
         let position = document.querySelector('div[data-uniqid="62ffad9da82021.94156944"] .tmcp-range').value;
         object.position = parseFloat(position) < 1 ? 0 : parseFloat(position) / 100;
       }
@@ -322,22 +324,22 @@ export default {
       document.querySelector('div[data-uniqid="625928cfacd608.04744343"] select').dispatchEvent(new Event("change"));
       document.querySelector('div[data-uniqid="625929fa7219b1.06715193"] select').dispatchEvent(new Event("change"));
 
-      if (this.gateNameTranslation[e.target.value] === "double") {
+      if (this.gateNameTranslation[e.target.value.split('_').reverse()[0]] === "double") {
         let handleState = document.querySelector('div[data-uniqid="633bd32afb6935.83995440"] input').checked;
         object.handle = handleState;
       }
 
       document.querySelectorAll('div[data-uniqid="6269489cbc6a47.11299589"] input').forEach((input) => {
-          if(input.checked && input.value == "Konstrukcja ocynkowana_2"){
+          if(input.checked && input.value.split('_').reverse()[0] == "2"){
             object.frameReflective = true;
           }
         }
       );
 
       //Disable gate2 if gate1 is
-      if (!this.gateNameTranslation[e.target.value] != "") {
-        document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').click();
-        document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input[value="Zamiast bramy ściana_4"]').dispatchEvent(new Event("change"));
+      if (!this.gateNameTranslation[e.target.value.split('_').reverse()[0]] != "") {
+        document.querySelector('div[data-uniqid="627b7715c54f09.72204841"]').querySelector('.tmcp-field-wrap:last-child input').click();
+        document.querySelector('div[data-uniqid="627b7715c54f09.72204841"]').querySelector('.tmcp-field-wrap:last-child input').dispatchEvent(new Event("change"));
         this.changeGate("gate2", object);
       }
 
@@ -364,7 +366,7 @@ export default {
         .querySelectorAll('div[data-uniqid="' + inputId + '"] input')
         .forEach((input) => {
           if (input.checked) {
-            object.material = this.materialNameTranslation(input.value.split("_")[0].replace(" ", ""));
+            object.material = this.materialNameTranslation(input);
           }
         });
 
@@ -381,13 +383,13 @@ export default {
       document.querySelector('div[data-uniqid="627b7732c54f35.77583366"] select').dispatchEvent(new Event("change"));
 
 
-      if (this.gateNameTranslation[e.target.value] === "double") {
+      if (this.gateNameTranslation[e.target.value.split('_').reverse()[0]] === "double") {
         let handleState = document.querySelector('div[data-uniqid="633bee3ec19b25.96850533"] input').checked;
         object.handle = handleState;
       }
 
       document.querySelectorAll('div[data-uniqid="6269489cbc6a47.11299589"] input').forEach((input) => {
-          if(input.checked && input.value == "Konstrukcja ocynkowana_2"){
+          if(input.checked && input.value.split('_').reverse()[0] == "2"){
             object.frameReflective = true;
           }
         }
@@ -467,7 +469,7 @@ export default {
         .querySelectorAll('div[data-uniqid="' + inputId + '"] input')
         .forEach((input) => {
           if (input.checked) {
-            material = this.materialNameTranslation(input.value.split("_")[0].replace(" ", ""));
+            material = this.materialNameTranslation(input);
           }
         });
 
@@ -494,7 +496,7 @@ export default {
         .querySelectorAll('div[data-uniqid="' + inputId + '"] input')
         .forEach((input) => {
           if (input.checked) {
-            material = this.materialNameTranslation(input.value.split("_")[0].replace(" ", ""));
+            material = this.materialNameTranslation(input);
           }
         });
 
@@ -625,7 +627,7 @@ export default {
 
     changeWindow1MaterialEvent: function (e) {
       this.changeWindow("window1", {
-        material: this.materialNameTranslation(e.target.value),
+        material: this.materialNameTranslation(e.target),
       });
     },
 
@@ -698,7 +700,7 @@ export default {
       let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b819218ab2.27821592"] select').value);
       this.changeWindow("window2", {
         wallId: wallId,
-        material: this.materialNameTranslation(e.target.value),
+        material: this.materialNameTranslation(e.target),
       });
     },
 
@@ -771,7 +773,7 @@ export default {
       let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b829218ac5.43623952"] select').value);
       this.changeWindow("window3", {
         wallId: wallId,
-        material: this.materialNameTranslation(e.target.value),
+        material: this.materialNameTranslation(e.target),
       });
     },
 
@@ -844,7 +846,7 @@ export default {
       let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b836218ad3.26225604"] select').value);
       this.changeWindow("window4", {
         wallId: wallId,
-        material: this.materialNameTranslation(e.target.value),
+        material: this.materialNameTranslation(e.target),
       });
     },
 
@@ -917,7 +919,7 @@ export default {
       let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b85e218ae1.80232513"] select').value);
       this.changeWindow("window5", {
         wallId: wallId,
-        material: this.materialNameTranslation(e.target.value),
+        material: this.materialNameTranslation(e.target),
       });
     },
 
@@ -969,7 +971,7 @@ export default {
       }
 
       if (handle) {
-        object.handleSide = this.handleNameTranslations[handle];
+        object.handleSide = this.handleNameTranslations[handle.split('_').reverse()[0]];
       }
 
       this.$store.commit(action ? "update" : "remove", { ...object });
@@ -1044,11 +1046,11 @@ export default {
             input.dispatchEvent(new Event("change"));
           });
 
-        value = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        value = this.materialNameTranslation(e.target);
         value = Materials[value] != undefined ? value : "RAL9010";
       }
 
-      if (document.querySelector('div[data-uniqid="62666ca2882f55.58904320"] select').value == "W poziomie_1") {
+      if (document.querySelector('div[data-uniqid="62666ca2882f55.58904320"] select').value.split('_').reverse()[0] == '1') {
         value = value + "_H";
       }
 
@@ -1139,11 +1141,11 @@ export default {
             input.dispatchEvent(new Event("change"));
           });
 
-        value = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        value = this.materialNameTranslation(e.target);
         value = Materials[value] != undefined ? value : "RAL9010";
       }
 
-      if (document.querySelector('div[data-uniqid="6267a72c905239.21013961"] select').value == "W poziomie_1") {
+      if (document.querySelector('div[data-uniqid="6267a72c905239.21013961"] select').value.split('_').reverse()[0] == '1') {
         value = value + "_H";
       }
 
@@ -1184,17 +1186,19 @@ export default {
 
     selectWall(input) {
       let wallId = 0;
-      switch (input) {
-        case "Przednia ściana_3":
+      let inputId = input.split('_').reverse()[0]
+      
+      switch (inputId) {
+        case "3":
           wallId = 0;
           break;
-        case "Tylna ściana_2":
+        case "2":
           wallId = 1;
           break;
-        case "Prawa ściana_0":
+        case "0":
           wallId = 2;
           break;
-        case "Lewa ściana_1":
+        case "1":
           wallId = 3;
           break;
         default:
@@ -1204,39 +1208,51 @@ export default {
     },
 
     materialNameTranslation(input) {
-      let material = "";
-      switch (input) {
-        case "Brązowy_0":
+      let material = input.value.split("_")[0].replace(" ", "");
+      if(!input.value.includes("BTX") && !input.value.includes("RAL")){
+        let input_format = input.value.split("_").reverse()[0].replace(" ", "");
+      
+      switch (input_format) {
+        case "0":
           material = "BROWN";
           break;
-        case "Szary_1":
+        case "1":
           material = "GRAY";
           break;
-        case "Biały_2":
+        case "2":
           material = "WHITE";
           break;
-        case "Ciemny orzech_3":
+        case "3":
           material = "DARK_WALNUT";
           break;
-        case "Złoty dąb_4":
+        case "4":
           material = "GOLD_OAK";
           break;
-        case "Złotydąb matowy":
-          material = "WOOD_LIGHT";
-          break;
-        case "Złotydąb połysk":
-          material = "WOOD_LIGHT_SHINE";
-          break;
-        case "Ciemnyorzech mat":
-          material = "WOOD_DARK";
-          break;
-        case "Ciemnyorzech połysk":
-          material = "WOOD_DARK_SHINE";
-          break;
-        default:
-          material = input;
-          break;
+       }
       }
+
+      if(input.closest('[data-uniqid="6261760bba5f22.33686069"]') ||
+        input.closest('[data-uniqid="6267c6936c1164.00546693"]') ||
+        input.closest('[data-uniqid="6267c6616c1085.91375841"]') ||
+        input.closest('[data-uniqid="6267c6836c10f8.36577405"]') ||
+        input.closest('[data-uniqid="6267a577abc065.93824612"]') ||
+        input.closest('[data-uniqid="6267a784905502.42408900"]')){
+        switch (input.value.split("_").reverse()[0].replace(" ", "")){
+          case "0":
+            material = "WOOD_LIGHT";
+            break;
+          case "1":
+            material = "WOOD_LIGHT_SHINE";
+            break;
+          case "2":
+            material = "WOOD_DARK";
+            break;
+          case "3":
+            material = "WOOD_DARK_SHINE";
+            break;
+        }
+      }
+console.log('----' + material + '-------');
       return material;
     },
     changeFittings: function ({ material = false, action = true }) {
@@ -1271,7 +1287,7 @@ export default {
             input.dispatchEvent(new Event("change"));
           });
 
-        var value = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        var value = this.materialNameTranslation(e.target);
         value = Materials[value] != undefined ? value : "RAL9010";
 
         this.changeFittings({
@@ -1336,11 +1352,11 @@ export default {
           input.dispatchEvent(new Event("change"));
         });
 
-        object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        object.material = this.materialNameTranslation(e.target);
         object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
       }
 
-      if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value == "W poziomie_1") {
+      if (document.querySelector('div[data-uniqid="6268636725a2b2.40930404"] select').value.split('_').reverse()[0] == '1') {
         object.material = object.material + "_H";
       }
       this.$store.commit("updateMaterial", { ...object });
@@ -1350,7 +1366,7 @@ export default {
 
     changeGatesFrame: function (e) {
       let isReflective = false
-      if (e.target.value == "Konstrukcja ocynkowana_2") {
+      if (e.target.value.split('_').reverse()[0] == "2") {
         isReflective = true;
       }
       this.changeGate("gate1", { frameReflective: isReflective });
@@ -1367,7 +1383,7 @@ export default {
 
         let object = {};
         object.type = "roof";
-        object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        object.material = this.materialNameTranslation(e.target);
         object.material = Materials[object.material] != undefined ? object.material : "RAL9010";
         object.defaultInside = true;
 
@@ -1387,7 +1403,7 @@ export default {
         let object = {};
         let horizontal = document.querySelector('div[data-uniqid="625929fa7219b1.06715193"] select').value == "Poziome_1";
 
-        object.material = this.materialNameTranslation(e.target.value.split("_")[0].replace(" ", ""));
+        object.material = this.materialNameTranslation(e.target);
         if (this.gateNameTranslation[document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input:checked').value] != "") {
           this.changeGate("gate1", {
             material: object.material + (horizontal ? "_H" : ""),
@@ -1439,7 +1455,16 @@ export default {
       if (textareaRaw) {
         textareaRaw.value = JSON.stringify(actualGarage);
       }
+    },
+
+    snapGarageSides: function(){
+      store.commit('setSnapsLoading',true);
+      setTimeout(() => {
+        snapSides(generator);
+        store.commit('setSnapsLoading',false);
+      }, 25);
     }
+
   },
 
   mounted: function () {
@@ -1949,7 +1974,10 @@ export default {
 
       const saveBtn = document.querySelector(".save-btn-div span");
       if (saveBtn){
-        saveBtn.addEventListener("click", this.rawConfigSave);
+        saveBtn.addEventListener("click", ()=>{
+          this.rawConfigSave()
+          this.snapGarageSides()
+        });
       }
 
       const resetBtn = document.querySelector(".reset-btn-div span");
@@ -1960,12 +1988,17 @@ export default {
           };
           location.reload()
         });
-      } 
+      }
+
+      let contactForm = document.getElementsByClassName('wpcf7-form')
+      contactForm.addEventListener('submit', function(e) {
+          this.snapGarageSides()
+      }, { capture: true });
+
     }
   },
 };
 </script>
-
 <style>
 .test_container {
   max-height: 100vh;

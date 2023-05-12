@@ -5,7 +5,7 @@ export default function createScene() {
   const scene = new Scene();
   scene.background = new Color(0xf8f8f8);
   const ground = new Mesh(
-    new CircleGeometry(5, 50),
+    new CircleGeometry(6, 50),
     new MeshStandardMaterial({
       map: grassTexture,
     })

@@ -12,6 +12,11 @@ export default function createLight() {
   directionalLight.position.y = 5;
   directionalLight.position.z = 10;
   directionalLight.castShadow = true;
+  directionalLight.shadow.camera.top = 10;
+  directionalLight.shadow.camera.bottom = -10;
+  directionalLight.shadow.camera.left = 10;
+  directionalLight.shadow.camera.right = -10;
+
   lights.add(directionalLight);
 
   return lights;
