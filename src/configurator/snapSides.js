@@ -63,13 +63,8 @@ function setImgFile(renderer,index) {
       
       let encoder = new TextEncoder();
       let base64Bytes = encoder.encode(base64Image);
-      let byteArray = new Uint8Array(base64Bytes.length);
-      
-      for (let i = 0; i < base64Bytes.length; i++) {
-        byteArray[i] = base64Bytes.charCodeAt(i);
-      }
 
-      let blob = new Blob([byteArray], { type: "image/jpeg" });
+      let blob = new Blob([base64Bytes], { type: "image/jpeg" });
       let file = new File([blob], `${fileNames[index]}.jpg`, { type: "image/jpeg" });
 
       let dataTransfer = new DataTransfer();
