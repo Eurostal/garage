@@ -1074,4 +1074,8 @@ body.single-product.postid-6213 #tc-epo-form-6213-0 > [data-uniqid="6267c6936c11
 .tm-epo-field.tmcp-select {
   text-align: left;
 }
+
+.postid-15 .wpcf7-file{
+  display: none;
+}
 </style>
