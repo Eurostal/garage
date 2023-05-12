@@ -34,7 +34,7 @@ export default function snapSides(generator) {
     setImgFile(renderer,i)
     i++;
     if (i < CAMERA_POSITIONS.length) {
-      // centerPivot.rotateY((Math.PI / 2))
+        // centerPivot.rotateY((Math.PI / 2))
       moveCamera();
     }else{
       // scene.remove(centerPivot)
@@ -60,15 +60,15 @@ function setImgFile(renderer,index) {
       const fileNames = ['front','right','back','left']
       let base64Image = renderer.domElement.toDataURL("image/jpeg");
       base64Image = base64Image.split(',')[1];
-      let encoder = new TextEncoder();
-      let base64Bytes = encoder.encode(base64Image);
       
-      let binaryString = "";
-      for (let i = 0; i < base64Bytes.length; i++) {
-        binaryString += String.fromCharCode(base64Bytes[i]);
+      let byteString = atob(base64Image);
+      let byteArray = new Uint8Array(byteString.length);
+      
+      for (let i = 0; i < byteString.length; i++) {
+        byteArray[i] = byteString.charCodeAt(i);
       }
 
-      let blob = new Blob([binaryString], { type: "image/jpeg" });
+      let blob = new Blob([byteArray], { type: "image/jpeg" });
       let file = new File([blob], `${fileNames[index]}.jpg`, { type: "image/jpeg" });
 
       let dataTransfer = new DataTransfer();
@@ -77,4 +77,6 @@ function setImgFile(renderer,index) {
       let input = document.querySelector(`[name="product-image-${index + 1}"]`);
       input.files = dataTransfer.files;
 }
+
+
 
