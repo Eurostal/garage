@@ -13,13 +13,6 @@
     <div v-if="snapsLoading" class="snaps-loader">
         <span> Saving... </span>
     </div>
-    <button @click="snapGarageSides()">Take garage snaps</button>
-    <ul class="sides">
-      <li v-for="item in 4" :key="item">
-        Side {{ item }}
-        <canvas> </canvas>
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -31,22 +24,13 @@ import { useStore } from "vuex";
 
 import createRenderer from "./createRenderer";
 import createCamera from "./createCamera";
-import snapSides from "./snapSides";
 
 import { MathUtils, Clock } from "three";
 
 const store = useStore();
 const alerts = computed(() => store.getters.getAlerts);
 const clock = new Clock();
-const snapsLoading = ref(false);
-
-function snapGarageSides() {
-  snapsLoading.value = true;
-  setTimeout(() => {
-    snapSides(generator);
-    snapsLoading.value = false;
-  }, 25);
-}
+const snapsLoading = computed(() => store.getters.getSnapsLoading);
 
 onMounted(() => {
   const container = document.getElementById("scene-container");
