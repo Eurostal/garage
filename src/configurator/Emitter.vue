@@ -1988,7 +1988,8 @@ console.log('----' + material + '-------');
         });
       }
 
-      form.addEventListener('submit', function(e) {
+      let contactForm = document.getElementsByClassName('wpcf7-form')
+      contactForm.addEventListener('submit', function(e) {
           this.snapGarageSides()
       }, { capture: true });
 
