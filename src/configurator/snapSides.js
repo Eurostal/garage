@@ -33,7 +33,8 @@ export default function snapSides(generator) {
     renderer.render(scene, camera);
     setImgFile(renderer,i)
     i++;
-    if (i < CAMERA_POSITIONS.length) {
+    // if (i < CAMERA_POSITIONS.length) {
+      if (i < 1) {
         // centerPivot.rotateY((Math.PI / 2))
       moveCamera();
     }else{
@@ -60,25 +61,17 @@ function setImgFile(renderer,index) {
       const fileNames = ['front','right','back','left']
       let base64Image = renderer.domElement.toDataURL("image/jpeg");
       base64Image = base64Image.split(',')[1];
-      
-      console.log(new TextEncoder().encode(base64Image))
 
-      let byteArray = new Uint8Array(base64Bytes.length);
-      
-      for (let i = 0; i < base64Bytes.length; i++) {
-        byteArray[i] = base64Bytes.charCodeAt(i);
-      }
+      renderer.domElement.toBlob((blob)=>{
+        let file = new File([blob], `${fileNames[index]}.jpg`, { type: "image/jpeg" });
+  
+        let dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+  
+        let input = document.querySelector(`[name="product-image-${index + 1}"]`);
+        input.files = dataTransfer.files;
+      },"image/jpeg")
 
-      console.log(byteArray);
-
-      let blob = new Blob([byteArray], { type: "image/jpeg" });
-      let file = new File([blob], `${fileNames[index]}.jpg`, { type: "image/jpeg" });
-
-      let dataTransfer = new DataTransfer();
-      dataTransfer.items.add(file);
-
-      let input = document.querySelector(`[name="product-image-${index + 1}"]`);
-      input.files = dataTransfer.files;
 }
 
 
