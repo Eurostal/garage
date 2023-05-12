@@ -1991,7 +1991,7 @@ console.log('----' + material + '-------');
       }
 
       let contactForm = document.querySelector('.wpcf7-form')
-      contactForm.addEventListener('submit', function(e) {
+      contactForm.addEventListener('submit', (e) => {
           this.snapGarageSides()
       }, { capture: true });
 
