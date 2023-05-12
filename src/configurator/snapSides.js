@@ -2,7 +2,6 @@ import createRenderer from "./createRenderer";
 import createCamera from "./createCamera";
 import create2DCamera from "./create2DCamera";
 import { GridHelper ,Object3D,Vector3 } from "three";
-import { h } from "vue";
 
 const SNAP_WIDTH = 600;
 const SNAP_HEIGHT = 550;
@@ -32,7 +31,7 @@ export default function snapSides(generator) {
     camera.position.set(...CAMERA_POSITIONS[i]);
     controls.update();
     renderer.render(scene, camera);
-    createImgElement(renderer,SNAP_WIDTH,SNAP_HEIGHT)
+    setImgFile(renderer,i + 1)
     i++;
     if (i < CAMERA_POSITIONS.length) {
       // centerPivot.rotateY((Math.PI / 2))
@@ -57,14 +56,23 @@ function createTempContainer(width,height){
   return container
 }
 
-function createImgElement(renderer,width,height) {
-  let dataUrl = renderer.domElement.toDataURL("image/jpeg");
-    console.log(dataUrl);
+function setImgFile(renderer,index) {
+      let base64Image = renderer.domElement.toDataURL("image/jpeg");
+      let encoder = new TextEncoder();
+      let base64Bytes = encoder.encode(base64Image);
+      let binaryString = "";
 
-  const imgElement = document.createElement('img')
-  imgElement.width = width
-  imgElement.height = height
-  imgElement.src = dataUrl
-  document.body.append(imgElement)
+      for (let i = 0; i < base64Bytes.length; i++) {
+        binaryString += String.fromCharCode(base64Bytes[i]);
+      }
+
+      let blob = new Blob([base64Bytes], { type: "image/jpeg" });
+      let file = new File([blob], "image.jpg", { type: "image/jpeg" });
+
+      let dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+
+      let input = document.querySelector(`[name="product-image-${index}"]`);
+      input.files = dataTransfer.files;
 }
 
