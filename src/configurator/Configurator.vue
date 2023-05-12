@@ -10,9 +10,6 @@
         </li>
       </TransitionGroup>
     </div>
-    <div v-if="snapsLoading" class="snaps-loader">
-        <span> Saving... </span>
-    </div>
   </div>
 </template>
 
@@ -30,7 +27,6 @@ import { MathUtils, Clock } from "three";
 const store = useStore();
 const alerts = computed(() => store.getters.getAlerts);
 const clock = new Clock();
-const snapsLoading = computed(() => store.getters.getSnapsLoading);
 
 onMounted(() => {
   const container = document.getElementById("scene-container");
@@ -121,22 +117,6 @@ ul.sides {
   font-size: 16px;
   color: white;
   margin: 10px 0;
-}
-
-.snaps-loader {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.snaps-loader span {
-  padding: 20px 60px;
-  background: white;
-  color: black;
-  font-size: 18px;
-  font-family: sans-serif;
 }
 
 .tm-extra-product-options ul.tmcp-elements li.tmcp-field-wrap.tc-mode-startimages .checkbox-image.checkbox-image,

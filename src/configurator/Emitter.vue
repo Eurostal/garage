@@ -1464,11 +1464,7 @@ console.log('----' + material + '-------');
     },
 
     snapGarageSides: function(){
-      this.$store.commit('setSnapsLoading',true);
-      setTimeout(() => {
-        snapSides(generator);
-        this.$store.commit('setSnapsLoading',false);
-      }, 25);
+      snapSides(generator);
     }
 
   },
