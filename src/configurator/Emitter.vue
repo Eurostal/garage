@@ -1987,10 +1987,9 @@ console.log('----' + material + '-------');
         });
       }
 
-      let contactForm = document.querySelector('.wpcf7-form')
-      contactForm.addEventListener('submit', (e) => {
+      document.addEventListener('wpcf7loaded', (e) => {
         snapSides(generator)
-      }, { capture: true });
+      });
 
     }
   },
