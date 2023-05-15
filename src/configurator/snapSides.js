@@ -5,10 +5,10 @@ import { GridHelper ,Object3D,Vector3 } from "three";
 
 const SNAP_WIDTH = 1200;
 const SNAP_HEIGHT = 1000;
+const CAMERA_POSITIONS = [new Vector3(-7, 3, 7), new Vector3(7, 3, 7),new Vector3(7, 3,-7), new Vector3(-7, 3, -7)];
 
-export default function snapSides(generator,event) {
+export default function snapSides(generator,submitEvent) {
 
-    const CAMERA_POSITIONS = [new Vector3(-7, 3, 7), new Vector3(7, 3, 7),new Vector3(7, 3,-7), new Vector3(-7, 3, -7)];
   
     const container = createTempContainer(SNAP_WIDTH, SNAP_HEIGHT)
     const renderer = createRenderer(container);
@@ -31,7 +31,7 @@ export default function snapSides(generator,event) {
       camera.position.set(...CAMERA_POSITIONS[i]);
       controls.update();
       renderer.render(scene, camera);
-      setImgFile(renderer, i, event.submitter)
+      setImgFile(renderer, i, submitEvent)
       i++;
       if (i < CAMERA_POSITIONS.length) {
           // centerPivot.rotateY((Math.PI / 2))
@@ -70,12 +70,8 @@ function setImgFile(renderer,index,submitter) {
       let input = document.querySelector(`[name="product-image-${index + 1}"]`);
       input.files = dataTransfer.files;
       
-      if (index == 3) {
-        const contactFormElement = document.querySelector('.wpcf7-form')
-        window.wpcf7.submit(contactFormElement, {
-          submitter: submitter
-      });
-
+      if (index == CAMERA_POSITIONS.length - 1) {
+        document.dispatchEvent(new CustomEvent('snapsGenerated'))
       }
       
     },"image/jpeg",1)
