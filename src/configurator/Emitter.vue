@@ -1986,7 +1986,9 @@ console.log('----' + material + '-------');
         let fileInput = document.querySelector('[name="product-image-4"]')
         if (fileInput.files.length === 0) {
           e.preventDefault()
-          contactFormBtn.click()
+          setTimeout(()=>{
+            contactFormBtn.click()
+          },100)
         }
       }, { capture: true });
 
