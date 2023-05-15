@@ -26,7 +26,7 @@ export default function snapSides(generator,submitEvent) {
     // centerPivot.add(grid)
   
     let i = 0;
-    let promises = []
+    let promises = [];
 
     (function moveCamera() {
       camera.position.set(...CAMERA_POSITIONS[i]);
