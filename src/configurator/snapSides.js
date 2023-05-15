@@ -8,42 +8,42 @@ const SNAP_HEIGHT = 1000;
 
 export default function snapSides(generator) {
 
-  const CAMERA_POSITIONS = [new Vector3(-7, 3, 7), new Vector3(7, 3, 7),new Vector3(7, 3,-7), new Vector3(-7, 3, -7)];
-
-  const container = createTempContainer(SNAP_WIDTH, SNAP_HEIGHT)
-  const renderer = createRenderer(container);
-  const {camera,controls} = createCamera(container,renderer)
-  const scene = generator.getScene();
-  scene.add(camera);
-
-  // const centerPivot = new Object3D()
-  // scene.add(centerPivot)
-
-  // const grid= new GridHelper(10,10)
-  // grid.rotateX(Math.PI/2)
-  // grid.position.y = 5
-  // grid.position.z = -20
-  // centerPivot.add(grid)
-
-  let i = 0;
+    const CAMERA_POSITIONS = [new Vector3(-7, 3, 7), new Vector3(7, 3, 7),new Vector3(7, 3,-7), new Vector3(-7, 3, -7)];
   
-  (function moveCamera() {
-    camera.position.set(...CAMERA_POSITIONS[i]);
-    controls.update();
-    renderer.render(scene, camera);
-    setImgFile(renderer,i)
-    i++;
-    if (i < CAMERA_POSITIONS.length) {
-        // centerPivot.rotateY((Math.PI / 2))
-      moveCamera();
-    }else{
-      // scene.remove(centerPivot)
-    }
-  })();
+    const container = createTempContainer(SNAP_WIDTH, SNAP_HEIGHT)
+    const renderer = createRenderer(container);
+    const {camera,controls} = createCamera(container,renderer)
+    const scene = generator.getScene();
+    scene.add(camera);
+  
+    // const centerPivot = new Object3D()
+    // scene.add(centerPivot)
+  
+    // const grid= new GridHelper(10,10)
+    // grid.rotateX(Math.PI/2)
+    // grid.position.y = 5
+    // grid.position.z = -20
+    // centerPivot.add(grid)
+  
+    let i = 0;
+    
+    (async function moveCamera() {
+      camera.position.set(...CAMERA_POSITIONS[i]);
+      controls.update();
+      renderer.render(scene, camera);
+      await setImgFile(renderer,i)
+      i++;
+      if (i < CAMERA_POSITIONS.length) {
+          // centerPivot.rotateY((Math.PI / 2))
+        moveCamera();
+      }else{
+        // scene.remove(centerPivot)
+      }
+    })();
+  
+    renderer.dispose();
+    container.remove();
 
-  renderer.dispose();
-  container.remove();
-  return true;
 }
 
 function createTempContainer(width,height){
@@ -57,19 +57,24 @@ function createTempContainer(width,height){
 }
 
 function setImgFile(renderer,index) {
-      const fileNames = ['front','right','back','left']
-      let base64Image = renderer.domElement.toDataURL("image/jpeg");
-      base64Image = base64Image.split(',')[1];
+  return new Promise((resolve) => {
+    const fileNames = ['front','right','back','left']
+    let base64Image = renderer.domElement.toDataURL("image/jpeg");
+    base64Image = base64Image.split(',')[1];
 
-      renderer.domElement.toBlob((blob)=>{
-        let file = new File([blob], `${fileNames[index]}.jpg`, { type: "image/jpeg" });
-  
-        let dataTransfer = new DataTransfer();
-        dataTransfer.items.add(file);
-  
-        let input = document.querySelector(`[name="product-image-${index + 1}"]`);
-        input.files = dataTransfer.files;
-      },"image/jpeg",1)
+    renderer.domElement.toBlob((blob)=>{
+      let file = new File([blob], `${fileNames[index]}.jpg`, { type: "image/jpeg" });
+
+      let dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+
+      let input = document.querySelector(`[name="product-image-${index + 1}"]`);
+      input.files = dataTransfer.files;
+      
+      resolve(true)
+      
+    },"image/jpeg",1)
+  })
 
 }
 
