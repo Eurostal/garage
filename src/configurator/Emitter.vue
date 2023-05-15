@@ -1454,11 +1454,6 @@ console.log('----' + material + '-------');
         textareaRaw.value = JSON.stringify(actualGarage);
       }
     },
-
-    snapGarageSides: function(){
-      snapSides(generator);
-    }
-
   },
 
   mounted: function () {
@@ -1970,7 +1965,7 @@ console.log('----' + material + '-------');
       if (saveBtn){
         saveBtn.addEventListener("click", ()=>{
           this.rawConfigSave()
-          this.snapGarageSides()
+          snapSides(generator)
         });
       }
 
@@ -1985,14 +1980,14 @@ console.log('----' + material + '-------');
       }
 
       let contactFormBtn = document.querySelector('.wpcf7-submit')
-      contactFormBtn.addEventListener('click', (e) => {
-        this.snapGarageSides()
+      contactFormBtn.addEventListener('click', async (e) => {
+        await snapSides(generator)
         
-        let fileInput = document.querySelector('[name="product-image-4"]')
-        if (fileInput.files.length === 0) {
-          e.preventDefault()
-          contactFormBtn.click()
-        }
+        // let fileInput = document.querySelector('[name="product-image-4"]')
+        // if (fileInput.files.length === 0) {
+        //   e.preventDefault()
+        //   contactFormBtn.click()
+        // }
       }, { capture: true });
 
     }
