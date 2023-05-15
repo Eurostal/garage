@@ -1979,9 +1979,12 @@ console.log('----' + material + '-------');
         });
       }
 
+      const contactFormElement = document.querySelector('.wpcf7-form')
       document.addEventListener('wpcf7loaded', (e) => {
         snapSides(generator);
-        wpcf.submit();
+        wpcf.submit(contactFormElement, {
+                submitter: e.submitter
+            });
       });
 
     }
