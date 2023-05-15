@@ -27,11 +27,11 @@ export default function snapSides(generator) {
   
     let i = 0;
     
-    (async function moveCamera() {
+    (function moveCamera() {
       camera.position.set(...CAMERA_POSITIONS[i]);
       controls.update();
       renderer.render(scene, camera);
-      await setImgFile(renderer,i)
+      setImgFile(renderer,i)
       i++;
       if (i < CAMERA_POSITIONS.length) {
           // centerPivot.rotateY((Math.PI / 2))
@@ -61,7 +61,7 @@ async function setImgFile(renderer,index) {
     let base64Image = renderer.domElement.toDataURL("image/jpeg");
     base64Image = base64Image.split(',')[1];
 
-    await new Promise((resolve) => {renderer.domElement.toBlob((blob)=>{
+    renderer.domElement.toBlob((blob)=>{
       let file = new File([blob], `${fileNames[index]}.jpg`, { type: "image/jpeg" });
 
       let dataTransfer = new DataTransfer();
@@ -73,7 +73,6 @@ async function setImgFile(renderer,index) {
       resolve(true)
       
     },"image/jpeg",1)
-  })
 }
 
 
