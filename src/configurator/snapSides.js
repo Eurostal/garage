@@ -3,8 +3,8 @@ import createCamera from "./createCamera";
 import create2DCamera from "./create2DCamera";
 import { GridHelper ,Object3D,Vector3 } from "three";
 
-const SNAP_WIDTH = 600;
-const SNAP_HEIGHT = 550;
+const SNAP_WIDTH = 1200;
+const SNAP_HEIGHT = 1000;
 
 export default function snapSides(generator) {
 
@@ -69,7 +69,7 @@ function setImgFile(renderer,index) {
   
         let input = document.querySelector(`[name="product-image-${index + 1}"]`);
         input.files = dataTransfer.files;
-      },"image/jpeg")
+      },"image/jpeg",1)
 
 }
 
