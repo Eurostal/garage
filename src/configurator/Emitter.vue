@@ -1973,7 +1973,7 @@ console.log('----' + material + '-------');
       if (saveBtn){
         saveBtn.addEventListener("click", ()=>{
           this.rawConfigSave()
-          snapSides(generator)
+          snapSides(generator, false)
         });
       }
 
@@ -1988,7 +1988,13 @@ console.log('----' + material + '-------');
       }
 
       document.addEventListener('wpcf7loaded', (e) => {
-        snapSides(generator,e);
+        document.addEventListenet('snapsGenerated',()=>{
+          const contactFormElement = document.querySelector('.wpcf7-form')
+          window.wpcf7.submit(contactFormElement, {
+            submitter: e.submitter
+          });
+        })
+        snapSides(generator, true);
       });
 
     }
