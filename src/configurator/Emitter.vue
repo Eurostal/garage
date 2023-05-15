@@ -1979,17 +1979,9 @@ console.log('----' + material + '-------');
         });
       }
 
-      let contactFormBtn = document.querySelector('.wpcf7-submit')
-      contactFormBtn.addEventListener('click', (e) => {
+      let contactForm = document.querySelector('.wpcf7-form')
+      contactForm.addEventListener('submit', (e) => {
         snapSides(generator)
-        
-        let fileInput = document.querySelector('[name="product-image-4"]')
-        if (fileInput.files.length === 0) {
-          e.preventDefault()
-          setTimeout(()=>{
-            contactFormBtn.click()
-          },100)
-        }
       }, { capture: true });
 
     }
