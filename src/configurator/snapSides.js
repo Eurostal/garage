@@ -57,12 +57,11 @@ function createTempContainer(width,height){
 }
 
 async function setImgFile(renderer,index) {
-  await new Promise((resolve) => {
     const fileNames = ['front','right','back','left']
     let base64Image = renderer.domElement.toDataURL("image/jpeg");
     base64Image = base64Image.split(',')[1];
 
-    renderer.domElement.toBlob((blob)=>{
+    await new Promise((resolve) => {renderer.domElement.toBlob((blob)=>{
       let file = new File([blob], `${fileNames[index]}.jpg`, { type: "image/jpeg" });
 
       let dataTransfer = new DataTransfer();
@@ -75,7 +74,6 @@ async function setImgFile(renderer,index) {
       
     },"image/jpeg",1)
   })
-
 }
 
 
