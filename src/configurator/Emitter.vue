@@ -1980,14 +1980,14 @@ console.log('----' + material + '-------');
       }
 
       let contactFormBtn = document.querySelector('.wpcf7-submit')
-      contactFormBtn.addEventListener('click', async (e) => {
-        await snapSides(generator)
+      contactFormBtn.addEventListener('click', (e) => {
+        snapSides(generator)
         
-        // let fileInput = document.querySelector('[name="product-image-4"]')
-        // if (fileInput.files.length === 0) {
-        //   e.preventDefault()
-        //   contactFormBtn.click()
-        // }
+        let fileInput = document.querySelector('[name="product-image-4"]')
+        if (fileInput.files.length === 0) {
+          e.preventDefault()
+          contactFormBtn.click()
+        }
       }, { capture: true });
 
     }
