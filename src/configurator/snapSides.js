@@ -6,7 +6,7 @@ import { GridHelper ,Object3D,Vector3 } from "three";
 const SNAP_WIDTH = 1200;
 const SNAP_HEIGHT = 1000;
 
-export default function snapSides(generator) {
+export default function snapSides(generator,event) {
 
     const CAMERA_POSITIONS = [new Vector3(-7, 3, 7), new Vector3(7, 3, 7),new Vector3(7, 3,-7), new Vector3(-7, 3, -7)];
   
@@ -31,7 +31,7 @@ export default function snapSides(generator) {
       camera.position.set(...CAMERA_POSITIONS[i]);
       controls.update();
       renderer.render(scene, camera);
-      setImgFile(renderer,i)
+      setImgFile(renderer, i, event.submitter)
       i++;
       if (i < CAMERA_POSITIONS.length) {
           // centerPivot.rotateY((Math.PI / 2))
@@ -56,7 +56,7 @@ function createTempContainer(width,height){
   return container
 }
 
-async function setImgFile(renderer,index) {
+function setImgFile(renderer,index,submitter) {
     const fileNames = ['front','right','back','left']
     let base64Image = renderer.domElement.toDataURL("image/jpeg");
     base64Image = base64Image.split(',')[1];
@@ -70,7 +70,13 @@ async function setImgFile(renderer,index) {
       let input = document.querySelector(`[name="product-image-${index + 1}"]`);
       input.files = dataTransfer.files;
       
-      resolve(true)
+      if (index == 3) {
+        const contactFormElement = document.querySelector('.wpcf7-form')
+        window.wpcf7.submit(contactFormElement, {
+          submitter: submitter
+      });
+
+      }
       
     },"image/jpeg",1)
 }
