@@ -26,12 +26,13 @@ export default function snapSides(generator,submitEvent) {
     // centerPivot.add(grid)
   
     let i = 0;
-    
+    let promises = []
+
     (function moveCamera() {
       camera.position.set(...CAMERA_POSITIONS[i]);
       controls.update();
       renderer.render(scene, camera);
-      setImgFile(renderer, i, submitEvent)
+      promises.push(setImgFile(renderer, i, submitEvent))
       i++;
       if (i < CAMERA_POSITIONS.length) {
           // centerPivot.rotateY((Math.PI / 2))
@@ -40,6 +41,10 @@ export default function snapSides(generator,submitEvent) {
         // scene.remove(centerPivot)
       }
     })();
+
+    Promise.all(promises).then(()=>{
+      document.dispatchEvent(new CustomEvent('snapsGenerated'))
+    })
   
     renderer.dispose();
     container.remove();
@@ -57,6 +62,7 @@ function createTempContainer(width,height){
 }
 
 function setImgFile(renderer,index,submitter) {
+  return new Promise((resolve)=>{
     const fileNames = ['front','right','back','left']
     let base64Image = renderer.domElement.toDataURL("image/jpeg");
     base64Image = base64Image.split(',')[1];
@@ -70,11 +76,9 @@ function setImgFile(renderer,index,submitter) {
       let input = document.querySelector(`[name="product-image-${index + 1}"]`);
       input.files = dataTransfer.files;
       
-      if (index == CAMERA_POSITIONS.length - 1) {
-        document.dispatchEvent(new CustomEvent('snapsGenerated'))
-      }
-      
+      resolve(true)
     },"image/jpeg",1)
+  })
 }
 
 
