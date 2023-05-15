@@ -1980,7 +1980,8 @@ console.log('----' + material + '-------');
       }
 
       document.addEventListener('wpcf7loaded', (e) => {
-        snapSides(generator)
+        snapSides(generator);
+        wpcf.submit();
       });
 
     }
