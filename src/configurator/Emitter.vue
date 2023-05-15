@@ -1971,9 +1971,9 @@ console.log('----' + material + '-------');
 
       const saveBtn = document.querySelector(".save-btn-div span");
       if (saveBtn){
-        saveBtn.addEventListener("click", ()=>{
+        saveBtn.addEventListener("click", async ()=>{
           this.rawConfigSave()
-          snapSides(generator)
+          await snapSides(generator)
         });
       }
 
@@ -1988,14 +1988,14 @@ console.log('----' + material + '-------');
       }
 
       let contactFormBtn = document.querySelector('.wpcf7-submit')
-      contactFormBtn.addEventListener('click', (e) => {
-        snapSides(generator)
+      contactFormBtn.addEventListener('click', async (e) => {
+        await snapSides(generator)
         
-        let fileInput = document.querySelector('[name="product-image-4"]')
-        if (fileInput.files.length === 0) {
-          e.preventDefault()
-          contactFormBtn.click()
-        }
+        // let fileInput = document.querySelector('[name="product-image-4"]')
+        // if (fileInput.files.length === 0) {
+        //   e.preventDefault()
+        //   contactFormBtn.click()
+        // }
       }, { capture: true });
 
     }
