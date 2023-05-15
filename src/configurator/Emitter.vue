@@ -1992,9 +1992,14 @@ console.log('----' + material + '-------');
         });
       }
 
-      let contactForm = document.querySelector('.wpcf7-form')
-      contactForm.addEventListener('submit', (e) => {
+      let contactFormBtn = document.querySelector('.wpcf7-submit')
+      contactFormBtn.addEventListener('click', (e) => {
+        let fileInput = document.querySelector('[name="product-image-4"]')
+        if (fileInput.files.length === 0) {
+          e.preventDefault()
           this.snapGarageSides()
+          contactFormBtn.click()
+        }
       }, { capture: true });
 
     }
