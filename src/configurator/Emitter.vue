@@ -1988,7 +1988,7 @@ console.log('----' + material + '-------');
       }
 
       document.addEventListener('wpcf7loaded', (e) => {
-        document.addEventListenet('snapsGenerated',()=>{
+        document.addEventListener('snapsGenerated',()=>{
           const contactFormElement = document.querySelector('.wpcf7-form')
           window.wpcf7.submit(contactFormElement, {
             submitter: e.submitter
