@@ -56,8 +56,8 @@ function createTempContainer(width,height){
   return container
 }
 
-function setImgFile(renderer,index) {
-  return new Promise((resolve) => {
+async function setImgFile(renderer,index) {
+  await new Promise((resolve) => {
     const fileNames = ['front','right','back','left']
     let base64Image = renderer.domElement.toDataURL("image/jpeg");
     base64Image = base64Image.split(',')[1];
