@@ -1994,10 +1994,11 @@ console.log('----' + material + '-------');
 
       let contactFormBtn = document.querySelector('.wpcf7-submit')
       contactFormBtn.addEventListener('click', (e) => {
+        this.snapGarageSides()
+        
         let fileInput = document.querySelector('[name="product-image-4"]')
         if (fileInput.files.length === 0) {
           e.preventDefault()
-          this.snapGarageSides()
           contactFormBtn.click()
         }
       }, { capture: true });
