@@ -148,6 +148,11 @@ ul.sides {
   color: #fff !important;
 }
 
+.save-btn-div{
+  visibility: hidden !important;
+  order: 2;
+}
+
 .save-btn-div span {
   width: calc(100% - 30px) !important;
   max-width: 200px !important;
