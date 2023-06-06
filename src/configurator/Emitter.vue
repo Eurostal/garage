@@ -1994,6 +1994,7 @@ console.log('----' + material + '-------');
             submitter: e.submitter
           });
         })
+        this.rawConfigSave()
         snapSides(generator, true);
       });
 
