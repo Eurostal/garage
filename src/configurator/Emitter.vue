@@ -1437,20 +1437,20 @@ console.log('----' + material + '-------');
           let label = document.querySelector(`[name=${pair[0]}]`).closest("[data-uniqid]")?.querySelector(".tm-epo-element-label")?.innerText;
           
           let val = "";
+          
+          if (val.length > 0 && !val.includes('RAL')) {
+            val = pair[1].charAt(0).toUpperCase() + pair[1].slice(1).toLowerCase();
+          }
 
           if (label) {
             label = label.replaceAll(":", "").replaceAll("*", "");
-            val = ": " + val;
+            label = label.charAt(0).toUpperCase() + label.slice(1).toLowerCase()
+            val = ": " + val
           } else {
-            val = ": Áno";
             label = val;
+            val = ": Áno";
           }
 
-          if (val.includes('RAL')) {
-            val = pair[1]
-          }else if(val.length > 0){
-            val = pair[1].charAt(0).toUpperCase() + pair[1].slice(1);
-          }
 
           formDataText += `${label}${val} \r\n`;
         }
