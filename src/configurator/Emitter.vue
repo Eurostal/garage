@@ -1438,8 +1438,10 @@ console.log('----' + material + '-------');
           
           let val = "";
           
-          if (pair[1].length > 0 && !pair[1].includes('RAL')) {
+          if (pair[1].length > 0 && !pair[1].includes('RAL') && !pair[1].includes('BTX')) {
             val = pair[1].charAt(0).toUpperCase() + pair[1].slice(1).toLowerCase();
+          }else{
+            val = pair[1]
           }
 
           if (label) {
