@@ -1438,7 +1438,7 @@ console.log('----' + material + '-------');
           
           let val = "";
           
-          if (val.length > 0 && !val.includes('RAL')) {
+          if (pair[1].length > 0 && !pair[1].includes('RAL')) {
             val = pair[1].charAt(0).toUpperCase() + pair[1].slice(1).toLowerCase();
           }
 
