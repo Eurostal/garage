@@ -355,7 +355,7 @@ export default {
 
       let inputId = "";
 
-      if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value == "Jednolity kolor_0") {
+      if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value.split('_').reverse()[0] == '0') {
         inputId = "6267c6616c1022.10988552";
       } else {
         inputId = "6267c6936c1105.52576630";
@@ -458,7 +458,7 @@ export default {
       let material = "RAL9010";
       let inputId = null;
 
-      if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value == "Jednolity kolor_0") {
+      if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value.split('_').reverse()[0] == '0') {
         inputId = "6267c6616c1022.10988552";
       } else {
         inputId = "6267c6936c1105.52576630";
@@ -485,7 +485,7 @@ export default {
       let material = "RAL9010";
       let inputId = null;
 
-      if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value == "Jednolity kolor_0") {
+      if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value.split('_').reverse()[0] == '0') {
         inputId = "6267c6616c1022.10988552";
       } else {
         inputId = "6267c6936c1105.52576630";
@@ -1298,7 +1298,7 @@ console.log('----' + material + '-------');
 
     // Materials
     dispatchMaterialsEvents: function (e) {
-      if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value == "Jednolity kolor_0") {
+      if (document.querySelector('div[data-uniqid="6268636725a2c5.41006929"] select').value.split('_').reverse()[0] == '0') {
         if (document.querySelector('div[data-uniqid="6267c6616c1022.10988552"] input:checked') != undefined) {
           document.querySelector('div[data-uniqid="6267c6616c1022.10988552"] input:checked')?.dispatchEvent(new Event("change"));
         } else {
@@ -1319,7 +1319,7 @@ console.log('----' + material + '-------');
     },
 
     changeMaterialArrangementEvent: function (e) {
-      if (e.target.value == "Jednolity kolor_0") {
+      if (e.target.value.split('_').reverse()[0] == '0') {
         document.querySelector('div[data-uniqid="6267c6616c1022.10988552"] input:checked')?.dispatchEvent(new Event("change"));
       }
     },
