@@ -899,7 +899,7 @@ export default {
 
     changeWindow5SizeEvent: function (e) {
       let sizeData = e.target.value.split("x");
-      let wallId = this.selectWall(document.querySelector('div[data-uniqid="626666fc607f79.78538581"] select').value);
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b85e218ae1.80232513"] select').value);
       this.changeWindow("window5", {
         wallId: wallId,
         width: sizeData[0] / 100,
