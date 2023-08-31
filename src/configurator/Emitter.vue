@@ -139,7 +139,7 @@ export default {
                   }
                 }
                 break;
-              default:
+              default:              
                 console.log(newMsg.item);
             }
             break;
@@ -197,12 +197,22 @@ export default {
                 break;
             }
           default:
+          switch (newMsg.eventName) {
+              case 'noSpaceWall':
+              this.$store.commit("setAlert", "Na vybranej stene nie je miesto.");
+                break;
+              case 'reInitFailed':
+                if (newMsg.eventName.value.reason == 'roofChange') {
+                  this.$store.commit("setAlert", "Nemôžete zmeniť typ strechy, znížiť alebo odstrániť doplnky na stenách.");            
+                }
+
+                if (newMsg.eventName.value.reason == 'sizeChange') {
+                  this.$store.commit("setAlert", "Garáž nemožno meniť, presúvať ani odstraňovať príslušenstvo na stenách.");        
+                }
+                break;
+            }
             console.log(JSON.stringify(newMsg));
         }
-
-        setTimeout(() => {
-          this.$store.commit("clearMsg");
-        }, 3000);
       }
     },
   },
@@ -1432,7 +1442,7 @@ console.log('----' + material + '-------');
       const textareaRaw = document.querySelector('input[name="raw-garage-config"]');
       const actualGarage = this.$store.getters.getGarage;
       const formData = new FormData(document.querySelector("form.cart"));
-      const hiddenKeys = ["tcaddtocart", "tm-epo-counter", "quantity", "cpf_product_price", "tc_form_prefix"];
+      const hiddenKeys = ["tcaddtocart", "tm-epo-counter", "quantity", "cpf_product_price", "tc_form_prefix", "yith_wapo_is_single","gtm4wp_id","gtm4wp_sku","gtm4wp_name","gtm4wp_price","gtm4wp_category","gtm4wp_stocklevel"];
       let formDataText = "";
 
       for (const pair of formData.entries()) {
