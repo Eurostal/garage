@@ -133,7 +133,7 @@ export default {
                   }
                 }
                 break;
-              default:
+              default:              
                 console.log(newMsg.item);
             }
             break;
@@ -191,12 +191,22 @@ export default {
                 break;
             }
           default:
+          switch (newMsg.eventName) {
+              case 'noSpaceWall':
+              this.$store.commit("setAlert", "Na vybranej stene nie je miesto.");
+                break;
+              case 'reInitFailed':
+                if (newMsg.eventName.value.reason == 'roofChange') {
+                  this.$store.commit("setAlert", "Nemôžete zmeniť typ strechy, znížiť alebo odstrániť doplnky na stenách.");            
+                }
+
+                if (newMsg.eventName.value.reason == 'sizeChange') {
+                  this.$store.commit("setAlert", "Garáž nemožno meniť, presúvať ani odstraňovať príslušenstvo na stenách.");        
+                }
+                break;
+            }
             console.log(JSON.stringify(newMsg));
         }
-
-        setTimeout(() => {
-          this.$store.commit("clearMsg");
-        }, 3000);
       }
     },
   },
