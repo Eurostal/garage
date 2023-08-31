@@ -202,11 +202,11 @@ export default {
               this.$store.commit("setAlert", "Na vybranej stene nie je miesto.");
                 break;
               case 'reInitFailed':
-                if (newMsg.eventName.value.reason == 'roofChange') {
+                if (newMsg.value.reason == 'roofChange') {
                   this.$store.commit("setAlert", "Nemôžete zmeniť typ strechy, znížiť alebo odstrániť doplnky na stenách.");            
                 }
 
-                if (newMsg.eventName.value.reason == 'sizeChange') {
+                if (newMsg.value.reason == 'sizeChange') {
                   this.$store.commit("setAlert", "Garáž nemožno meniť, presúvať ani odstraňovať príslušenstvo na stenách.");        
                 }
                 break;
