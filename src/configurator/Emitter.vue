@@ -1185,7 +1185,7 @@ export default {
     selectWall(input) {
       let wallId = 0;
       let inputId = input.split('_').reverse()[0]
-      
+
       switch (inputId) {
         case "3":
           wallId = 0;
@@ -1209,7 +1209,7 @@ export default {
       let material = input.value.split("_")[0].replace(" ", "");
       if(!input.value.includes("BTX") && !input.value.includes("RAL")){
         let input_format = input.value.split("_").reverse()[0].replace(" ", "");
-      
+
       switch (input_format) {
         case "0":
           material = "BROWN";
@@ -1435,9 +1435,9 @@ console.log('----' + material + '-------');
           pair[1] = pair[1].split("_")[0].replaceAll("_", " ");
 
           let label = document.querySelector(`[name=${pair[0]}]`).closest("[data-uniqid]")?.querySelector(".tm-epo-element-label")?.innerText;
-          
+
           let val = "";
-          
+
           if (pair[1].length > 0 && !pair[1].includes('RAL') && !pair[1].includes('BTX')) {
             val = pair[1].charAt(0).toUpperCase() + pair[1].slice(1).toLowerCase();
           }else{
@@ -1450,7 +1450,7 @@ console.log('----' + material + '-------');
             val = ": " + val
           } else {
             label = val;
-            val = ": Áno";
+            val = "";
           }
 
 
