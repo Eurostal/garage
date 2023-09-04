@@ -104,9 +104,9 @@ export const store = createStore({
           if (!fits) {
             this.commit("setMsg", { eventName: "reInitFailed", value: { before: state.garageUpdated, after: state.garageActual } });
             if (data.roof) {
-              this.commit("setAlert", "Nemôžete zmeniť typ strechy, znížiť alebo odstrániť doplnky na stenách.");
+              this.commit("setAlert", "Vybrané prvky brání změně typu střechy.");
             } else {
-              this.commit("setAlert", "Garáž nemožno meniť, presúvať ani odstraňovať príslušenstvo na stenách.");
+              this.commit("setAlert", "Umístění okna/dveří brání změně velikosti garáže.");
             }
           }
         });
@@ -141,9 +141,18 @@ export const store = createStore({
     },
 
     setAlert(state, data) {
+      if(state.alertsCnt > 1){
+        this.commit("clearAllAlert", state.alertsCnt);
+      }
       let id = state.alertsCnt;
       state.alerts[id] = { text: data, id: id };
       state.alertsCnt += 1;
+    },
+
+    clearAllAlert(state, index) {
+      for(let i = 0; i<index; i++){
+        this.commit("clearAlert", i);
+      }
     },
 
     clearAlert(state, index) {
@@ -255,7 +264,7 @@ function updateG(state, data) {
         }
       } else {
         store.commit("setMsg", { item: data.name, eventName: "noSpaceWall" + data.wallId });
-        store.commit("setAlert", "Na vybranej stene nie je miesto.");
+        store.commit("setAlert", "Nedostatek místa na stěně ( např. stěna je příliš nízká).");
       }
     }
   } else if (data.eventType === "remove") {
@@ -296,7 +305,7 @@ function updateG(state, data) {
       }
     }
     if (!hasEnternance) {
-      store.commit("setAlert", "Žiadny vjazd do garáže, pridajte bránu alebo dvere.");
+      store.commit("setAlert", "Chybí vstup do garáže, přidejte bránu nebo dveře.");
     }
   }
 }
