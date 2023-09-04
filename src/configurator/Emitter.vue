@@ -1989,6 +1989,14 @@ console.log('----' + material + '-------');
         });
       }
 
+      window.addEventListener('load', (e) => {
+        // Create a new 'change' event
+        var event = new Event('change');
+
+        // Dispatch it.
+        document.querySelector("form.cart").dispatchEvent(event);
+      });
+
       document.addEventListener('wpcf7loaded', (e) => {
         document.addEventListener('snapsGenerated',()=>{
           const contactFormElement = document.querySelector('.wpcf7-form')
