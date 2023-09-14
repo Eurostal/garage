@@ -6,7 +6,7 @@ const path = require('path')
 export default defineConfig({
   base: '/configurator-custom/',
   plugins: [Vue()],
-  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.webp'],
+  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg'],
   esbuild: {
     minifySyntax: false,
     minifyIdentifiers: false,
