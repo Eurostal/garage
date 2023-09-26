@@ -1443,7 +1443,7 @@ console.log('----' + material + '-------');
       const textareaRaw = document.querySelector('input[name="raw-garage-config"]');
       const actualGarage = this.$store.getters.getGarage;
       const formData = new FormData(document.querySelector("form.cart"));
-      const hiddenKeys = ["tcaddtocart", "tm-epo-counter", "quantity", "cpf_product_price", "tc_form_prefix", "yith_wapo_is_single","gtm4wp_id","gtm4wp_sku","gtm4wp_name","gtm4wp_price","gtm4wp_category","gtm4wp_stocklevel"];
+      const hiddenKeys = ["tcaddtocart", "tm-epo-counter", "quantity", "cpf_product_price", "tc_form_prefix", "yith_wapo_is_single","gtm4wp_id","gtm4wp_sku","gtm4wp_name","gtm4wp_price","gtm4wp_category","gtm4wp_stocklevel","gtm4wp_internal_id"];
       let formDataText = "";
 
       for (const pair of formData.entries()) {
