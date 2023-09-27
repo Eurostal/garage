@@ -1469,7 +1469,7 @@ console.log('----' + material + '-------');
             val = ": " + val
           } else {
             label = val;
-            val = ": Áno";
+            val = "";
           }
 
 
