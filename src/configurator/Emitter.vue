@@ -1458,7 +1458,7 @@ console.log('----' + material + '-------');
             label = label.charAt(0).toUpperCase() + label.slice(1).toLowerCase()
             val = ": " + val
           } else {
-            val = ": ÁNO";
+            val = "";
             label = pair[1];
           }
 
