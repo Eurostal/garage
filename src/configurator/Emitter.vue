@@ -1,10 +1,13 @@
 <script>
 import { Materials } from "./materials";
-import snapSides from "./snapSides";
-import { generator } from "./Generator";
 
 export default {
   name: "Emitter",
+  setup(){
+    const store = useStore();
+
+    return {store}
+  },
   data() {
     return {
       roofNameTranslation: {
@@ -191,12 +194,22 @@ export default {
                 break;
             }
           default:
+          switch (newMsg.eventName) {
+              case 'noSpaceWall':
+              this.$store.commit("setAlert", "Na vybranej stene nie je miesto.");
+                break;
+              case 'reInitFailed':
+                if (newMsg.value.reason == 'roofChange') {
+                  this.$store.commit("setAlert", "Nemôžete zmeniť typ strechy, znížiť alebo odstrániť doplnky na stenách.");
+                }
+
+                if (newMsg.value.reason == 'sizeChange') {
+                  this.$store.commit("setAlert", "Garáž nemožno meniť, presúvať ani odstraňovať príslušenstvo na stenách.");
+                }
+                break;
+            }
             console.log(JSON.stringify(newMsg));
         }
-
-        setTimeout(() => {
-          this.$store.commit("clearMsg");
-        }, 3000);
       }
     },
   },
@@ -309,7 +322,7 @@ export default {
         this.$store.commit("update", { ...object });
       }
 
-      object
+      this.rawConfigSave()
     },
     changeGate1Event: function (e) {
       let object = {};
@@ -544,6 +557,7 @@ export default {
       }
 
       this.$store.commit(action ? "update" : "remove", { ...object });
+
     },
 
     changeWindowsEvent: function (e) {
@@ -882,7 +896,7 @@ export default {
 
     changeWindow5SizeEvent: function (e) {
       let sizeData = e.target.value.split("x");
-      let wallId = this.selectWall(document.querySelector('div[data-uniqid="626666fc607f79.78538581"] select').value);
+      let wallId = this.selectWall(document.querySelector('div[data-uniqid="6267b85e218ae1.80232513"] select').value);
       this.changeWindow("window5", {
         wallId: wallId,
         width: sizeData[0] / 100,
@@ -974,6 +988,7 @@ export default {
       }
 
       this.$store.commit(action ? "update" : "remove", { ...object });
+
     },
 
     changeDoorsEvent: function (e) {
@@ -1234,7 +1249,8 @@ export default {
         input.closest('[data-uniqid="6267c6616c1085.91375841"]') ||
         input.closest('[data-uniqid="6267c6836c10f8.36577405"]') ||
         input.closest('[data-uniqid="6267a577abc065.93824612"]') ||
-        input.closest('[data-uniqid="6267a784905502.42408900"]')){
+        input.closest('[data-uniqid="6267a784905502.42408900"]') ||
+        input.closest('[data-uniqid="6266807d0f5323.54410520"]')){
         switch (input.value.split("_").reverse()[0].replace(" ", "")){
           case "0":
             material = "WOOD_LIGHT";
@@ -1424,7 +1440,7 @@ console.log('----' + material + '-------');
       const textareaRaw = document.querySelector('input[name="raw-garage-config"]');
       const actualGarage = this.$store.getters.getGarage;
       const formData = new FormData(document.querySelector("form.cart"));
-      const hiddenKeys = ["tcaddtocart", "tm-epo-counter", "quantity", "cpf_product_price", "tc_form_prefix", "yith_wapo_is_single","gtm4wp_id","gtm4wp_sku","gtm4wp_name","gtm4wp_price","gtm4wp_category","gtm4wp_stocklevel"];
+      const hiddenKeys = ["tcaddtocart", "tm-epo-counter", "quantity", "cpf_product_price", "tc_form_prefix"];
       let formDataText = "";
 
       for (const pair of formData.entries()) {
@@ -1435,22 +1451,15 @@ console.log('----' + material + '-------');
           pair[1] = pair[1].split("_")[0].replaceAll("_", " ");
 
           let label = document.querySelector(`[name=${pair[0]}]`).closest("[data-uniqid]")?.querySelector(".tm-epo-element-label")?.innerText;
-
           let val = "";
-
-          if (pair[1].length > 0 && !pair[1].includes('RAL') && !pair[1].includes('BTX')) {
-            val = pair[1].charAt(0).toUpperCase() + pair[1].slice(1).toLowerCase();
-          }else{
-            val = pair[1]
-          }
 
           if (label) {
             label = label.replaceAll(":", "").replaceAll("*", "");
             label = label.charAt(0).toUpperCase() + label.slice(1).toLowerCase()
             val = ": " + val
           } else {
-            label = val;
-            val = "";
+            val = ": ÁNO";
+            label = pair[1];
           }
 
 
@@ -1988,31 +1997,10 @@ console.log('----' + material + '-------');
           location.reload()
         });
       }
-
-      window.addEventListener('load', (e) => {
-        // Create a new 'change' event
-        var event = new Event('change');
-
-        // Dispatch it.
-        document.querySelector("form.cart").dispatchEvent(event);
-      });
-
-      document.addEventListener('wpcf7loaded', (e) => {
-        document.addEventListener('snapsGenerated',()=>{
-          const contactFormElement = document.querySelector('.wpcf7-form')
-          window.wpcf7.submit(contactFormElement, {
-            submitter: e.submitter
-          });
-        })
-        this.rawConfigSave()
-        snapSides(generator, true);
-      });
-
     }
   },
 };
 </script>
-
 <style>
 .test_container {
   max-height: 100vh;

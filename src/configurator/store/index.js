@@ -102,7 +102,6 @@ export const store = createStore({
             }
           }
           if (!fits) {
-            this.commit("setMsg", { eventName: "reInitFailed", value: { before: state.garageUpdated, after: state.garageActual } });
             if (data.roof) {
               this.commit("setAlert", "A kiválasztott elemek nem teszik lehetővé a tető típusának módosítását");
             } else {
