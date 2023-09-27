@@ -199,15 +199,15 @@ export default {
           default:
           switch (newMsg.eventName) {
               case 'noSpaceWall':
-              this.$store.commit("setAlert", "Na vybranej stene nie je miesto.");
+              this.$store.commit("setAlert", "Falfelület hiánya (például a fal túl alacsony)");
                 break;
               case 'reInitFailed':
                 if (newMsg.value.reason == 'roofChange') {
-                  this.$store.commit("setAlert", "Nemôžete zmeniť typ strechy, znížiť alebo odstrániť doplnky na stenách.");
+                  this.$store.commit("setAlert", "A kiválasztott elemek nem teszik lehetővé a tető típusának módosítását");
                 }
 
                 if (newMsg.value.reason == 'sizeChange') {
-                  this.$store.commit("setAlert", "Garáž nemožno meniť, presúvať ani odstraňovať príslušenstvo na stenách.");
+                  this.$store.commit("setAlert", "Az ablak/ajtó beállítása megakadályozza a garázs méretének módosítását");
                 }
                 break;
             }
