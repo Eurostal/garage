@@ -103,9 +103,9 @@ export const store = createStore({
           }
           if (!fits) {
             if (data.roof) {
-              this.commit("setAlert", "A kiválasztott elemek nem teszik lehetővé a tető típusának módosítását");
+              this.commit("setAlert", "Vybrané prvky brání změně typu střechy.");
             } else {
-              this.commit("setAlert", "Az ablak/ajtó beállítása megakadályozza a garázs méretének módosítását");
+              this.commit("setAlert", "Umístění okna/dveří brání změně velikosti garáže.");
             }
           }
         });
@@ -263,7 +263,7 @@ function updateG(state, data) {
         }
       } else {
         store.commit("setMsg", { item: data.name, eventName: "noSpaceWall" + data.wallId });
-        store.commit("setAlert", "Falfelület hiánya (például a fal túl alacsony)");
+        store.commit("setAlert", "Nedostatek místa na stěně ( např. stěna je příliš nízká).");
       }
     }
   } else if (data.eventType === "remove") {
@@ -304,7 +304,7 @@ function updateG(state, data) {
       }
     }
     if (!hasEnternance) {
-      store.commit("setAlert", "Nincs bejárat a garázsba, adjon hozzá egy kaput vagy ajtót");
+      store.commit("setAlert", "Chybí vstup do garáže, přidejte bránu nebo dveře.");
     }
   }
 }
