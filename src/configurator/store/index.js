@@ -103,9 +103,9 @@ export const store = createStore({
           }
           if (!fits) {
             if (data.roof) {
-              this.commit("setAlert", "A kiválasztott elemek nem teszik lehetővé a tető típusának módosítását");
+              this.commit("setMsg", { eventName: "reInitFailed", value: {reason:'roofChange', before: state.garageUpdated, after: state.garageActual } });
             } else {
-              this.commit("setAlert", "Az ablak/ajtó beállítása megakadályozza a garázs méretének módosítását");
+              this.commit("setMsg", { eventName: "reInitFailed", value: {reason:'sizeChange', before: state.garageUpdated, after: state.garageActual } });
             }
           }
         });
@@ -262,8 +262,7 @@ function updateG(state, data) {
           generator.updateGarage(data.eventType, data, data.wallId);
         }
       } else {
-        store.commit("setMsg", { item: data.name, eventName: "noSpaceWall" + data.wallId });
-        store.commit("setAlert", "Falfelület hiánya (például a fal túl alacsony)");
+        store.commit("setMsg", { item: data.name, eventName: "noSpaceWall", value: {wallId: data.wallId} });
       }
     }
   } else if (data.eventType === "remove") {
