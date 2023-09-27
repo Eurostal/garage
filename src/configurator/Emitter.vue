@@ -1,5 +1,8 @@
 <script>
 import { Materials } from "./materials";
+import snapSides from "./snapSides";
+import { generator } from "./Generator";
+import { useStore } from "vuex";
 
 export default {
   name: "Emitter",
@@ -1440,7 +1443,7 @@ console.log('----' + material + '-------');
       const textareaRaw = document.querySelector('input[name="raw-garage-config"]');
       const actualGarage = this.$store.getters.getGarage;
       const formData = new FormData(document.querySelector("form.cart"));
-      const hiddenKeys = ["tcaddtocart", "tm-epo-counter", "quantity", "cpf_product_price", "tc_form_prefix"];
+      const hiddenKeys = ["tcaddtocart", "tm-epo-counter", "quantity", "cpf_product_price", "tc_form_prefix", "yith_wapo_is_single","gtm4wp_id","gtm4wp_sku","gtm4wp_name","gtm4wp_price","gtm4wp_category","gtm4wp_stocklevel","gtm4wp_internal_id"];
       let formDataText = "";
 
       for (const pair of formData.entries()) {
@@ -1451,15 +1454,22 @@ console.log('----' + material + '-------');
           pair[1] = pair[1].split("_")[0].replaceAll("_", " ");
 
           let label = document.querySelector(`[name=${pair[0]}]`).closest("[data-uniqid]")?.querySelector(".tm-epo-element-label")?.innerText;
+
           let val = "";
+
+          if (pair[1].length > 0 && !pair[1].includes('RAL') && !pair[1].includes('BTX')) {
+            val = pair[1].charAt(0).toUpperCase() + pair[1].slice(1).toLowerCase();
+          }else{
+            val = pair[1]
+          }
 
           if (label) {
             label = label.replaceAll(":", "").replaceAll("*", "");
             label = label.charAt(0).toUpperCase() + label.slice(1).toLowerCase()
             val = ": " + val
           } else {
-            val = "";
-            label = pair[1];
+            label = val;
+            val = ": Áno";
           }
 
 
@@ -1997,6 +2007,18 @@ console.log('----' + material + '-------');
           location.reload()
         });
       }
+
+      document.addEventListener('wpcf7loaded', (e) => {
+        document.addEventListener('snapsGenerated',()=>{
+          const contactFormElement = document.querySelector('.wpcf7-form')
+          window.wpcf7.submit(contactFormElement, {
+            submitter: e.submitter
+          });
+        })
+        this.rawConfigSave()
+        snapSides(generator, true);
+      });
+
     }
   },
 };

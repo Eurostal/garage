@@ -103,9 +103,9 @@ export const store = createStore({
           }
           if (!fits) {
             if (data.roof) {
-              this.commit("setAlert", "Vybrané prvky brání změně typu střechy.");
+              this.commit("setMsg", { eventName: "reInitFailed", value: {reason:'roofChange', before: state.garageUpdated, after: state.garageActual } });
             } else {
-              this.commit("setAlert", "Umístění okna/dveří brání změně velikosti garáže.");
+              this.commit("setMsg", { eventName: "reInitFailed", value: {reason:'sizeChange', before: state.garageUpdated, after: state.garageActual } });
             }
           }
         });
@@ -262,8 +262,7 @@ function updateG(state, data) {
           generator.updateGarage(data.eventType, data, data.wallId);
         }
       } else {
-        store.commit("setMsg", { item: data.name, eventName: "noSpaceWall" + data.wallId });
-        store.commit("setAlert", "Nedostatek místa na stěně ( např. stěna je příliš nízká).");
+        store.commit("setMsg", { item: data.name, eventName: "noSpaceWall", value: {wallId: data.wallId} });
       }
     }
   } else if (data.eventType === "remove") {
