@@ -1,6 +1,27 @@
 <template>
   <div class="configurator-container">
     <Emitter />
+    <div>
+      <input type="range" min="0" max="10" step="0.01" v-model="doorX">
+      {{ doorX }}
+    </div>
+
+    <div>
+      <input v-model="roofType" type="radio" name="roof" value="gable">
+      <input v-model="roofType" type="radio" name="roof" value="back">
+      <input v-model="roofType" type="radio" name="roof" value="front">
+      <input v-model="roofType" type="radio" name="roof" value="left">
+      <input v-model="roofType" type="radio" name="roof" value="right">
+      {{ roofType }}
+    </div>
+
+    <div>
+      <input type="range" min="0" max="5" step="0.01" v-model="windowX">
+      {{ windowX }}
+      <input type="range" min="0" max="2" step="0.01" v-model="windowY">
+      {{ windowY }}
+    </div>
+
     <div id="scene-container"></div>
     <div class="alert-container">
       <TransitionGroup name="list" tag="ul">
@@ -15,7 +36,7 @@
 
 <script setup>
 import Emitter from "./Emitter.vue";
-import { onMounted, computed, watch, ref } from "@vue/runtime-core";
+import { onMounted, computed, watch, ref, watchEffect } from "@vue/runtime-core";
 import { generator } from "./Generator";
 import { useStore } from "vuex";
 
@@ -27,6 +48,44 @@ import { MathUtils, Clock } from "three";
 const store = useStore();
 const alerts = computed(() => store.getters.getAlerts);
 const clock = new Clock();
+
+const doorX = ref(0)
+const roofType = ref('gable')
+const windowX = ref(0)
+const windowY = ref(0)
+
+watch(doorX,(newVal)=>{
+      let object = {
+        type: "door",
+        name: "doorTest",
+        defaultInside: true,
+      };
+        object.wallId = 2;
+        object.x = newVal;
+      store.commit("update", { ...object });
+})
+
+watch(roofType,(newVal)=>{
+  let object = {
+    type: "roof",
+    roofType: newVal,
+  };
+store.commit("update", { ...object });
+
+})
+
+watchEffect(()=>{
+      let object = {
+        type: "window",
+        name: "windowTest",
+        defaultInside: true,
+      };
+        object.wallId = 2;
+        object.x = windowX.value;
+        object.y = windowY.value
+      store.commit("update", { ...object });
+})
+
 
 onMounted(() => {
   const container = document.getElementById("scene-container");

@@ -1,5 +1,6 @@
 <script>
 import { Materials } from "./materials";
+import { useStore } from "vuex";
 
 export default {
   name: "Emitter",

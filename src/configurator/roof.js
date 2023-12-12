@@ -6,7 +6,7 @@ export default class Roof {
     this.width = width;
     this.length = length;
     this.roofType = roofType;
-    this.roofHeight = this.setRoofHeight();
+    this.roofHeight = getRoofHeight(roofType,width,length);
     this.roofCombined = createRoof(roofType, width, length, yOffset, material, this.roofHeight);
     this.defaultInside = defaultInside;
     this.material = this.updateMaterial(material, defaultInside);
@@ -59,42 +59,6 @@ export default class Roof {
     }
   }
 
-  setRoofHeight() {
-    let roofHeight = 0;
-    switch (this.roofType) {
-      case "gable":
-        if (this.width < 5) {
-          roofHeight = 0.37;
-        } else if (this.width < 7) {
-          roofHeight = 0.57;
-        } else if (this.width < 8) {
-          roofHeight = 0.67;
-        } else {
-          roofHeight = 0.77;
-        }
-        break;
-      case "front":
-        if (this.length < 7) {
-          roofHeight = 0.23;
-        } else {
-          roofHeight = 0.4;
-        }
-        break;
-      case "back":
-        if (this.length < 7) {
-          roofHeight = 0.23;
-        } else {
-          roofHeight = 0.4;
-        }
-        break;
-      default:
-        roofHeight = this.width < 5.5 ? 0.27 : 0.57;
-
-        break;
-    }
-    return roofHeight;
-  }
-
   get object() {
     return this.roofCombined.roofObject;
   }
@@ -102,4 +66,40 @@ export default class Roof {
   get clippingPlane() {
     return this.roofCombined.clippingPlane;
   }
+}
+
+export function getRoofHeight(roofType,width,length) {
+  let roofHeight = 0;
+  switch (roofType) {
+    case "gable":
+      if (width < 5) {
+        roofHeight = 0.37;
+      } else if (width < 7) {
+        roofHeight = 0.57;
+      } else if (width < 8) {
+        roofHeight = 0.67;
+      } else {
+        roofHeight = 0.77;
+      }
+      break;
+    case "front":
+      if (length < 7) {
+        roofHeight = 0.23;
+      } else {
+        roofHeight = 0.4;
+      }
+      break;
+    case "back":
+      if (length < 7) {
+        roofHeight = 0.23;
+      } else {
+        roofHeight = 0.4;
+      }
+      break;
+    default:
+      roofHeight = width < 5.5 ? 0.27 : 0.57;
+
+      break;
+  }
+  return roofHeight;
 }

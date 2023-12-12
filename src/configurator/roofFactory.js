@@ -24,7 +24,7 @@ export function createRoof(type, width, length, yOffset, material, peakHeight) {
       return roof;
 
     case "back":
-      roof = roofSloping(length, width, yOffset - 0.2, material, peakHeight);
+      roof = roofSloping(length, width, yOffset, material, peakHeight);
       roof.roofObject.rotateY(Math.PI / 2);
       rotation.setFromAxisAngle(new Vector3(0, 1, 0), Math.PI / 2);
       roof.clippingPlane.forEach((plane) => plane.normal.applyQuaternion(rotation));

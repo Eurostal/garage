@@ -76,7 +76,7 @@ export default class Garage {
   }
 
   updateRoof(type) {
-    this.roof = new Roof(type, this.width, this.length, this.height, this.roof.material, this.roof.defaultInside);
+    this.roof = new Roof(type, this.width, this.length, type == 'back' ? this.height - 0.2 : this.height , this.roof.material, this.roof.defaultInside);
     this.object.remove(this.object.getObjectByName("roof"));
     this.object.add(this.roof.object);
     this.walls.forEach((wall) => {
