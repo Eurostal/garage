@@ -1468,8 +1468,8 @@ console.log('----' + material + '-------');
             label = label.charAt(0).toUpperCase() + label.slice(1).toLowerCase()
             val = ": " + val
           } else {
-            label = val;
             val = "";
+            label = pair[1];
           }
 
 
