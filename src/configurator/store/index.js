@@ -11,7 +11,7 @@ export const store = createStore({
       defaults: {
         garage: {
           width: 3,
-          length: 10,
+          length: 5,
           height: 2,
           walls: {
             front: {
@@ -515,11 +515,12 @@ function validateDoor(data, garage) {
 
   if ( isSideWall  && garage.roof.roofType == 'back') {
     tempDoorHeight = garage.height - doorTopMargin - backRoofYOffset + ((tempRoofHeight * (garage.length - (parseFloat(data.x) + data.width))) / garage.length) 
-  }else if(isSideWall || isBackWall){
-    tempDoorHeight = garage.height - doorTopMargin 
+  }else if(isBackWall && garage.roof.roofType == 'back'){
+    tempDoorHeight = garage.height - doorTopMargin - backRoofYOffset
+  }else{
+    tempDoorHeight = garage.height - doorTopMargin
   }
   data.height = tempDoorHeight > 2 ? 2 : tempDoorHeight
-  console.log(tempDoorHeight,data.height);
 }
 
 function roundTwoDec(value) {
