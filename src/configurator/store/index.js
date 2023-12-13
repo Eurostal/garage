@@ -1,5 +1,7 @@
 import { createStore } from "vuex";
 import { generator } from "../Generator";
+import { getRoofHeight } from "../roof"
+import Roof from "../roof";
 
 export const store = createStore({
   state() {
@@ -9,7 +11,7 @@ export const store = createStore({
       defaults: {
         garage: {
           width: 3,
-          length: 5,
+          length: 10,
           height: 2,
           walls: {
             front: {
@@ -46,7 +48,7 @@ export const store = createStore({
         door: {
           wallId: 0,
           width: 0.9,
-          height: 1.85,
+          height: 2,
           material: "RAL9010",
           defaultInside: true,
           handleSide: "left",
@@ -82,7 +84,7 @@ export const store = createStore({
               ? { x: state.garageUpdated.width, y: state.garageUpdated.height }
               : { x: state.garageUpdated.length, y: state.garageUpdated.height };
           validateDoor(element, state.garageUpdated);
-          if (element.type !== "gate") {
+          if (!["gate","door"].includes(element.type)) {
             if (index != 0 && state.garageUpdated.roof.roofType === "back") {
               wallSize.y = wallSize.y - 0.2;
             }
@@ -140,9 +142,18 @@ export const store = createStore({
     },
 
     setAlert(state, data) {
+      if(state.alertsCnt > 1){
+        this.commit("clearAllAlert", state.alertsCnt);
+      }
       let id = state.alertsCnt;
       state.alerts[id] = { text: data, id: id };
       state.alertsCnt += 1;
+    },
+
+    clearAllAlert(state, index) {
+      for(let i = 0; i<index; i++){
+        this.commit("clearAlert", i);
+      }
     },
 
     clearAlert(state, index) {
@@ -196,7 +207,12 @@ function updateG(state, data) {
         ? { x: state.garageActual.width, y: state.garageActual.height }
         : { x: state.garageActual.length, y: state.garageActual.height };
     if (data.wallId != 0 && state.garageActual.roof.roofType === "back") {
-      wallSize.y = wallSize.y - 0.2;
+      if (data.type === "door") {
+        wallSize.y = generator.garage.roof.yOffset + generator.garage.roof.roofHeight 
+      }else{
+        wallSize.y = generator.garage.roof.yOffset;
+      }
+
     }
 
     if (checkPlacement(data, elements, wallSize)) {
@@ -294,7 +310,7 @@ function updateG(state, data) {
       }
     }
     if (!hasEnternance) {
-      store.commit("setAlert", "Žiadny vjazd do garáže, pridajte bránu alebo dvere.");
+      store.commit("setAlert", "Nincs bejárat a garázsba, adjon hozzá egy kaput vagy ajtót");
     }
   }
 }
@@ -484,13 +500,25 @@ function validateGate(data, tempElement, state) {
 }
 
 function validateDoor(data, garage) {
-  if (data.type == "door" && garage.height >= 2.25 && garage.roof.roofType == "back") {
-    data.height = 2;
-  } else if (data.type == "door" && garage.height >= 2.15 && garage.roof.roofType !== "back") {
-    data.height = 2;
-  } else if (data.type == "door") {
-    data.height = 1.85;
+
+  if (data.type !== "door") return
+
+  const backRoofYOffset = 0.2
+  const doorTopMargin = 0.05
+  const isSideWall = [2,3].includes(data.wallId)
+  const isBackWall = data.wallId == 1
+  const tempRoofHeight = getRoofHeight(garage.roof.roofType,garage.width,garage.length) 
+
+  let tempDoorHeight = 2
+
+
+  if ( isSideWall  && garage.roof.roofType == 'back') {
+    tempDoorHeight = garage.height - doorTopMargin - backRoofYOffset + ((tempRoofHeight * (garage.length - (parseFloat(data.x) + data.width))) / garage.length) 
+  }else if(isSideWall || isBackWall){
+    tempDoorHeight = garage.height - doorTopMargin 
   }
+  data.height = tempDoorHeight > 2 ? 2 : tempDoorHeight
+  console.log(tempDoorHeight,data.height);
 }
 
 function roundTwoDec(value) {

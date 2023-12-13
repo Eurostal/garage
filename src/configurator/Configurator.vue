@@ -1,4 +1,5 @@
 <template>
+  <!-- <TestFields /> -->
   <div class="configurator-container">
     <Emitter />
     <div id="scene-container"></div>
@@ -15,7 +16,7 @@
 
 <script setup>
 import Emitter from "./Emitter.vue";
-import { onMounted, computed, watch, ref } from "@vue/runtime-core";
+import { onMounted, computed} from "@vue/runtime-core";
 import { generator } from "./Generator";
 import { useStore } from "vuex";
 
@@ -23,6 +24,7 @@ import createRenderer from "./createRenderer";
 import createCamera from "./createCamera";
 
 import { MathUtils, Clock } from "three";
+import TestFields from "./TestFields.vue";
 
 const store = useStore();
 const alerts = computed(() => store.getters.getAlerts);

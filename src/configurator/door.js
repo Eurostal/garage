@@ -5,8 +5,6 @@ export default class Door extends WallElement {
   constructor(width, height, material, defaultInside, name, handleSide) {
     super(width, height, material, defaultInside, name);
     this.handleSide = handleSide;
-    console.log(this);
-
     const handle = new Group();
     const handlePart = new Mesh(
       new BoxGeometry(0.02, 0.1, 0.01),
