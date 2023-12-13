@@ -39,7 +39,7 @@ watch(doorX, (newVal) => {
         name: "doorTest",
         defaultInside: true,
     };
-    object.wallId = 2;
+    object.wallId = 0;
     object.x = newVal;
     store.commit("update", { ...object });
 })
