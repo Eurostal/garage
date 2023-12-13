@@ -232,7 +232,7 @@ function updateG(state, data) {
         elements.forEach((element, index) => {
           if (!fits) {
             xBefore = data.x;
-            let shift = 0.2;
+            let shift = 0.1;
             if (data.type === "gate" && element.type === "gate") {
               shift = 0;
             }
@@ -310,6 +310,9 @@ function updateG(state, data) {
 }
 
 function checkPlacement(item, wallElements, wallSize) {
+  
+  const itemMargin = 0.05
+  
   wallSize.y = roundTwoDec(wallSize.y);
   wallSize.x = roundTwoDec(wallSize.x);
   item.height = roundTwoDec(item.height);
@@ -321,7 +324,6 @@ function checkPlacement(item, wallElements, wallSize) {
   let yBefore = 0;
   
   if (item.type !== "gate") {
-    let itemMargin = item.type == "door" ? 0.05 : 0.1
     
     if (roundTwoDec(item.height + 0.05) > wallSize.y) {
       console.warn(item.name + "is too big to fit in the wall");
@@ -418,6 +420,9 @@ function checkPlacement(item, wallElements, wallSize) {
 }
 
 function contains(element, { x, y }) {
+
+  const itemMargin = 0.05
+  
   const rect = {
     x: element.x,
     y: element.y,
@@ -430,10 +435,10 @@ function contains(element, { x, y }) {
     return roundTwoDec(rect.x - 0.05) < x && x < roundTwoDec(rect.x + rect.width + 0.05);
   }else {
     return (
-      roundTwoDec(rect.x - 0.2) < x &&
-      x < roundTwoDec(rect.x + rect.width + 0.2) &&
-      roundTwoDec(rect.y - 0.2) < y &&
-      y < roundTwoDec(rect.y + rect.height + 0.2)
+      roundTwoDec(rect.x - itemMargin * 2) < x &&
+      x < roundTwoDec(rect.x + rect.width + itemMargin * 2) &&
+      roundTwoDec(rect.y - itemMargin * 2) < y &&
+      y < roundTwoDec(rect.y + rect.height + itemMargin * 2)
     );
   }
 }
