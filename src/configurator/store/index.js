@@ -12,7 +12,7 @@ export const store = createStore({
         garage: {
           width: 3,
           length: 5,
-          height: 4,
+          height: 2,
           walls: {
             front: {
               elements: {},
