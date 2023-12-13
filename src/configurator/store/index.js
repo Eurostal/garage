@@ -12,7 +12,7 @@ export const store = createStore({
         garage: {
           width: 3,
           length: 5,
-          height: 2,
+          height: 4,
           walls: {
             front: {
               elements: {},
@@ -520,7 +520,12 @@ function validateDoor(data, garage) {
   }else{
     tempDoorHeight = garage.height - doorTopMargin
   }
-  data.height = tempDoorHeight > 2 ? 2 : tempDoorHeight
+  if (tempDoorHeight >= 2) {
+    data.height = 2
+  }else{
+    data.height = tempDoorHeight
+    store.commit("setAlert", "Výška dveří snížena");
+  }
 }
 
 function roundTwoDec(value) {
