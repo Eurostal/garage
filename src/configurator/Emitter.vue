@@ -22,10 +22,11 @@ export default {
       },
       gateNameTranslation: {
         "0": "double",
-        "1": "tilted",
-        "2": "wide",
-        "3": "empty",
-        "4": "",
+        "1": "double-wide",
+        "2": "tilted",
+        "3": "wide",
+        "4": "empty",
+        "5": "",
         "": "",
       },
       gateStyleTranslation: {

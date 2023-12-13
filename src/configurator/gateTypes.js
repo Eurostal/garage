@@ -61,7 +61,7 @@ handle.position.x = 0.1;
 const frameWidth = 0.05;
 const frameWidthWide = 0.1;
 
-export const doubleDoor = function createDoubleDoor(width, height, material, handleVisible, frameReflective) {
+export const doubleDoor = (width, height, material, handleVisible, frameReflective) => {
   const gateGroup = new Group();
 
   const gateDoor = new Mesh(new BoxGeometry(width - frameWidth * 2, height - frameWidth * 2, 0.005), material);
@@ -123,7 +123,104 @@ export const doubleDoor = function createDoubleDoor(width, height, material, han
   return gateGroup;
 };
 
-export const tiltedWidepanelDoor = function createTiltedWidepanelDoor(width, height, material, frameReflective) {
+export const doubleWidepanelDoor = (width, height, material, handleVisible, frameReflective) => {
+  const gateGroup = new Group();
+
+  const gateDoorMaterial = material.clone();
+  if (material.customType.includes("WOOD")) {
+    gateDoorMaterial.map = Texture.woodTextureWide.clone();
+    gateDoorMaterial.roughnessMap = Texture.woodTextureWideMap.clone();
+    gateDoorMaterial.bumpMap = Texture.woodTextureWideMap.clone();
+  } else {
+    gateDoorMaterial.map = Texture.metalTextureWide.clone();
+    gateDoorMaterial.roughnessMap = Texture.metalTextureWideMap.clone();
+    gateDoorMaterial.normalMap = Texture.metalTextureWideMap.clone();
+    gateDoorMaterial.normalScale = new Vector2(-0.05, 0.05);
+  }
+
+  const gateDoor = new Mesh(new BoxGeometry(width - frameWidth * 2, height - frameWidth * 2, 0.005), gateDoorMaterial);
+  gateDoor.geometry.groups.forEach((face, index) => {
+    face.materialIndex = 0;
+    if (index == 5) {
+      face.materialIndex = 1;
+    }
+  });
+
+  gateDoor.castShadow = true;
+  gateDoor.receiveShadow = true;
+
+  const gateDoorFrame = new Mesh(new PlaneGeometry(width, height), frameReflective? frameMaterialLight:frameMaterialNormal);
+  gateDoorFrame.castShadow = true;
+  gateDoorFrame.receiveShadow = true;
+
+  const separator = new Mesh(
+    new PlaneGeometry(frameWidth / 2, height),
+    new MeshStandardMaterial({
+      color: 0x000000,
+      transparent: true,
+      opacity: 0.6,
+    })
+  );
+  separator.position.z = 0.005;
+
+  gateGroup.add(separator, gateDoor, gateDoorFrame);
+  if (handleVisible) {
+    const handleClone = handle.clone();
+    handleClone.position.y = -height / 2 + 0.9;
+    gateGroup.add(handleClone);
+  } else {
+    const keyhole = new Mesh(
+      new CylinderGeometry(0.014, 0.014, 0.01, 20),
+      new MeshStandardMaterial({
+        color: 0x000000,
+      })
+    );
+    keyhole.rotateX(Math.PI / 2);
+    keyhole.position.y = -height / 2 + 0.9;
+    keyhole.position.x = 0.05;
+
+    gateGroup.add(keyhole);
+  }
+
+  gateGroup.position.y = height / 2;
+  gateGroup.position.z = -0.005;
+
+  return gateGroup;
+};
+
+export const tiltedDoor = (width, height, material, frameReflective) => {
+  const gateGroup = new Group();
+
+  const gateDoor = new Mesh(new BoxGeometry(width - frameWidthWide * 2, height - frameWidthWide - frameWidth, 0.005), material);
+  gateDoor.castShadow = true;
+  gateDoor.receiveShadow = true;
+  if (material.horizontal) {
+    gateDoor.material.map = material.map.clone();
+    gateDoor.material.map.repeat.set(width - frameWidthWide * 2, height - frameWidthWide - frameWidth);
+    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y + frameWidthWide);
+  } else {
+    gateDoor.material.map = material.map.clone();
+    gateDoor.material.map.repeat.set(height - frameWidthWide - frameWidth, width - frameWidthWide * 2);
+    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y - frameWidthWide);
+  }
+
+  const gateDoorFrame = new Mesh(new PlaneGeometry(width, height), frameReflective? frameMaterialLight:frameMaterialNormal);
+  gateDoorFrame.castShadow = true;
+  gateDoorFrame.receiveShadow = true;
+
+  const handleClone = handle.clone();
+  handleClone.position.y = -height / 2 + 0.6;
+  handleClone.position.x = 0;
+  handleClone.rotation.z = -Math.PI / 2;
+
+  gateGroup.add(gateDoor, gateDoorFrame, handleClone);
+  gateGroup.position.y = height / 2;
+  gateGroup.position.z = -0.005;
+  gateDoor.translateY(-0.04);
+  return gateGroup;
+};
+
+export const tiltedWidepanelDoor = (width, height, material, frameReflective) => {
   const gateGroup = new Group();
   const gateDoorMaterial = material.clone();
   if (material.customType.includes("WOOD")) {
@@ -165,41 +262,8 @@ export const tiltedWidepanelDoor = function createTiltedWidepanelDoor(width, hei
   return gateGroup;
 };
 
-export const tiltedDoor = function createTiltedDoor(width, height, material, frameReflective) {
-  const gateGroup = new Group();
 
-  const gateDoor = new Mesh(new BoxGeometry(width - frameWidthWide * 2, height - frameWidthWide - frameWidth, 0.005), material);
-  gateDoor.castShadow = true;
-  gateDoor.receiveShadow = true;
-  if (material.horizontal) {
-    gateDoor.material.map = material.map.clone();
-    gateDoor.material.map.repeat.set(width - frameWidthWide * 2, height - frameWidthWide - frameWidth);
-    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y + frameWidthWide);
-  } else {
-    gateDoor.material.map = material.map.clone();
-    gateDoor.material.map.repeat.set(height - frameWidthWide - frameWidth, width - frameWidthWide * 2);
-    gateDoor.material.map.offset.set(gateDoor.material.map.offset.x, gateDoor.material.map.offset.y - frameWidthWide);
-  }
-
-  const gateDoorFrame = new Mesh(new PlaneGeometry(width, height), frameReflective? frameMaterialLight:frameMaterialNormal);
-  gateDoorFrame.castShadow = true;
-  gateDoorFrame.receiveShadow = true;
-
-  const handleClone = handle.clone();
-  handleClone.position.y = -height / 2 + 0.6;
-  handleClone.position.x = 0;
-  handleClone.rotation.z = -Math.PI / 2;
-
-  gateGroup.add(gateDoor, gateDoorFrame, handleClone);
-  gateGroup.position.y = height / 2;
-  gateGroup.position.z = -0.005;
-  gateDoor.translateY(-0.04);
-  return gateGroup;
-};
-
-export const emptyDoor = function createEmpty(width, height, material, frameReflective) {
-  // const emptyGate = new Mesh(new PlaneGeometry(0, 0), material);
-  // noGate.visible = false;
+export const emptyDoor = (width, height, material, frameReflective) => {
 
   let offsetY = 0.1;
 
