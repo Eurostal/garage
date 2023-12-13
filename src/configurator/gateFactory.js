@@ -1,9 +1,11 @@
-import { doubleDoor, tiltedDoor, tiltedWidepanelDoor, emptyDoor } from "./gateTypes";
+import { doubleDoor, doubleWidepanelDoor, tiltedDoor, tiltedWidepanelDoor, emptyDoor } from "./gateTypes";
 
 export function createGate(type, width, height, material, handle, frameReflective) {
   switch (type) {
     case "double":
       return doubleDoor(width, height, material, handle, frameReflective);
+    case "double-wide":
+      return doubleWidepanelDoor(width, height, material,handle, frameReflective);
     case "tilted":
       return tiltedDoor(width, height, material, frameReflective);
     case "wide":
