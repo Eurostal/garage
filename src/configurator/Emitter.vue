@@ -1,5 +1,4 @@
 <script>
-import { useStore } from 'vuex'
 import { Materials } from "./materials";
 
 export default {
