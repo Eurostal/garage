@@ -316,30 +316,32 @@ function checkPlacement(item, wallElements, wallSize) {
   item.width = roundTwoDec(item.width);
   item.x = roundTwoDec(item.x);
   item.y = roundTwoDec(item.y);
-
+  
   let xBefore = 0;
   let yBefore = 0;
-
+  
   if (item.type !== "gate") {
+    let itemMargin = item.type == "door" ? 0.05 : 0.1
+    
     if (roundTwoDec(item.height + 0.05) > wallSize.y) {
       console.warn(item.name + "is too big to fit in the wall");
       store.commit("setMsg", { item: item.name, eventName: "OversizeY" });
       return false;
     }
-    if (roundTwoDec(item.width + 0.2) > wallSize.x) {
+    if (roundTwoDec(item.width + itemMargin * 2) > wallSize.x) {
       console.warn(item.name + "is too big to fit in the wall");
       store.commit("setMsg", { item: item.name, eventName: "OversizeX" });
       return false;
     }
-    if (roundTwoDec(item.x + item.width + 0.1) > wallSize.x) {
+    if (roundTwoDec(item.x + item.width + itemMargin) > wallSize.x) {
       xBefore = item.x;
-      item.x = roundTwoDec(wallSize.x - 0.1 - item.width);
+      item.x = roundTwoDec(wallSize.x - itemMargin - item.width);
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
       store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: parseFloat(item.x.toFixed(2)) } });
     }
-    if (item.x < 0.1) {
+    if (item.x < itemMargin) {
       xBefore = item.x;
-      item.x = 0.1;
+      item.x = itemMargin;
       console.warn(item.name + " exceeds wall boundary, xOffset changed to " + item.x);
       store.commit("setMsg", { item: item.name, eventName: "xOffsetChange", value: { before: xBefore, after: parseFloat(item.x.toFixed(2)) } });
     }
@@ -424,7 +426,9 @@ function contains(element, { x, y }) {
   };
   if (element.type == "gate") {
     return roundTwoDec(rect.x) < x && x < roundTwoDec(rect.x + rect.width);
-  } else {
+  }else if(element.type == "door") {
+    return roundTwoDec(rect.x - 0.05) < x && x < roundTwoDec(rect.x + rect.width + 0.05);
+  }else {
     return (
       roundTwoDec(rect.x - 0.2) < x &&
       x < roundTwoDec(rect.x + rect.width + 0.2) &&
