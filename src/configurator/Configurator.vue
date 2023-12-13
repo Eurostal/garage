@@ -1,5 +1,5 @@
 <template>
-  <TestFields />
+  <!-- <TestFields /> -->
   <div class="configurator-container">
     <Emitter />
     <div id="scene-container"></div>
