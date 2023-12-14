@@ -6,7 +6,7 @@ export default {
             wpTranslate = wp.i18n.__
         }
         app.config.globalProperties.$translate = (text) => {
-            return wpTranslate ? wpTranslate(text,'garage-configurator') : text 
+            return wpTranslate ? wpTranslate(text,'garage-woocommerce') : text 
         }
     }
   }
