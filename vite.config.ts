@@ -33,7 +33,7 @@ export default defineConfig({
     minify: false,
     rollupOptions:{
       output:{
-        entryFileNames: `assets/configurator-engine.js`
+        entryFileNames: `assets/garage-woocommerce.js`
       }
     }
   },
