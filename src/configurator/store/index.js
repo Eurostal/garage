@@ -63,7 +63,6 @@ export const store = createStore({
     },
     mutations: {
       init(state, data) {
-        app.config.globalProperties.$translate('tłumaczenie w store!')
         state.garageActual = { ...state.defaults.garage, ...data };
         state.garageUpdated = state.garageActual;
         generator.initialize(state.garageActual);
@@ -147,7 +146,7 @@ export const store = createStore({
           this.commit("clearAllAlert", state.alertsCnt);
         }
         let id = state.alertsCnt;
-        state.alerts[id] = { text: data, id: id };
+        state.alerts[id] = { text: app.config.globalProperties.$translate(data), id: id };
         state.alertsCnt += 1;
       },
 
