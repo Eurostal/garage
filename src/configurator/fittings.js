@@ -10,7 +10,7 @@ export default class Fittings {
     this.object = new Group();
     this.object.name = "fittings";
     const fittingMaterial = Materials.RAL9010.clone();
-    fittingMaterial.map.repeat.set(this.height, 0.1);
+    fittingMaterial.map.repeat.set(this.height, 0.05);
     fittingMaterial.clipShadows = true;
     this.material = fittingMaterial;
     this.isVisible = false;

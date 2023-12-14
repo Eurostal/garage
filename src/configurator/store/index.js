@@ -24,7 +24,7 @@ export const store = createStore({
               right: { elements: {}, material: "RAL9010", defaultInside: true },
             },
             roof: { roofType: "gable", material: "RAL9010", defaultInside: true },
-            fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
+            fittings: { visible: false, material: "RAL9010", fittingWidth: 0.05 },
           },
           gate: {
             wallId: 0,
@@ -55,7 +55,7 @@ export const store = createStore({
             x: 0,
             y: 0,
           },
-          fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
+          fittings: { visible: false, material: "RAL9010", fittingWidth: 0.05 },
         },      msg: { eventName: false },
         alertsCnt: 0,
         alerts: {},
@@ -493,7 +493,7 @@ function validateGate(data, tempElement, state) {
           noTiltedGate = false;
         }
       });
-      let newWidth = noTiltedGate ? 0.02 : 0.1;
+      let newWidth = noTiltedGate ? 0.02 : 0.05;
       state.garageUpdated.fittings.fittingWidth = newWidth;
       if (state.garageUpdated.fittings.visible) {
         generator.updateGarage("remove", { type: "fittings" });
