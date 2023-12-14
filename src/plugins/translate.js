@@ -7,7 +7,7 @@ export default {
         }
         app.config.globalProperties.$translate = (text) => {
             console.log(text);
-            return wpTranslate ? wpTranslate(text) : text 
+            return wpTranslate ? wpTranslate(text,'garage-configurator') : text 
         }
     }
   }
