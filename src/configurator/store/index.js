@@ -1,187 +1,189 @@
-import { createStore } from "vuex";
+import { createStore as createVuexStore } from "vuex";
 import { generator } from "../Generator";
 import { getRoofHeight } from "../roof"
-import Roof from "../roof";
 
-export const store = createStore({
-  state() {
-    return {
-      garageActual: {},
-      garageUpdated: {},
-      defaults: {
-        garage: {
-          width: 3,
-          length: 5,
-          height: 2,
-          walls: {
-            front: {
-              elements: {},
-              material: "RAL9010",
-              defaultInside: true,
+export const createStore = (app) => { 
+  return createVuexStore({
+    state() {
+      return {
+        garageActual: {},
+        garageUpdated: {},
+        defaults: {
+          garage: {
+            width: 3,
+            length: 5,
+            height: 2,
+            walls: {
+              front: {
+                elements: {},
+                material: "RAL9010",
+                defaultInside: true,
+              },
+              back: { elements: {}, material: "RAL9010", defaultInside: true },
+              left: { elements: {}, material: "RAL9010", defaultInside: true },
+              right: { elements: {}, material: "RAL9010", defaultInside: true },
             },
-            back: { elements: {}, material: "RAL9010", defaultInside: true },
-            left: { elements: {}, material: "RAL9010", defaultInside: true },
-            right: { elements: {}, material: "RAL9010", defaultInside: true },
+            roof: { roofType: "gable", material: "RAL9010", defaultInside: true },
+            fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
           },
-          roof: { roofType: "gable", material: "RAL9010", defaultInside: true },
+          gate: {
+            wallId: 0,
+            width: 3,
+            height: 2,
+            material: "RAL9010",
+            defaultInside: true,
+            gateType: "double",
+            x: 0,
+            y: 0,
+            handle: false,
+          },
+          window: {
+            wallId: 0,
+            width: 0.6,
+            height: 0.4,
+            material: "WHITE",
+            x: 0,
+            y: 1.2,
+          },
+          door: {
+            wallId: 0,
+            width: 0.9,
+            height: 2,
+            material: "RAL9010",
+            defaultInside: true,
+            handleSide: "left",
+            x: 0,
+            y: 0,
+          },
           fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
-        },
-        gate: {
-          wallId: 0,
-          width: 3,
-          height: 2,
-          material: "RAL9010",
-          defaultInside: true,
-          gateType: "double",
-          x: 0,
-          y: 0,
-          handle: false,
-        },
-        window: {
-          wallId: 0,
-          width: 0.6,
-          height: 0.4,
-          material: "WHITE",
-          x: 0,
-          y: 1.2,
-        },
-        door: {
-          wallId: 0,
-          width: 0.9,
-          height: 2,
-          material: "RAL9010",
-          defaultInside: true,
-          handleSide: "left",
-          x: 0,
-          y: 0,
-        },
-        fittings: { visible: false, material: "RAL9010", fittingWidth: 0.1 },
-      },      msg: { eventName: false },
-      alertsCnt: 0,
-      alerts: {},
-    };
-  },
-  mutations: {
-    init(state, data) {
-      state.garageActual = { ...state.defaults.garage, ...data };
-      state.garageUpdated = state.garageActual;
-      generator.initialize(state.garageActual);
+        },      msg: { eventName: false },
+        alertsCnt: 0,
+        alerts: {},
+      };
     },
-    reInit(state, data) {
-      state.garageUpdated = { ...state.garageActual, ...data };
-      if (state.garageActual.walls.front.elements["gate2"] && state.garageUpdated.width < 6) {
-        this.commit("remove", { type: "gate", name: "gate2", wallId: 0 });
-        delete state.garageUpdated.walls.front.elements["gate2"];
-      }
-      const wallNames = ["front", "back", "left", "right"];
-      const walls = Object.values(state.garageUpdated.walls);
-      let fits = true;
-      walls.forEach((wall, index) => {
-        let elements = Object.values(state.garageUpdated.walls[wallNames[index]].elements);
-        elements.forEach((element) => {
-          var wallSize =
-            index <= 1
-              ? { x: state.garageUpdated.width, y: state.garageUpdated.height }
-              : { x: state.garageUpdated.length, y: state.garageUpdated.height };
-          validateDoor(element, state.garageUpdated);
-          if (!["gate","door"].includes(element.type)) {
-            if (index != 0 && state.garageUpdated.roof.roofType === "back") {
-              wallSize.y = wallSize.y - 0.2;
-            }
-            if (roundTwoDec(element.x + element.width + 0.1) > wallSize.x || roundTwoDec(element.y + element.height + 0.05) > wallSize.y) {
-              fits = false;
-            }
-          } else {
-            let noTiltedGate = true;
-            elements.forEach((el) => {
-              if (el.gateType === "tilted" || el.gateType === "wide") {
-                noTiltedGate = false;
+    mutations: {
+      init(state, data) {
+        app.config.globalProperties.$translate('tłumaczenie w store!')
+        state.garageActual = { ...state.defaults.garage, ...data };
+        state.garageUpdated = state.garageActual;
+        generator.initialize(state.garageActual);
+      },
+      reInit(state, data) {
+        state.garageUpdated = { ...state.garageActual, ...data };
+        if (state.garageActual.walls.front.elements["gate2"] && state.garageUpdated.width < 6) {
+          this.commit("remove", { type: "gate", name: "gate2", wallId: 0 });
+          delete state.garageUpdated.walls.front.elements["gate2"];
+        }
+        const wallNames = ["front", "back", "left", "right"];
+        const walls = Object.values(state.garageUpdated.walls);
+        let fits = true;
+        walls.forEach((wall, index) => {
+          let elements = Object.values(state.garageUpdated.walls[wallNames[index]].elements);
+          elements.forEach((element) => {
+            var wallSize =
+              index <= 1
+                ? { x: state.garageUpdated.width, y: state.garageUpdated.height }
+                : { x: state.garageUpdated.length, y: state.garageUpdated.height };
+            validateDoor(element, state.garageUpdated);
+            if (!["gate","door"].includes(element.type)) {
+              if (index != 0 && state.garageUpdated.roof.roofType === "back") {
+                wallSize.y = wallSize.y - 0.2;
               }
-            });
-            state.garageUpdated.fittings.fittingWidth = noTiltedGate ? 0.02 : 0.1;
-            if (element.x + element.width > wallSize.x || element.y + element.height > wallSize.y) {
-              fits = false;
-            }
-          }
-          if (!fits) {
-            if (data.roof) {
-              this.commit("setMsg", { eventName: "reInitFailed", value: {reason:'roofChange', before: state.garageUpdated, after: state.garageActual } });
+              if (roundTwoDec(element.x + element.width + 0.1) > wallSize.x || roundTwoDec(element.y + element.height + 0.05) > wallSize.y) {
+                fits = false;
+              }
             } else {
-              this.commit("setMsg", { eventName: "reInitFailed", value: {reason:'sizeChange', before: state.garageUpdated, after: state.garageActual } });
+              let noTiltedGate = true;
+              elements.forEach((el) => {
+                if (el.gateType === "tilted" || el.gateType === "wide") {
+                  noTiltedGate = false;
+                }
+              });
+              state.garageUpdated.fittings.fittingWidth = noTiltedGate ? 0.02 : 0.1;
+              if (element.x + element.width > wallSize.x || element.y + element.height > wallSize.y) {
+                fits = false;
+              }
             }
-          }
+            if (!fits) {
+              if (data.roof) {
+                this.commit("setMsg", { eventName: "reInitFailed", value: {reason:'roofChange', before: state.garageUpdated, after: state.garageActual } });
+              } else {
+                this.commit("setMsg", { eventName: "reInitFailed", value: {reason:'sizeChange', before: state.garageUpdated, after: state.garageActual } });
+              }
+            }
+          });
         });
-      });
-      if (fits) {
-        generator.initialize(state.garageUpdated, true);
-        state.garageActual = { ...state.garageUpdated };
-      }
-    },
+        if (fits) {
+          generator.initialize(state.garageUpdated, true);
+          state.garageActual = { ...state.garageUpdated };
+        }
+      },
 
-    update(state, data) {
-      data = fillData(data);
-      data.eventType = "update";
-      updateG(state, data);
-    },
+      update(state, data) {
+        data = fillData(data);
+        data.eventType = "update";
+        updateG(state, data);
+      },
 
-    updateMaterial(state, data) {
-      data.eventType = "updateMaterial";
-      updateG(state, data);
-    },
+      updateMaterial(state, data) {
+        data.eventType = "updateMaterial";
+        updateG(state, data);
+      },
 
-    remove(state, data) {
-      data.eventType = "remove";
-      if (data.gateType) {
-        delete data.gateType;
-      }
-      updateG(state, data);
-    },
+      remove(state, data) {
+        data.eventType = "remove";
+        if (data.gateType) {
+          delete data.gateType;
+        }
+        updateG(state, data);
+      },
 
-    setMsg(state, data) {
-      state.msg = data;
-    },
+      setMsg(state, data) {
+        state.msg = data;
+      },
 
-    setAlert(state, data) {
-      if(state.alertsCnt > 1){
-        this.commit("clearAllAlert", state.alertsCnt);
-      }
-      let id = state.alertsCnt;
-      state.alerts[id] = { text: data, id: id };
-      state.alertsCnt += 1;
-    },
+      setAlert(state, data) {
+        if(state.alertsCnt > 1){
+          this.commit("clearAllAlert", state.alertsCnt);
+        }
+        let id = state.alertsCnt;
+        state.alerts[id] = { text: data, id: id };
+        state.alertsCnt += 1;
+      },
 
-    clearAllAlert(state, index) {
-      for(let i = 0; i<index; i++){
-        this.commit("clearAlert", i);
-      }
-    },
+      clearAllAlert(state, index) {
+        for(let i = 0; i<index; i++){
+          this.commit("clearAlert", i);
+        }
+      },
 
-    clearAlert(state, index) {
-      delete state.alerts[index];
-    },
+      clearAlert(state, index) {
+        delete state.alerts[index];
+      },
 
-  },
-  actions: {
-    init(context, data) {
-      if (!data) {
-        context.commit("init", context.getters.getGarage);
-      } else {
-        context.commit("init", data);
-      }
     },
-  },
-  getters: {
-    getGarage(state) {
-      return state.garageActual;
+    actions: {
+      init(context, data) {
+        if (!data) {
+          context.commit("init", context.getters.getGarage);
+        } else {
+          context.commit("init", data);
+        }
+      },
     },
-    getAlerts(state) {
-      return state.alerts;
-    },
-    getDefaults(state) {
-      return state.defaults;
-    },
-  },
-});
+    getters: {
+      getGarage(state) {
+        return state.garageActual;
+      },
+      getAlerts(state) {
+        return state.alerts;
+      },
+      getDefaults(state) {
+        return state.defaults;
+      },
+    }
+  })
+};
 
 //Private
 function updateG(state, data) {

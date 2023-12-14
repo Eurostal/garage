@@ -1487,6 +1487,7 @@ console.log('----' + material + '-------');
   },
 
   mounted: function () {
+    this.$translate('tłumaczenie w komponencie!')
     var form = document.querySelector("form.cart");
     if (document.querySelector("form.cart")) {
       // form.addEventListener("change", this.changeEventForm, { passive: true });
