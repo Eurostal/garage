@@ -1,13 +1,14 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import { createStore } from "./configurator/store/index.js";
+import { store } from "./configurator/store/index.js";
 import translationPlugin from "./plugins/translate.js";
 
-const app = createApp(App);
+export const app = createApp(App);
+
 app.use(translationPlugin)
-const store = createStore(app)
-store.dispatch("init");
+
 app.use(store);
+store.dispatch("init");
 
 app.mount("#app");
 

@@ -1,9 +1,9 @@
-import { createStore as createVuexStore } from "vuex";
+import { createStore } from "vuex";
 import { generator } from "../Generator";
 import { getRoofHeight } from "../roof"
+import { app } from '../../main'
 
-export const createStore = (app) => { 
-  return createVuexStore({
+export const store = createStore({ 
     state() {
       return {
         garageActual: {},
@@ -182,8 +182,7 @@ export const createStore = (app) => {
         return state.defaults;
       },
     }
-  })
-};
+});
 
 //Private
 function updateG(state, data) {
