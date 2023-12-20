@@ -377,7 +377,7 @@ export default {
       // Timeout to ensure plugin not overriding calculated value
       setTimeout(() => {
         tooltip.dataset.tmTooltipHtml = tooltip.dataset.tmTooltipHtml.split(':')[0] + ' ' + realDimension;
-        tooltip.style.display.cssText = "display:inline !important";
+        tooltip.style.cssText = "display:inline !important";
       }, 400);
     },
 
