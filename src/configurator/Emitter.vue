@@ -321,11 +321,10 @@ export default {
       } else {
         this.$store.commit("update", { ...object });
       }
-      this.setWidthHeightDescriptions(object)
       this.rawConfigSave()
     },
     
-    setWidthHeightDescriptions: function (object) {
+    setGateDescriptions: function (name,width,height) {
       const gateTooltips = {
         gate1: {
           width: document.querySelector('div[data-uniqid="625928cfacd5f2.48728982"] i[data-tm-tooltip-html]'),
@@ -337,27 +336,37 @@ export default {
         }
       };
 
-      const gateTooltip = gateTooltips[object.name];
+      const gateTypesRaw = {
+        gate1: document.querySelector('div[data-uniqid="625928cfacd5e1.56204472"] input:checked').value,
+        gate2: document.querySelector('div[data-uniqid="627b7715c54f09.72204841"] input:checked').value
+      }
 
-      if (!gateTooltip) {
+      
+      const gateTooltip = gateTooltips[name];
+      const gateTypeRaw = gateTypesRaw[name]
+
+      if (!gateTooltip || !gateTypeRaw) {
         return;
       }
 
-      if (object.gateType === "empty") {
+      const gateType = this.gateStyleTranslation[gateTypeRaw.split('_').reverse()[0]]
+
+      if (gateType === "empty") {
         gateTooltip.width.style.display = gateTooltip.height.style.display = "none";
       } else {
-        if (object.width) {
-          const realWidth = this.calcGateRealWidth(object.gateType, object.width);
-          gateTooltip.width.dataset.tmTooltipHtml = gateTooltip.width.dataset.tmTooltipHtml.split(':')[0] + ' ' + realWidth;
-          gateTooltip.width.style.display = "inline";
+        if (width) {
+          this.updateGateTooltip(gateTooltip.width, width, 'width', gateType)
         }
-
-        if (object.height) {
-          const realHeight = this.calcGateRealHeight(object.gateType, object.height);
-          gateTooltip.height.dataset.tmTooltipHtml = gateTooltip.height.dataset.tmTooltipHtml.split(':')[0] + ' ' + realHeight;
-          gateTooltip.height.style.display = "inline";
+        if (height) {
+          this.updateTooltip(gateTooltip.height, height, 'height', gateType);
         }
       }
+    },
+
+    updateGateTooltip: function (tooltip, dimension, type, gateType) {
+      const realDimension = type === 'width' ? this.calcGateRealWidth(gateType, dimension) : this.calcGateRealHeight(gateType, dimension);
+      tooltip.dataset.tmTooltipHtml = tooltip.dataset.tmTooltipHtml.split(':')[0] + ' ' + realDimension;
+      tooltip.style.display = "inline";
     },
 
     calcGateRealWidth: function (gateType, width){
@@ -501,32 +510,40 @@ export default {
       });
     },
     changeGate1WidthEvent: function (e) {
+      const widthFormatted = parseFloat(e.target.value.split(" ")[0])
+      this.setGateDescriptions("gate1",widthFormatted,null)
       this.changeGate("gate1", {
-        width: parseFloat(e.target.value.split(" ")[0]) / 100,
+        width: widthFormatted / 100,
       });
 
       document.querySelector("form.cart").querySelector('div[data-uniqid="627ae6819e8a97.45224982"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
     },
     changeGate2WidthEvent: function (e) {
+      const widthFormatted = parseFloat(e.target.value.split(" ")[0])
+      this.setGateDescriptions("gate2",widthFormatted,null)
       this.changeGate("gate2", {
-        width: parseFloat(e.target.value.split(" ")[0]) / 100,
+        width: widthFormatted / 100,
       });
 
       document.querySelector("form.cart").querySelector('div[data-uniqid="631872d1491992.81432171"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
     },
     changeGate1HeightEvent: function (e) {
+      const heightFormatted = parseFloat(e.target.value.split(" ")[0])
+      this.setGateDescriptions("gate1",null,heightFormatted)
       this.changeGate("gate1", {
-        height: parseFloat(e.target.value.split(" ")[0]) / 100,
+        height: heightFormatted / 100,
       });
 
       document.querySelector("form.cart").querySelector('div[data-uniqid="627ae6a39e8af4.67785060"] .tc-epo-label').textContent =
         e.target.value.split("_")[0];
     },
     changeGate2HeightEvent: function (e) {
+      const heightFormatted = parseFloat(e.target.value.split(" ")[0])
+      this.setGateDescriptions("gate2",null,heightFormatted)
       this.changeGate("gate2", {
-        height: parseFloat(e.target.value.split(" ")[0]) / 100,
+        height: heightFormatted / 100,
       });
 
       document.querySelector("form.cart").querySelector('div[data-uniqid="631872d84919a3.06627727"] .tc-epo-label').textContent =
