@@ -369,7 +369,11 @@ export default {
 
     updateGateTooltip: function (tooltip, dimension, type, gateType) {
       const realDimension = type === 'width' ? this.calcGateRealWidth(gateType, dimension) : this.calcGateRealHeight(gateType, dimension);
-      tooltip.dataset.tmTooltipHtml = tooltip.dataset.tmTooltipHtml.split(':')[0] + ' ' + realDimension;
+
+      // Timeout to ensure plugin not overriding calculated value
+      setTimeout(() => {
+        tooltip.dataset.tmTooltipHtml = tooltip.dataset.tmTooltipHtml.split(':')[0] + ' ' + realDimension;
+      }, 100);
       tooltip.style.display = "inline !important";
     },
 
