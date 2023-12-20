@@ -325,9 +325,70 @@ export default {
       } else {
         this.$store.commit("update", { ...object });
       }
-
+      this.setWidthHeightDescriptions()
       this.rawConfigSave()
     },
+    
+    setWidthHeightDescriptions: function (object) {
+      const gateTooltips = {
+        gate1: {
+          width: document.querySelector('div[data-uniqid="625928cfacd5f2.48728982"] i[data-tm-tooltip-html]'),
+          height: document.querySelector('div[data-uniqid="625928cfacd608.04744343"] i[data-tm-tooltip-html]')
+        },
+        gate2: {
+          width: document.querySelector('div[data-uniqid="627b7720c54f10.62015977"] i[data-tm-tooltip-html]'),
+          height: document.querySelector('div[data-uniqid="627b772ac54f28.86727207"] i[data-tm-tooltip-html]')
+        }
+      };
+
+      const gateTooltip = gateTooltips[object.name];
+
+      if (!gateTooltip) {
+        return;
+      }
+
+      if (object.gateType === "empty") {
+        gateTooltip.width.style.display = gateTooltip.height.style.display = "none";
+      } else {
+        const realWidth = this.calcGateRealWidth(object.gateType, object.width);
+        const realHeight = this.calcGateRealHeight(object.gateType, object.width);
+
+        gateTooltip.width.dataset.tmTooltipHtml = gateTooltip.width.dataset.tmTooltipHtml.split(':')[0] + ' ' + realWidth;
+        gateTooltip.height.dataset.tmTooltipHtml = gateTooltip.height.dataset.tmTooltipHtml.split(':')[0] + ' ' + realHeight;
+
+        gateTooltip.width.style.display = gateTooltip.height.style.display = "inline";
+      }
+    },
+
+    calcGateRealWidth: function (gateType, width){
+      const DOUBLE_WIDTH_ADJUSTMENT = 10;
+      const TILTED_WIDTH_ADJUSTMENT = 27;
+  
+      let realWidth = width   
+
+      if (gateType == "double" || gateType == "double-width") {
+        realWidth -= DOUBLE_WIDTH_ADJUSTMENT;
+      }
+
+      if (gateType == "tilted" || gateType == "wide") {
+        realWidth -=TILTED_WIDTH_ADJUSTMENT ;        
+      }
+
+      return realWidth + ' cm'
+    },
+
+    calcGateRealHeight: function (gateType, height){
+      const TILTED_HEIGHT_ADJUSTMENT = 10;
+      let realHeight = height   
+
+      if (gateType == "tilted" || gateType == "wide") {
+        realHeight -= TILTED_HEIGHT_ADJUSTMENT ;        
+      }
+
+      return realHeight + ' cm'
+
+    },
+
     changeGate1Event: function (e) {
       let object = {};
       object.type = e.target.value;
