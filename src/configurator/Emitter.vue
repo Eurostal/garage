@@ -325,7 +325,7 @@ export default {
       } else {
         this.$store.commit("update", { ...object });
       }
-      this.setWidthHeightDescriptions()
+      this.setWidthHeightDescriptions(object)
       this.rawConfigSave()
     },
     
