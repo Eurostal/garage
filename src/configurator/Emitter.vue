@@ -346,13 +346,17 @@ export default {
       if (object.gateType === "empty") {
         gateTooltip.width.style.display = gateTooltip.height.style.display = "none";
       } else {
-        const realWidth = this.calcGateRealWidth(object.gateType, object.width);
-        const realHeight = this.calcGateRealHeight(object.gateType, object.width);
+        if (object.width) {
+          const realWidth = this.calcGateRealWidth(object.gateType, object.width);
+          gateTooltip.width.dataset.tmTooltipHtml = gateTooltip.width.dataset.tmTooltipHtml.split(':')[0] + ' ' + realWidth;
+          gateTooltip.width.style.display = "inline";
+        }
 
-        gateTooltip.width.dataset.tmTooltipHtml = gateTooltip.width.dataset.tmTooltipHtml.split(':')[0] + ' ' + realWidth;
-        gateTooltip.height.dataset.tmTooltipHtml = gateTooltip.height.dataset.tmTooltipHtml.split(':')[0] + ' ' + realHeight;
-
-        gateTooltip.width.style.display = gateTooltip.height.style.display = "inline";
+        if (object.height) {
+          const realHeight = this.calcGateRealHeight(object.gateType, object.height);
+          gateTooltip.height.dataset.tmTooltipHtml = gateTooltip.height.dataset.tmTooltipHtml.split(':')[0] + ' ' + realHeight;
+          gateTooltip.height.style.display = "inline";
+        }
       }
     },
 
@@ -360,7 +364,7 @@ export default {
       const DOUBLE_WIDTH_ADJUSTMENT = 10;
       const TILTED_WIDTH_ADJUSTMENT = 27;
   
-      let realWidth = width   
+      let realWidth = width * 100  
 
       if (gateType == "double" || gateType == "double-width") {
         realWidth -= DOUBLE_WIDTH_ADJUSTMENT;
@@ -375,7 +379,7 @@ export default {
 
     calcGateRealHeight: function (gateType, height){
       const TILTED_HEIGHT_ADJUSTMENT = 10;
-      let realHeight = height   
+      let realHeight = height * 100
 
       if (gateType == "tilted" || gateType == "wide") {
         realHeight -= TILTED_HEIGHT_ADJUSTMENT ;        
