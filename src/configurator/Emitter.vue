@@ -352,13 +352,13 @@ export default {
       const gateType = this.gateNameTranslation[gateTypeRaw.split('_').reverse()[0]]
 
       if (gateType === "empty") {
-        gateTooltip.width.style.display = gateTooltip.height.style.display = "none !important";
+        gateTooltip.width.style.cssText = gateTooltip.height.style.cssText = "display:none !important";
       } else {
         if (width) {
           this.updateGateTooltip(gateTooltip.width, width, 'width', gateType)
         }
         if (height) {
-          this.updateTooltip(gateTooltip.height, height, 'height', gateType);
+          this.updateGateTooltip(gateTooltip.height, height, 'height', gateType);
         }
       }
     },
@@ -369,8 +369,8 @@ export default {
       // Timeout to ensure plugin not overriding calculated value
       setTimeout(() => {
         tooltip.dataset.tmTooltipHtml = tooltip.dataset.tmTooltipHtml.split(':')[0] + ' ' + realDimension;
-      }, 100);
-      tooltip.style.display = "inline !important";
+      }, 500);
+      tooltip.style.display.cssText = "display:inline !important";
     },
 
     calcGateRealWidth: function (gateType, width){
