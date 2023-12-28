@@ -311,7 +311,7 @@ function updateG(state, data) {
       }
     }
     if (!hasEnternance) {
-      store.commit("setAlert", "Nincs bejárat a garázsba, adjon hozzá egy kaput vagy ajtót");
+      store.commit("setAlert", "There is no entrance to the garage, add a gate or door");
     }
   }
 }
@@ -524,7 +524,7 @@ function validateDoor(data, garage) {
     data.height = 2
   }else{
     data.height = tempDoorHeight
-    store.commit("setAlert", "Výška dveří snížena");
+    store.commit("setAlert", "Door height reduced");
   }
 }
 
