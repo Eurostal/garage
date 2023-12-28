@@ -200,15 +200,15 @@ export default {
           default:
           switch (newMsg.eventName) {
               case 'noSpaceWall':
-              this.$store.commit("setAlert", "Na vybranej stene nie je miesto.");
+              this.$store.commit("setAlert", "There is no space on the selected wall.");
                 break;
               case 'reInitFailed':
                 if (newMsg.value.reason == 'roofChange') {
-                  this.$store.commit("setAlert", "Nemôžete zmeniť typ strechy, znížiť alebo odstrániť doplnky na stenách.");            
+                  this.$store.commit("setAlert", "You cannot change the type of roof, move or delete accessories on the walls.");
                 }
 
                 if (newMsg.value.reason == 'sizeChange') {
-                  this.$store.commit("setAlert", "Garáž nemožno meniť, presúvať ani odstraňovať príslušenstvo na stenách.");        
+                  this.$store.commit("setAlert", "The garage cannot be changed, move or delete accessories on the walls.");
                 }
                 break;
             }
