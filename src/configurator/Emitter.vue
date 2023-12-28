@@ -200,15 +200,15 @@ export default {
           default:
           switch (newMsg.eventName) {
               case 'noSpaceWall':
-              this.$store.commit("setAlert", "There is no space on the selected wall.");
+              this.$store.commit("setAlert", garage_woocommerce_i18n_translations?.i18n_wall_space ?? "There is no space on the selected wall.");
                 break;
               case 'reInitFailed':
                 if (newMsg.value.reason == 'roofChange') {
-                  this.$store.commit("setAlert", "You cannot change the type of roof, move or delete accessories on the walls.");
+                  this.$store.commit("setAlert", garage_woocommerce_i18n_translations?.i18n_roof_accessories ?? "You cannot change the type of roof, move or delete accessories on the walls.");
                 }
 
                 if (newMsg.value.reason == 'sizeChange') {
-                  this.$store.commit("setAlert", "The garage cannot be changed, move or delete accessories on the walls.");
+                  this.$store.commit("setAlert", garage_woocommerce_i18n_translations?.i18n_wall_accessories ?? "The garage cannot be changed, move or delete accessories on the walls.");
                 }
                 break;
             }

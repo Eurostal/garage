@@ -146,7 +146,8 @@ export const store = createStore({
           this.commit("clearAllAlert", state.alertsCnt);
         }
         let id = state.alertsCnt;
-        state.alerts[id] = { text: app.config.globalProperties.$translate(data), id: id };
+        // state.alerts[id] = { text: app.config.globalProperties.$translate(data), id: id }; // translation using wp.i18n
+        state.alerts[id] = { text: data, id: id };
         state.alertsCnt += 1;
       },
 
@@ -310,7 +311,7 @@ function updateG(state, data) {
       }
     }
     if (!hasEnternance) {
-      store.commit("setAlert", "There is no entrance to the garage, add a gate or door");
+      store.commit("setAlert", garage_woocommerce_i18n_translations?.i18n_no_entance ?? "There is no entrance to the garage, add a gate or door");
     }
   }
 }
@@ -532,7 +533,7 @@ function validateDoor(data, garage) {
     data.height = 2
   }else{
     data.height = tempDoorHeight
-    store.commit("setAlert", "Door height reduced");
+    store.commit("setAlert", garage_woocommerce_i18n_translations?.i18n_door_height_reduced ?? "Door height reduced");
   }
 }
 
