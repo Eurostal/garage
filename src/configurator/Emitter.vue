@@ -387,7 +387,7 @@ export default {
   
       let realWidth = width
 
-      if (gateType == "double" || gateType == "double-widte") {
+      if (gateType == "double" || gateType == "double-wide") {
         realWidth -= DOUBLE_WIDTH_ADJUSTMENT;
       }
 
