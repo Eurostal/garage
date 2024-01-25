@@ -77,7 +77,13 @@ export const store = createStore({
       const wallNames = ["front", "back", "left", "right"];
       const walls = Object.values(state.garageUpdated.walls);
 
-      if (state.garageUpdated.roof.roofType == "gable" && state.garageUpdated.height == 2) {
+      const garageHeight = Math.max(
+        ...Object.values(state.garageUpdated.walls.front.elements)
+          .filter((element) => element.type === "gate")
+          .map((element) => element.height)
+      );
+
+      if (state.garageUpdated.roof.roofType == "gable" && garageHeight.height == 2) {
         state.garageUpdated.height = 2.13;
       }
 
