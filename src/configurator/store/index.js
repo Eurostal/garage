@@ -77,15 +77,8 @@ export const store = createStore({
       const wallNames = ["front", "back", "left", "right"];
       const walls = Object.values(state.garageUpdated.walls);
 
-      let garageHeight = 0;
-      Object.values(state.garageUpdated.walls.front.elements).forEach((element) => {
-        if (element.type == "gate" && garageHeight < element.height) {
-          garageHeight = element.height;
-        }
-      });
-
-      if (state.garageUpdated.roof.roofType == "gable") {
-        garageHeight += 0.13;
+      if (state.garageUpdated.roof.roofType == "gable" && state.garageUpdated.height == 2) {
+        state.garageUpdated.height = 2.13;
       }
 
       let fits = true;
@@ -133,8 +126,8 @@ export const store = createStore({
         });
       });
       if (fits) {
-        generator.initialize({ ...state.garageUpdated, height: garageHeight }, true);
-        state.garageActual = { ...state.garageUpdated, height: garageHeight };
+        generator.initialize(state.garageUpdated, true);
+        state.garageActual = { ...state.garageUpdated };
       }
     },
 
