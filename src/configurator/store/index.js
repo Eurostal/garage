@@ -77,13 +77,13 @@ export const store = createStore({
       const wallNames = ["front", "back", "left", "right"];
       const walls = Object.values(state.garageUpdated.walls);
 
-      const garageHeight = Math.max(
-        ...Object.values(state.garageUpdated.walls.front.elements)
-          .filter((element) => element.type === "gate")
-          .map((element) => element.height)
-      );
+      const frontWallElements = Object.values(state.garageUpdated.walls.front.elements);
+      const gateHeights = frontWallElements.filter((element) => element.type === "gate").map((element) => element.height);
 
-      state.garageUpdated.height = state.garageUpdated.roof.roofType === "gable" && garageHeight === 2 ? 2.13 : garageHeight;
+      const garageHeight = Math.max(...gateHeights);
+      const hasGateWithHeight2 = gateHeights.includes(2);
+
+      state.garageUpdated.height = state.garageUpdated.roof.roofType === "gable" && hasGateWithHeight2 && garageHeight < 2.13 ? 2.13 : garageHeight;
 
       let fits = true;
 
