@@ -84,7 +84,7 @@ export const store = createStore({
         }
       });
 
-      if (state.garageUpdated.roofType == "gable") {
+      if (state.garageUpdated.roof.roofType == "gable") {
         garageHeight += 0.13;
       }
 
