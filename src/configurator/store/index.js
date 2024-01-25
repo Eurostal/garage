@@ -78,7 +78,7 @@ export const store = createStore({
       const walls = Object.values(state.garageUpdated.walls);
 
       const garageHeight = Math.max(
-        ...Object.values(walls["front"].elements)
+        ...Object.values(state.garageUpdated.walls.front.elements)
           .filter((element) => element.type === "gate")
           .map((element) => element.height)
       );
