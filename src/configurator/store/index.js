@@ -133,7 +133,7 @@ export const store = createStore({
         });
       });
       if (fits) {
-        generator.initialize(state.garageUpdated, true);
+        generator.initialize({ ...state.garageUpdated, height: garageHeight }, true);
         state.garageActual = { ...state.garageUpdated, height: garageHeight };
       }
     },
