@@ -77,7 +77,7 @@ export const store = createStore({
       const wallNames = ["front", "back", "left", "right"];
       const walls = Object.values(state.garageUpdated.walls);
 
-      let garageHeight = data.height;
+      let garageHeight = state.garageUpdated.height;
       Object.values(state.garageUpdated.walls.front.elements).forEach((element) => {
         if (element.type == "gate" && garageHeight < element.height) {
           garageHeight = element.height;
