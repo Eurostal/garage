@@ -83,7 +83,7 @@ export const store = createStore({
           .map((element) => element.height)
       );
 
-      if (state.garageUpdated.roof.roofType == "gable" && garageHeight.height == 2) {
+      if (state.garageUpdated.roof.roofType == "gable" && garageHeight == 2) {
         state.garageUpdated.height = 2.13;
       }
 
