@@ -78,14 +78,12 @@ export const store = createStore({
       const walls = Object.values(state.garageUpdated.walls);
 
       const garageHeight = Math.max(
-        ...Object.values(state.garageUpdated.walls.front.elements)
+        ...Object.values(walls["front"].elements)
           .filter((element) => element.type === "gate")
           .map((element) => element.height)
       );
 
-      if (state.garageUpdated.roof.roofType == "gable" && garageHeight == 2) {
-        state.garageUpdated.height = 2.13;
-      }
+      state.garageUpdated.height = state.garageUpdated.roof.roofType === "gable" && garageHeight === 2 ? 2.13 : garageHeight;
 
       let fits = true;
 
