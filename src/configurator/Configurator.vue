@@ -16,7 +16,7 @@
 
 <script setup>
 import Emitter from "./Emitter.vue";
-import { onMounted, computed} from "@vue/runtime-core";
+import { onMounted, computed } from "@vue/runtime-core";
 import { generator } from "./Generator";
 import { useStore } from "vuex";
 
@@ -34,7 +34,7 @@ onMounted(() => {
   const container = document.getElementById("scene-container");
   const scene = generator.getScene();
   const renderer = createRenderer(container);
-  const {camera,controls} = createCamera(container, renderer);
+  const { camera, controls } = createCamera(container, renderer);
 
   scene.add(camera);
 
@@ -61,7 +61,6 @@ onMounted(() => {
 </script>
 
 <style>
-
 #temp-renderer-container {
   visibility: hidden;
 }
@@ -70,6 +69,7 @@ ul.sides {
   display: flex;
   list-style: none;
 }
+
 .sides canvas {
   margin-right: 10px;
 }
@@ -150,7 +150,7 @@ ul.sides {
   color: #fff !important;
 }
 
-.save-btn-div{
+.save-btn-div {
   visibility: hidden !important;
   order: 2;
 }
@@ -219,6 +219,7 @@ div.summary.entry-summary.tc-init {
 }
 
 @media only screen and (min-width: 768px) {
+
   .tm-extra-product-options ul.tmcp-elements li.tmcp-field-wrap.tc-mode-startimages .checkbox-image.checkbox-image,
   .tm-extra-product-options ul.tmcp-elements li.tmcp-field-wrap.tc-mode-startimages .radio-image {
     width: 100px !important;
@@ -256,6 +257,12 @@ div.summary.entry-summary.tc-init {
     max-width: 20% !important;
   }
 
+  [data-uniqid="625928cfacd5e1.56204472"].tc-cell.cpf-type-radio ul li.tc-mode-images,
+  [data-uniqid="627b7715c54f09.72204841"].tc-cell.cpf-type-radio ul li.tc-mode-images {
+    flex: 0 0 33% !important;
+    max-width: 33% !important;
+  }
+
   #app {
     padding: 0;
     height: auto;
@@ -277,6 +284,7 @@ div.summary.entry-summary.tc-init {
 .list-leave-active {
   transition: all 0.5s ease;
 }
+
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
@@ -352,10 +360,10 @@ h3.tc-cell.tc-epo-label.tm-epo-element-label.tcwidth-100::after {
 }
 */
 /* Hidden img preview */
-.postid-6213 #tab-description > p > img.alignnone.size-medium.wp-image-18,
-.postid-6213 #tab-description > p > img.alignnone.size-medium.wp-image-21,
-.postid-6213 #tab-description > p > img.alignnone.size-medium.wp-image-20,
-.postid-6213 #tab-description > p > img.alignnone.size-medium.wp-image-19 {
+.postid-6213 #tab-description>p>img.alignnone.size-medium.wp-image-18,
+.postid-6213 #tab-description>p>img.alignnone.size-medium.wp-image-21,
+.postid-6213 #tab-description>p>img.alignnone.size-medium.wp-image-20,
+.postid-6213 #tab-description>p>img.alignnone.size-medium.wp-image-19 {
   display: none;
   position: fixed;
   right: 100px;
@@ -366,7 +374,7 @@ h3.tc-cell.tc-epo-label.tm-epo-element-label.tcwidth-100::after {
 }
 
 @media (max-width: 1100px) {
-  .postid-6213 #tab-description > p > img {
+  .postid-6213 #tab-description>p>img {
     right: 50px !important;
     bottom: 80px !important;
   }
@@ -393,7 +401,7 @@ h3.tc-cell.tc-epo-label.tm-epo-element-label.tm-has-required.tcwidth-100 {
 }
 
 /* Roof type img bg */
-.postid-6213 ul > li > label > span > img.square {
+.postid-6213 ul>li>label>span>img.square {
   background: #f8f8f8;
   transition: 0.2s ease-in;
 }
@@ -424,20 +432,20 @@ li.tmcp-field-wrap.tmhexcolorimage-li-nowh.tm-per-row.tc-mode-images:hover span.
 }
 
 /* Garage dynamic dimensions value red */
-#tc-epo-form-6213-0 > div:nth-child(2) > div > div > div > .tc-row {
+#tc-epo-form-6213-0>div:nth-child(2)>div>div>div>.tc-row {
   padding: 0 15px;
 }
 
-#tc-epo-form-6213-0 > div:nth-child(2) > div > div > div > div > div:nth-child(8) > div > div > h5,
-#tc-epo-form-6213-0 > div:nth-child(2) > div > div > div > div > div:nth-child(10) > div > div > h5,
-#tc-epo-form-6213-0 > div:nth-child(2) > div > div > div > div > div:nth-child(12) > div > div > h5,
-#tc-epo-form-6213-0 > div:nth-child(2) > div > div > div > div > div:nth-child(14) > div > div > h5,
-#tc-epo-form-6213-0 > div:nth-child(2) > div > div > div > div > div:nth-child(16) > div > div > h5 {
+#tc-epo-form-6213-0>div:nth-child(2)>div>div>div>div>div:nth-child(8)>div>div>h5,
+#tc-epo-form-6213-0>div:nth-child(2)>div>div>div>div>div:nth-child(10)>div>div>h5,
+#tc-epo-form-6213-0>div:nth-child(2)>div>div>div>div>div:nth-child(12)>div>div>h5,
+#tc-epo-form-6213-0>div:nth-child(2)>div>div>div>div>div:nth-child(14)>div>div>h5,
+#tc-epo-form-6213-0>div:nth-child(2)>div>div>div>div>div:nth-child(16)>div>div>h5 {
   color: #cc0d27;
 }
 
 /* Horizontal separator */
-#tc-epo-form-6213-0 > div:nth-child(2) > div > div > div > div > div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-divider {
+#tc-epo-form-6213-0>div:nth-child(2)>div>div>div>div>div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-divider {
   margin-bottom: 0;
   margin-top: 15px;
 }
@@ -518,95 +526,18 @@ span.tc-epo-style-wrapper.square2 {
 }
 
 /* "+" sign in Dodaj okno & Dodaj drzwi, removing standard styling */
-#tc-epo-form-6213-0
-  > div:nth-child(18)
-  > div
-  > div
-  > div
-  > div
-  > div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.tc-container-enabled
-  > div
-  > div
-  > div
-  > ul
-  > li
-  > label
-  > span.tc-epo-style-wrapper.square2,
-#tc-epo-form-6213-0
-  > div:nth-child(20)
-  > div
-  > div
-  > div
-  > div
-  > div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.iscpfdependson.is-epo-depend.tc-container-enabled
-  > div
-  > div
-  > div
-  > ul
-  > li
-  > label
-  > span.tc-epo-style-wrapper.square2,
-#tc-epo-form-6213-0
-  > div:nth-child(22)
-  > div
-  > div
-  > div
-  > div
-  > div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.iscpfdependson.is-epo-depend.tc-container-enabled
-  > div
-  > div
-  > div
-  > ul
-  > li
-  > label
-  > span.tc-epo-style-wrapper.square2 {
+#tc-epo-form-6213-0>div:nth-child(18)>div>div>div>div>div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.tc-container-enabled>div>div>div>ul>li>label>span.tc-epo-style-wrapper.square2,
+#tc-epo-form-6213-0>div:nth-child(20)>div>div>div>div>div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.iscpfdependson.is-epo-depend.tc-container-enabled>div>div>div>ul>li>label>span.tc-epo-style-wrapper.square2,
+#tc-epo-form-6213-0>div:nth-child(22)>div>div>div>div>div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.iscpfdependson.is-epo-depend.tc-container-enabled>div>div>div>ul>li>label>span.tc-epo-style-wrapper.square2 {
   color: #fff;
   background: #fff;
   border: none;
 }
+
 /* "+" sign (|) in Dodaj okno & Dodaj drzwi checkbox */
-#tc-epo-form-6213-0
-  > div:nth-child(18)
-  > div
-  > div
-  > div
-  > div
-  > div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.tc-container-enabled
-  > div
-  > div
-  > div
-  > ul
-  > li
-  > label
-  > span.tc-epo-style-wrapper.square2:before,
-#tc-epo-form-6213-0
-  > div:nth-child(20)
-  > div
-  > div
-  > div
-  > div
-  > div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.iscpfdependson.is-epo-depend.tc-container-enabled
-  > div
-  > div
-  > div
-  > ul
-  > li
-  > label
-  > span.tc-epo-style-wrapper.square2:before,
-#tc-epo-form-6213-0
-  > div:nth-child(22)
-  > div
-  > div
-  > div
-  > div
-  > div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.iscpfdependson.is-epo-depend.tc-container-enabled
-  > div
-  > div
-  > div
-  > ul
-  > li
-  > label
-  > span.tc-epo-style-wrapper.square2:before {
+#tc-epo-form-6213-0>div:nth-child(18)>div>div>div>div>div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.tc-container-enabled>div>div>div>ul>li>label>span.tc-epo-style-wrapper.square2:before,
+#tc-epo-form-6213-0>div:nth-child(20)>div>div>div>div>div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.iscpfdependson.is-epo-depend.tc-container-enabled>div>div>div>ul>li>label>span.tc-epo-style-wrapper.square2:before,
+#tc-epo-form-6213-0>div:nth-child(22)>div>div>div>div>div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.iscpfdependson.is-epo-depend.tc-container-enabled>div>div>div>ul>li>label>span.tc-epo-style-wrapper.square2:before {
   content: "";
   position: absolute;
   background: #cc0d27;
@@ -616,49 +547,11 @@ span.tc-epo-style-wrapper.square2 {
   width: 3px;
   z-index: 1;
 }
+
 /* "+" sign (-) in Dodaj okno & Dodaj drzwi checkbox */
-#tc-epo-form-6213-0
-  > div:nth-child(18)
-  > div
-  > div
-  > div
-  > div
-  > div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.tc-container-enabled
-  > div
-  > div
-  > div
-  > ul
-  > li
-  > label
-  > span.tc-epo-style-wrapper.square2:after,
-#tc-epo-form-6213-0
-  > div:nth-child(20)
-  > div
-  > div
-  > div
-  > div
-  > div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.iscpfdependson.is-epo-depend.tc-container-enabled
-  > div
-  > div
-  > div
-  > ul
-  > li
-  > label
-  > span.tc-epo-style-wrapper.square2:after,
-#tc-epo-form-6213-0
-  > div:nth-child(22)
-  > div
-  > div
-  > div
-  > div
-  > div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.iscpfdependson.is-epo-depend.tc-container-enabled
-  > div
-  > div
-  > div
-  > ul
-  > li
-  > label
-  > span.tc-epo-style-wrapper.square2:after {
+#tc-epo-form-6213-0>div:nth-child(18)>div>div>div>div>div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.tc-container-enabled>div>div>div>ul>li>label>span.tc-epo-style-wrapper.square2:after,
+#tc-epo-form-6213-0>div:nth-child(20)>div>div>div>div>div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.iscpfdependson.is-epo-depend.tc-container-enabled>div>div>div>ul>li>label>span.tc-epo-style-wrapper.square2:after,
+#tc-epo-form-6213-0>div:nth-child(22)>div>div>div>div>div.tc-container.cpf-element.tc-cell.tcwidth-100.cpf-type-checkbox.iscpfdependson.is-epo-depend.tc-container-enabled>div>div>div>ul>li>label>span.tc-epo-style-wrapper.square2:after {
   content: "";
   position: absolute;
   background: #cc0d27;
@@ -667,9 +560,11 @@ span.tc-epo-style-wrapper.square2 {
   width: 17px;
   height: 3px;
 }
+
 span.tc-label.tm-label {
   cursor: pointer;
 }
+
 /*	span.tc-label.tm-epo-style.square2 {
     z-index: 1;
     background: #fff;
@@ -681,7 +576,7 @@ h3.tc-cell.tc-epo-label.tm-epo-element-label.tcwidth-100 {
 }
 
 /* Grey vertical separator */
-#tc-epo-form-6213-0 > div:nth-child(18) > div > div > div > div > div:nth-child(3):before {
+#tc-epo-form-6213-0>div:nth-child(18)>div>div>div>div>div:nth-child(3):before {
   content: "";
   position: absolute;
   left: 1px;
@@ -736,7 +631,7 @@ hr.hr_divider.tc-cell.tc-width100 {
 
 /* Grey vertical separators */
 /* Separator of okno dodaki as before */
-#tc-epo-form-6213-0 > div:nth-child(18) > div > div > div > div > div:nth-child(3):before {
+#tc-epo-form-6213-0>div:nth-child(18)>div>div>div>div>div:nth-child(3):before {
   content: "";
   position: absolute;
   left: 1px;
@@ -763,21 +658,21 @@ label.tm-epo-field-label.fullwidth:after {
 
 /* Borders around each section */
 /* Dach */
-#tc-epo-form-6213-0 > div:nth-child(1) > div > div > div > div {
+#tc-epo-form-6213-0>div:nth-child(1)>div>div>div>div {
   background: #fff;
   padding: 15px;
 }
 
 /* Wymiary dach */
-#tc-epo-form-6213-0 > div:nth-child(2) > div > div > div {
+#tc-epo-form-6213-0>div:nth-child(2)>div>div>div {
   background: #fff;
   padding: 15px;
 }
 
 /* Rodzaj konstrukcji */
-#tc-epo-form-6213-0 > div:nth-child(4) > div > div,
+#tc-epo-form-6213-0>div:nth-child(4)>div>div,
 /* Typ bramy */
-#tc-epo-form-6213-0 > div:nth-child(6) > div > div {
+#tc-epo-form-6213-0>div:nth-child(6)>div>div {
   background: #fff;
 
   padding: 15px;
@@ -785,167 +680,186 @@ label.tm-epo-field-label.fullwidth:after {
 
 /* Meksyk */
 /* Poszycie top */
-#tc-epo-form-6213-0 > div:nth-child(9) > div > div {
+#tc-epo-form-6213-0>div:nth-child(9)>div>div {
   padding: 15px;
 }
+
 /* Poszycie left&right */
-#tc-epo-form-6213-0 > div:nth-child(9) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(10) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(12) > div > div {
+#tc-epo-form-6213-0>div:nth-child(9)>div>div,
+#tc-epo-form-6213-0>div:nth-child(10)>div>div,
+#tc-epo-form-6213-0>div:nth-child(12)>div>div {
   background: #fff;
 }
-#tc-epo-form-6213-0 > div:nth-child(11) > div > div {
+
+#tc-epo-form-6213-0>div:nth-child(11)>div>div {
   background: #fff;
 }
-#tc-epo-form-6213-0 > div:nth-child(13) > div > div {
-}
-#tc-epo-form-6213-0 > div:nth-child(15) > div > div {
-}
+
+#tc-epo-form-6213-0>div:nth-child(13)>div>div {}
+
+#tc-epo-form-6213-0>div:nth-child(15)>div>div {}
+
 /* Poszycie buttons 'dostosuj kolor' bottom */
-#tc-epo-form-6213-0 > div:nth-child(13) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(14) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(15) > div > div {
+#tc-epo-form-6213-0>div:nth-child(13)>div>div,
+#tc-epo-form-6213-0>div:nth-child(14)>div>div,
+#tc-epo-form-6213-0>div:nth-child(15)>div>div {
   background: #fff;
 }
 
 /* Dodatki */
 /* border left & right */
-#tc-epo-form-6213-0 > div:nth-child(19) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(20) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(21) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(22) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(23) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(24) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(25) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(26) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(27) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(28) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(29) > div > div {
+#tc-epo-form-6213-0>div:nth-child(19)>div>div,
+#tc-epo-form-6213-0>div:nth-child(20)>div>div,
+#tc-epo-form-6213-0>div:nth-child(21)>div>div,
+#tc-epo-form-6213-0>div:nth-child(22)>div>div,
+#tc-epo-form-6213-0>div:nth-child(23)>div>div,
+#tc-epo-form-6213-0>div:nth-child(24)>div>div,
+#tc-epo-form-6213-0>div:nth-child(25)>div>div,
+#tc-epo-form-6213-0>div:nth-child(26)>div>div,
+#tc-epo-form-6213-0>div:nth-child(27)>div>div,
+#tc-epo-form-6213-0>div:nth-child(28)>div>div,
+#tc-epo-form-6213-0>div:nth-child(29)>div>div {
   padding: 0 30px;
   background: #fff;
 }
 
 /* UPDATE */
-#tc-epo-form-6213-0 > div:nth-child(1),
-#tc-epo-form-6213-0 > div:nth-child(2),
-#tc-epo-form-6213-0 > div:nth-child(3),
-#tc-epo-form-6213-0 > div:nth-child(4),
-#tc-epo-form-6213-0 > div:nth-child(5),
-#tc-epo-form-6213-0 > div:nth-child(6),
-#tc-epo-form-6213-0 > div:nth-child(7),
-#tc-epo-form-6213-0 > div:nth-child(8),
-#tc-epo-form-6213-0 > div:nth-child(9),
-#tc-epo-form-6213-0 > div:nth-child(10),
-#tc-epo-form-6213-0 > div:nth-child(11) {
+#tc-epo-form-6213-0>div:nth-child(1),
+#tc-epo-form-6213-0>div:nth-child(2),
+#tc-epo-form-6213-0>div:nth-child(3),
+#tc-epo-form-6213-0>div:nth-child(4),
+#tc-epo-form-6213-0>div:nth-child(5),
+#tc-epo-form-6213-0>div:nth-child(6),
+#tc-epo-form-6213-0>div:nth-child(7),
+#tc-epo-form-6213-0>div:nth-child(8),
+#tc-epo-form-6213-0>div:nth-child(9),
+#tc-epo-form-6213-0>div:nth-child(10),
+#tc-epo-form-6213-0>div:nth-child(11) {
   order: -1;
 }
 
-#tc-epo-form-6213-0 > div:nth-child(12) {
+#tc-epo-form-6213-0>div:nth-child(12) {
   order: 0;
 }
-#tc-epo-form-6213-0 > div:nth-child(13) {
+
+#tc-epo-form-6213-0>div:nth-child(13) {
   order: 2;
 }
-#tc-epo-form-6213-0 > div:nth-child(14) {
+
+#tc-epo-form-6213-0>div:nth-child(14) {
   order: 4;
 }
-#tc-epo-form-6213-0 > div:nth-child(15) {
+
+#tc-epo-form-6213-0>div:nth-child(15) {
   order: 1;
 }
-#tc-epo-form-6213-0 > div:nth-child(16) {
+
+#tc-epo-form-6213-0>div:nth-child(16) {
   order: 3;
 }
-#tc-epo-form-6213-0 > div:nth-child(17) {
+
+#tc-epo-form-6213-0>div:nth-child(17) {
   order: 5;
 }
 
-#tc-epo-form-6213-0 > div:nth-child(18),
-#tc-epo-form-6213-0 > div:nth-child(19),
-#tc-epo-form-6213-0 > div:nth-child(20),
-#tc-epo-form-6213-0 > div:nth-child(21),
-#tc-epo-form-6213-0 > div:nth-child(22),
-#tc-epo-form-6213-0 > div:nth-child(23),
-#tc-epo-form-6213-0 > div:nth-child(24),
-#tc-epo-form-6213-0 > div:nth-child(25),
-#tc-epo-form-6213-0 > div:nth-child(26),
-#tc-epo-form-6213-0 > div:nth-child(27),
-#tc-epo-form-6213-0 > div:nth-child(28),
-#tc-epo-form-6213-0 > div:nth-child(29) {
+#tc-epo-form-6213-0>div:nth-child(18),
+#tc-epo-form-6213-0>div:nth-child(19),
+#tc-epo-form-6213-0>div:nth-child(20),
+#tc-epo-form-6213-0>div:nth-child(21),
+#tc-epo-form-6213-0>div:nth-child(22),
+#tc-epo-form-6213-0>div:nth-child(23),
+#tc-epo-form-6213-0>div:nth-child(24),
+#tc-epo-form-6213-0>div:nth-child(25),
+#tc-epo-form-6213-0>div:nth-child(26),
+#tc-epo-form-6213-0>div:nth-child(27),
+#tc-epo-form-6213-0>div:nth-child(28),
+#tc-epo-form-6213-0>div:nth-child(29) {
   order: 10;
 }
 
-#tc-epo-form-6213-0 > div:nth-child(12) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(13) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(14) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(15) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(16) > div > div,
-#tc-epo-form-6213-0 > div:nth-child(17) > div > div {
+#tc-epo-form-6213-0>div:nth-child(12)>div>div,
+#tc-epo-form-6213-0>div:nth-child(13)>div>div,
+#tc-epo-form-6213-0>div:nth-child(14)>div>div,
+#tc-epo-form-6213-0>div:nth-child(15)>div>div,
+#tc-epo-form-6213-0>div:nth-child(16)>div>div,
+#tc-epo-form-6213-0>div:nth-child(17)>div>div {
   border-bottom: 0;
   background: #fff;
 }
 
 @media (min-width: 768px) {
-  #tc-epo-form-6213-0 > div:nth-child(12) > div > div {
+  #tc-epo-form-6213-0>div:nth-child(12)>div>div {
     border-right: 0;
   }
-  #tc-epo-form-6213-0 > div:nth-child(13) > div > div {
+
+  #tc-epo-form-6213-0>div:nth-child(13)>div>div {
     border-right: 0;
-    border-left: 0;
-  }
-  #tc-epo-form-6213-0 > div:nth-child(14) > div > div {
-    border-left: 0;
-  }
-  #tc-epo-form-6213-0 > div:nth-child(15) > div > div {
-    border-right: 0;
-  }
-  #tc-epo-form-6213-0 > div:nth-child(16) > div > div {
-    border-right: 0;
-    border-left: 0;
-  }
-  #tc-epo-form-6213-0 > div:nth-child(17) > div > div {
     border-left: 0;
   }
 
-  #tc-epo-form-6213-0 > div:nth-child(12) {
+  #tc-epo-form-6213-0>div:nth-child(14)>div>div {
+    border-left: 0;
+  }
+
+  #tc-epo-form-6213-0>div:nth-child(15)>div>div {
+    border-right: 0;
+  }
+
+  #tc-epo-form-6213-0>div:nth-child(16)>div>div {
+    border-right: 0;
+    border-left: 0;
+  }
+
+  #tc-epo-form-6213-0>div:nth-child(17)>div>div {
+    border-left: 0;
+  }
+
+  #tc-epo-form-6213-0>div:nth-child(12) {
     order: 0;
   }
-  #tc-epo-form-6213-0 > div:nth-child(13) {
+
+  #tc-epo-form-6213-0>div:nth-child(13) {
     order: 1;
   }
-  #tc-epo-form-6213-0 > div:nth-child(14) {
+
+  #tc-epo-form-6213-0>div:nth-child(14) {
     order: 2;
   }
-  #tc-epo-form-6213-0 > div:nth-child(15) {
+
+  #tc-epo-form-6213-0>div:nth-child(15) {
     order: 3;
   }
-  #tc-epo-form-6213-0 > div:nth-child(16) {
+
+  #tc-epo-form-6213-0>div:nth-child(16) {
     order: 4;
   }
-  #tc-epo-form-6213-0 > div:nth-child(17) {
+
+  #tc-epo-form-6213-0>div:nth-child(17) {
     order: 5;
   }
 
   /* Separator of others as borders */
-  #tc-epo-form-6213-0 > div:nth-child(2) > div > div > div > div > div:nth-child(3),
-  #tc-epo-form-6213-0 > div:nth-child(6) > div > div > div > div > div:nth-child(4) {
+  #tc-epo-form-6213-0>div:nth-child(2)>div>div>div>div>div:nth-child(3),
+  #tc-epo-form-6213-0>div:nth-child(6)>div>div>div>div>div:nth-child(4) {
     border-left: 2px solid #e0e0e0;
     border-right: 2px solid #e0e0e0;
   }
-  #tc-epo-form-6213-0 > div:nth-child(9) > div > div > div > div > div:nth-child(3),
-  #tc-epo-form-6213-0 > div:nth-child(18) > div > div > div > div > div:nth-child(9),
-  #tc-epo-form-6213-0 > div:nth-child(18) > div > div > div > div > div:nth-child(15),
-  #tc-epo-form-6213-0 > div:nth-child(18) > div > div > div > div > div:nth-child(21),
-  #tc-epo-form-6213-0 > div:nth-child(18) > div > div > div > div > div:nth-child(27) {
+
+  #tc-epo-form-6213-0>div:nth-child(9)>div>div>div>div>div:nth-child(3),
+  #tc-epo-form-6213-0>div:nth-child(18)>div>div>div>div>div:nth-child(9),
+  #tc-epo-form-6213-0>div:nth-child(18)>div>div>div>div>div:nth-child(15),
+  #tc-epo-form-6213-0>div:nth-child(18)>div>div>div>div>div:nth-child(21),
+  #tc-epo-form-6213-0>div:nth-child(18)>div>div>div>div>div:nth-child(27) {
     border-left: 2px solid #e0e0e0;
   }
 }
 
-body.single-product.postid-6213 #tc-epo-form-6213-0 > [data-uniqid="634e811af6be40.72579754"],
-body.single-product.postid-6213 #tc-epo-form-6213-0 > [data-uniqid="634e811df6be83.27166318"],
-body.single-product.postid-6213 #tc-epo-form-6213-0 > [data-uniqid="6277c583bc6e91.89041822"],
-body.single-product.postid-6213 #tc-epo-form-6213-0 > [data-uniqid="6268597436a4e8.74048409"],
-body.single-product.postid-6213 #tc-epo-form-6213-0 > [data-uniqid="6267c6836c1098.51557180"],
-body.single-product.postid-6213 #tc-epo-form-6213-0 > [data-uniqid="6267c6936c1105.52576630"] {
+body.single-product.postid-6213 #tc-epo-form-6213-0>[data-uniqid="634e811af6be40.72579754"],
+body.single-product.postid-6213 #tc-epo-form-6213-0>[data-uniqid="634e811df6be83.27166318"],
+body.single-product.postid-6213 #tc-epo-form-6213-0>[data-uniqid="6277c583bc6e91.89041822"],
+body.single-product.postid-6213 #tc-epo-form-6213-0>[data-uniqid="6268597436a4e8.74048409"],
+body.single-product.postid-6213 #tc-epo-form-6213-0>[data-uniqid="6267c6836c1098.51557180"],
+body.single-product.postid-6213 #tc-epo-form-6213-0>[data-uniqid="6267c6936c1105.52576630"] {
   background: #fff;
 }
 
@@ -1054,7 +968,7 @@ body.single-product.postid-6213 #tc-epo-form-6213-0 > [data-uniqid="6267c6936c11
   font-size: 14px !important;
 }
 
-#tc-epo-form-6213-0 > div:nth-child(2) > div > div > div > div > div.tc-container:nth-child(n + 4):nth-child(-n + 23) {
+#tc-epo-form-6213-0>div:nth-child(2)>div>div>div>div>div.tc-container:nth-child(n + 4):nth-child(-n + 23) {
   display: none;
 }
 
@@ -1062,7 +976,7 @@ body.single-product.postid-6213 #tc-epo-form-6213-0 > [data-uniqid="6267c6936c11
   text-align: left;
 }
 
-.postid-15 .wpcf7-file{
+.postid-15 .wpcf7-file {
   display: none;
 }
 </style>
