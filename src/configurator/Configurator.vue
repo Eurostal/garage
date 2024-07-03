@@ -261,8 +261,22 @@ div.summary.entry-summary.tc-init {
   [data-uniqid="627b7715c54f09.72204841"].tc-cell.cpf-type-radio ul li.tc-mode-images {
     flex: 0 0 33% !important;
     max-width: 33% !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-content: center !important;
   }
 
+  [data-uniqid="625928cfacd5e1.56204472"].tc-cell.cpf-type-radio ul li.tc-mode-images label,
+  [data-uniqid="627b7715c54f09.72204841"].tc-cell.cpf-type-radio ul li.tc-mode-images label{
+    max-width: 150px !important;
+  }
+
+  [data-uniqid="625928cfacd5e1.56204472"].tc-cell.cpf-type-radio ul li.tc-mode-images label .tc-tooltip,
+  [data-uniqid="627b7715c54f09.72204841"].tc-cell.cpf-type-radio ul li.tc-mode-images label .tc-tooltip{
+    margin-right: 0 !important;
+  }
+
+  
   #app {
     padding: 0;
     height: auto;
